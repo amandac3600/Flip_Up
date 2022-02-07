@@ -7,7 +7,7 @@ const Deck = require('../../models/Deck');
 const Card = require('../../models/Card');
 
 router.get('/', (req, res) => {
-  Deck.find()
+  Deck.find({public: true })
     .sort({ name: 1 })
     .then(decks => res.json(decks))
     .catch(err => res.status(404).json({ nodecksfound: 'No decks found' }));
@@ -42,7 +42,7 @@ router.post('/',
     const newDeck = new Deck({
       user: req.user.id,
       name: req.body.name,
-      category: req.body.category,
+      category: req.body.category.split(','),
       public: req.body.public
     });
 
@@ -53,20 +53,18 @@ router.post('/',
 router.patch('/:id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { errors, isValid } = validateDeckInput(req.body);
+    // const { errors, isValid } = validateDeckInput(req.body);
 
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
+    // if (!isValid) {
+    //   return res.status(400).json(errors);
+    // }
 
     const deck = Deck.findById(req.params.id);
     deck.update({
       name: req.body.name,
-      category: req.body.category,
+      category: req.body.category.split(','),
       public: req.body.public
-    })
-
-    deck.save().then(deck => res.json(deck));
+    }).then(deck => res.json(deck));
   }
 );
 
