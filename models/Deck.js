@@ -14,10 +14,6 @@ const DeckSchema = new Schema({
     type: [String],
     required: false
   },
-  cards: {
-    type: [Schema.Types.ObjectId],
-    required: false
-  },
   public: {
     type: boolean,
     required: true
