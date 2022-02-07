@@ -5,6 +5,8 @@ const passport = require('passport');
 
 const Deck = require('../../models/Deck');
 const User = require('../../models/User');
+const Card = require('../../models/Card');
+
 const validateDeckInput = require('../../validation/deck');
 
 // returns all public decks
@@ -19,25 +21,30 @@ router.get('/', (req, res) => {
 router.get('/:id', passport.authenticate('jwt', { session: false }), async (req, res) => {
   const deck = await Deck.findOne({ _id: req.params.id })
   if (!deck) return res.status(404).json({ nodecksfound: 'No decks found with that ID' });
-  
+
   const deckUser = await User.findOne({ _id: deck.user })
 
   if (deckUser.id === req.user.id || deck.public) {
-    return res.json(deck);
+    const cards = Card.find({deck: deck.id})
+    return res.json({
+      deck,
+      cards: cards.map(card => card.id)
+    });
   } else {
     return res.status(404).json({ nopermission: 'You do not have permission to view this deck' })
   }
 });
 
-// returns all decks created by user
-router.get('/user/:user_id', (req, res) => {
+// returns all decks created by specified user. only public unless creator
+router.get('/user/:user_id', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  const decks = await Deck.find({ user: req.params.user_id });
+  if (!decks) return res.status(404).json({ nodecksfound: 'No decks found from that user' });
 
-  Deck.find({ user: req.params.user_id })
-    .then(decks => res.json(decks))
-    .catch(err =>
-      res.status(404).json({ nodecksfound: 'No decks found from that user' }
-      )
-    );
+  if (req.params.user_id === req.user.id) {
+    return res.json(decks);
+  } else {
+    return res.json(decks.filter(deck => deck.public ))
+  }
 });
 
 // creates deck for user

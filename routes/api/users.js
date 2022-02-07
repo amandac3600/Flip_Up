@@ -10,8 +10,15 @@ const Deck = require('../../models/Deck');
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
-router.get("/test", (req, res) => res.json({ msg: "This is the users route" }));
+//get all users registered for serach bar
+router.get("/", (req, res) => {
+  User.find()
+    .sort({username: 1})
+    .then(users => res.json(users))
+    .catch(err => res.status(404).json({nousers: 'No users found'}))
+});
 
+//return data of user logged in
 router.get('/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
   const decks = await Deck.find({user: req.user.id});
   return (
@@ -24,6 +31,7 @@ router.get('/:id', passport.authenticate('jwt', {session: false}), async (req, r
   )
 })
 
+//return data of current user. for testing only
 router.get('/current', passport.authenticate('jwt', {session: false}), async (req, res) => {
   const decks = await Deck.find({user: req.user.id});
   return (
@@ -36,6 +44,7 @@ router.get('/current', passport.authenticate('jwt', {session: false}), async (re
   )
 })
 
+//registers new user
 router.post('/register', (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
 
@@ -47,16 +56,13 @@ router.post('/register', (req, res) => {
     User.findOne({ email: req.body.email })
     .then(user => {
         if (user) {
-        // Throw a 400 error if the email address already exists
             return res.status(400).json({email: "A user has already registered with this address"})
         } else {
             User.findOne({ username: req.body.username })
             .then(user => {
                 if (user) {
-                // Throw a 400 error if the username address already exists
                     return res.status(400).json({username: "A user has already registered with this username"})
                 } else {
-                // Otherwise create a new user
                     const newUser = new User({
                         username: req.body.username,
                         email: req.body.email,
@@ -78,15 +84,12 @@ router.post('/register', (req, res) => {
     })
   })
 
-
+  //login new users
   router.post('/login', (req, res) => {
     const { errors, isValid } = validateLoginInput(req.body);
 
-    console.log(errors);
 
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
+    if (!isValid) return res.status(400).json(errors);
 
     const email = req.body.email;
     const password = req.body.password;
@@ -99,15 +102,14 @@ router.post('/register', (req, res) => {
         
         
         bcrypt.compare(password, user.password)
-        .then(isMatch => {
+        .then(async (isMatch) => {
             if (isMatch) {
-            const payload = {id: user.id, name: user.name};
-            // const decks = await Deck.find({ user: user.id });
+              const decks = await Deck.find({ user: user.id });
+              const payload = { id: user.id, name: user.name, decks: decks.map(deck => deck.id)};
             jwt.sign(
                 payload,
                 keys.secretOrKey,
-                // Tell the key to expire in one hour
-                {expiresIn: 3600},
+                {expiresIn: 8640000000},
                 (err, token) => {
                 res.json({
                     success: true,
@@ -120,5 +122,28 @@ router.post('/register', (req, res) => {
         })
       })
   })
+
+// router.patch('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+//   const { errors, isValid } = validateRegisterInput(req.body);
+
+//   if (!isValid) {
+//     return res.status(400).json(errors);
+//   }
+
+//   const email = req.body.email;
+//   const password = req.body.password;
+//   const username = req.body.username;
+//   const takenUsername = User.findOne({username: username});
+//   if (takenUsername) return res.status(404).json({ nouser: 'Username already taken.' })
+
+//   User.findOne({ _id: req.user.id })
+//     .then( user => {
+
+//       user.email = req.body.email;
+//       user.username = req.body.username;
+//       user.save().then(user => res.json(user));
+//     })
+//     .catch(err => res.status(404).json({ nouser: 'Unable to find user' }))
+// })
 
 module.exports = router;
