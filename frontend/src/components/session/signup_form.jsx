@@ -23,7 +23,6 @@ class SignupForm extends React.Component {
     if (prevProps.errors !== this.props.errors) {
       this.setState({ errors: this.props.errors })
     }
-    
   }
 
   update(field) {

@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
 import CardForm from './card_form';
-import { createCard } from '../../actions/card_actions'
+import { updateCard } from '../../actions/card_actions'
 
 const mapStateToProps = (state) => {
   return {
     users: state.entities.users,
-    type: 'create'
+    type: 'update'
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    submit: (card)=>dispatch(createCard(card)),
+    submit: (card)=>dispatch(updateCard(card))
   }
 }
 
