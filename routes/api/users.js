@@ -5,19 +5,24 @@ const User = require('../../models/User');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
 const passport = require('passport');
+const Deck = require('../../models/Deck');
 
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
 router.get("/test", (req, res) => res.json({ msg: "This is the users route" }));
 
-router.get('/current', passport.authenticate('jwt', {session: false}), (req, res) => {
+router.get('/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
+  const decks = await Deck.find({user: req.user.id});
+  return (
     res.json({
       id: req.user.id,
       username: req.user.username,
-      email: req.user.email
-    });
-  })
+      email: req.user.email,
+      deck: decks.map(deck => deck.id)
+    })
+  )
+})
 
 router.post('/register', (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
@@ -79,12 +84,13 @@ router.post('/register', (req, res) => {
         if (!user) {
           return res.status(404).json({email: 'This user does not exist'});
         }
-  
+        
+        
         bcrypt.compare(password, user.password)
         .then(isMatch => {
             if (isMatch) {
             const payload = {id: user.id, name: user.name};
-
+            // const decks = await Deck.find({ user: user.id });
             jwt.sign(
                 payload,
                 keys.secretOrKey,
