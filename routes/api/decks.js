@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 
 const Deck = require('../../models/Deck');
-const Card = require('../../models/Card');
+const validateDeckInput = require('../../validation/deck');
 
 router.get('/', (req, res) => {
   Deck.find({public: true })
@@ -33,11 +33,11 @@ router.get('/user/:user_id', (req, res) => {
 router.post('/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    // const { errors, isValid } = validateDeckInput(req.body);
+    const { errors, isValid } = validateDeckInput(req.body);
 
-    // if (!isValid) {
-    //   return res.status(400).json(errors);
-    // }
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
 
     const newDeck = new Deck({
       user: req.user.id,
@@ -53,11 +53,11 @@ router.post('/',
 router.patch('/:id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    // const { errors, isValid } = validateDeckInput(req.body);
+    const { errors, isValid } = validateDeckInput(req.body);
 
-    // if (!isValid) {
-    //   return res.status(400).json(errors);
-    // }
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
 
     const deck = Deck.findById(req.params.id);
     deck.update({
