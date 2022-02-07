@@ -24,6 +24,18 @@ router.get('/:id', passport.authenticate('jwt', {session: false}), async (req, r
   )
 })
 
+router.get('/current', passport.authenticate('jwt', {session: false}), async (req, res) => {
+  const decks = await Deck.find({user: req.user.id});
+  return (
+    res.json({
+      id: req.user.id,
+      username: req.user.username,
+      email: req.user.email,
+      deck: decks.map(deck => deck.id)
+    })
+  )
+})
+
 router.post('/register', (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
 
