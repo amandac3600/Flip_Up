@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "server": "nodemon app.js"
+    "server": "nodemon app.js",
+    "frontend-install": "npm install --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run frontend\""
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.1",
+    "concurrently": "^7.0.0",
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.0",
