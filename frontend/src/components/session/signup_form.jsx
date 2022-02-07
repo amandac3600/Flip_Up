@@ -6,7 +6,7 @@ class SignupForm extends React.Component {
     super(props);
     this.state = {
       email: '',
-      handle: '',
+      username: '',
       password: '',
       password2: '',
       firstName: '',
@@ -14,20 +14,23 @@ class SignupForm extends React.Component {
       errors: {}
     };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.usernameSubmit = this.usernameSubmit.bind(this);
     this.clearedErrors = false;
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     if (this.props.signedIn === true) this.props.history.push('/login');
-    this.setState({ errors: this.props.errors })
+    if (prevProps.errors !== this.props.errors) {
+      this.setState({ errors: this.props.errors })
+    }
+    
   }
 
   update(field) {
     return e => this.setState({ [field]: e.currentTarget.value });
   }
 
-  handleSubmit(e) {
+  usernameSubmit(e) {
     e.preventDefault();
 
     this.props.signup(this.state, this.props.history);
@@ -46,7 +49,7 @@ class SignupForm extends React.Component {
   render() {
     return (
       <div className="signup-form-container">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.usernameSubmit}>
           <div className="signup-form">
             <br />
             <input type="text"
@@ -68,9 +71,9 @@ class SignupForm extends React.Component {
             />
             <br />
             <input type="text"
-              value={this.state.handle}
-              onChange={this.update('handle')}
-              placeholder="Handle"
+              value={this.state.username}
+              onChange={this.update('username')}
+              placeholder="username"
             />
             <br />
             <input type="password"
