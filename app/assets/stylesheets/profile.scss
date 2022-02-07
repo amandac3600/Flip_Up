@@ -1,0 +1,42 @@
+.profile-main {
+    display: flex;
+    flex-direction: row;
+ 
+}
+
+.profile-left-div {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.profile-right-div {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.profile-info-div {
+    display: flex;
+    flex-direction: row;
+ 
+}
+.profile-user-info {
+    display: flex;
+    flex-direction: column;
+ 
+}
+.profile-user-stats {
+    display: flex;
+    flex-direction: column;
+ 
+}
+
+.profile-deck-scroller {
+    display: flex;
+}
+
+.profile-friends-list {
+    display: flex;
+    flex-direction: column;
+}

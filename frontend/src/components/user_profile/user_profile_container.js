@@ -9,7 +9,7 @@ const mSTP = state => ({
 
 const mDTP = dispatch => ({
     //fetch_user_friends: user => dispatch(fetchUserFriends(user))
-    //fetch_user_decks: user => dispatch(fetchUserDecks)
+    //fetch_user_decks: deck_id_arr => dispatch(fetchUserDecks(deck_id_arr))
 });
 
 export default connect(mSTP, mDTP)(User_Profile);
