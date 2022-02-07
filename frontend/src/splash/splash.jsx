@@ -1,6 +1,7 @@
 import React from 'react';
 import NavContainer from '../nav/nav_container';
 import Footer from '../footer/footer';
+import "./splash.css"
 
 export default class Splash extends React.Component {
   componentDidMount() {
@@ -9,7 +10,7 @@ export default class Splash extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className='splash-page'>
         <div className='splash-nav'>
           <NavContainer/>
         </div>

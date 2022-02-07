@@ -1,0 +1,49 @@
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(40, 57, 155);
+  color: aliceblue;
+  font-family: Arial, Helvetica, sans-serif;
+  height: 70px;
+}
+
+.nav-logo {
+  margin-top: 25px;
+  margin-left: 25px;
+}
+
+.nav-logo-link {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-logo-link:hover {
+  text-decoration: underline;
+}
+
+.nav-user-logout {
+  display: flex;
+  margin-right: 20px;
+}
+
+.nav-user-welcome {
+  margin: 25px 0 0 0;
+}
+
+.nav-user-logout-button {
+  background-color: rgb(40, 57, 155);
+  color: aliceblue;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  margin-top: 21px;
+  margin-left: 10px;
+  height: 25px;
+}
+
+.nav-user-logout-button:hover {
+  cursor: pointer;
+  border-bottom: 2px solid aliceblue;
+  padding-top: 2px;
+}
+

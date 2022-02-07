@@ -1,6 +1,7 @@
 import React from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
 import { withRouter } from 'react-router-dom';
+import "./search_bar.css"
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class SearchBar extends React.Component {
       <div>
         <form className="search-bar-form" onSubmit={this.handleSubmit}>
           <div className="search-input-container">
-            <input className="search-input" type="text" onChange={this.handleChange('find')} placeholder="animals, elementary, food..." />
+            <input className="search-input" type="text" onChange={this.handleChange('find')} placeholder="Find decks by category or grade" />
           </div>
           <button className="search-button" type="submit" onClick={this.clearErrors}><AiOutlineSearch /></button>
         </form>

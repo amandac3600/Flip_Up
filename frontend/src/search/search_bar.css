@@ -1,0 +1,38 @@
+.search-bar-form {
+  display: flex;
+  margin-top: 18px;
+}
+
+.search-input {
+  color: rgb(17, 26, 78);
+  height: 30px;
+  width: 300px;
+  border: none;
+  border-radius: 4px 0 0 4px;
+  padding-left: 10px;
+}
+
+::placeholder {
+  color: rgb(140, 140, 141);
+}
+
+.search-input:focus-visible {
+  border: none;
+  outline: none;
+}
+
+.search-button {
+  border: none;
+  color: rgb(23, 23, 187);
+  font-size: 16px;
+  font-weight: bold;
+  padding-top: 5px;
+  width: 40px;
+  border-radius: 0 4px 4px 0;
+}
+
+.search-button:hover {
+  cursor: pointer;
+
+}
+
