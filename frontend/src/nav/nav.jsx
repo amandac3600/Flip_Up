@@ -6,10 +6,9 @@ import SearchBarContainer from '../search/search_bar_container';
 class Nav extends React.Component {
 
   render() {
-    console.log(this.props.currentUser)
     let nav;
     if (!this.props.currentUser) {
-      nav = <nav className='nav-no-user-container'>
+      nav = <nav className='nav-container'>
         <div className='nav-logo'>
           <Link className="nav-logo-link" to="/">Flip Up</Link>
         </div>
@@ -22,7 +21,7 @@ class Nav extends React.Component {
         </div>
       </nav>
     } else if (this.props.currentUser) {
-      nav = <nav className='nav-user-container'>
+      nav = <nav className='nav-container'>
         <div className='nav-logo'>
           <Link className="nav-logo-link" to="/">Flip Up</Link>
         </div>
