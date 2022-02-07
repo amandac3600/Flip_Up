@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 
 const Card = require('../../models/Card');
+const validateCardInput = require('../../validation/card')
 
 // router.get('/', (req, res) => {
 //   Deck.find()
