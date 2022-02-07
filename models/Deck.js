@@ -15,7 +15,7 @@ const DeckSchema = new Schema({
     required: false
   },
   public: {
-    type: boolean,
+    type: Boolean,
     required: true
   },
   date: {

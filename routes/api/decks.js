@@ -33,11 +33,11 @@ router.get('/user/:user_id', (req, res) => {
 router.post('/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { errors, isValid } = validateDeckInput(req.body);
+    // const { errors, isValid } = validateDeckInput(req.body);
 
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
+    // if (!isValid) {
+    //   return res.status(400).json(errors);
+    // }
 
     const newDeck = new Deck({
       user: req.user.id,
