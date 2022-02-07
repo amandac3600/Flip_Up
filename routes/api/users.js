@@ -14,6 +14,7 @@ router.get("/test", (req, res) => res.json({ msg: "This is the users route" }));
 router.get('/current', passport.authenticate('jwt', {session: false}), (req, res) => {
     res.json({
       id: req.user.id,
+      username: req.user.username,
       email: req.user.email
     });
   })
@@ -27,28 +28,37 @@ router.post('/register', (req, res) => {
 
     // Check to make sure nobody has already registered with a duplicate email
     User.findOne({ email: req.body.email })
-      .then(user => {
+    .then(user => {
         if (user) {
-          // Throw a 400 error if the email address already exists
-          return res.status(400).json({email: "A user has already registered with this address"})
+        // Throw a 400 error if the email address already exists
+            return res.status(400).json({email: "A user has already registered with this address"})
         } else {
-          // Otherwise create a new user
-          const newUser = new User({
-            email: req.body.email,
-            password: req.body.password
-          })
+            User.findOne({ username: req.body.username })
+            .then(user => {
+                if (user) {
+                // Throw a 400 error if the username address already exists
+                    return res.status(400).json({username: "A user has already registered with this username"})
+                } else {
+                // Otherwise create a new user
+                    const newUser = new User({
+                        username: req.body.username,
+                        email: req.body.email,
+                        password: req.body.password
+                    })
 
-          bcrypt.genSalt(10, (err, salt) => {
-            bcrypt.hash(newUser.password, salt, (err, hash) => {
-              if (err) throw err;
-              newUser.password = hash;
-              newUser.save()
-                .then(user => res.json(user))
-                .catch(err => console.log(err));
+                    bcrypt.genSalt(10, (err, salt) => {
+                        bcrypt.hash(newUser.password, salt, (err, hash) => {
+                        if (err) throw err;
+                        newUser.password = hash;
+                        newUser.save()
+                            .then(user => res.json(user))
+                            .catch(err => console.log(err));
+                        })
+                    })
+                }
             })
-          })
         }
-      })
+    })
   })
 
 
