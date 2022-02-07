@@ -4,13 +4,14 @@ const validText = require('./valid-text');
 module.exports = function validateDeckInput(data) {
   let errors = {};
 
-  data.name = validText(data.name) ? data.name : '';
+  data.front = validText(data.front) ? data.front : '';
+  data.back = validText(data.back) ? data.back : '';
 
-  if (Validator.isEmpty(data.name)) {
-    errors.name = 'Name field is required';
+  if (Validator.isEmpty(data.front)) {
+    errors.front = 'Front of card is required';
   }
-  if (Validator.isEmpty(data.public)) {
-    errors.public = 'Public field is required';
+  if (Validator.isEmpty(data.back)) {
+    errors.back = 'Back of card is required';
   }
 
   return {

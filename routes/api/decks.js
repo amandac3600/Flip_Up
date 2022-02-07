@@ -42,7 +42,7 @@ router.post('/',
     const newDeck = new Deck({
       user: req.user.id,
       name: req.body.name,
-      category: req.body.category.split(','),
+      category: req.body.category.split(',').map(cat => cat.trim()),
       public: req.body.public
     });
 
@@ -59,12 +59,13 @@ router.patch('/:id',
       return res.status(400).json(errors);
     }
 
-    const deck = Deck.findById(req.params.id);
-    deck.update({
+    const deck = Deck.updateOne({_id: req.params.id}, {
       name: req.body.name,
-      category: req.body.category.split(','),
+      category: req.body.category.split(',').map(cat => cat.trim()),
       public: req.body.public
-    }).then(deck => res.json(deck));
+    }, { runValidators: true })
+      .then( deck => res.json(deck))
+  
   }
 );
 
@@ -72,7 +73,7 @@ router.delete('/:id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     Deck.deleteOne({ _id: req.params.id })
-      .then(() => res.json({ deckDeleted: "Deck was deleted"}))
+      .then(() => res.json({ deleted: "Deck was deleted"}))
       .catch(err => res.status(404).json({ nodeckfound: 'No deck found with that ID' }))
   }
 );

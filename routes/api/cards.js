@@ -6,77 +6,70 @@ const passport = require('passport');
 const Card = require('../../models/Card');
 const validateCardInput = require('../../validation/card')
 
-// router.get('/', (req, res) => {
-//   Deck.find()
-//     .sort({ name: 1 })
-//     .then(decks => res.json(decks))
-//     .catch(err => res.status(404).json({ nodecksfound: 'No decks found' }));
-// });
+router.get('/deck/:deck_id', (req, res) => {
+  Card.find({ deck: req.params.deck_id })
+    .sort({ date: -1 })
+    .then(cards => res.json(cards))
+    .catch(err => res.status(404).json({ nocardsfound: 'No cards found' }));
+});
 
-// router.get('/:id', (req, res) => {
-//   Deck.findById(req.params.id)
-//     .then(deck => res.json(deck))
-//     .catch(err =>
-//       res.status(404).json({ nodeckfound: 'No deck found with that ID' })
-//     );
-// });
+router.get('/:id', (req, res) => {
+  Card.findById(req.params.id)
+    .then(card => res.json(card))
+    .catch(err =>
+      res.status(404).json({ nocardfound: 'No card found with that ID' })
+    );
+});
 
-// router.get('/user/:user_id', (req, res) => {
-//   Deck.find({ user: req.params.user_id })
-//     .then(decks => res.json(decks))
-//     .catch(err =>
-//       res.status(404).json({ nodecksfound: 'No decks found from that user' }
-//       )
-//     );
-// });
+router.post('/deck/:deck_id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateCardInput(req.body);
 
-// router.post('/',
-//   passport.authenticate('jwt', { session: false }),
-//   (req, res) => {
-//     // const { errors, isValid } = validateDeckInput(req.body);
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
 
-//     // if (!isValid) {
-//     //   return res.status(400).json(errors);
-//     // }
+    const newCard = new Card({
+      deck: req.params.deck_id,
+      front: req.body.front,
+      back: req.body.back
+    });
 
-//     const newDeck = new Deck({
-//       user: req.user.id,
-//       name: req.body.name,
-//       category: req.body.category,
-//       public: req.body.public
-//     });
+    newCard.save().then(card => res.json(card));
+  }
+);
 
-//     newDeck.save().then(deck => res.json(deck));
-//   }
-// );
+router.patch('/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateCardInput(req.body);
 
-// router.patch('/:id',
-//   passport.authenticate('jwt', { session: false }),
-//   (req, res) => {
-//     const { errors, isValid } = validateDeckInput(req.body);
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
 
-//     if (!isValid) {
-//       return res.status(400).json(errors);
-//     }
+    const card = Card.updateOne({ _id: req.params.id }, {
+      front: req.body.front,
+      back: req.body.back
+    }, { runValidators: true })
+      .then(card => res.json(card))
 
-//     const deck = Deck.findById(req.params.id);
-//     deck.update({
-//       name: req.body.name,
-//       category: req.body.category,
-//       public: req.body.public
-//     })
+    // const card = Card.findById(req.params.id);
+    // card.front = req.body.front;
+    // card.back = req.body.back;
 
-//     deck.save().then(deck => res.json(deck));
-//   }
-// );
+    // card.save().then(card => res.json(card));
+  }
+);
 
-// router.delete('/:id',
-//   passport.authenticate('jwt', { session: false }),
-//   (req, res) => {
-//     Deck.deleteOne({ _id: req.params.id })
-//       .then(() => res.json({ deckDeleted: "Deck was deleted" }))
-//       .catch(err => res.status(404).json({ nodeckfound: 'No deck found with that ID' }))
-//   }
-// );
+router.delete('/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Card.deleteOne({ _id: req.params.id })
+      .then(() => res.json({ deleted: "Card was deleted" }))
+      .catch(err => res.status(404).json({ nocardfound: 'No card found with that ID' }))
+  }
+);
 
 module.exports = router;
