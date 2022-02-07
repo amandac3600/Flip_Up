@@ -2,17 +2,21 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const DeckSchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'users'
+  },
   name: {
     type: String,
     required: true
   },
   category: {
-    type: String,
-    required: true
+    type: [String],
+    required: false
   },
   cards: {
-    type: String,
-    required: true
+    type: [Schema.Types.ObjectId],
+    required: false
   },
   public: {
     type: boolean,
@@ -24,4 +28,4 @@ const DeckSchema = new Schema({
   }
 })
 
-module.exports = User = mongoose.model('deck', DeckSchema);
+module.exports = Deck = mongoose.model('deck', DeckSchema);
