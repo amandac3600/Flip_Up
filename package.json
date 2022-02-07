@@ -1,0 +1,33 @@
+{
+  "name": "flip_up",
+  "version": "1.0.0",
+  "description": "Flash card game",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "server": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amandac3600/Flash_Up.git"
+  },
+  "author": "Alex Ciminillo, Amanda Chen, Helen Edwards, Laney Luong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amandac3600/Flash_Up/issues"
+  },
+  "homepage": "https://github.com/amandac3600/Flash_Up#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.1",
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.0",
+    "passport": "^0.5.2",
+    "passport-jwt": "^4.0.0",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
