@@ -7,6 +7,7 @@ import LoginFormContainer from './session/login_form_container'
 import SignupFormContainer from './session/signup_form_container'
 import DeckFormContainer from './deck/deck_form_container'
 import CardFormContainer from './card/card_form_container'
+import "./reset.css"
 
 const App = () => (
   <div>
