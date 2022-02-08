@@ -30,7 +30,7 @@ const GameSchema = new Schema({
   },
   deck: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'Deck'
   },
   date: {
     type: Date,
@@ -38,6 +38,5 @@ const GameSchema = new Schema({
   }
 
 })
-GameSchema.index({ username: 'text' });
 
 module.exports = User = mongoose.model('User', GameSchema);
