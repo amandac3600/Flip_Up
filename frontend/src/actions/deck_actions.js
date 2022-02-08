@@ -35,31 +35,30 @@ export const removeDeck = deckId => ({
 
 export const getDeck = deckId => dispatch => (
     DeckApiUtil.getDeck(deckId)
-    .then((deck) => (
-        dispatch(receiveDeck(deck))
+    .then((res) => (
+        dispatch(receiveDeck(res.data))
     ))
 );
 
 export const getDecks = () => dispatch => (
     DeckApiUtil.getDecks()
-    .then((decks) => (
-        dispatch(receiveDecks(decks))
+    .then((res) => (
+        dispatch(receiveDecks(res.data))
     ))
 );
 
 export const updateDeck = (deck) => dispatch => (
     DeckApiUtil.updateDeck(deck)
-    .then((deck) => (
-        dispatch(editDeck(deck))
+    .then((res) => (
+        dispatch(editDeck(res.data))
     ))
 );
 
 
 export const createDeck = (deck) => dispatch => (
     DeckApiUtil.createDeck(deck)
-    .then((deck) => {
-        console.log(deck)
-        return dispatch(addDeck(deck))
+    .then((res) => {
+        return dispatch(addDeck(res.data))
     })
 );
 
