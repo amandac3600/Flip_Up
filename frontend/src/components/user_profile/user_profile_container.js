@@ -3,9 +3,13 @@ import { fetchUser } from '../../actions/session_actions';
 // import { fetch_user_friends } from '../../actions/user_actions'
 import UserProfile from './user_profile'
 
-const mSTP = state => ({
-    currentUser: state.session.currentUser
-});
+const mSTP = state => {
+    console.log('in MSTP', state)
+    return {
+    currentUser: state.session.user        
+    }
+
+};
 
 
 const mDTP = dispatch => ({
