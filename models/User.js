@@ -14,10 +14,15 @@ const UserSchema = new Schema({
       type: String,
       required: true
     },
+    points: {
+      type: Number,
+      default: 0
+    },
     date: {
       type: Date,
       default: Date.now
     }
+
   })
 
 module.exports = User = mongoose.model('User', UserSchema);

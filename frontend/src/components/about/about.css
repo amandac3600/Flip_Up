@@ -1,0 +1,60 @@
+.about-contrib-title {
+  font-size: 30px;
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  color: rgb(24, 37, 114);
+}
+
+.about-contrib {
+  display: flex;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.about-contrib-div {
+  margin: 20px;
+  padding: 10px;
+  width: 200px;
+  height: 300px;
+  border: 1px solid rgb(40, 57, 155);
+  border-radius: 4px;
+}
+
+.about-contrib-name {
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 600;
+  color: rgb(24, 37, 114);
+}
+
+.about-contrib-descrip {
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.about-contrib-links {
+  display: flex;
+  justify-content: center;
+}
+
+.about-contrib-github {
+  font-size: 50px;
+  text-decoration: none;
+  color: rgb(40, 57, 155);
+  margin-top: 3px;
+}
+
+.about-contrib-linkedin {
+  font-size: 56px;
+  text-decoration: none;
+  color: rgb(40, 57, 155);
+}
+
+.about-footer {
+  margin-top: 15%;
+}
