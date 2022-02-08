@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import CardForm from './card_form';
 import { createCard } from '../../actions/card_actions'
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
     type: 'create'
   };

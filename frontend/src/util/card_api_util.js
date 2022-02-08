@@ -12,7 +12,7 @@ export const getCard = (cardId) => {
 
 //create a card
 export const createCard = (card) => {
-    return axios.post(`/api/cards/`, card);
+    return axios.post(`/api/cards/deck/${card.deckId}`, card);
 };
 
 //update a card
@@ -23,5 +23,5 @@ export const updateCard = (card) => {
 
 //delete a card
 export const deleteCard = (cardId) => {
-    return axios.post(`/api/cards/${cardId}`);
+    return axios.delete(`/api/cards/${cardId}`);
 };
