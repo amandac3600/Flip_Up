@@ -37,9 +37,9 @@ router.get('/:id', passport.authenticate('jwt', {session: false}), async (req, r
       username: req.user.username,
       email: req.user.email,
       deck: decks.map(deck => deck.id),
-      friendIds: user.friendIds,
-      pendingRequests: user.pendingRequests,
-      outgoingRequests: user.outgoingRequests
+      friendIds: req.user.friendIds,
+      pendingRequests: req.user.pendingRequests,
+      outgoingRequests: req.user.outgoingRequests
     })
   )
 })
