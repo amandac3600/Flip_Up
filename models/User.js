@@ -30,6 +30,14 @@ const UserSchema = new Schema({
       type: [Schema.Types.ObjectId],
       ref: 'User'
     },
+    wins: {
+      type: [Schema.Types.ObjectId],
+      ref: 'User'
+    },
+    losses: {
+      type: [Schema.Types.ObjectId],
+      ref: 'User'
+    },
     date: {
       type: Date,
       default: Date.now
