@@ -5,12 +5,14 @@ const GameSchema = new Schema({
   player1Id: {
     type: Schema.Types.ObjectId,
     required: true,
-    ref: 'User'
+    ref: 'User',
+    index: true
   },
   player2Id: {
     type: Schema.Types.ObjectId,
     required: true,
-    ref: 'User'
+    ref: 'User',
+    index: true
   },
   player1Time: {
     type: Number,
@@ -26,11 +28,13 @@ const GameSchema = new Schema({
   },
   winner: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    index: true
   },
   deck: {
     type: Schema.Types.ObjectId,
-    ref: 'Deck'
+    ref: 'Deck',
+    required: true,
   },
   date: {
     type: Date,
