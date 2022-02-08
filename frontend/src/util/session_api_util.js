@@ -25,6 +25,10 @@ export const fetchUser = id => {
   return axios.get(`/api/users/find/${id}`)
 }
 
+export const getFriends = () => {
+  return axios.get(`/api/users/friends`)
+}
+
 export const editUser = (userData) => {
     return axios.patch('/api/users/update', userData)
 }
