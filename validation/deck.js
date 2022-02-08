@@ -9,9 +9,6 @@ module.exports = function validateDeckInput(data) {
   if (Validator.isEmpty(data.name)) {
     errors.name = 'Name field is required';
   }
-  if (Validator.isEmpty(data.public)) {
-    errors.public = 'Public field is required';
-  }
 
   return {
     errors,

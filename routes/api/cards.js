@@ -42,24 +42,18 @@ router.post('/deck/:deck_id',
 
 router.patch('/:id',
   passport.authenticate('jwt', { session: false }),
-  (req, res) => {
+  async (req, res) => {
     const { errors, isValid } = validateCardInput(req.body);
 
     if (!isValid) {
       return res.status(400).json(errors);
     }
 
-    const card = Card.updateOne({ _id: req.params.id }, {
-      front: req.body.front,
-      back: req.body.back
-    }, { runValidators: true })
-      .then(card => res.json(card))
+    const card = await Card.findOne({_id: req.params.id});
+    card.front = req.body.front;
+    card.back = req.body.back;
 
-    // const card = Card.findById(req.params.id);
-    // card.front = req.body.front;
-    // card.back = req.body.back;
-
-    // card.save().then(card => res.json(card));
+    card.save().then(card => res.json(card));
   }
 );
 
