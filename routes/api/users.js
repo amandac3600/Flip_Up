@@ -10,9 +10,10 @@ const Deck = require('../../models/Deck');
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
-//get all users registered for serach bar
+//get all users registered for search bar
 router.get("/", (req, res) => {
-  User.find()
+  const keyword = req.body.keyword;
+  User.find({username: { $regex: keyword, $options: "i" }})
     .sort({username: 1})
     .then(users => {
       res.json(users.map(user => ({

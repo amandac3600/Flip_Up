@@ -47,22 +47,22 @@ router.post('/deck/:deck_id',
 router.patch('/:id',
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
-    const { errors, isValid } = validateCardInput(req.body);
+    const card = await Card.findOne({_id: req.params.id});
+    if (req.body.front) card.front = req.body.front;
+    if (req.body.back) card.back = req.body.back;
+    card.reviewed = Date.now();
+    if (req.body.count) card.count = req.body.count;
+    const { errors, isValid } = validateCardInput(card);
 
     if (!isValid) {
       return res.status(400).json(errors);
     }
 
-    const card = await Card.findOne({_id: req.params.id});
-    if (req.body.front) card.front = req.body.front;
-    if (req.body.back) card.back = req.body.back;
-    card.reviewed = Date.now;
-    if (req.body.count) card.count = req.body.count;
-
     card.save().then(card => res.json(card));
   }
 );
 
+// delete specific card
 router.delete('/:id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
