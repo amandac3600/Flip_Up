@@ -3,7 +3,8 @@ import { logout } from '../../actions/session_actions';
 import Nav from './nav'
 
 const mapStateToProps = (state) => ({
-  currentUser: state.entities.users[state.session.id],
+  // currentUser: state.entities.session.currentUserId,
+  currentUser: {id: 1},
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -11,3 +12,4 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Nav)
+
