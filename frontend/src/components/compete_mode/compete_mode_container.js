@@ -2,6 +2,8 @@ import { connect } from 'react-redux';
 import CompeteMode from './compete_mode';
 import {getCards} from '../../actions/card_actions';
 import { getDecks } from '../../actions/deck_actions';
+import { fetchUser, getFriends } from '../../actions/session_actions';
+import { createGame, getGame, getPendingGames, getCompleteGames } from '../../actions/game_actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -15,8 +17,13 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getCards: (deckId) => dispatch(getCards(deckId)),
+    getFriends: () => dispatch(getFriends()),
     getDecks: () => dispatch(getDecks()),
-    
+    fetchUser: (id) => dispatch(fetchUser(id)),
+    createGame: (game) => dispatch(createGame(game)),
+    getGame: (gameId) => dispatch(getGame(gameId)),
+    getPendingGames: () => dispatch(getPendingGames()),
+    getCompleteGames: () => dispatch(getCompleteGames()),
   }
 }
 
