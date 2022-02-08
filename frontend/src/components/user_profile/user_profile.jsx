@@ -1,4 +1,6 @@
 import React from 'react';
+import NavContainer from '../nav/nav_container';
+import Footer from '../footer/footer';
 import './user_profile.css';
 
 
@@ -53,30 +55,40 @@ class UserProfile extends React.Component {
         )
 
         return (
+            <div>
+                 <div className='about-nav'>
+                    <NavContainer/>
+                </div>
 
-            <div className='profile-content'>
-                {/* are we adding nav bar here or on app?? */}
-                <div className="profile-left-div">
-                    <div className="profile-info-div">
-                        <div className="profile-user-info">
-                            <img src="https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png" alt="user profile pic" />
-                            <p>Username: {this.state.username}</p>
-                            <p>EDIT BUTTON GOES HERE</p>
+                <div className='profile-content'>
+                    {/* are we adding nav bar here or on app?? */}
+                    <div className="profile-left-div">
+                        <div className="profile-info-div">
+                            <div className="profile-user-info">
+                                <img src="https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png" alt="user profile pic" />
+                                <p>{this.state.username}</p>
+                                <button>Edit profile</button>
+                            </div>
+                            <div className='profile-user-stats'>
+                                <p>Wins</p>
+                                <p>Loses</p>
+                                <p>Points</p>
+                            </div>
                         </div>
-                        <div className='profile-user-stats'>
-                            <p>Wins</p>
-                            <p>Loses</p>
-                            <p>Points</p>
+                        <div className="profile-deck-scroller">
+                            {this.render_decks()}
                         </div>
                     </div>
-                    <div className="profile-deck-scroller">
-                        {this.render_decks()}
+                    <div className="profile-right-div">
+                        <div className="profile-friends-list">
+                            <div className= "profile-friends-header"><h3>Friends</h3>
+                            <button>Pending</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div className="profile-right-div">
-                    <div className="profile-friends-list">
-                        <h3>Friends</h3>
-                    </div>
+                <div className='about-footer'>
+                    <Footer/>
                 </div>
             </div>
         )

@@ -3,8 +3,8 @@
     flex-direction: row;
     justify-content: space-evenly;
     width: 100%;
-    border: 2px solid rgb(128, 0, 111); 
-    margin: 5px;
+    margin-top: 20px;
+  
  
 }
 
@@ -14,14 +14,15 @@
     justify-content: center;
 
     width: 60%;
-    border: 2px solid green; 
+    /* border: 2px solid green;  */
     margin: 5px;
 }   
 
 .profile-right-div {
     display: flex;
     flex-direction: column;
-    border: 1px solid green; 
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29);
     margin: 5px;
     width: 30%;
 
@@ -30,16 +31,21 @@
 .profile-info-div {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    border: 2px solid yellow;
+    justify-content: space-between;
+    /* border: 2px solid yellow; */
     margin: 5px;
+    margin-bottom: 35px;
+
 }
 .profile-user-info {
     display: flex;
     flex-direction: column;
-    width: 30%;
-    border: 2px solid orange;   
-    margin: 5px;
+    align-items: center; 
+    width: 35%;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29);
+    /* margin-bottom: 15px;
+    margin-bottom: 15px; */
 }
 
 .profile-user-info img{
@@ -50,17 +56,24 @@
 .profile-user-stats {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 60%;
-    border: 2px solid orange; 
-    margin: 5px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29)
 }
 
 /* DECK */
 
 .profile-deck-scroller {
     display: flex;
-    border: 2px solid blue; 
+    height: 300px; 
+    align-items: center;
+    justify-content: center;
     margin: 5px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29)
+
 }
 
 .profile-no-decks {
@@ -69,13 +82,22 @@
 }
 
 .profile-deck-li {
-    background-color: cornsilk;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29)
 }
 
 /* FRIENDS */
 .profile-friends-list {
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
+    justify-content: center;
+
+    margin: 5px;
+}
+.profile-friends-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
     margin: 5px;
 }
