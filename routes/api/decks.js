@@ -25,7 +25,7 @@ router.get('/:id', passport.authenticate('jwt', { session: false }), async (req,
   const deckUser = await User.findOne({ _id: deck.user })
 
   if (deckUser.id === req.user.id || deck.public) {
-    const cards = Card.find({deck: deck.id})
+    const cards = await Card.find({deck: deck.id})
     return res.json({
       deck,
       cards: cards.map(card => card.id)
@@ -50,17 +50,21 @@ router.get('/user/:user_id', passport.authenticate('jwt', { session: false }), a
 // creates deck for user
 router.post('/',
   passport.authenticate('jwt', { session: false }),
-  (req, res) => {
+  async (req, res) => {
     const { errors, isValid } = validateDeckInput(req.body);
 
     if (!isValid) {
       return res.status(400).json(errors);
     }
+    const deck = await Deck.findOne({ name: req.body.name, user: req.user.id })
 
+    if (deck) return res.status(400).json({ invalidname: 'Deck name already exists'});
+    
     const newDeck = new Deck({
       user: req.user.id,
       name: req.body.name,
       category: req.body.category.split(',').map(cat => cat.trim()),
+      // category: req.body.category,
       public: req.body.public
     });
 
@@ -83,8 +87,13 @@ router.patch('/:id',
       const deckUser = await User.findOne({_id: deck.user})
 
       if (deckUser.id === req.user.id) {
-        deck.name = req.body.name;
-        deck.category = req.body.category.split(',').map(cat => cat.trim());
+        if (deck.name) {
+          const checkDeckName = await Deck.findOne({ name: req.body.name })
+          if (!checkDeckName) deck.name = req.body.name;
+        }
+        // if (deck.category) deck.category = req.body.category;
+        if (deck.category) deck.category = req.body.category.split(',').map(cat => cat.trim()),
+
         deck.public = req.body.public;
 
         deck.save().then(deck => res.json(deck))
@@ -97,6 +106,7 @@ router.patch('/:id',
   }
 );
 
+// delete deck if owned by logged in user
 router.delete('/:id',
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
