@@ -5,6 +5,7 @@
   background-color: rgb(40, 57, 155);
   padding-top: 10px;
   height: 70px;
+  width: 100vw;
 }
 
 .footer-github-link, .footer-about-link {
