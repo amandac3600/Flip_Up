@@ -22,6 +22,15 @@ class CardForm extends React.Component {
     return e => this.setState({ [field]: e.currentTarget.value });
   }
 
+  //return whether or not the user is creating or editing a card
+  getCardHeader() {
+    if (this.props.type === 'create') {
+      return 'Create Card'
+    } else {
+      return 'Edit Card'
+    }
+  }
+
   cardSubmit(e) {
     e.preventDefault();
     if (this.state.type === 'create') {
@@ -42,11 +51,12 @@ class CardForm extends React.Component {
 
 
   render() {
+    console.log(this.state)
     return (
       <div>
+        <div>{this.getCardHeader()}</div>
         <form onSubmit={this.cardSubmit}>
           <div>
-            <br />
             <input type="text"
               value={this.state.front}
               onChange={this.update('front')}

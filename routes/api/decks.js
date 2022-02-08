@@ -38,7 +38,6 @@ router.post('/',
     if (!isValid) {
       return res.status(400).json(errors);
     }
-
     const newDeck = new Deck({
       user: req.user.id,
       name: req.body.name,

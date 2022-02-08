@@ -3,7 +3,6 @@ import Deck from './deck';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    users: state.entities.users,
     deck: state.entities.decks[ownProps.match.params.id],
   };
 };

@@ -4,7 +4,6 @@ import { updateCard } from '../../actions/card_actions'
 
 const mapStateToProps = (state) => {
   return {
-    users: state.entities.users,
     card: state.entities.cards[ownProps.match.params.id],
     type: 'update'
   };

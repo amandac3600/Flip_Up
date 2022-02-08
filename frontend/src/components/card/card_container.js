@@ -3,7 +3,6 @@ import Card from './card';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    users: state.entities.users,
     card: state.entities.cards[ownProps.match.params.id],
   };
 };

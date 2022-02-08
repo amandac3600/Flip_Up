@@ -4,7 +4,6 @@ import { createCard } from '../../actions/card_actions'
 
 const mapStateToProps = (state) => {
   return {
-    users: state.entities.users,
     type: 'create'
   };
 };

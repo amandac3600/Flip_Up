@@ -4,7 +4,6 @@ import { updateDeck } from './../../actions/deck_actions'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    users: state.entities.users,
     deck: state.entities.decks[ownProps.match.params.id],
     type: 'update'
   };
