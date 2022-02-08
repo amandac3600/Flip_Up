@@ -63,8 +63,8 @@ router.post('/',
     const newDeck = new Deck({
       user: req.user.id,
       name: req.body.name,
-      category: req.body.category.split(',').map(cat => cat.trim()),
-      // category: req.body.category,
+      // category: req.body.category.split(',').map(cat => cat.trim()),
+      category: req.body.category,
       public: req.body.public
     });
 
@@ -91,8 +91,8 @@ router.patch('/:id',
           const checkDeckName = await Deck.findOne({ name: req.body.name })
           if (!checkDeckName) deck.name = req.body.name;
         }
-        // if (deck.category) deck.category = req.body.category;
-        if (deck.category) deck.category = req.body.category.split(',').map(cat => cat.trim()),
+        if (deck.category) deck.category = req.body.category;
+        // if (deck.category) deck.category = req.body.category.split(',').map(cat => cat.trim()),
 
         deck.public = req.body.public;
 
