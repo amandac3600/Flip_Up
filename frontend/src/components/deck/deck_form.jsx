@@ -14,7 +14,7 @@ class DeckForm extends React.Component {
       this.state = {
         name: this.props.deck.name,
         public: this.props.deck.public,
-        category: this.props.deck.category.split(',')
+        category: this.props.deck.category
       };
     }
     
