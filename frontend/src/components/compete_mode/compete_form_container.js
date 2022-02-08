@@ -8,7 +8,7 @@ import { createGame, getGame, getPendingGames, getCompleteGames } from '../../ac
 const mapStateToProps = (state) => {
   return {
     decks: state.entities.decks,
-    cards: state.entities.cards,
+    // cards: state.entities.cards,
     users: state.entities.users,
     games: state.entities.games,
   };
@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getCards: (deckId) => dispatch(getCards(deckId)),
+    // getCards: (deckId) => dispatch(getCards(deckId)),
     getFriends: () => dispatch(getFriends()),
     getDecks: () => dispatch(getDecks()),
     fetchUser: (id) => dispatch(fetchUser(id)),
