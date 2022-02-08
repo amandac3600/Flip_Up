@@ -10,15 +10,19 @@ const Deck = require('../../models/Deck');
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
-//get all users registered for serach bar
+//get all users registered for search bar
 router.get("/", (req, res) => {
-  User.find()
+  const keyword = req.body.keyword;
+  const query = keyword ? 
+    User.find({username: { $regex: keyword, $options: "i" }}) :
+    User.find();
+  query
     .sort({username: 1})
     .then(users => {
       res.json(users.map(user => ({
         id: user.id, 
         username: user.username,
-        email: user.email
+        email: user.email,
       })))
     })
     .catch(err => res.status(404).json({nousers: 'No users found'}))
@@ -32,7 +36,10 @@ router.get('/:id', passport.authenticate('jwt', {session: false}), async (req, r
       id: req.user.id,
       username: req.user.username,
       email: req.user.email,
-      deck: decks.map(deck => deck.id)
+      deck: decks.map(deck => deck.id),
+      friendIds: req.user.friendIds,
+      pendingRequests: req.user.pendingRequests,
+      outgoingRequests: req.user.outgoingRequests
     })
   )
 })
@@ -45,7 +52,10 @@ router.get('/current', passport.authenticate('jwt', {session: false}), async (re
       id: req.user.id,
       username: req.user.username,
       email: req.user.email,
-      deck: decks.map(deck => deck.id)
+      deck: decks.map(deck => deck.id),
+      friendIds: user.friendIds,
+      pendingRequests: user.pendingRequests,
+      outgoingRequests: user.outgoingRequests
     })
   )
 })
@@ -113,7 +123,11 @@ router.post('/register', (req, res) => {
               const payload = { 
                 id: user.id, 
                 username: user.username, 
-                decks: decks.map(deck => deck.id)};
+                decks: decks.map(deck => deck.id),
+                friendIds: user.friendIds,
+                pendingRequests: user.pendingRequests,
+                outgoingRequests: user.outgoingRequests
+              };
             jwt.sign(
                 payload,
                 keys.secretOrKey,
@@ -142,7 +156,7 @@ router.patch('/', passport.authenticate('jwt', { session: false }), (req, res) =
   }
 
   User.findOne({ _id: req.user.id })
-    .then( user => {
+    .then( async user => {
       if (req.body.password) user.password = req.body.password;
       if (req.body.password2) user.password2 = req.body.password2;
       if (req.body.username) user.username = req.body.username;
@@ -159,11 +173,73 @@ router.patch('/', passport.authenticate('jwt', { session: false }), (req, res) =
           user.save()
             .then(async user => {
               const decks = await Deck.find({ user: req.user.id });
-              const payload = { id: user.id, username: user.username, decks: decks.map(deck => deck.id) };
+              const payload = { 
+                id: user.id, 
+                username: user.username, 
+                decks: decks.map(deck => deck.id),
+                friendIds: user.friendIds,
+                pendingRequests: user.pendingRequests,
+                outgoingRequests: user.outgoingRequests };
               return res.json(payload)
             })
             .catch(err => console.log(err));
         })
+      })
+    })
+    .catch(err => res.status(404).json({ nouser: 'Unable to find user' }))
+})
+
+const removeFromArray = (id, user, arrayName) => {
+  const index = user[arrayName].indexOf(id);
+  if (index !== -1) user[arrayName].splice(index, 1);
+}
+
+router.patch('/friend', passport.authenticate('jwt', { session: false }), (req, res) => {
+  User.findOne({ _id: req.user.id })
+    .then(async user => {
+      const friendId = req.body.friendId;
+      const friend = await User.findOne({ _id: friendId });
+      const requestType = req.body.requestType;
+      switch (requestType) {
+        case 'approve':
+          user.friendIds.push(friendId);
+          friend.friendIds.push(user.id);
+          removeFromArray(friendId, user, 'pendingRequests');
+          removeFromArray(user.id, friend, 'outgoingRequests');
+          break;
+        case 'remove':
+          removeFromArray(friendId, user, 'friendIds');
+          removeFromArray(user.id, friend, 'friendIds');
+          break;
+        case 'deny':
+          removeFromArray(friendId, user, 'pendingRequests');
+          removeFromArray(user.id, friend, 'outgoingRequests');
+          break;
+        case 'cancel':
+          removeFromArray(friendId, user, 'outgoingRequests');
+          removeFromArray(user.id, friend, 'pendingRequests');
+          break;
+        case 'request':
+          if (!user.outgoingRequests.includes(friendId)) {
+            user.outgoingRequests.push(friendId);
+          }
+          if (!friend.pendingRequests.includes(user.id)) {
+            friend.pendingRequests.push(user.id);
+          break;
+        }
+      }
+      user.save()
+        .then(async (user) => {
+          const decks = await Deck.find({ user: req.user.id });
+          const payload = {
+            id: user.id,
+            username: user.username,
+            decks: decks.map(deck => deck.id),
+            friendIds: user.friendIds,
+            pendingRequests: user.pendingRequests,
+            outgoingRequests: user.outgoingRequests
+          };
+          return res.json(payload)
       })
     })
     .catch(err => res.status(404).json({ nouser: 'Unable to find user' }))

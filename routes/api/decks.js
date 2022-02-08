@@ -9,12 +9,23 @@ const Card = require('../../models/Card');
 
 const validateDeckInput = require('../../validation/deck');
 
-// returns all public decks
+// returns all public decks based on filter
 router.get('/', (req, res) => {
-  Deck.find({public: true })
-    .sort({ name: 1 })
-    .then(decks => res.json(decks))
-    .catch(err => res.status(404).json({ nodecksfound: 'No decks found' }));
+  let query;
+  if (req.body.filters) {
+    const filters = req.body.filters.split(',');
+    query = Deck.find({ 
+      public: true, 
+      category: { $in: filters } });
+  } else {
+    query = Deck.find({ public: true });
+  }
+    // category: { $regex: "elementary", $options: "i" }
+    // $or: [{ category: { $regex: "land", $options: "i" } }, { category: { $regex: "code", $options: "i" }}]
+
+    query.sort({ name: 1 })
+      .then(decks => res.json(decks))
+      .catch(err => res.status(404).json({ nodecksfound: 'No matching decks found' }));
 });
 
 // returns specific deck. allows only owner or if desk if public
@@ -75,28 +86,30 @@ router.post('/',
 router.patch('/:id',
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
-    const { errors, isValid } = validateDeckInput(req.body);
-
-    if (!isValid) return res.status(400).json(errors);
-
     const deck = await Deck.findOne({_id: req.params.id})
 
     if (deck) {
-
       const deckUser = await User.findOne({_id: deck.user})
-
-      if (deckUser.id === req.user.id) {
-        if (deck.name) {
-          const checkDeckName = await Deck.findOne({ name: req.body.name })
-          if (!checkDeckName) deck.name = req.body.name;
-        }
-        if (deck.category) deck.category = req.body.category;
-        deck.public = req.body.public;
-
-        deck.save().then(deck => res.json(deck))
-      } else {
-        return res.status(404).json({ invaliduser: 'You do not own this deck' })
+      if (deckUser.id !== req.user.id) {
+        return res.status(404).json({ invaliduser: 'You do not own this deck' });
+      };
+      if (req.body.name) {
+        const checkDeckName = await Deck.findOne({ name: req.body.name })
+        if (checkDeckName) return res.status(404).json({ invalidname: 'Deck name already exists' });
+        deck.name = req.body.name;
       }
+      // if (req.body.category) deck.category = req.body.category;
+      if (req.body.category) {
+        const cats = req.body.category.split(',').map(cat => cat.trim())
+        deck.category = cats;
+      }
+      console.log(req.body.public)
+      if (req.body.public) deck.public = req.body.public;
+
+      const { errors, isValid } = validateDeckInput(deck);
+      if (!isValid) return res.status(400).json(errors);
+
+      deck.save().then(deck => res.json(deck))
     } else {
       return res.status(404).json({ nodecksfound: 'No decks found with that id' });
     }
