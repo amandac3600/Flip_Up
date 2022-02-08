@@ -1,0 +1,21 @@
+.carousel-div {
+    width: 500px;
+    border-color: 2px solid red;
+}
+.carousel-deck-item{
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 90px;
+    margin: 50px; 
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgb(45, 45, 100);
+    box-shadow:3px 3px 0px 0px #294d64, 7px 7px 0px 0px #4ca4d6, 6px 6px 0px 0px #abdceb, 7px 7px 0px 0px #c6daec, 10px 10px 0px 0px #eaf3f8, 5px 5px 15px 5px rgba(0,0,0,0);
+
+}
+
+/* .carousel-deck-item :hover {
+    background-color: rgb(197, 197, 230);
+} */
