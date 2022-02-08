@@ -13,7 +13,10 @@ const validateLoginInput = require('../../validation/login');
 //get all users registered for search bar
 router.get("/", (req, res) => {
   const keyword = req.body.keyword;
-  User.find({username: { $regex: keyword, $options: "i" }})
+  const query = keyword ? 
+    User.find({username: { $regex: keyword, $options: "i" }}) :
+    User.find();
+  query
     .sort({username: 1})
     .then(users => {
       res.json(users.map(user => ({
@@ -186,42 +189,48 @@ router.patch('/', passport.authenticate('jwt', { session: false }), (req, res) =
     .catch(err => res.status(404).json({ nouser: 'Unable to find user' }))
 })
 
+const removeFromArray = (id, user, arrayName) => {
+  const index = user[arrayName].indexOf(id);
+  if (index !== -1) user[arrayName].splice(index, 1);
+}
+
 router.patch('/friend', passport.authenticate('jwt', { session: false }), (req, res) => {
   User.findOne({ _id: req.user.id })
     .then(async user => {
       const friendId = req.body.friendId;
       const friend = await User.findOne({ _id: friendId });
       const requestType = req.body.requestType;
-      let index;
-      let friendIndex;
       switch (requestType) {
         case 'approve':
-          index = user.pendingRequests.indexOf(friendId);
-          if (index !== -1) user.pendingRequests.splice(index, 1);
           user.friendIds.push(friendId);
           friend.friendIds.push(user.id);
-          friendIndex = friend.outgoingRequests.indexOf(user.id);
-          if (friendIndex !== -1) friend.outgoingRequests.splice(friendIndex, 1);
+          removeFromArray(friendId, user, 'pendingRequests');
+          removeFromArray(user.id, friend, 'outgoingRequests');
           break;
         case 'remove':
-          index = user.friendIds.indexOf(friendId);
-          if (index !== -1) user.friendIds.splice(index, 1);
-          friendIndex = friend.friendIds.indexOf(user.id);
-          if (friendIndex !== -1) friend.friendIds.splice(friendIndex, 1);
+          removeFromArray(friendId, user, 'friendIds');
+          removeFromArray(user.id, friend, 'friendIds');
           break;
         case 'deny':
-          index = user.pendingRequests.indexOf(friendId);
-          if (index !== -1) user.pendingRequests.splice(index, 1);
-          friendIndex = friend.outgoingRequests.indexOf(user.id);
-          if (friendIndex !== -1) friend.outgoingRequests.splice(friendIndex, 1);
+          removeFromArray(friendId, user, 'pendingRequests');
+          removeFromArray(user.id, friend, 'outgoingRequests');
+          break;
+        case 'cancel':
+          removeFromArray(friendId, user, 'outgoingRequests');
+          removeFromArray(user.id, friend, 'pendingRequests');
           break;
         case 'request':
-          user.outgoingRequests.push(friendId);
-          friend.pendingRequests.push(user.id);
+          if (!user.outgoingRequests.includes(friendId)) {
+            user.outgoingRequests.push(friendId);
+          }
+          if (!friend.pendingRequests.includes(user.id)) {
+            friend.pendingRequests.push(user.id);
           break;
+        }
       }
       user.save()
-        .then(user => {
+        .then(async (user) => {
+          const decks = await Deck.find({ user: req.user.id });
           const payload = {
             id: user.id,
             username: user.username,
