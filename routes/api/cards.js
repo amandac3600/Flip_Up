@@ -6,6 +6,7 @@ const passport = require('passport');
 const Card = require('../../models/Card');
 const validateCardInput = require('../../validation/card')
 
+// return all cards in a deck
 router.get('/deck/:deck_id', (req, res) => {
   Card.find({ deck: req.params.deck_id })
     .sort({ date: -1 })
@@ -13,6 +14,7 @@ router.get('/deck/:deck_id', (req, res) => {
     .catch(err => res.status(404).json({ nocardsfound: 'No cards found' }));
 });
 
+// return specific card
 router.get('/:id', (req, res) => {
   Card.findById(req.params.id)
     .then(card => res.json(card))
@@ -21,6 +23,7 @@ router.get('/:id', (req, res) => {
     );
 });
 
+//create new card for a deck
 router.post('/deck/:deck_id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
@@ -40,6 +43,7 @@ router.post('/deck/:deck_id',
   }
 );
 
+//update card information
 router.patch('/:id',
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
@@ -50,8 +54,10 @@ router.patch('/:id',
     }
 
     const card = await Card.findOne({_id: req.params.id});
-    card.front = req.body.front;
-    card.back = req.body.back;
+    if (req.body.front) card.front = req.body.front;
+    if (req.body.back) card.back = req.body.back;
+    card.reviewed = Date.now;
+    if (req.body.count) card.count = req.body.count;
 
     card.save().then(card => res.json(card));
   }

@@ -14,34 +14,10 @@ const UserSchema = new Schema({
       type: String,
       required: true
     },
-    // deck_ids: {
-    //   type: Array,
-    //   default: []
-    // },
-    // friend_ids: {
-    //   type: Array,
-    //   default: []
-    // },
-    // friend_requests: {
-    //   type: Array,
-    //   default: []
-    // },
-    // friends_requested: {
-    //   type: Array,
-    //   default: []
-    // },
-    // wins: {
-    //   type: Array,
-    //   default: []
-    // },
-    // loses: {
-    //   type: Array,
-    //   default: []
-    // },
-    // points: {
-    //   type: Number,
-    //   default: 0
-    // },
+    points: {
+      type: Number,
+      default: 0
+    },
     date: {
       type: Date,
       default: Date.now

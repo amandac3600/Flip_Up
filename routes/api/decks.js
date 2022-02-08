@@ -63,7 +63,6 @@ router.post('/',
     const newDeck = new Deck({
       user: req.user.id,
       name: req.body.name,
-      // category: req.body.category.split(',').map(cat => cat.trim()),
       category: req.body.category,
       public: req.body.public
     });
@@ -92,8 +91,6 @@ router.patch('/:id',
           if (!checkDeckName) deck.name = req.body.name;
         }
         if (deck.category) deck.category = req.body.category;
-        // if (deck.category) deck.category = req.body.category.split(',').map(cat => cat.trim()),
-
         deck.public = req.body.public;
 
         deck.save().then(deck => res.json(deck))
@@ -114,7 +111,8 @@ router.delete('/:id',
 
     if (deck) {
       const deckUser = await User.findOne({ _id: deck.user })
-
+      console.log(deckUser)
+      console.log(req.user)
       if (deckUser.id === req.user.id) {
         Deck.deleteOne({ _id: req.params.id })
         .then(() => res.json({ deleted: "Deck was deleted" }))
