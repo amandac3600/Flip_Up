@@ -249,9 +249,12 @@ router.patch('/friend', passport.authenticate('jwt', { session: false }), (req, 
             id: user.id,
             username: user.username,
             decks: decks.map(deck => deck.id),
+            point: user.points,
             friendIds: user.friendIds,
             pendingRequests: user.pendingRequests,
-            outgoingRequests: user.outgoingRequests
+            outgoingRequests: user.outgoingRequests,
+            wins: user.wins,
+            losses: user.losses,
           };
           return res.json(payload)
       })
