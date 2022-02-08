@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import CompeteMode from './compete_mode';
-import {getCards} from '../../actions/card_actions';
+import CompeteForm from './compete_form';
+import { getCards } from '../../actions/card_actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -17,4 +17,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CompeteMode);
+export default connect(mapStateToProps, mapDispatchToProps)(CompeteForm);
