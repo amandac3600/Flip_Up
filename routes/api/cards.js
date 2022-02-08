@@ -6,6 +6,14 @@ const passport = require('passport');
 const Card = require('../../models/Card');
 const validateCardInput = require('../../validation/card')
 
+// return all cards. testing only
+// router.get('/', (req, res) => {
+//   Card.find()
+//     .sort({ date: -1 })
+//     .then(cards => res.json(cards))
+//     .catch(err => res.status(404).json({ nocardsfound: 'No cards found' }));
+// });
+
 // return all cards in a deck
 router.get('/deck/:deck_id', (req, res) => {
   Card.find({ deck: req.params.deck_id })
@@ -26,13 +34,12 @@ router.get('/:id', (req, res) => {
 //create new card for a deck
 router.post('/deck/:deck_id',
   passport.authenticate('jwt', { session: false }),
-  (req, res) => {
+  async (req, res) => {
     const { errors, isValid } = validateCardInput(req.body);
 
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
-
+    if (!isValid) return res.status(400).json(errors);
+    const takenCard = await Card.findOne({ deck: req.params.deck_id, front: req.body.front });
+    if (takenCard) return res.status(404).json({duplicate: 'Card with this front already exists'});
     const newCard = new Card({
       deck: req.params.deck_id,
       front: req.body.front,
