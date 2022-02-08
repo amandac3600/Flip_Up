@@ -9,7 +9,6 @@ module.exports = function validateDeckInput(data) {
   if (Validator.isEmpty(data.name)) {
     errors.name = 'Name field is required';
   }
-  
   return {
     errors,
     isValid: Object.keys(errors).length === 0
