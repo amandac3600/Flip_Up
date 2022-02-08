@@ -1,0 +1,43 @@
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const GameSchema = new Schema({
+  player1Id: {
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref: 'User'
+  },
+  player2Id: {
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref: 'User'
+  },
+  player1Time: {
+    type: Number,
+  },
+  player2Time: {
+    type: Number,
+  },
+  player1Correct: {
+    type: Number,
+  },
+  player2Correct: {
+    type: Number,
+  },
+  winner: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  deck: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  date: {
+    type: Date,
+    default: Date.now
+  }
+
+})
+GameSchema.index({ username: 'text' });
+
+module.exports = User = mongoose.model('User', GameSchema);
