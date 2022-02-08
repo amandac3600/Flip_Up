@@ -15,6 +15,7 @@ class UserProfile extends React.Component {
     }
 
     componentDidMount() {
+        console.log(this.props.fetchUser(this.state.id))
         this.props.fetchUser(this.state.id)
             .then(action => {
                 this.setState({
