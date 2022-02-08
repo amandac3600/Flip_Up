@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   background-color: rgb(40, 57, 155);
-  color: aliceblue;
+  color: whitesmoke;
   font-family: Arial, Helvetica, sans-serif;
   height: 70px;
 }
@@ -14,11 +14,7 @@
 
 .nav-logo-link {
   text-decoration: none;
-  color: white;
-}
-
-.nav-logo-link:hover {
-  text-decoration: underline;
+  color: whitesmoke;
 }
 
 .nav-user-logout {
@@ -32,7 +28,7 @@
 
 .nav-user-logout-button {
   background-color: rgb(40, 57, 155);
-  color: aliceblue;
+  color: whitesmoke;
   font-size: 15px;
   font-weight: 600;
   border: none;
@@ -43,7 +39,7 @@
 
 .nav-user-logout-button:hover {
   cursor: pointer;
-  border-bottom: 2px solid aliceblue;
+  border-bottom: 1px solid whitesmoke;
   padding-top: 2px;
 }
 

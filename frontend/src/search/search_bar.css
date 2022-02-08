@@ -1,12 +1,12 @@
 .search-bar-form {
   display: flex;
-  margin-top: 18px;
+  margin-top: 16px;
 }
 
 .search-input {
   color: rgb(17, 26, 78);
-  height: 30px;
-  width: 300px;
+  height: 35px;
+  width: 350px;
   border: none;
   border-radius: 4px 0 0 4px;
   padding-left: 10px;
@@ -24,7 +24,7 @@
 .search-button {
   border: none;
   color: rgb(23, 23, 187);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   padding-top: 5px;
   width: 40px;
