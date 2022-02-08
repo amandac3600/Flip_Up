@@ -5,14 +5,18 @@ import MainPage from './main/main_page'
 import LoginFormContainer from './session/login_form_container'
 import SignupFormContainer from './session/signup_form_container'
 import UserProfileContainer from './user_profile/user_profile_container';
+import DeckFormContainer from './deck/deck_form_container'
+import CardFormContainer from './card/card_form_container'
 
 const App = () => (
   <div>
     <Switch>
-      <AuthRoute exact path="/" component={MainPage} />
+      <ProtectedRoute exact path="/profile" component={UserProfileContainer} />
+      <ProtectedRoute exact path="/decks/new" component={DeckFormContainer} />
+      <ProtectedRoute exact path="/cards/new" component={CardFormContainer} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
-      <ProtectedRoute exact path="/profile" component={UserProfileContainer} />
+      <AuthRoute exact path="/" component={MainPage} />
     </Switch>
   </div>
 );

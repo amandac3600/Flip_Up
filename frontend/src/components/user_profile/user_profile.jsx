@@ -6,17 +6,17 @@ class UserProfile extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: 'User'
+            username: ''
 
         }
         
     }
 
-    // componentDidMount() {
-    //     console.log("currentUser", this.props.currentUser)
-    //     this.props.fetchUser(this.props.currentUser._id)
-    //         .then((user => this.setState({username : user.username})))        
-    // }
+    componentDidMount() {
+        console.log("currentUser", this.props.currentUser)
+        this.props.fetchUser(this.props.currentUser._id)
+            .then((user => this.setState({username : user.username})))        
+    }
 
 
     // render_decks(decks) {
