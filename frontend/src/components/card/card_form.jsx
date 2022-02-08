@@ -8,7 +8,8 @@ class CardForm extends React.Component {
     if (this.props.type === 'create') {
       this.state = {
         front: '',
-        back: ''
+        back: '',
+        deckId: this.props.match.params.id
       };
     } else {
       this.state = {
@@ -33,37 +34,29 @@ class CardForm extends React.Component {
 
   cardSubmit(e) {
     e.preventDefault();
-    if (this.state.type === 'create') {
-      //reset form so they can create another card
+    if (this.props.type === 'create') {
       this.props.submit(this.state).then(()=>{
-        this.setState({
-          front: '',
-          back: ''
-        })
+        document.getElementById('card-form-front').value = ''
+        document.getElementById('card-form-back').value = ''
       })
-    } else {
-      //route to the deck page if they just update a card
-      this.props.submit(this.state).then((deck)=>{
-        this.props.history.push(`/decks`)
-      })
-    }
+    } 
   }
 
 
   render() {
-    console.log(this.state)
+    console.log(this.props)
     return (
       <div>
         <div>{this.getCardHeader()}</div>
-        <form onSubmit={this.cardSubmit}>
+        <form onSubmit={this.cardSubmit.bind(this)}>
           <div>
-            <input type="text"
+            <input id='card-form-front' type="text"
               value={this.state.front}
               onChange={this.update('front')}
               placeholder="front"
             />
             <br />
-            <input type="text"
+            <input id='card-form-back' type="text"
               value={this.state.back}
               onChange={this.update('back')}
               placeholder="back"

@@ -35,37 +35,38 @@ export const removeCard = cardId => ({
 
 export const getCard = cardId => dispatch => (
     CardApiUtil.getCard(cardId)
-    .then((card) => (
-        dispatch(receiveCard(card))
+    .then((res) => (
+        dispatch(receiveCard(res.data))
     ))
 );
 
 export const getCards = () => dispatch => (
     CardApiUtil.getCards()
-    .then((cards) => (
-        dispatch(receiveCards(cards))
+    .then((res) => (
+        dispatch(receiveCards(res.data))
     ))
 );
 
 export const updateCard = (card) => dispatch => (
     CardApiUtil.updateCard(card)
-    .then((card) => (
-        dispatch(editCard(card))
+    .then((res) => (
+        dispatch(editCard(res.data))
     ))
 );
 
 
 export const createCard = (card) => dispatch => (
     CardApiUtil.createCard(card)
-    .then((card) => (
-        dispatch(addCard(card))
-    ))
+    .then((res) => {
+        res.data.deckId = card.deckId
+        return dispatch(addCard(res.data))
+    })
 );
 
 
 export const deleteCard = (cardId) => dispatch => (
     CardApiUtil.deleteCard(cardId)
-    .then((cardId) => (
+    .then(() => (
         dispatch(removeCard(cardId))
     ))
 );

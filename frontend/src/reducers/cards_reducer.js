@@ -5,18 +5,19 @@ import { RECEIVE_CARD, RECEIVE_CARDS, UPDATE_CARD, CREATE_CARD, REMOVE_CARD } fr
     let newState = Object.assign({}, state);
     switch(action.type) {
         case RECEIVE_CARD:
-            newState[action.card.id] = action.card;
+            newState[action.card._id] = action.card;
             return newState;
         case RECEIVE_CARDS:
             return action.cards;
         case UPDATE_CARD:
-            newState[action.card.id] = action.card;
+            newState[action.card._id] = action.card;
             return newState;
         case CREATE_CARD:
-            newState[action.card.id] = action.card;
+            newState[action.card._id] = action.card;
             return newState;
         case REMOVE_CARD:
-            delete newState[action.commentId];
+            console.log(action)
+            delete newState[action.cardId];
             return newState;          
         default:
             return state;
