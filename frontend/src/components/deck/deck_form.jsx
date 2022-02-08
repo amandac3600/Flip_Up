@@ -22,8 +22,11 @@ class DeckForm extends React.Component {
 
 
   update(field) {
+    // set public state
     if (field === 'public') {
       return e => this.setState({ [field]: e.currentTarget.checked });
+    
+    // set category state
     } else if (field === 'history' || field === 'science' || field === 'grammar' || field === 'math') {
       return e => {
         if (e.currentTarget.checked) {
@@ -32,6 +35,8 @@ class DeckForm extends React.Component {
           return this.setState({ category: this.state.category.filter(x => x !== field) });
         }
       }
+
+    //set all other input states
     } else {
       return e => this.setState({ [field]: e.currentTarget.value });
     }
@@ -39,14 +44,17 @@ class DeckForm extends React.Component {
 
   deckSubmit(e) {
     e.preventDefault();
-    this.props.submit(this.state)
+    const newState = Object.assign({}, this.state, {category: Array.toString(this.state.category)})
+    this.props.submit(newState)
     .then((deck)=>{
+      console.log(deck)
       // route to the newly created deck
       this.props.history.push(`/decks/${deck.id}`)
     })
   }
 
   render() {
+    console.log(this.state)
     return (
       <div>
         <form onSubmit={this.deckSubmit.bind(this)}>

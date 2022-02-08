@@ -57,9 +57,10 @@ export const updateDeck = (deck) => dispatch => (
 
 export const createDeck = (deck) => dispatch => (
     DeckApiUtil.createDeck(deck)
-    .then((deck) => (
-        dispatch(addDeck(deck))
-    ))
+    .then((deck) => {
+        console.log(deck)
+        return dispatch(addDeck(deck))
+    })
 );
 
 
