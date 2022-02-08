@@ -3,8 +3,8 @@ import DeckForm from './deck_form';
 import { createDeck } from './../../actions/deck_actions'
 
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
-    users: state.entities.users,
     type: 'create'
   };
 };
