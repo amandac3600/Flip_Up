@@ -17,6 +17,14 @@ const CardSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  reviewed: {
+    type: Date,
+    default: Date.now
+  },
+  count: {
+    type: Number,
+    default: 0
   }
 })
 

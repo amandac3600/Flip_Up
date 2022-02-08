@@ -1,6 +1,6 @@
 import { RECEIVE_CARD, RECEIVE_CARDS, UPDATE_CARD, CREATE_CARD, REMOVE_CARD } from '../actions/card_actions';
   
-  const CardsReducer = (state = {}, action) => {
+  const cardsReducer = (state = {}, action) => {
     Object.freeze(state);
     let newState = Object.assign({}, state);
     switch(action.type) {
@@ -23,4 +23,4 @@ import { RECEIVE_CARD, RECEIVE_CARDS, UPDATE_CARD, CREATE_CARD, REMOVE_CARD } fr
     }
   };
   
-  export default CardsReducer;
+  export default cardsReducer;
