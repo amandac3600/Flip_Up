@@ -34,18 +34,20 @@
 .profile-user-info {
     display: flex;
     flex-direction: column;
+    width: 30%;
     border: 2px solid orange;   
     margin: 5px;
 }
 
 .profile-user-info img{
-    width: 250px;
-    height: 250px;
+    width: 100%;
+    height: auto;
 }
 
 .profile-user-stats {
     display: flex;
     flex-direction: column;
+    width: 60%;
     border: 2px solid orange; 
     margin: 5px;
 }
