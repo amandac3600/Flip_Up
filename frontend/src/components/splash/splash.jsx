@@ -43,9 +43,9 @@ export default class Splash extends React.Component {
             </div>
           </div>
         </div>
-        <div className='splash-footer'>
+        <footer id='splash-footer'>
           <Footer />
-        </div>
+        </footer>
       </div>
     )
   }
