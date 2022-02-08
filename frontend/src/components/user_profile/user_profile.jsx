@@ -5,7 +5,7 @@ import './user_profile.css';
 class UserProfile extends React.Component {
     constructor(props) {
         super(props)
-        // console.log("in constructor", props.currentUser)
+
         this.state = {
             id: props.currentUser.id
 
@@ -15,10 +15,8 @@ class UserProfile extends React.Component {
     }
 
     componentDidMount() {
-        console.log("in component", this.state.id)
         this.props.fetchUser(this.state.id)
             .then(action => {
-                console.log("in component did mount", action)
                 this.setState({
                     username: action.currentUser.username, 
                     deck: action.currentUser.deck
@@ -26,13 +24,24 @@ class UserProfile extends React.Component {
     }
 
 
-    // render_decks(decks) {
-    //     if (decks.length === 0){
-    //         return (
-    //             <div className = 'profile-no-decks'>You haven't made any decks yet!</div>
-    //         )
-    //     }
-    // }
+    render_decks() {
+        const decks = this.state.deck
+        if (decks.length === 0){
+            return (
+                <h3 className = 'profile-no-decks'>You haven't made any decks yet!</h3>
+            )
+        }
+
+        return (
+            <div>
+                {decks.map(deck => (
+                    <li className="profile-deck-li">
+                        {deck.name}
+                    </li>
+                ))}
+            </div>
+        )
+    }
 
     render() {
         // const decks = this.props.fetch_user_decks(this.state.deck_ids)
@@ -60,9 +69,7 @@ class UserProfile extends React.Component {
                         </div>
                     </div>
                     <div className="profile-deck-scroller">
-                        <ul>
-
-                        </ul>
+                        {this.render_decks()}
                     </div>
                 </div>
                 <div className="profile-right-div">

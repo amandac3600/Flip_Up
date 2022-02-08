@@ -1,6 +1,7 @@
 .profile-content {
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
     width: 100%;
     border: 2px solid rgb(128, 0, 111); 
     margin: 5px;
@@ -11,6 +12,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+
     width: 60%;
     border: 2px solid green; 
     margin: 5px;
@@ -28,6 +30,7 @@
 .profile-info-div {
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
     border: 2px solid yellow;
     margin: 5px;
 }
@@ -52,12 +55,24 @@
     margin: 5px;
 }
 
+/* DECK */
+
 .profile-deck-scroller {
     display: flex;
     border: 2px solid blue; 
     margin: 5px;
 }
 
+.profile-no-decks {
+   
+    font-weight: 800;
+}
+
+.profile-deck-li {
+    background-color: cornsilk;
+}
+
+/* FRIENDS */
 .profile-friends-list {
     display: flex;
     flex-direction: column;
