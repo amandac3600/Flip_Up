@@ -11,7 +11,7 @@ class Deck extends React.Component {
   }
 
   getCategories() {
-    return this.props.deckInfo.deck.category.split(',').map((category, idx)=>{
+    return this.props.deckInfo.deck.category.map((category, idx)=>{
       return <span key={idx} >{category} </span>
     })
   }
