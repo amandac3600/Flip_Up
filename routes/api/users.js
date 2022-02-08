@@ -14,7 +14,13 @@ const validateLoginInput = require('../../validation/login');
 router.get("/", (req, res) => {
   User.find()
     .sort({username: 1})
-    .then(users => res.json(users))
+    .then(users => {
+      res.json(users.map(user => ({
+        id: user.id, 
+        username: user.username,
+        email: user.email
+      })))
+    })
     .catch(err => res.status(404).json({nousers: 'No users found'}))
 });
 
@@ -100,12 +106,14 @@ router.post('/register', (req, res) => {
           return res.status(404).json({email: 'This user does not exist'});
         }
         
-        
         bcrypt.compare(password, user.password)
         .then(async (isMatch) => {
             if (isMatch) {
               const decks = await Deck.find({ user: user.id });
-              const payload = { id: user.id, username: user.username, decks: decks.map(deck => deck.id)};
+              const payload = { 
+                id: user.id, 
+                username: user.username, 
+                decks: decks.map(deck => deck.id)};
             jwt.sign(
                 payload,
                 keys.secretOrKey,
@@ -123,27 +131,42 @@ router.post('/register', (req, res) => {
       })
   })
 
-// router.patch('/', passport.authenticate('jwt', { session: false }), (req, res) => {
-//   const { errors, isValid } = validateRegisterInput(req.body);
+router.patch('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+  if (req.body.username) {
+    const takenUsername = User.findOne({ username: req.body.username });
+    if (takenUsername.username) return res.status(404).json({ nouser: 'Username already taken.' })
+  }
+  if (req.body.email) {
+    const takenEmail = User.findOne({ email: req.body.email });
+    if (takenEmail.email) return res.status(404).json({ nouser: 'Email already taken.' })
+  }
 
-//   if (!isValid) {
-//     return res.status(400).json(errors);
-//   }
+  User.findOne({ _id: req.user.id })
+    .then( user => {
+      if (req.body.password) user.password = req.body.password;
+      if (req.body.password2) user.password2 = req.body.password2;
+      if (req.body.username) user.username = req.body.username;
+      if (req.body.email) user.email = req.body.email;
 
-//   const email = req.body.email;
-//   const password = req.body.password;
-//   const username = req.body.username;
-//   const takenUsername = User.findOne({username: username});
-//   if (takenUsername) return res.status(404).json({ nouser: 'Username already taken.' })
+      const { errors, isValid } = validateRegisterInput(user, 'patch');
 
-//   User.findOne({ _id: req.user.id })
-//     .then( user => {
-
-//       user.email = req.body.email;
-//       user.username = req.body.username;
-//       user.save().then(user => res.json(user));
-//     })
-//     .catch(err => res.status(404).json({ nouser: 'Unable to find user' }))
-// })
+      if (!isValid) return res.status(400).json(errors);
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(user.password, salt, (err, hash) => {
+          if (err) throw err;
+          user.password = hash;
+          delete user.password2;
+          user.save()
+            .then(async user => {
+              const decks = await Deck.find({ user: req.user.id });
+              const payload = { id: user.id, username: user.username, decks: decks.map(deck => deck.id) };
+              return res.json(payload)
+            })
+            .catch(err => console.log(err));
+        })
+      })
+    })
+    .catch(err => res.status(404).json({ nouser: 'Unable to find user' }))
+})
 
 module.exports = router;
