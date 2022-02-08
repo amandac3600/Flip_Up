@@ -51,3 +51,31 @@ export const logout = () => dispatch => {
   SessionApiUtil.setAuthToken(false)
   dispatch(logoutUser())
 };
+
+export const fetchUser = (id) => dispatch => (
+  SessionApiUtil.fetchUser(id) 
+    .then(user => (
+      dispatch(receiveCurrentUser(user.data))
+    ), err => (
+      dispatch(receiveErrors(err.response.data))
+    ))
+)
+
+export const editUser = data => dispatch => {
+  SessionApiUtil.editUser(data)
+    .then(user => (
+      dispatch(receiveCurrentUser(user))
+    ), err=> (
+      dispatch(receiveErrors(err.response.data))
+    ))
+};
+
+// export const updateProfilePic = data => dispatch => {
+//   SessionApiUtil.updateProfilePic(data)
+//     .then(user => (
+//       dispatch(receiveCurrentUser(user))
+//     ), err=> (
+//       dispatch(receiveErrors(err.response.data))
+//     ))
+// }
+
