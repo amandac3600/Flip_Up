@@ -18,6 +18,7 @@
   font-size: 40px;
   font-weight: 800;
   margin-top: 110px;
+  margin-bottom: 30px;
 }
 
 .splash-main-description {
@@ -66,6 +67,7 @@
 }
 
 .splash-cat-name-list-item {
+  margin-top: 20px;
   color: whitesmoke;
   text-align: center;
   width: 200px;
@@ -104,6 +106,8 @@
 }
 
 #splash-footer {
-  margin-top: 26%;
+  margin-top: 25%;
+  /* position: absolute;
+  bottom: 0; */
 }
 

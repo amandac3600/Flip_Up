@@ -19,8 +19,8 @@ export default class About extends React.Component {
             <p className='about-contrib-name'>Alex Ciminillo</p>
             <p className='about-contrib-descrip'>Description Here</p>
             <div className='about-contrib-links'>
-              <a className='about-contrib-github' href="" target="_blank" rel="noopener noreferrer"><FaGithubSquare/></a>
-              <a className='about-contrib-linkedin' href="" target="_blank" rel="noopener noreferrer"><AiFillLinkedin/></a>
+              <a className='about-contrib-github' href="https://github.com/alex-ciminillo" target="_blank" rel="noopener noreferrer"><FaGithubSquare/></a>
+              <a className='about-contrib-linkedin' href="https://www.linkedin.com/in/alexzander-ciminillo" target="_blank" rel="noopener noreferrer"><AiFillLinkedin/></a>
             </div>
           </div>
           <div className='about-contrib-div'>

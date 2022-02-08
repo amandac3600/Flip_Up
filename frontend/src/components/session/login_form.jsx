@@ -1,5 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import NavContainer from '../nav/nav_container';
+import "./login_form.css"
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -45,6 +47,9 @@ class LoginForm extends React.Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
+          <div className='login-nav'>
+            <NavContainer/>
+          </div>
           <div>
             <input type="text"
               value={this.state.email}

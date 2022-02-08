@@ -7,8 +7,18 @@ import "./nav.css"
 class Nav extends React.Component {
 
   render() {
+    console.log(this.props)
     let nav;
-    if (!this.props.currentUser) {
+    if (this.props.location.pathname === "/login" || this.props.location.pathname === "/signup") {
+      nav = <nav className='nav-container-login'>
+        <div className='nav-logo'>
+          <Link className="nav-logo-link" to="/">Flip Up</Link>
+        </div>
+        <div className='nav-search-login'>
+          <SearchBarContainer/>
+        </div>
+      </nav>
+    } else if (!this.props.currentUser.id) {
       nav = <nav className='nav-container'>
         <div className='nav-logo'>
           <Link className="nav-logo-link" to="/">Flip Up</Link>
@@ -21,7 +31,7 @@ class Nav extends React.Component {
           <Link className="nav-signup" to='/signup'>Sign Up</Link>
         </div>
       </nav>
-    } else if (this.props.currentUser) {
+    } else if (this.props.currentUser.id) {
       nav = <nav className='nav-container'>
         <div className='nav-logo'>
           <Link className="nav-logo-link" to="/">LOGO</Link>
@@ -42,4 +52,4 @@ class Nav extends React.Component {
   }
 }
 
-export default Nav
+export default withRouter(Nav)
