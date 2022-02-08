@@ -1,0 +1,45 @@
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(40, 57, 155);
+  color: whitesmoke;
+  font-family: Arial, Helvetica, sans-serif;
+  height: 70px;
+}
+
+.nav-logo {
+  margin-top: 25px;
+  margin-left: 25px;
+}
+
+.nav-logo-link {
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+.nav-user-logout {
+  display: flex;
+  margin-right: 20px;
+}
+
+.nav-user-welcome {
+  margin: 25px 0 0 0;
+}
+
+.nav-user-logout-button {
+  background-color: rgb(40, 57, 155);
+  color: whitesmoke;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  margin-top: 21px;
+  margin-left: 10px;
+  height: 25px;
+}
+
+.nav-user-logout-button:hover {
+  cursor: pointer;
+  border-bottom: 1px solid whitesmoke;
+  padding-top: 2px;
+}
+
