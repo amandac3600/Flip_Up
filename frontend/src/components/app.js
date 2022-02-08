@@ -2,6 +2,7 @@ import React from 'react';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { Switch, Route } from 'react-router-dom';
 import Splash from './splash/splash'
+import About from './about/about'
 import LoginFormContainer from './session/login_form_container'
 import SignupFormContainer from './session/signup_form_container'
 import DeckFormContainer from './deck/deck_form_container'
@@ -11,6 +12,7 @@ const App = () => (
   <div>
     <Switch>
       <Route exact path="/" component={Splash} />
+      <Route exact path="/about" component={About} />
       <ProtectedRoute exact path="/decks/new" component={DeckFormContainer} />
       <ProtectedRoute exact path="/cards/new" component={CardFormContainer} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
