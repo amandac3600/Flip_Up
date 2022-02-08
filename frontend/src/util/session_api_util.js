@@ -22,7 +22,7 @@ export const login = (userData) => {
 // }
 
 export const fetchUser = id => {
-  return axios.get(`/api/users/${id}`)
+  return axios.get(`/api/users/find/${id}`)
 }
 
 export const editUser = (userData) => {
