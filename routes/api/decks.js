@@ -36,7 +36,9 @@ router.get('/:id', passport.authenticate('jwt', { session: false }), async (req,
   const deckUser = await User.findOne({ _id: deck.user })
 
   if (deckUser.id === req.user.id || deck.public) {
+    console.log(deck.id)
     const cards = await Card.find({deck: deck.id})
+    console.log(cards)
     return res.json({
       deck,
       cards: cards.map(card => card.id)
@@ -70,11 +72,12 @@ router.post('/',
     const deck = await Deck.findOne({ name: req.body.name, user: req.user.id })
 
     if (deck) return res.status(400).json({ invalidname: 'Deck name already exists'});
+    const category = req.body.category.split(',').map(cat => cat.trim())
     
     const newDeck = new Deck({
       user: req.user.id,
       name: req.body.name,
-      category: req.body.category,
+      category: category,
       public: req.body.public
     });
 
@@ -103,7 +106,6 @@ router.patch('/:id',
         const cats = req.body.category.split(',').map(cat => cat.trim())
         deck.category = cats;
       }
-      console.log(req.body.public)
       if (req.body.public) deck.public = req.body.public;
 
       const { errors, isValid } = validateDeckInput(deck);
@@ -124,8 +126,6 @@ router.delete('/:id',
 
     if (deck) {
       const deckUser = await User.findOne({ _id: deck.user })
-      console.log(deckUser)
-      console.log(req.user)
       if (deckUser.id === req.user.id) {
         Deck.deleteOne({ _id: req.params.id })
         .then(() => res.json({ deleted: "Deck was deleted" }))

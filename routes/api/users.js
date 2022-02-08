@@ -35,11 +35,13 @@ router.get('/:id', passport.authenticate('jwt', {session: false}), async (req, r
     res.json({
       id: req.user.id,
       username: req.user.username,
-      email: req.user.email,
-      deck: decks.map(deck => deck.id),
+      decks: decks.map(deck => deck.id),
+      point: req.user.points,
       friendIds: req.user.friendIds,
       pendingRequests: req.user.pendingRequests,
-      outgoingRequests: req.user.outgoingRequests
+      outgoingRequests: req.user.outgoingRequests,
+      wins: req.user.wins,
+      losses: req.user.losses,
     })
   )
 })
@@ -49,13 +51,15 @@ router.get('/current', passport.authenticate('jwt', {session: false}), async (re
   const decks = await Deck.find({user: req.user.id});
   return (
     res.json({
-      id: req.user.id,
-      username: req.user.username,
-      email: req.user.email,
-      deck: decks.map(deck => deck.id),
+      id: user.id,
+      username: user.username,
+      decks: decks.map(deck => deck.id),
+      point: user.points,
       friendIds: user.friendIds,
       pendingRequests: user.pendingRequests,
-      outgoingRequests: user.outgoingRequests
+      outgoingRequests: user.outgoingRequests,
+      wins: user.wins,
+      losses: user.losses,
     })
   )
 })
@@ -121,12 +125,15 @@ router.post('/register', (req, res) => {
             if (isMatch) {
               const decks = await Deck.find({ user: user.id });
               const payload = { 
-                id: user.id, 
-                username: user.username, 
+                id: user.id,
+                username: user.username,
                 decks: decks.map(deck => deck.id),
+                point: user.points,
                 friendIds: user.friendIds,
                 pendingRequests: user.pendingRequests,
-                outgoingRequests: user.outgoingRequests
+                outgoingRequests: user.outgoingRequests,
+                wins: user.wins,
+                losses: user.losses,
               };
             jwt.sign(
                 payload,
@@ -161,6 +168,9 @@ router.patch('/', passport.authenticate('jwt', { session: false }), (req, res) =
       if (req.body.password2) user.password2 = req.body.password2;
       if (req.body.username) user.username = req.body.username;
       if (req.body.email) user.email = req.body.email;
+      if (req.body.points) user.points = req.body.points;
+      if (req.body.winId) user.wins.push(req.body.winId);
+      if (req.body.lossId) user.losses.push(req.body.lossId);
 
       const { errors, isValid } = validateRegisterInput(user, 'patch');
 
@@ -177,9 +187,13 @@ router.patch('/', passport.authenticate('jwt', { session: false }), (req, res) =
                 id: user.id, 
                 username: user.username, 
                 decks: decks.map(deck => deck.id),
+                point: user.points,
                 friendIds: user.friendIds,
                 pendingRequests: user.pendingRequests,
-                outgoingRequests: user.outgoingRequests };
+                outgoingRequests: user.outgoingRequests,
+                wins: user.wins,
+                losses: user.losses,
+              };
               return res.json(payload)
             })
             .catch(err => console.log(err));
@@ -235,9 +249,12 @@ router.patch('/friend', passport.authenticate('jwt', { session: false }), (req, 
             id: user.id,
             username: user.username,
             decks: decks.map(deck => deck.id),
+            point: user.points,
             friendIds: user.friendIds,
             pendingRequests: user.pendingRequests,
-            outgoingRequests: user.outgoingRequests
+            outgoingRequests: user.outgoingRequests,
+            wins: user.wins,
+            losses: user.losses,
           };
           return res.json(payload)
       })
