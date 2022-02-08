@@ -105,7 +105,7 @@ router.post('/register', (req, res) => {
         .then(async (isMatch) => {
             if (isMatch) {
               const decks = await Deck.find({ user: user.id });
-              const payload = { id: user.id, name: user.name, decks: decks.map(deck => deck.id)};
+              const payload = { id: user.id, username: user.username, decks: decks.map(deck => deck.id)};
             jwt.sign(
                 payload,
                 keys.secretOrKey,
