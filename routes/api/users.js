@@ -46,7 +46,7 @@ router.get('/:id', passport.authenticate('jwt', {session: false}), async (req, r
   )
 })
 
-//return data of current user. for testing only
+//return data of current user
 router.get('/current', passport.authenticate('jwt', {session: false}), async (req, res) => {
   const decks = await Deck.find({user: req.user.id});
   return (
