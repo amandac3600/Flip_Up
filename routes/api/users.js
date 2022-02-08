@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
       res.json(users.map(user => ({
         id: user.id, 
         username: user.username,
-        email: user.email
+        email: user.email,
       })))
     })
     .catch(err => res.status(404).json({nousers: 'No users found'}))
@@ -33,7 +33,10 @@ router.get('/:id', passport.authenticate('jwt', {session: false}), async (req, r
       id: req.user.id,
       username: req.user.username,
       email: req.user.email,
-      deck: decks.map(deck => deck.id)
+      deck: decks.map(deck => deck.id),
+      friendIds: user.friendIds,
+      pendingRequests: user.pendingRequests,
+      outgoingRequests: user.outgoingRequests
     })
   )
 })
@@ -46,7 +49,10 @@ router.get('/current', passport.authenticate('jwt', {session: false}), async (re
       id: req.user.id,
       username: req.user.username,
       email: req.user.email,
-      deck: decks.map(deck => deck.id)
+      deck: decks.map(deck => deck.id),
+      friendIds: user.friendIds,
+      pendingRequests: user.pendingRequests,
+      outgoingRequests: user.outgoingRequests
     })
   )
 })
@@ -114,7 +120,11 @@ router.post('/register', (req, res) => {
               const payload = { 
                 id: user.id, 
                 username: user.username, 
-                decks: decks.map(deck => deck.id)};
+                decks: decks.map(deck => deck.id),
+                friendIds: user.friendIds,
+                pendingRequests: user.pendingRequests,
+                outgoingRequests: user.outgoingRequests
+              };
             jwt.sign(
                 payload,
                 keys.secretOrKey,
@@ -143,7 +153,7 @@ router.patch('/', passport.authenticate('jwt', { session: false }), (req, res) =
   }
 
   User.findOne({ _id: req.user.id })
-    .then( user => {
+    .then( async user => {
       if (req.body.password) user.password = req.body.password;
       if (req.body.password2) user.password2 = req.body.password2;
       if (req.body.username) user.username = req.body.username;
@@ -160,11 +170,67 @@ router.patch('/', passport.authenticate('jwt', { session: false }), (req, res) =
           user.save()
             .then(async user => {
               const decks = await Deck.find({ user: req.user.id });
-              const payload = { id: user.id, username: user.username, decks: decks.map(deck => deck.id) };
+              const payload = { 
+                id: user.id, 
+                username: user.username, 
+                decks: decks.map(deck => deck.id),
+                friendIds: user.friendIds,
+                pendingRequests: user.pendingRequests,
+                outgoingRequests: user.outgoingRequests };
               return res.json(payload)
             })
             .catch(err => console.log(err));
         })
+      })
+    })
+    .catch(err => res.status(404).json({ nouser: 'Unable to find user' }))
+})
+
+router.patch('/friend', passport.authenticate('jwt', { session: false }), (req, res) => {
+  User.findOne({ _id: req.user.id })
+    .then(async user => {
+      const friendId = req.body.friendId;
+      const friend = await User.findOne({ _id: friendId });
+      const requestType = req.body.requestType;
+      let index;
+      let friendIndex;
+      switch (requestType) {
+        case 'approve':
+          index = user.pendingRequests.indexOf(friendId);
+          if (index !== -1) user.pendingRequests.splice(index, 1);
+          user.friendIds.push(friendId);
+          friend.friendIds.push(user.id);
+          friendIndex = friend.outgoingRequests.indexOf(user.id);
+          if (friendIndex !== -1) friend.outgoingRequests.splice(friendIndex, 1);
+          break;
+        case 'remove':
+          index = user.friendIds.indexOf(friendId);
+          if (index !== -1) user.friendIds.splice(index, 1);
+          friendIndex = friend.friendIds.indexOf(user.id);
+          if (friendIndex !== -1) friend.friendIds.splice(friendIndex, 1);
+          break;
+        case 'deny':
+          index = user.pendingRequests.indexOf(friendId);
+          if (index !== -1) user.pendingRequests.splice(index, 1);
+          friendIndex = friend.outgoingRequests.indexOf(user.id);
+          if (friendIndex !== -1) friend.outgoingRequests.splice(friendIndex, 1);
+          break;
+        case 'request':
+          user.outgoingRequests.push(friendId);
+          friend.pendingRequests.push(user.id);
+          break;
+      }
+      user.save()
+        .then(user => {
+          const payload = {
+            id: user.id,
+            username: user.username,
+            decks: decks.map(deck => deck.id),
+            friendIds: user.friendIds,
+            pendingRequests: user.pendingRequests,
+            outgoingRequests: user.outgoingRequests
+          };
+          return res.json(payload)
       })
     })
     .catch(err => res.status(404).json({ nouser: 'Unable to find user' }))

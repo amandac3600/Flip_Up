@@ -19,15 +19,15 @@ const UserSchema = new Schema({
       default: 0
     },
     friendIds: {
-      type: Schema.Types.ObjectId,
+      type: [Schema.Types.ObjectId],
       ref: 'User'
     },
-    pendingFriendIds: {
-      type: Schema.Types.ObjectId,
+    pendingRequests: {
+      type: [Schema.Types.ObjectId],
       ref: 'User'
     },
-    outgoingFriendIds: {
-      type: Schema.Types.ObjectId,
+    outgoingRequests: {
+      type: [Schema.Types.ObjectId],
       ref: 'User'
     },
     date: {
