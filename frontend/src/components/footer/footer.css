@@ -1,19 +1,23 @@
 .footer-links {
   display: flex;
   justify-content: space-around;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
   background-color: rgb(40, 57, 155);
-  padding-top: 10px;
-  height: 70px;
-  width: 100vw;
+  padding-top: 25px;
+  height: 45px;
+  width: 98.9vw;
 }
 
 .footer-github-link, .footer-about-link {
   text-decoration: none;
   color: whitesmoke;
+  font-size: 16px;
+  font-weight: 500;
+  padding-bottom: 5px;
 }
 
 .footer-github-link:hover, .footer-about-link:hover {
+  transition: all 0.2s;
   border-bottom: 1px solid whitesmoke;
 }
 
