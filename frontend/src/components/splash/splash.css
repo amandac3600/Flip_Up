@@ -4,10 +4,10 @@
 
 .splash-bg {
   position: absolute;
-  width: 100vw;
+  width: 98.9vw;
   margin-top: -200px;
   z-index: -5;
-  filter: opacity(60%) brightness(140%);
+  filter: opacity(80%) brightness(180%);
 }
 
 .splash-container {
@@ -53,7 +53,7 @@
   justify-content: center;
   margin-top: 70px;
   text-decoration: none;
-  background-color: rgb(58, 74, 182);
+  background-color: rgb(40, 57, 172);
   color: whitesmoke;
   border-radius: 6px;
   padding: 12px 15px;
