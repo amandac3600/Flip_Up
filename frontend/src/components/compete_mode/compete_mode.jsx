@@ -40,7 +40,7 @@ export default class CompeteMode extends React.Component {
       cards.splice(randomIndex, 1);
     }
 
-    const answers = [...answerSet];
+    const answers = [...answerSet].sort();
     return (
       <div>
         <div className='compete-answer-choice' onClick={this.handleAnswerClick}>{answers[0]}</div>
@@ -73,30 +73,76 @@ export default class CompeteMode extends React.Component {
       if (this.state.playerTime) {
         console.log('after game')
         this.props.updateGame(this.state).then(res => {
-          console.log('endgame', res)
+          this.setState({game: res.game});
         });
       }
     })
   }
 
   renderResults() {
+    let friendName;
+    let friendPlayer;
+    let winner = this.state.game.winner;
+
+    if (this.state.game.player1Id === this.props.users.currentUser.id) {
+      const friend = this.props.users.friends[this.state.game.player2Id];
+      friendName = this.props.users.friends[this.state.game.player2Id].username;
+      if (winner === friend._id) winner = friendName;
+      friendPlayer = 'player2';
+    } else {
+      const friend = this.props.users.friends[this.state.game.player1Id];
+      friendName = this.props.users.friends[this.state.game.player1Id].username;
+      if (winner === friend._id) winner = friendName;
+      friendPlayer = 'player1';
+    }
+    const friendTime = this.state.game[`${friendPlayer}Time`] ? `${this.state.game[`${friendPlayer}Time`]/1000} seconds` : 'In Progress';
+
     return (
       <div>
+        <NavContainer />
+
         <div>Challenge Over!</div>
-        <div>
-          <span>Number Correct: </span>
-          <span>{this.state.playerCorrect}</span>
-        </div>
-        <div>
-          <span>Number Incorrect: </span>
-          <span>{this.state.cards.length - this.state.playerCorrect}</span>
-        </div>
-        <div>
-          <span>Time: </span>
-          <span>{this.state.playerTime/1000} seconds</span>
+        <div className='compete-mode-results-div'>
+          <div className='compete-mode-results'>
+            <div>
+              <span>Player 1: </span>
+              <span>{this.props.users.currentUser.username}</span>
+            </div>
+            <div>
+              <span>Number Correct: </span>
+              <span>{this.state.playerCorrect}</span>
+            </div>
+            <div>
+              <span>Number Incorrect: </span>
+              <span>{this.state.cards.length - this.state.playerCorrect}</span>
+            </div>
+            <div>
+              <span>Time: </span>
+              <span>{this.state.playerTime/1000} seconds</span>
+            </div>
+          </div>
+
+          <div className='compete-mode-results'>
+            <div>
+              <span>Player 2: </span>
+              <span>{friendName}</span>
+            </div>
+            <div>
+              <span>Number Correct: </span>
+              <span>{this.state.game[`${friendPlayer}Correct`] || 'In Progress'}</span>
+            </div>
+            <div>
+              <span>Number Incorrect: </span>
+              <span>{this.state.cards.length - this.state.game[`${friendPlayer}Correct`] || 'In Progress'}</span>
+            </div>
+            <div>
+              <span>Time: </span>
+              <span>{friendTime}</span>
+            </div>
+          </div>
         </div>
 
-        
+        <div>{winner ? `${winner} won this round!` : ''}</div>
       </div>
     )
   }
