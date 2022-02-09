@@ -21,7 +21,7 @@
 }
 
 .login-links-login {
-  margin-left: 50px;
+  margin-left: 51px;
   font-family: Monstserrat, Arial, Helvetica, sans-serif;
   font-size: 22px;
   font-weight: 600;
@@ -63,7 +63,7 @@
   color: rgb(189, 189, 189);
 }
 
-.login-input-username:focus-visible, .login-input-password:focus-visible {
+.login-input-email:focus-visible, .login-input-password:focus-visible {
   outline: none;
 }
 
