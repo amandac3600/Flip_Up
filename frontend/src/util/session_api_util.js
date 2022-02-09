@@ -17,9 +17,13 @@ export const login = (userData) => {
   return axios.post('/api/users/login', userData);
 };
 
-// export const fetchUsers = () => {
-//     return axios.get('/api/users')
-// }
+export const fetchUsers = (keyword) => {
+  if (keyword) {
+    return axios.get(`/api/users/search/${keyword}`)
+  } else {
+    return axios.get('/api/users/search')
+  }
+}
 
 // export const fetchUser = id => {
 //   return axios.get(`/api/users/find/${id}`)

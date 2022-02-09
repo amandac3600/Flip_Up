@@ -99,7 +99,7 @@ export default class CompeteMode extends React.Component {
 
     return (
       <div>
-        <NavContainer />
+        
 
         <div>Challenge Over!</div>
         <div className='compete-mode-results-div'>
