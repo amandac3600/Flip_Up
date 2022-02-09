@@ -1,5 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import NavContainer from '../nav/nav_container';
+import Footer from '../footer/footer';
 import "./signup_form.css"
 
 class SignupForm extends React.Component {

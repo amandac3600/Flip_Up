@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import NavContainer from '../nav/nav_container';
+import Footer from '../footer/footer';
 import { Link } from 'react-router-dom';
 import "./login_form.css"
 
@@ -70,13 +71,14 @@ class LoginForm extends React.Component {
                   placeholder="Password"
                 />
                 <br />
-                <input type="submit" value="Submit" />
+                <input type="submit" value="Log in" className='login-button'/>
                 {this.renderErrors()}
               </div>
           </div>
-          
           </div>
-          
+          <div className='login-footer'>
+            <Footer/>
+          </div>
         </form>
       </div>
     );

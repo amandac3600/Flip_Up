@@ -1,6 +1,7 @@
 import React from 'react';
 import NavContainer from '../nav/nav_container';
 import Footer from '../footer/footer';
+import bubbles from './bubbles.jpg'
 import math from './math.png';
 import science from './science.png';
 import language from './language.png';
@@ -19,6 +20,7 @@ export default class Splash extends React.Component {
           <NavContainer/>
         </div>
         <div className='splash-body'>
+          <img src={bubbles} alt="bubbles" className='splash-bg'/>
           <h1 className='splash-main-title'>Flip Up</h1>
           <p className='splash-main-description'>The one-stop source to create flashcards, quiz yourself using your own decks or others, and compete against others to test your knowledge and earn rewards</p>
           <div className='splash-make-deck-container'>
@@ -48,18 +50,30 @@ export default class Splash extends React.Component {
                     <p className='splash-pop-list-item-cat'>Animals</p>
                     <p className='splash-pop-list-item-cat'>Science</p>
                   </div>
+                  <Link to="/" className='splash-pop-list-item-user-container'>
+                    <img className='splash-pop-list-item-user-pic' src="https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png" alt="user profile pic" />
+                    <p className='splash-pop-list-item-user'>Porter</p>
+                  </Link>
                 </Link>
                 <Link to="/" className='splash-pop-list-item'>Japanese Greetings
                   <div className='splash-pop-list-item-cat-container'>
                     <p className='splash-pop-list-item-cat'>Languages</p>
                     <p className='splash-pop-list-item-cat'>Japanese</p>
                   </div>
+                  <Link to="/" className='splash-pop-list-item-user-container'>
+                    <img className='splash-pop-list-item-user-pic' src="https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png" alt="user profile pic" />
+                    <p className='splash-pop-list-item-user'>Luther</p>
+                  </Link>
                 </Link>
                 <Link to="/" className='splash-pop-list-item'>Parts of Speech
                   <div className='splash-pop-list-item-cat-container'>
                     <p className='splash-pop-list-item-cat'>Languages</p>
                     <p className='splash-pop-list-item-cat'>English</p>
                   </div>
+                  <Link to="/" className='splash-pop-list-item-user-container'>
+                    <img className='splash-pop-list-item-user-pic' src="https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png" alt="user profile pic" />
+                    <p className='splash-pop-list-item-user'>Kali</p>
+                  </Link>
                 </Link>
               </div>
             </div>

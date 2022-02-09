@@ -4,11 +4,6 @@
   margin-top: 25%;
 }
 
-.login-bubbles {
-  height: 800px;
-  width: auto;
-}
-
 .login-links {
   display: flex;
   justify-content: center;
@@ -16,8 +11,18 @@
 
 .login-links-signup {
   /* margin-right: 20px; */
+  font-family: Monstserrat, Arial, Helvetica, sans-serif;
 }
 
 .login-links-login {
   margin-left: 20px;
+  font-family: Monstserrat, Arial, Helvetica, sans-serif;
+}
+
+.login-button {
+  border: none;
+}
+
+.login-footer {
+  margin-top: 25vw;
 }

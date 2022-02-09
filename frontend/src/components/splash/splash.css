@@ -1,6 +1,12 @@
 .splash-page {
-  background-color: aliceblue;
   font-family: Montserrat, Arial, Helvetica, sans-serif;
+}
+
+.splash-bg {
+  position: absolute;
+  margin-top: -300px;
+  z-index: -5;
+  filter: opacity(60%) brightness(90%);
 }
 
 .splash-container {
@@ -29,7 +35,7 @@
   text-align: center;
   padding: 0 40px;
   color: rgb(44, 59, 155);
-  font-weight: 500;
+  font-weight: 600;
   line-height: 32px;
 }
 
@@ -53,7 +59,7 @@
 }
 
 .splash-make-deck:hover {
-  transition: all 0.2s;
+  transition: all 0.3s;
   background-color: rgb(33, 45, 128);
 }
 
@@ -161,6 +167,26 @@
   border-radius: 4px;
 }
 
+.splash-pop-list-item-user-container {
+  display: flex;
+  text-decoration: none;
+  color: rgb(32, 46, 131);
+}
+
+.splash-pop-list-item-user-pic {
+  width: 40px;
+  height: 40px;
+  margin-left: -4px;
+  margin-top: 55px;
+  margin-right: 5px;
+}
+
+.splash-pop-list-item-user {
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 70px;
+}
+
 .splash-block-2 {
   height: 48%;
   padding-top: 4%;
@@ -168,7 +194,7 @@
 }
 
 #splash-footer {
-  margin-top: 25%;
+  margin-top: 28%;
   /* position: absolute;
   bottom: 0; */
 }
