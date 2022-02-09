@@ -8,7 +8,6 @@ import "./nav.css"
 class Nav extends React.Component {
 
   render() {
-    console.log(this.props.currentUser)
     let nav;
     if (this.props.location.pathname === "/login" || this.props.location.pathname === "/signup") {
       nav = <nav className='nav-container-login'>
@@ -19,7 +18,7 @@ class Nav extends React.Component {
           <SearchBarContainer/>
         </div>
       </nav>
-    } else if (!this.props.currentUser.id) {
+    } else if (!this.props.currentUser) {
       nav = <nav className='nav-container'>
         <div className='nav-logo'>
           <Link className="nav-logo-link" to="/"><img src={logo} alt="Flip Up" width='45' height='45'/></Link>
@@ -32,7 +31,7 @@ class Nav extends React.Component {
           <Link className="nav-signup" to='/signup'>Sign Up</Link>
         </div>
       </nav>
-    } else if (this.props.currentUser.id) {
+    } else {
       nav = <nav className='nav-container'>
         <div className='nav-logo'>
           <Link className="nav-logo-link" to="/"><img src={logo} alt="Flip Up" width='45' height='45'/></Link>
@@ -41,7 +40,7 @@ class Nav extends React.Component {
           <SearchBarContainer className='nav-search-bar'/>
         </div>
         <div className='nav-user-logout'>
-          <h4 className='nav-user-welcome'>Welcome, {this.props.currentUser.first_name}!</h4>
+          <h4 className='nav-user-welcome'>Welcome, {this.props.currentUser.id}!</h4>
           <button className='nav-user-logout-button' onClick={() => this.props.logout()}>Log Out</button>
         </div>
       </nav>
