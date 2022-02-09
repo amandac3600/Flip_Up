@@ -12,7 +12,7 @@ export const DeckCarousel = (decks) => {
             <h3 className = 'profile-no-decks'>Seems there aren't any decks yet!</h3>
         )
     }
-
+    console.log({decks})
     return (
         <div className='carousel-div'>
             <Carousel centerMode={true} centerSlidePercentage= {33} autoPlay={true} infiniteLoop={true} showThumbs={false} stopOnHover={true} showIndicators={false}>

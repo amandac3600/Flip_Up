@@ -13,7 +13,7 @@ class UserProfile extends React.Component {
             id: props.currentUser.id
 
         }
-        this.getUserDecks = this.getUserDecks.bind(this)
+        // this.getUserDecks = this.getUserDecks.bind(this)
         this.handleClick = this.handleClick.bind(this)
 
     }
@@ -26,20 +26,28 @@ class UserProfile extends React.Component {
                         username: action.currentUser.username, 
                         deck_ids: action.currentUser.decks, 
                         wins: action.currentUser.wins, 
-                        points: action.currentUser.point
+                        loses: action.currentUser.loses,
+                        points: action.currentUser.point, 
+                        decks: action.currentUser.decks,
+                       
                     }
-            })})        
-        this.props.getDecks()
-            .then(action =>{
+            })}) 
+        
+        this.props.getFriends(this.state.id)
+            .then(action => {
+                console.log({action})
+                console.log('action.friends:', action.friends)
                 this.setState({
-                        decks: action.decks, 
+                    user: {
+                        friends: action.friends
+                    }
                 })
             })
-            
+         
     }
 
     getUserDecks() {
-        // console.log('inside get user decks', this.state.decks)
+        console.log('inside get user decks', this.state.decks)
         return this.state.decks.filter(user_deck => {
             return (
                 this.state.user.deck_ids.includes(user_deck._id) 
@@ -48,13 +56,19 @@ class UserProfile extends React.Component {
 
     }
 
+    // getFriendsList(){
+    //     const friend_ids = this.state.user.friends_ids
+
+
+    // }
+
     handleClick(e) {
         e.preventDefault()
         this.props.history.push('/decks/new')
     }
 
     renderDecks() {
-        const decks = this.getUserDecks()
+        const decks = this.state.user.decks
         if (decks.length === 0){
             return (
                 <div>
@@ -63,7 +77,7 @@ class UserProfile extends React.Component {
                 </div>
             )
         }
-
+        console.log(`decks in render decks  `, decks )
         return (
             <div>
                 <DeckCarousel decks={decks} />
@@ -81,6 +95,14 @@ class UserProfile extends React.Component {
                 </div>
             )
         }
+        <div className="profile-friends-list">
+            <ul>
+                {/* {this.state.user.friends.map(friend_id => (
+
+                ))} */}
+            </ul>
+        </div>
+
     }
 
     renderStats() {
@@ -93,7 +115,7 @@ class UserProfile extends React.Component {
         // }
         <div className='profile-user-stats'>
             <p>Wins: {this.state.user.wins.length}</p>
-            <p>Loses</p>
+            <p>Loses: {this.state.user.wins.length}</p>
             <p>Points: {this.state.user.points}</p>
         </div>
     }
@@ -103,7 +125,6 @@ class UserProfile extends React.Component {
         if(!this.state.user) return (
             <p> loading</p>
         )
-        const decks = this.state.user.deck_ids
         const user = this.state.user.username
             console.log("wins", this.state.user.wins)
         return (
@@ -123,7 +144,7 @@ class UserProfile extends React.Component {
                             </div>
                             <div className='profile-user-stats'>
                                 <p>Wins: {this.state.user.wins.length}</p>
-                                <p>Loses</p>
+                                <p>Loses: {this.state.user.wins.length}</p>
                                 <p>Points: {this.state.user.points}</p>
                             </div>
                         </div>
@@ -136,7 +157,7 @@ class UserProfile extends React.Component {
                         <div className= "profile-friends-header">
                                 Friends
                         </div>
-                        <div className="profile-friends-list">
+                        <div>
                             {this.renderFriends()}
                         </div>
                     </div>
