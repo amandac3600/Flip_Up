@@ -1,5 +1,7 @@
 import React from 'react';
 import NavContainer from '../nav/nav_container'
+import { Link } from 'react-router-dom';
+import "./search_result_index.css"
 
 export default class SearchResultIndex extends React.Component {
   constructor(props) {
@@ -21,38 +23,38 @@ export default class SearchResultIndex extends React.Component {
   }
 
   renderDecks() {
-    if (!Object.keys(this.props.decks).length) return '';
+    if (!Object.keys(this.props.decks).length) return null;
 
     return Object.values(this.props.decks).map( deck => {
-      if (!deck.cards.length) return '';
+      if (!deck.cards.length) return null;
+      let cats = deck.category.map(cat => {
+        return <div className='search-item-cat'>{cat}</div>
+      })
+      console.log(cats)
       return (
-        <div key={deck._id} className='compete-main-deck-item' id={deck._id}>
+        <Link to={`/decks/${deck._id}`} className='search-index-item'>
           <div>
-            <span>Name: </span>
-            <span>{deck.name}</span>
+            <span className='search-item-name'>{deck.name}</span>
+          </div>
+          <div className='search-item-cats'>
+            <div>{cats}</div>
           </div>
           <div>
-            <span>Categories: </span>
-            <span>{deck.category ? deck.category.join(', ') : 'None'}</span>
+            <span className='search-item-cards'>{deck.cards.length} cards</span>
           </div>
-          <div>
-            <span>Number of Cards: </span>
-            <span>{deck.cards.length}</span>
-          </div>
-        </div>
+        </Link>
       )
     })
   }
 
   render() {
-    console.log(this.props.match.params.filters)
     if (!this.props.decks) return null;
     return (
       <div>
         <NavContainer />
 
-        <div>
-          <div>
+        <div className='search-index-container'>
+          <div className='search-index-list'>
             {this.renderDecks()}
           </div>
         </div>

@@ -4,7 +4,7 @@ import CardFormContainer from './../card/card_form_container';
 import CardIndexContainer from './../card/card_index_container';
 import NavContainer from '../nav/nav_container';
 import CompeteFormContainer from '../compete_mode/compete_form_container';
-
+import "./deck_show.css"
 
 class DeckShow extends React.Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class DeckShow extends React.Component {
 
   getCategories() {
     return this.props.deckInfo.deck.category.map((category, idx)=>{
-      return <span key={idx} >{category} </span>
+      return <span key={idx} className='deck-show-cat'>{category}</span>
     })
   }
 
@@ -32,20 +32,23 @@ class DeckShow extends React.Component {
     return (
       <div>
           <NavContainer />
-        <div>{this.props.deckInfo.deck.name}</div>
-        <div>Categories: {this.getCategories()}</div>
-        <div>Number of cards: {this.props.deckInfo.cards.length}</div>
-        <br/>
-        <div>
-          <div onClick={()=>this.props.ownProps.history.push(`/decks/${this.props.deckInfo.deck._id}/study`)} >Study</div>
+        <div className='deck-show-page'>
+          <div className='deck-show-name'>{this.props.deckInfo.deck.name}</div>
+          <div className='deck-show-cats'>{this.getCategories()}</div>
           <br/>
-          <div onClick={()=>this.setState({ addCard: true })} >Add Cards</div>
+          <div >
+            <div className='deck-show-study' onClick={()=>this.props.ownProps.history.push(`/decks/${this.props.deckInfo.deck._id}/study`)} >Study Deck</div>
+            <br/>
+            <div className='deck-show-add' onClick={()=>this.setState({ addCard: true })} >Add Cards</div>
+          </div>
+          <div className='deck-show-cards'>{this.props.deckInfo.cards.length} cards</div>
+          {this.getCardForm()}
+          <br/>
+          <br/>
+          <CardIndexContainer/>
+          {this.props.deckInfo.cards.length >= 4 ? <CompeteFormContainer deckId={this.props.match.params.id} history={this.props.history}/> : ''}
         </div>
-        {this.getCardForm()}
-        <br/>
-        <br/>
-        <CardIndexContainer/>
-        {this.props.deckInfo.cards.length >= 4 ? <CompeteFormContainer deckId={this.props.match.params.id} history={this.props.history}/> : ''}
+
       </div>
     );
   }
