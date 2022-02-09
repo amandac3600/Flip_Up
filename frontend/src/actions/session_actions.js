@@ -6,6 +6,7 @@ export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
 export const RECEIVE_USER_SIGN_IN = "RECEIVE_USER_SIGN_IN";
 export const UPDATE_USER = "UPDATE_USER";
+export const RECEIVE_FRIENDS = "RECEIVE_FRIENDS";
 
 export const receiveCurrentUser = currentUser => ({
   type: RECEIVE_CURRENT_USER,
@@ -19,6 +20,10 @@ export const receiveUserSignIn = () => ({
 export const receiveErrors = errors => ({
   type: RECEIVE_SESSION_ERRORS,
   errors
+});
+export const receiveFriends = friends => ({
+  type: RECEIVE_FRIENDS,
+  friends
 });
 
 export const logoutUser = () => ({
@@ -57,6 +62,15 @@ export const fetchUser = (id) => dispatch => (
   SessionApiUtil.fetchUser(id) 
     .then(user => (
       dispatch(receiveCurrentUser(user.data))
+    ), err => (
+      dispatch(receiveErrors(err.response.data))
+    ))
+)
+
+export const getFriends = () => dispatch => (
+  SessionApiUtil.getFriends()
+    .then(friends => (
+      dispatch(receiveFriends(friends.data))
     ), err => (
       dispatch(receiveErrors(err.response.data))
     ))
