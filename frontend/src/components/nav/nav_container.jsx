@@ -4,7 +4,7 @@ import Nav from './nav'
 
 const mapStateToProps = (state) => ({
   // currentUser: state.entities.session.currentUserId,
-  currentUser: {id: 1},
+  currentUser: state.session.user,
 })
 
 const mapDispatchToProps = dispatch => ({

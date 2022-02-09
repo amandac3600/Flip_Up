@@ -29,7 +29,7 @@ router.get("/", (req, res) => {
 });
 
 //return data of user logged in
-router.get('/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
+router.get('/find/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
   const decks = await Deck.find({user: req.user.id});
   return (
     res.json({
@@ -46,7 +46,7 @@ router.get('/:id', passport.authenticate('jwt', {session: false}), async (req, r
   )
 })
 
-//return data of current user. for testing only
+//return data of current user
 router.get('/current', passport.authenticate('jwt', {session: false}), async (req, res) => {
   const decks = await Deck.find({user: req.user.id});
   return (
@@ -207,6 +207,22 @@ const removeFromArray = (id, user, arrayName) => {
   const index = user[arrayName].indexOf(id);
   if (index !== -1) user[arrayName].splice(index, 1);
 }
+
+router.get('/friends', passport.authenticate('jwt', { session: false }), (req, res) => {
+  User.findOne({ _id: req.user.id })
+    .then(async user => {
+      const friendIds = user.friendIds;
+      const payload = {};
+      
+      for (let i = 0; i < friendIds.length; i++) {
+        const friend = await User.findOne({ _id: friendIds[i] });
+        payload[friend._id] = friend;
+      }
+
+      return res.json(payload);
+    })
+    .catch(err => res.status(404).json({ nouser: 'Unable to find user' }))
+})
 
 router.patch('/friend', passport.authenticate('jwt', { session: false }), (req, res) => {
   User.findOne({ _id: req.user.id })

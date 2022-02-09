@@ -17,9 +17,8 @@ export const createDeck = (deck) => {
 
 //update a deck
 export const updateDeck = (deck) => {
-    return axios.post(`/api/decks/${deck.id}`, deck);
+    return axios.patch(`/api/decks/${deck.id}`, deck);
 };
-
 
 //delete a deck
 export const deleteDeck = (deckId) => {

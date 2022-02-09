@@ -40,8 +40,8 @@ export const getCard = cardId => dispatch => (
     ))
 );
 
-export const getCards = () => dispatch => (
-    CardApiUtil.getCards()
+export const getCards = (deckId) => dispatch => (
+    CardApiUtil.getCards(deckId)
     .then((res) => (
         dispatch(receiveCards(res.data))
     ))

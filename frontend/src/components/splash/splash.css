@@ -1,6 +1,13 @@
 .splash-page {
-  background-color: aliceblue;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+}
+
+.splash-bg {
+  position: absolute;
+  width: 100vw;
+  margin-top: -200px;
+  z-index: -5;
+  filter: opacity(60%) brightness(140%);
 }
 
 .splash-container {
@@ -12,27 +19,55 @@
 }
 
 .splash-main-title {
-  color: rgb(31, 42, 114);
+  color: rgb(31, 47, 155);
   display: flex;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
   justify-content: center;
-  font-size: 40px;
+  font-size: 48px;
   font-weight: 800;
   margin-top: 110px;
+  margin-bottom: 35px;
 }
 
 .splash-main-description {
   display: flex;
   justify-content: center;
-  font-size: 20px;
+  font-size: 22px;
   text-align: center;
+  padding: 0 40px;
   color: rgb(44, 59, 155);
-  font-weight: 500;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.splash-make-deck-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.splash-make-deck {
+  display: flex;
+  font-size: 20px;
+  font-weight: 600;
+  justify-content: center;
+  margin-top: 70px;
+  text-decoration: none;
+  background-color: rgb(58, 74, 182);
+  color: whitesmoke;
+  border-radius: 6px;
+  padding: 12px 15px;
+}
+
+.splash-make-deck:hover {
+  transition: all 0.3s;
+  background-color: rgb(33, 45, 128);
 }
 
 .splash-block {
-  height: 48%;
+  height: 46%;
   padding-top: 4%;
-  margin-top: 170px;
+  margin-top: 120px;
   background-color: rgb(57, 74, 184);
 }
 
@@ -43,6 +78,7 @@
   display: flex;
   justify-content: center;
   margin-bottom: 5%;
+  margin-top: 1%;
 }
 
 .splash-cat-list {
@@ -51,13 +87,23 @@
 }
 
 .splash-cat-list-item {
-  border: 1px solid whitesmoke;
+  border: 1px solid rgb(185, 185, 185);
+  background-color: whitesmoke;
   color: whitesmoke;
   padding: 10px;
   height: 13vw;
   width: 25%;
-  border-radius: 3px;
+  border-radius: 4px;
   text-align: center;
+}
+
+.splash-cat-list-item:hover {
+  box-shadow: 1px 8px 12px rgb(0 0 0 / 30%);
+  transition: all 0.1s;
+}
+
+.splash-cat-list-pic {
+  height: 100%;
 }
 
 .splash-cat-name-list {
@@ -66,19 +112,21 @@
 }
 
 .splash-cat-name-list-item {
+  margin-top: 20px;
   color: whitesmoke;
   text-align: center;
   width: 200px;
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .splash-pop-title {
   font-size: 26px;
-  font-weight: 600;
+  font-weight: 700;
   color: rgb(32, 46, 131);
   display: flex;
   justify-content: center;
-  margin-top: 3%;
+  margin-top: 2%;
   margin-bottom: 5%;
 }
 
@@ -88,13 +136,56 @@
 }
 
 .splash-pop-list-item {
-  border: 1px solid rgb(32, 46, 131);
+  border: 1px solid rgb(220, 220, 220);
+  background-color: rgb(253, 253, 253);
   color: rgb(32, 46, 131);
-  padding: 10px;
-  height: 13vw;
-  width: 25%;
-  border-radius: 3px;
-  text-align: center;
+  padding: 30px;
+  height: 11vw;
+  width: 22%;
+  border-radius: 4px;
+  font-size: 22px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.splash-pop-list-item:hover {
+  box-shadow: 1px 8px 12px rgb(0 0 0 / 10%);
+  transition: all 0.1s;
+}
+
+.splash-pop-list-item-cat-container {
+  display: flex;
+  margin-top: 15px;
+}
+
+.splash-pop-list-item-cat {
+  font-size: 14px;
+  font-weight: 500;
+  margin-right: 10px;
+  padding: 5px;
+  background-color: rgb(32, 46, 131);
+  color: whitesmoke;
+  border-radius: 4px;
+}
+
+.splash-pop-list-item-user-container {
+  display: flex;
+  text-decoration: none;
+  color: rgb(32, 46, 131);
+}
+
+.splash-pop-list-item-user-pic {
+  width: 40px;
+  height: 40px;
+  margin-left: -4px;
+  margin-top: 19%;
+  margin-right: 5px;
+}
+
+.splash-pop-list-item-user {
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 24%;
 }
 
 .splash-block-2 {
@@ -104,6 +195,8 @@
 }
 
 #splash-footer {
-  margin-top: 26%;
+  margin-top: 380px;
+  /* position: absolute;
+  bottom: 0; */
 }
 
