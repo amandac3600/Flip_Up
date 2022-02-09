@@ -4,10 +4,11 @@
 
 .splash-bg {
   position: absolute;
-  width: 100vw;
-  margin-top: -200px;
+  width: 98.9vw;
+  min-height: 650px;
+  margin-top: -150px;
   z-index: -5;
-  filter: opacity(60%) brightness(140%);
+  filter: opacity(70%) brightness(180%);
 }
 
 .splash-container {
@@ -53,7 +54,7 @@
   justify-content: center;
   margin-top: 70px;
   text-decoration: none;
-  background-color: rgb(58, 74, 182);
+  background-color: rgb(40, 57, 172);
   color: whitesmoke;
   border-radius: 6px;
   padding: 12px 15px;
@@ -87,7 +88,7 @@
 }
 
 .splash-cat-list-item {
-  border: 1px solid rgb(185, 185, 185);
+  border: 1px solid rgb(100, 100, 100);
   background-color: whitesmoke;
   color: whitesmoke;
   padding: 10px;
@@ -126,7 +127,7 @@
   color: rgb(32, 46, 131);
   display: flex;
   justify-content: center;
-  margin-top: 2%;
+  margin-top: 1.8%;
   margin-bottom: 5%;
 }
 
@@ -141,6 +142,7 @@
   color: rgb(32, 46, 131);
   padding: 30px;
   height: 11vw;
+  min-height: 125px;
   width: 22%;
   border-radius: 4px;
   font-size: 22px;
@@ -190,6 +192,7 @@
 
 .splash-block-2 {
   height: 48%;
+  max-height: 500px;
   padding-top: 4%;
   background-color: aliceblue;
 }

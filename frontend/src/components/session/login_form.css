@@ -84,6 +84,10 @@
   background-color: rgb(228, 228, 228);
 }
 
+.login-errors {
+  
+}
+
 .login-footer {
   margin-top: 35vw;
   width: 100vw;
