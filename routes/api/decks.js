@@ -9,21 +9,10 @@ const Card = require('../../models/Card');
 
 const validateDeckInput = require('../../validation/deck');
 
-// returns all public and user created decks based on filter
-router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
-  let query;
-  if (req.body.filters) {
-    const filters = req.body.filters.split(',');
-    query = Deck.find({
-      $and:
-        [{ category: { $in: filters } },
-        { $or: [{ public: true }, { user: req.user.id }] }]
-    });
-  } else {
-    query = Deck.find({ $or: [{ public: true }, { user: req.user.id }] });
-  }
-
-    query.sort({ name: 1 })
+// returns all public and user created decks
+router.get('/search', passport.authenticate('jwt', { session: false }), (req, res) => {
+  Deck.find({ $or: [{ public: true }, { user: req.user.id }] })
+    .sort({ name: 1 })
       .then(async decks => {
         const payload = {};
 
@@ -38,6 +27,31 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
         return res.json(payload)
       })
       .catch(err => res.status(404).json({ nodecksfound: 'No matching decks found' }));
+});
+
+// returns all public and user created decks based on filter
+router.get('/search/:filters', passport.authenticate('jwt', { session: false }), (req, res) => {
+  const filters = req.params.filters.split('+');
+  Deck.find({
+    $and:
+      [{ category: { $in: filters } },
+      { $or: [{ public: true }, { user: req.user.id }] }]
+  })
+  .sort({ name: 1 })
+    .then(async decks => {
+      const payload = {};
+
+      for (let i = 0; i < decks.length; i++) {
+        const newDeck = await Object.assign({}, decks[i]._doc);
+        const cards = await Card.find({ deck: decks[i].id })
+        const cardIds = cards.map(card => card.id)
+        newDeck['cards'] = cardIds;
+        payload[decks[i].id] = newDeck;
+      }
+
+      return res.json(payload)
+    })
+    .catch(err => res.status(404).json({ nodecksfound: 'No matching decks found' }));
 });
 
 // returns specific deck. allows only owner or if desk if public

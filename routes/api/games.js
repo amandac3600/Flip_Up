@@ -65,7 +65,7 @@ router.patch('/:id',
   async (req, res) => {
     const game = await Game.findOne({ _id: req.params.id });
     const player1 = await User.findOne({ _id: game.player1Id });
-    if (req.body.playerCorrect === undefined || req.body.playerCorrect === undefined ) {
+    if (req.body.playerCorrect === undefined || req.body.playerTime === undefined ) {
       return res.status(404).json({invaliddata: 'Missing data on round'})
     }
 

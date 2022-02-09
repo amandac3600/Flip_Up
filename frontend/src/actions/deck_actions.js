@@ -40,12 +40,13 @@ export const getDeck = deckId => dispatch => (
     ))
 );
 
-export const getDecks = () => dispatch => (
-    DeckApiUtil.getDecks()
+// filters option. if no filters leave empty
+export const getDecks = (filters) => dispatch => {
+    return DeckApiUtil.getDecks(filters)
     .then((res) => (
         dispatch(receiveDecks(res.data))
     ))
-);
+};
 
 export const updateDeck = (deck) => dispatch => (
     DeckApiUtil.updateDeck(deck)

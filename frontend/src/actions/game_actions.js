@@ -62,3 +62,11 @@ export const createGame = (game) => dispatch => (
     dispatch(receiveErrors(err.response.data))
   ))
 );
+
+export const updateGame = (game) => dispatch => (
+  GameApiUtil.updateGame(game).then((game) => (
+    dispatch(receiveGame(game.data))
+  ), err => (
+    dispatch(receiveErrors(err.response.data))
+  ))
+);
