@@ -1,0 +1,38 @@
+.compete-mode-directions {
+  border: 1px solid gray;
+  width: 500px;
+  margin: 50px auto;
+}
+
+.compete-mode-front {
+  width: 200px;
+  height: 300px;
+  border: 1px solid gray;
+  text-align: center;
+  margin: auto;
+}
+
+.compete-answer-choice {
+  width: 100px;
+  height: 30px;
+  border: 1px solid gray;
+  text-align: center;
+  margin: auto;
+}
+
+.compete-answer-choice:hover {
+  background-color: rgb(124, 168, 209);
+}
+.compete-mode-results-div {
+  display: flex;
+  justify-content: center;
+}
+
+.compete-mode-results {
+  width: 300px;
+  height: 200px;
+  border: 1px solid gray;
+}
+.compete-mode-results div {
+  padding: 10px;
+}

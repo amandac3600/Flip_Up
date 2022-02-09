@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getCards: (deckId) => dispatch(getCards(deckId)),
     getFriends: () => dispatch(getFriends()),
-    getDecks: () => dispatch(getDecks()),
+    getDecks: (filters) => dispatch(getDecks(filters)),
     getDeck: (deckId) => dispatch(getDeck(deckId)),
     fetchUser: (id) => dispatch(fetchUser(id)),
     createGame: (game) => dispatch(createGame(game)),
