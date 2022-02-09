@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Study from './study';
+import StudyCard from './study_card';
 import { getDeck } from './../../actions/deck_actions'
 import { getCard, updateCard } from './../../actions/card_actions'
 
@@ -20,4 +20,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Study);
+export default connect(mapStateToProps, mapDispatchToProps)(StudyCard);

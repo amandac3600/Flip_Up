@@ -1,17 +1,20 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { getCard } from '../../util/card_api_util';
+import "./study.css";
+import StudyCardContainer from './study_card_container';
 
 class Study extends React.Component {
   constructor(props) {
     super(props);
-    this.props.getDeck(this.props.match.params.id)
+    
   }
-
-  
 
   render() {
     return (
-      <div>Hello</div>
+      <div>
+          <StudyCardContainer/>
+      </div>
     );
   }
 }

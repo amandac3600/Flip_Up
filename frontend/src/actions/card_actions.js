@@ -47,12 +47,15 @@ export const getCards = () => dispatch => (
     ))
 );
 
-export const updateCard = (card) => dispatch => (
-    CardApiUtil.updateCard(card)
-    .then((res) => (
-        dispatch(editCard(res.data))
-    ))
-);
+export const updateCard = (card) => dispatch => {
+    return CardApiUtil.updateCard(card)
+    .then((res) => {
+        console.log(res.data)
+        return dispatch(editCard(res.data))
+    })
+}
+    
+
 
 
 export const createCard = (card) => dispatch => (

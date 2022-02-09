@@ -1,0 +1,186 @@
+
+
+#study-card-front {
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+
+#study-card-front > div {
+    align-self: center;
+}
+
+#study-card-front2 {
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    display: none;
+    justify-content: center;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+#study-card-front2 > div {
+    align-self: center;
+}
+
+#study-card-front-no {
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1.3rem;
+}
+
+#study-card-front-no > div {
+    align-self: center;
+}
+
+#study-card-front-no > div:last-child {
+    font-size: 1rem;
+    margin-top: 5px;
+    padding: 5px;
+    cursor: pointer;
+    background-color: rgb(65, 147, 255);
+    display: flex;
+    justify-content: center;
+}
+
+#study-card-front-no > div:last-child > div {
+    align-self: center;
+}
+
+#study-card-back {
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    justify-content: center;
+    display: none;
+    flex-direction: column;
+}
+
+#study-card-back > div:nth-child(1) {
+    font-size: 1.3rem;
+}
+
+#study-card-back > div:nth-child(2) {
+    border-top: 1px solid black;
+    width: 90%;
+    margin-top: 15px;
+    padding-top: 25px;
+}
+
+#study-card-back > div:nth-child(3) {
+    font-size: 1rem;
+}
+
+#study-card-back > div {
+    align-self: center;
+}
+
+
+.study-card-back-buttons {
+    position: absolute;
+    width: 200px;
+    height: 300px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.study-card-back-buttons > div {
+    align-self: flex-end;
+    width: 50%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.study-card-back-buttons > div:first-child {
+    background-color: rgba(255, 0, 0, 0.7);
+}
+.study-card-back-buttons > div:last-child {
+    background-color: rgba(0, 128, 0, 0.7);
+}
+
+.study-card-back-buttons > div > div {
+    align-self: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#study-card-back2 {
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    justify-content: center;
+    display: none;
+    flex-direction: column;
+}
+
+#study-card-back2 > div:nth-child(1) {
+    font-size: 1.3rem;
+}
+
+#study-card-back2 > div:nth-child(2) {
+    border-top: 1px solid black;
+    width: 90%;
+    margin-top: 15px;
+    padding-top: 25px;
+}
+
+#study-card-back2 > div:nth-child(3) {
+    font-size: 1rem;
+}
+
+#study-card-back2 > div {
+    align-self: center;
+}
+
+
+.study-card-back-buttons2 {
+    position: absolute;
+    width: 200px;
+    height: 300px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.study-card-back-buttons2 > div {
+    align-self: flex-end;
+    width: 50%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.study-card-back-buttons2 > div:first-child {
+    background-color: rgba(255, 0, 0, 0.7);
+}
+.study-card-back-buttons2 > div:last-child {
+    background-color: rgba(0, 128, 0, 0.7);
+}
+
+.study-card-back-buttons2 > div > div {
+    align-self: center;
+}
