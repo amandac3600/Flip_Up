@@ -26,7 +26,7 @@ export const fetchUser = id => {
 }
 
 export const editUser = (userData) => {
-    return axios.post('/api/users/update', userData)
+    return axios.post('/api/users/', userData)
 }
 
 // export const updateProfilePic = (userData)=>{

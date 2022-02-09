@@ -1,5 +1,6 @@
 import React from 'react';
 import NavContainer from '../nav/nav_container';
+import { Link } from "react-router-dom";
 import Footer from '../footer/footer';
 import './user_profile.css';
 import { DeckCarousel } from '../deck-carousel/deck_carousel';
@@ -23,7 +24,9 @@ class UserProfile extends React.Component {
                 this.setState({
                     user: {
                         username: action.currentUser.username, 
-                        deck_ids: action.currentUser.decks
+                        deck_ids: action.currentUser.decks, 
+                        wins: action.currentUser.wins, 
+                        points: action.currentUser.point
                     }
             })})        
         this.props.getDecks()
@@ -80,6 +83,20 @@ class UserProfile extends React.Component {
         }
     }
 
+    renderStats() {
+        let wins 
+        let losses
+        let points
+
+        // if (this.state.user.wins.length === 0){
+        //     wins = 
+        // }
+        <div className='profile-user-stats'>
+            <p>Wins: {this.state.user.wins.length}</p>
+            <p>Loses</p>
+            <p>Points: {this.state.user.points}</p>
+        </div>
+    }
 
     render() {
  
@@ -88,7 +105,7 @@ class UserProfile extends React.Component {
         )
         const decks = this.state.user.deck_ids
         const user = this.state.user.username
-
+            console.log("wins", this.state.user.wins)
         return (
             <div>
                  <div className='about-nav'>
@@ -102,12 +119,12 @@ class UserProfile extends React.Component {
                             <div className="profile-user-info">
                                 <img src="https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png" alt="user profile pic" />
                                 <p>{this.state.user.username}</p>
-                                <button>Edit profile</button>
+                                <Link to="/profile/update">Edit profile</Link>
                             </div>
                             <div className='profile-user-stats'>
-                                <p>Wins</p>
+                                <p>Wins: {this.state.user.wins.length}</p>
                                 <p>Loses</p>
-                                <p>Points</p>
+                                <p>Points: {this.state.user.points}</p>
                             </div>
                         </div>
                         <div className="profile-deck-scroller">
