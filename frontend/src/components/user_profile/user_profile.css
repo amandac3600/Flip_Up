@@ -76,6 +76,20 @@
 
 }
 
+.profile-create-deck-button {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(255, 255, 255);
+    border: white;
+    border-bottom: 1px solid rgb(55, 60, 75);
+}
+
+.profile-create-deck-button:hover{
+    font-weight: bolder;
+    box-shadow: 5px 5px 15px 2px rgba(34, 44, 133, 0.19);
+
+}
 .profile-no-decks {
    
     font-weight: 800;
@@ -87,17 +101,31 @@
 }
 
 /* FRIENDS */
-.profile-friends-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 
-    margin: 5px;
-}
 .profile-friends-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: flex-end;
+    font-size: 30px;
+    height: 50px;
     border-bottom: 1px solid black;
+    margin: 25px;
+
+}
+
+.profile-friends-list {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
     margin: 5px;
+}
+
+
+.profile-no-friends {
+    display: flex;
+    justify-items: center; 
+    align-content: center;
 }

@@ -13,6 +13,7 @@ class UserProfile extends React.Component {
 
         }
         this.getUserDecks = this.getUserDecks.bind(this)
+        this.handleClick = this.handleClick.bind(this)
 
     }
 
@@ -44,22 +45,41 @@ class UserProfile extends React.Component {
 
     }
 
+    handleClick(e) {
+        e.preventDefault()
+        this.props.history.push('/decks/new')
+    }
 
-    render_decks() {
+    renderDecks() {
         const decks = this.getUserDecks()
         if (decks.length === 0){
             return (
-                <h3 className = 'profile-no-decks'>You haven't made any decks yet!</h3>
+                <div>
+                    <h3 className = 'profile-no-decks'>You haven't made any decks yet!</h3>
+                    <button className='profile-create-deck-button'>Create your first deck now!</button>
+                </div>
             )
         }
 
         return (
             <div>
                 <DeckCarousel decks={decks} />
-  
+                <button className='profile-create-deck-button' onClick={this.handleClick}>Create a new deck</button>
             </div>
         )
     }
+
+    renderFriends() {
+        if (!this.state.friends) {
+            return (
+                <div>
+                    <h3 className = 'profile-no-friends'>You haven't made any friends yet!</h3>
+                    <button className='profile-create-deck-button'>Find a friend now!</button>
+                </div>
+            )
+        }
+    }
+
 
     render() {
  
@@ -91,14 +111,16 @@ class UserProfile extends React.Component {
                             </div>
                         </div>
                         <div className="profile-deck-scroller">
-                            {this.render_decks()}
+                            {this.renderDecks()}
+                            
                         </div>
                     </div>
                     <div className="profile-right-div">
+                        <div className= "profile-friends-header">
+                                Friends
+                        </div>
                         <div className="profile-friends-list">
-                            <div className= "profile-friends-header"><h3>Friends</h3>
-                            <button>Pending</button>
-                            </div>
+                            {this.renderFriends()}
                         </div>
                     </div>
                 </div>
