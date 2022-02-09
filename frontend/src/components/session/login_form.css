@@ -1,0 +1,90 @@
+.login-form-container {
+  display: flex;
+  justify-content: center;
+}
+
+.login-links {
+  display: flex;
+  justify-content: center;
+  margin-top: 150px;
+}
+
+.login-links-signup {
+  /* margin-right: 20px; */
+  font-family: Monstserrat, Arial, Helvetica, sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  text-decoration: none;
+  color: rgb(40, 57, 155);
+  margin-top: 10px;
+  margin-left: 42px;
+}
+
+.login-links-login {
+  margin-left: 51px;
+  font-family: Monstserrat, Arial, Helvetica, sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  background-color: rgb(40, 57, 155);
+  color: whitesmoke;
+  padding: 10px 61px;
+  border-radius: 4px 4px 0 0;
+}
+
+.login-form {
+  background-color: rgb(40, 57, 155);
+  padding: 30px;
+  border-radius: 0 0 4px 4px;
+}
+
+.login-input-email {
+  height: 30px;
+  width: 300px;
+  margin-bottom: 20px;
+  background-color: rgb(40, 57, 155);
+  border: none;
+  border-bottom: 1px solid whitesmoke;
+  color: whitesmoke;
+  font-size: 15px;
+}
+
+.login-input-password {
+  height: 30px;
+  width: 300px;
+  margin-bottom: 30px;
+  background-color: rgb(40, 57, 155);
+  border: none;
+  border-bottom: 1px solid whitesmoke;
+  color: whitesmoke;
+  font-size: 15px;
+}
+
+::placeholder {
+  color: rgb(189, 189, 189);
+}
+
+.login-input-email:focus-visible, .login-input-password:focus-visible {
+  outline: none;
+}
+
+.login-button {
+  border: none;
+  width: 100%;
+  height: 35px;
+  font-size: 16px;
+  background-color: whitesmoke;
+  border-radius: 3px;
+  color: rgb(40, 57, 155);
+  font-weight: 600;
+}
+
+.login-button:hover {
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: rgb(228, 228, 228);
+}
+
+.login-footer {
+  margin-top: 35vw;
+  width: 100vw;
+}

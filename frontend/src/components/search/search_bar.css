@@ -1,10 +1,12 @@
 .search-bar-form {
   display: flex;
-  margin-top: 16px;
+  margin-top: 12px;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
 }
 
 .search-input {
   color: rgb(17, 26, 78);
+  background-color: whitesmoke;
   height: 35px;
   width: 350px;
   border: none;
@@ -13,7 +15,8 @@
 }
 
 ::placeholder {
-  color: rgb(140, 140, 141);
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+  color: rgb(100, 100, 100);
 }
 
 .search-input:focus-visible {
@@ -27,12 +30,13 @@
   font-size: 18px;
   font-weight: bold;
   padding-top: 5px;
-  width: 40px;
+  width: 45px;
   border-radius: 0 4px 4px 0;
+  background-color: rgb(224, 224, 224);
 }
 
 .search-button:hover {
   cursor: pointer;
-
+  background-color: rgb(196, 196, 214);
 }
 
