@@ -3,3 +3,23 @@
   width: 500px;
   margin: 50px auto;
 }
+
+.compete-mode-front {
+  width: 200px;
+  height: 300px;
+  border: 1px solid gray;
+  text-align: center;
+  margin: auto;
+}
+
+.compete-answer-choice {
+  width: 100px;
+  height: 30px;
+  border: 1px solid gray;
+  text-align: center;
+  margin: auto;
+}
+
+.compete-answer-choice:hover {
+  background-color: rgb(124, 168, 209);
+}
