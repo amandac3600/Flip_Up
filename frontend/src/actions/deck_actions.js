@@ -40,8 +40,8 @@ export const getDeck = deckId => dispatch => (
     ))
 );
 
-export const getDecks = () => dispatch => (
-    DeckApiUtil.getDecks()
+export const getDecks = (filters) => dispatch => (
+    DeckApiUtil.getDecks(filters)
     .then((res) => (
         dispatch(receiveDecks(res.data))
     ))

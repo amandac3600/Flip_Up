@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 //get all decks
-export const getDecks = () => {
-  return axios.get('/api/decks');
+export const getDecks = (filters,) => {
+  return axios.get('/api/decks', filters);
 };
 
 //get a single deck
