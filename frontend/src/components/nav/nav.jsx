@@ -2,17 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import SearchBarContainer from '../search/search_bar_container';
+import logo from './logo.png'
 import "./nav.css"
 
 class Nav extends React.Component {
 
   render() {
-    console.log(this.props)
     let nav;
     if (this.props.location.pathname === "/login" || this.props.location.pathname === "/signup") {
       nav = <nav className='nav-container-login'>
         <div className='nav-logo'>
-          <Link className="nav-logo-link" to="/">Flip Up</Link>
+          <Link className="nav-logo-link" to="/"><img src={logo} alt="Flip Up" width='45' height='45'/></Link>
         </div>
         <div className='nav-search-login'>
           <SearchBarContainer/>
@@ -21,7 +21,7 @@ class Nav extends React.Component {
     } else if (!this.props.currentUser.id) {
       nav = <nav className='nav-container'>
         <div className='nav-logo'>
-          <Link className="nav-logo-link" to="/">Flip Up</Link>
+          <Link className="nav-logo-link" to="/"><img src={logo} alt="Flip Up" width='45' height='45'/></Link>
         </div>
         <div className='nav-search'>
           <SearchBarContainer/>
@@ -34,7 +34,7 @@ class Nav extends React.Component {
     } else if (this.props.currentUser.id) {
       nav = <nav className='nav-container'>
         <div className='nav-logo'>
-          <Link className="nav-logo-link" to="/">LOGO</Link>
+          <Link className="nav-logo-link" to="/"><img src={logo} alt="Flip Up" width='45' height='45'/></Link>
         </div>
         <div className='nav-search'>
           <SearchBarContainer className='nav-search-bar'/>

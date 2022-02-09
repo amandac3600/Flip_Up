@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import NavContainer from '../nav/nav_container';
+import { Link } from 'react-router-dom';
 import "./login_form.css"
 
 class LoginForm extends React.Component {
@@ -50,22 +51,32 @@ class LoginForm extends React.Component {
           <div className='login-nav'>
             <NavContainer/>
           </div>
-          <div>
-            <input type="text"
-              value={this.state.email}
-              onChange={this.update('email')}
-              placeholder="Email"
-            />
-            <br />
-            <input type="password"
-              value={this.state.password}
-              onChange={this.update('password')}
-              placeholder="Password"
-            />
-            <br />
-            <input type="submit" value="Submit" />
-            {this.renderErrors()}
+          <div className='login-form-container'>
+            <div className='login-form'>
+              <div className='login-links'>
+                <Link to="/signup" className='login-links-signup'>Sign Up</Link>
+                <h2 className='login-links-login'>Log In</h2>
+              </div>
+              <div>
+                <input type="text"
+                  value={this.state.email}
+                  onChange={this.update('email')}
+                  placeholder="Email"
+                />
+                <br />
+                <input type="password"
+                  value={this.state.password}
+                  onChange={this.update('password')}
+                  placeholder="Password"
+                />
+                <br />
+                <input type="submit" value="Submit" />
+                {this.renderErrors()}
+              </div>
           </div>
+          
+          </div>
+          
         </form>
       </div>
     );

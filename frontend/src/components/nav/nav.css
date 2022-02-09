@@ -3,7 +3,7 @@
   justify-content: space-between;
   background-color: rgb(40, 57, 155);
   color: whitesmoke;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
   height: 60px;
 }
 
@@ -11,17 +11,19 @@
   display: flex;
   background-color: rgb(40, 57, 155);
   color: whitesmoke;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
   height: 60px;
 }
 
 .nav-search-login {
-  margin-left: 25%;
+  position: absolute;
+  margin-left: 30%;
+  width: 500px;
 }
 
 .nav-logo {
-  margin-top: 22px;
-  margin-left: 25px;
+  margin-top: 8px;
+  margin-left: 15px;
 }
 
 .nav-logo-link {
@@ -30,7 +32,7 @@
 }
 
 .nav-login-signup {
-  margin-top: 25px;
+  margin-top: 22px;
   margin-right: 25px;
 }
 
@@ -42,22 +44,24 @@
 
 .nav-login {
   margin-right: 10px;
-  padding: 5px 7px;
+  padding: 8px 12px;
   border-radius: 4px;
 }
 
 .nav-login:hover {
-  background-color: rgb(53, 77, 155);
+  transition: all 0.2s;
+  background-color: rgb(86, 109, 184);
 }
 
 .nav-signup {
   margin-left: 10px;
-  padding: 5px 7px;
+  padding: 8px 10px;
   border-radius: 4px;
   background-color: rgb(86, 109, 184);
 }
 
 .nav-signup:hover {
+  transition: all 0.2s;
   background-color: rgb(53, 77, 155);
 }
 
