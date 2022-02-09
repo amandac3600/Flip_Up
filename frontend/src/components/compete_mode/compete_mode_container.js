@@ -3,7 +3,7 @@ import CompeteMode from './compete_mode';
 import {getCards} from '../../actions/card_actions';
 import { getDecks, getDeck } from '../../actions/deck_actions';
 import { fetchUser, getFriends } from '../../actions/session_actions';
-import { createGame, getGame, getPendingGames, getCompleteGames } from '../../actions/game_actions';
+import { createGame, getGame, getPendingGames, getCompleteGames, updateGame } from '../../actions/game_actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -25,6 +25,7 @@ const mapDispatchToProps = (dispatch) => {
     getGame: (gameId) => dispatch(getGame(gameId)),
     getPendingGames: () => dispatch(getPendingGames()),
     getCompleteGames: () => dispatch(getCompleteGames()),
+    updateGame: (game) => dispatch(updateGame(game))
   }
 }
 
