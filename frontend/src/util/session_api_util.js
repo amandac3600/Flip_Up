@@ -21,8 +21,12 @@ export const login = (userData) => {
 //     return axios.get('/api/users')
 // }
 
-export const fetchUser = id => {
-  return axios.get(`/api/users/find/${id}`)
+// export const fetchUser = id => {
+//   return axios.get(`/api/users/find/${id}`)
+// }
+
+export const fetchUser = () => {
+  return axios.get(`/api/users/current`)
 }
 
 export const getFriends = () => {
