@@ -10,22 +10,33 @@ const Deck = require('../../models/Deck');
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
-//get all users registered for search bar
-router.get("/", (req, res) => {
-  const keyword = req.body.keyword;
-  const query = keyword ? 
-    User.find({username: { $regex: keyword, $options: "i" }}) :
-    User.find();
-  query
-    .sort({username: 1})
-    .then(users => {
-      res.json(users.map(user => ({ 
-        id: user.id, 
-        username: user.username,
-        email: user.email,
-      })))
-    })
-    .catch(err => res.status(404).json({nousers: 'No users found'}))
+//get all users for search bar
+router.get("/search", (req, res) => {
+    User.find()
+      .sort({username: 1})
+      .then(users => {
+        res.json(users.map(user => ({ 
+          id: user.id, 
+          username: user.username,
+          email: user.email,
+        })))
+      })
+      .catch(err => res.status(404).json({nousers: 'No users found'}))
+});
+
+//get all users fitting keyword 
+router.get("/search/:keyword", (req, res) => {
+  const keyword = req.params.keyword;
+    User.find({username: { $regex: keyword, $options: "i" }})
+      .sort({username: 1})
+      .then(users => {
+        res.json(users.map(user => ({ 
+          id: user.id, 
+          username: user.username,
+          email: user.email,
+        })))
+      })
+      .catch(err => res.status(404).json({nousers: 'No users found'}))
 });
 
 //return data of user logged in
@@ -224,7 +235,7 @@ router.get('/friends', passport.authenticate('jwt', { session: false }), (req, r
     .catch(err => res.status(404).json({ nouser: 'Unable to find user' }))
 })
 
-router.patch('/friend', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.patch('/friends', passport.authenticate('jwt', { session: false }), (req, res) => {
   User.findOne({ _id: req.user.id })
     .then(async user => {
       const friendId = req.body.friendId;

@@ -1,19 +1,27 @@
-.compete-main-div {
+.compete-form-div {
   margin: auto;
+  border: 1px solid gray;
+  width: 400px;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
 }
 
-.compete-main-form {
+/* .compete-form {
   display: flex;
   justify-content: center;
-}
+} */
 
-.compete-main-friend-list, .compete-main-deck-list {
+.compete-form-friend-list {
   width: 300px;
   height: 600px;
-  border: 1px solid gray;
 }
 
-.compete-main-deck-item, .compete-main-friend-item {
+.compete-form-friend-item {
   border: 1px solid gray;
   margin: 10px;
+}
+
+input[type='radio']:checked .compete-form-friend-item{
+  background-color: blue;
 }
