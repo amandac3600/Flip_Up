@@ -8,7 +8,6 @@ export default class SearchResultIndex extends React.Component {
       errors: '',
       filters: [],
     }
-    console.log(props)
   }
 
   componentDidMount() {
