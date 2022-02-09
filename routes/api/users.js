@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
   query
     .sort({username: 1})
     .then(users => {
-      res.json(users.map(user => ({
+      res.json(users.map(user => ({ 
         id: user.id, 
         username: user.username,
         email: user.email,

@@ -54,6 +54,8 @@ router.post('/deck/:deck_id',
 router.patch('/:id',
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
+    const takenCard = await Card.findOne({ deck: req.params.deck_id, front: req.body.front });
+    if (takenCard) return res.status(404).json({ duplicate: 'Card with this front already exists' });
     const card = await Card.findOne({_id: req.params.id});
     if (req.body.front) card.front = req.body.front;
     if (req.body.back) card.back = req.body.back;
