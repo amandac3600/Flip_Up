@@ -9,22 +9,24 @@ const Card = require('../../models/Card');
 
 const validateDeckInput = require('../../validation/deck');
 
-// returns all public decks based on filter
-router.get('/', (req, res) => {
+// returns all public and user created decks based on filter
+router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
   let query;
   if (req.body.filters) {
     const filters = req.body.filters.split(',');
-    query = Deck.find({ 
-      public: true, 
-      category: { $in: filters } });
+    query = Deck.find({
+      $and:
+        [{ category: { $in: filters } },
+        { $or: [{ public: true }, { user: req.user.id }] }]
+    });
   } else {
-    query = Deck.find({ public: true });
+    query = Deck.find({ $or: [{ public: true }, { user: req.user.id }] });
   }
-    // category: { $regex: "elementary", $options: "i" }
-    // $or: [{ category: { $regex: "land", $options: "i" } }, { category: { $regex: "code", $options: "i" }}]
 
     query.sort({ name: 1 })
-      .then(decks => res.json(decks))
+      .then(decks => {
+        res.json(decks)
+      })
       .catch(err => res.status(404).json({ nodecksfound: 'No matching decks found' }));
 });
 

@@ -7,13 +7,15 @@ class CompeteMode extends React.Component {
     this.state = {
       startTime: '',
       endTime: '',
-      numberCorrect: '',
+      playerTime: '',
+      playerCorrect: '',
     }
   }
 
   render() {
     return (
       <div>
+        The winner will be determined by who gets the most question correct. If there is a tie, whoever finishes in the least amount of time will win.
       </div>
     );
   }

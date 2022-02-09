@@ -58,7 +58,7 @@ router.patch('/:id',
     if (req.body.front) card.front = req.body.front;
     if (req.body.back) card.back = req.body.back;
     card.reviewed = Date.now();
-    if (req.body.count) card.count = req.body.count;
+    if (req.body.count !== undefined) card.count = req.body.count;
     const { errors, isValid } = validateCardInput(card);
 
     if (!isValid) {
