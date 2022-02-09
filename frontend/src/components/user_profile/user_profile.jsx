@@ -3,7 +3,10 @@ import NavContainer from '../nav/nav_container';
 import { Link } from "react-router-dom";
 import Footer from '../footer/footer';
 import './user_profile.css';
+import './friends_search.css';
 import { DeckCarousel } from '../deck-carousel/deck_carousel';
+import  FriendsSearch  from './friends_search';
+
 
 class UserProfile extends React.Component {
     constructor(props) {
@@ -11,13 +14,15 @@ class UserProfile extends React.Component {
 
         this.state = {
             id: props.currentUser.id,
-            decks: props.decks
-        }
+            decks: props.decks,
+            showFriendModal: false
+        }   
         
         // this.getUserDecks = this.getUserDecks.bind(this)
         this.handleClick = this.handleClick.bind(this)
 
     }
+
 
     componentDidMount() {
         this.props.fetchUser(this.state.id)
@@ -32,6 +37,7 @@ class UserProfile extends React.Component {
                         decks: action.currentUser.decks,
                        
                     }
+
                     
             })}) 
         
@@ -45,8 +51,8 @@ class UserProfile extends React.Component {
     
         this.props.getFriends(this.state.id)
             .then(action => {
-                console.log({action})
-                console.log('action.friends:', action.friends)
+                // console.log({action})
+                // console.log('action.friends:', action.friends)
                 this.setState({
                     user: {
                         friends: action.friends, 
@@ -59,8 +65,7 @@ class UserProfile extends React.Component {
 
     getUserDecks() {
         return this.state.decks.filter(deck => {
-            console.log('user decks', this.state.user.decks)
-            console.log('state.user', this.state.user)
+
             return (
                 this.state.user.decks.includes(deck._id) 
             )
@@ -81,7 +86,7 @@ class UserProfile extends React.Component {
 
     renderDecks() {
         const decks = this.getUserDecks()
-        console.log('inside render decks', decks)
+
         if (decks.length === 0){
             return (
                 <div>
@@ -90,7 +95,7 @@ class UserProfile extends React.Component {
                 </div>
             )
         }
-        console.log(`decks in render decks  `, decks )
+
         return (
             <div>
                 <DeckCarousel decks={decks} />
@@ -99,15 +104,21 @@ class UserProfile extends React.Component {
         )
     }
 
+    
+
     renderFriends() {
+
+
         if (!this.state.friends) {
             return (
                 <div>
                     <h3 className = 'profile-no-friends'>You haven't made any friends yet!</h3>
-                    <button className='profile-create-deck-button'>Find a friend now!</button>
+                    <button className='profile-create-deck-button' onClick={() => this.setState({showFriendModal: true}) }>Find a friend now!</button>
+                    <div className={ this.state.showFriendModal ? 'modal' : 'none'}><FriendsSearch off={()=> this.setState({showFriendModal: false})} /></div>
                 </div>
             )
         }
+
         <div className="profile-friends-list">
             <ul>
                 {/* {this.state.user.friends.map(friend_id => (
@@ -134,17 +145,20 @@ class UserProfile extends React.Component {
     }
 
     render() {
+        console.log('in render', this.state)
         if(!this.state.user || !this.state.decks) return (
             <p> loading</p>
         )
         const user = this.state.user.username
-            console.log("wins", this.state.user.wins)
+        
         return (
             <div>
                  <div className='about-nav'>
                     <NavContainer/>
                 </div>
+                <div className= "search-friends-modal">
 
+                </div>
                 <div className='profile-content'>
                     {/* are we adding nav bar here or on app?? */}
                     <div className="profile-left-div">
@@ -171,6 +185,7 @@ class UserProfile extends React.Component {
                         </div>
                         <div>
                             {this.renderFriends()}
+                            
                         </div>
                     </div>
                 </div>
