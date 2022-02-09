@@ -27,7 +27,6 @@ class UserProfile extends React.Component {
     componentDidMount() {
         this.props.fetchUser(this.state.id)
             .then(action => {
-                console.log('in component did mount', action.currentUser.decks)
                 this.setState({
                     user: {
                         username: action.currentUser.username, 
@@ -51,8 +50,7 @@ class UserProfile extends React.Component {
     
         this.props.getFriends(this.state.id)
             .then(action => {
-                // console.log({action})
-                // console.log('action.friends:', action.friends)
+
                 this.setState({
                     user: {
                         friends: action.friends, 
@@ -65,7 +63,7 @@ class UserProfile extends React.Component {
 
     getUserDecks() {
         return this.state.decks.filter(deck => {
-
+            console.log("state", this.state)
             return (
                 this.state.user.decks.includes(deck._id) 
             )
@@ -145,7 +143,7 @@ class UserProfile extends React.Component {
     }
 
     render() {
-        console.log('in render', this.state)
+
         if(!this.state.user || !this.state.decks) return (
             <p> loading</p>
         )
