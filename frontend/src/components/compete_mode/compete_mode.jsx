@@ -6,7 +6,7 @@ export default class CompeteMode extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      startTime: '',
+      startTime: Date.now(),
       endTime: '',
       playerTime: '',
       playerCorrect: 0,
@@ -58,32 +58,56 @@ export default class CompeteMode extends React.Component {
     let playerCorrect = this.state.playerCorrect;
     if (answerChoice === correctAnswer) playerCorrect += 1;
     let endTime = '';
+    let playerTime = '';
     if(this.state.currentIndex === this.state.cards.length - 1) {
       endTime = Date.now();
+      playerTime = endTime - this.state.startTime;
     }
+
     this.setState({
       playerCorrect: playerCorrect,
-      currentIndex: this.state.currentIndex +1,
-      endTime: endTime
+      currentIndex: this.state.currentIndex + 1,
+      endTime: endTime,
+      playerTime: playerTime
+    }, () => {
+      if (this.state.playerTime) {
+        console.log('after game')
+        this.props.updateGame(this.state).then(res => {
+          console.log('endgame', res)
+        });
+      }
     })
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    
+  renderResults() {
+    return (
+      <div>
+        <div>Challenge Over!</div>
+        <div>
+          <span>Number Correct: </span>
+          <span>{this.state.playerCorrect}</span>
+        </div>
+        <div>
+          <span>Number Incorrect: </span>
+          <span>{this.state.cards.length - this.state.playerCorrect}</span>
+        </div>
+        <div>
+          <span>Time: </span>
+          <span>{this.state.playerTime/1000} seconds</span>
+        </div>
+
+        
+      </div>
+    )
   }
 
   render() {
     if (!this.props.decks || !this.props.users || !this.props.users.friends || !this.props.games || !this.state.cards) return null;
-    if (this.state.endTime) return (
-      <div>
-        Game Over
-        <button>
-          Reveal Results
-        </button>
-      </div>
-    )
+
     console.log('render', this.state)
+
+    if (this.state.endTime) return this.renderResults();
+
     return (
       <div>
         <NavContainer />
