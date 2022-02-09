@@ -7,8 +7,10 @@ class CompeteForm extends React.Component {
     super(props);
     this.state = {
       player2Id: '',
-      deckId: ''
+      deckId: '',
+      errors: ''
     }
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -23,7 +25,7 @@ class CompeteForm extends React.Component {
   renderFriends() {
     return Object.values(this.props.users.friends).map( friend => {
       return (
-        <div key={friend._id} className='compete-main-friend-item'>
+        <div key={friend._id} className='compete-main-friend-item' id={friend._id} onClick={this.handleClick('player2Id')}>
           <div>
             <span>Username:</span>
             <span>{friend.username}</span>
@@ -44,22 +46,22 @@ class CompeteForm extends React.Component {
       )
     })
   }
-  
+
   renderDecks() {
     return Object.values(this.props.decks).map( deck => {
       if (!deck.cards.length) return '';
       return (
-        <div key={deck._id} className='compete-main-deck-item'>
+        <div key={deck._id} className='compete-main-deck-item' id={deck._id} onClick={this.handleClick('deckId')}>
           <div>
-            <span>Name:</span>
+            <span>Name: </span>
             <span>{deck.name}</span>
           </div>
           <div>
-            <span>Categories:</span>
-            <span>{deck.categories ? deck.categories.join(',') : ''}</span>
+            <span>Categories: </span>
+            <span>{deck.category ? deck.category.join(', ') : 'None'}</span>
           </div>
           <div>
-            <span>Number of Cards:</span>
+            <span>Number of Cards: </span>
             <span>{deck.cards.length}</span>
           </div>
         </div>
@@ -67,8 +69,28 @@ class CompeteForm extends React.Component {
     })
   }
 
+  handleClick(field) {
+
+    return(e) => {
+      this.setState({ [field]: e.currentTarget.id})
+    }
+  }
+
+  handleSubmit() {
+    console.log('submit')
+    this.props.createGame(this.state)
+      .then((res) => {
+        this.props.history.push(`/compete/${res.game._id}`)
+      })
+      .catch(err => {
+        console.log('err', err)
+        this.setState({ errors: err })
+      })
+  }
+
   render() {
     if (!this.props.decks || !Object.keys(this.props.decks).length || !this.props.users || !this.props.users.friends || !this.props.games ) return null;
+    console.log('render', this.state)
     return (
       <div className='compete-main-div'>
         <NavContainer />
@@ -85,6 +107,9 @@ class CompeteForm extends React.Component {
             {this.renderDecks()}
           </div>
         </div>
+
+        <button onClick={this.handleSubmit}>Challenge Opponent</button>
+        <div className='compete-main-form-errors'>{this.state.errors}</div>
       </div>
     );
   }
