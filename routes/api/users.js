@@ -216,7 +216,6 @@ router.get('/friends', passport.authenticate('jwt', { session: false }), (req, r
       
       for (let i = 0; i < friendIds.length; i++) {
         const friend = await User.findOne({ _id: friendIds[i] });
-        console.log(friend)
         payload[friend._id] = friend;
       }
 

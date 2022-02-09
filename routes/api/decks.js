@@ -24,7 +24,9 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
   }
 
     query.sort({ name: 1 })
-      .then(decks => res.json(decks))
+      .then(decks => {
+        res.json(decks)
+      })
       .catch(err => res.status(404).json({ nodecksfound: 'No matching decks found' }));
 });
 
