@@ -5,9 +5,10 @@
 .splash-bg {
   position: absolute;
   width: 98.9vw;
-  margin-top: -200px;
+  min-height: 650px;
+  margin-top: -150px;
   z-index: -5;
-  filter: opacity(80%) brightness(180%);
+  filter: opacity(70%) brightness(180%);
 }
 
 .splash-container {
