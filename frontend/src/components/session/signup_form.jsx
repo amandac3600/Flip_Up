@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import NavContainer from '../nav/nav_container';
 import Footer from '../footer/footer';
+import { Link } from 'react-router-dom';
 import "./signup_form.css"
 
 class SignupForm extends React.Component {
@@ -50,50 +51,64 @@ class SignupForm extends React.Component {
 
   render() {
     return (
-      <div className="signup-form-container">
+      <div>
         <form onSubmit={this.usernameSubmit}>
-          <div className="signup-form">
-            <br />
-            <input type="text"
-              value={this.state.firstName}
-              onChange={this.update('firstName')}
-              placeholder="First Name"
-            />
-            <br />
-            <input type="text"
-              value={this.state.lastName}
-              onChange={this.update('lastName')}
-              placeholder="Last Name"
-            />
-            <br />
-            <input type="text"
-              value={this.state.email}
-              onChange={this.update('email')}
-              placeholder="Email"
-            />
-            <br />
-            <input type="text"
-              value={this.state.username}
-              onChange={this.update('username')}
-              placeholder="username"
-            />
-            <br />
-            <input type="password"
-              value={this.state.password}
-              onChange={this.update('password')}
-              placeholder="Password"
-            />
-            <br />
-            <input type="password"
-              value={this.state.password2}
-              onChange={this.update('password2')}
-              placeholder="Confirm Password"
-            />
-            <br />
-            <input type="submit" value="Submit" />
+          <div className='signup-nav'>
+            <NavContainer/>
+          </div>
+          <div className='signup-links'>
+              <h2 className='signup-links-signup'>Sign Up</h2>
+              <Link to="/login" className='signup-links-login'>Log In</Link>
+          </div>
+          <div className='signup-form-container'>
+            <div className='signup-form'>
+              <input type="text" className='signup-input'
+                value={this.state.firstName}
+                onChange={this.update('firstName')}
+                placeholder="First Name"
+              />
+              <br />
+              <input type="text" className='signup-input'
+                value={this.state.lastName}
+                onChange={this.update('lastName')}
+                placeholder="Last Name"
+              />
+              <br />
+              <input type="text" className='signup-input'
+                value={this.state.email}
+                onChange={this.update('email')}
+                placeholder="Email"
+              />
+              <br />
+              <input type="text" className='signup-input'
+                value={this.state.username}
+                onChange={this.update('username')}
+                placeholder="Username"
+              />
+              <br />
+              <input type="password" className='signup-input'
+                value={this.state.password}
+                onChange={this.update('password')}
+                placeholder="Password"
+              />
+              <br />
+              <input type="password" className='signup-input-password'
+                value={this.state.password2}
+                onChange={this.update('password2')}
+                placeholder="Confirm Password"
+              />
+              <br />
+              <input type="submit" value="Submit" className='signup-button'/>`
+            </div>
+          </div>
+          <div className='signup-errors'>
             {this.renderErrors()}
           </div>
+            
         </form>
+        <div className='signup-footer'>
+          <Footer/>
+        </div>
       </div>
     );
   }
