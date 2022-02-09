@@ -6,13 +6,15 @@ export default class CompeteMode extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      startTime: Date.now(),
+      startTime: '',
       endTime: '',
       playerTime: '',
       playerCorrect: 0,
-      currentIndex: 0
+      currentIndex: 0,
+      begin: false
     }
     this.handleAnswerClick = this.handleAnswerClick.bind(this);
+    this.handleBeginGame = this.handleBeginGame.bind(this);
   }
 
   componentDidMount() {
@@ -20,11 +22,16 @@ export default class CompeteMode extends React.Component {
       .then((res) => {
         const game = res.game;
         this.setState({game: game});
-        this.props.fetchUser(game.player1Id);
-        this.props.getFriends();
-        this.props.getCards(game.deck).then((res) => {
-          this.setState({ cards: res.cards})
-        });
+        Promise.all([this.props.fetchUser(),this.props.getFriends()])
+          .then( () => {
+            this.props.getCards(game.deck).then((res) => {
+              if (game.player1Id === this.props.users.current.id) {
+                this.setState({ player: 'player1' ,friendPlayer: 'player2', cards: res.cards })
+              } else {
+                this.setState({ player: 'player2', friendPlayer: 'player1', cards: res.cards })
+              }
+            });
+          })
       })
   }
 
@@ -79,29 +86,33 @@ export default class CompeteMode extends React.Component {
     })
   }
 
-  renderResults() {
-    let friendName;
-    let friendPlayer;
-    let winner = this.state.game.winner;
+  handleBeginGame()  {
+    this.setState({ startTime: Date.now(), begin: true });
+  }
 
-    if (this.state.game.player1Id === this.props.users.current.id) {
-      const friend = this.props.users.friends[this.state.game.player2Id];
-      friendName = this.props.users.friends[this.state.game.player2Id].username;
-      if (winner === friend._id) winner = friendName;
-      friendPlayer = 'player2';
-    } else {
-      const friend = this.props.users.friends[this.state.game.player1Id];
-      friendName = this.props.users.friends[this.state.game.player1Id].username;
-      if (winner === friend._id) winner = friendName;
-      friendPlayer = 'player1';
-    }
+  renderBegin() {
+    return (
+      <div>
+        <NavContainer />
+        <div className='compete-mode-directions'>The winner will be determined by who gets the most question correct. If there is a tie, whoever finishes in the least amount of time will win.</div>
+        <button onClick={this.handleBeginGame}>Begin Game</button>
+      </div>
+    )
+  }
+
+  renderResults() {
+    const friendPlayer = this.state.friendPlayer;
+    const player = this.state.player;
+    let winner = this.state.game.winner;
+    const friend = this.props.users.friends[this.state.game[`${friendPlayer}Id`]]
+    const friendName = this.props.users.friends[this.state.game[`${friendPlayer}Id`]].username;
+
     const friendTime = this.state.game[`${friendPlayer}Time`] ? `${this.state.game[`${friendPlayer}Time`]/1000} seconds` : 'In Progress';
 
     return (
       <div>
-        
-
-        <div>Challenge Over!</div>
+        <NavContainer />
+        <div>Challenge Results</div>
         <div className='compete-mode-results-div'>
           <div className='compete-mode-results'>
             <div>
@@ -110,15 +121,15 @@ export default class CompeteMode extends React.Component {
             </div>
             <div>
               <span>Number Correct: </span>
-              <span>{this.state.playerCorrect}</span>
+              <span>{this.state.game[`${player}Correct`]}</span>
             </div>
             <div>
               <span>Number Incorrect: </span>
-              <span>{this.state.cards.length - this.state.playerCorrect}</span>
+              <span>{this.state.cards.length - this.state.game[`${player}Correct`]}</span>
             </div>
             <div>
               <span>Time: </span>
-              <span>{this.state.playerTime/1000} seconds</span>
+              <span>{`${this.state.game[`${player}Time`] / 1000} seconds`}</span>
             </div>
           </div>
 
@@ -151,15 +162,11 @@ export default class CompeteMode extends React.Component {
     if (!this.props.decks || !this.props.users || !this.props.users.friends || !this.props.games || !this.state.cards) return null;
 
     console.log('render', this.state)
-
-    if (this.state.endTime) return this.renderResults();
-
+    if (this.state.endTime || this.state.game[`${this.state.player}Time`]) return this.renderResults();
+    if (!this.state.begin) return this.renderBegin();
     return (
       <div>
         <NavContainer />
-
-        <div className='compete-mode-directions'>The winner will be determined by who gets the most question correct. If there is a tie, whoever finishes in the least amount of time will win.</div>
-
         <div className='compete-mode-cards'>
           <div className='compete-mode-front'>
             {this.state.cards[this.state.currentIndex].front}
