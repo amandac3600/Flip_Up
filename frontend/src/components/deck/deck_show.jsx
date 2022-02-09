@@ -6,15 +6,13 @@ import NavContainer from '../nav/nav_container';
 import CompeteFormContainer from '../compete_mode/compete_form_container';
 
 
-class Deck extends React.Component {
+class DeckShow extends React.Component {
   constructor(props) {
     super(props);
     this.props.getDeck(this.props.ownProps.match.params.id)
     this.state = { 
       addCard: false }
   }
-
-
 
   getCategories() {
     return this.props.deckInfo.deck.category.map((category, idx)=>{
@@ -53,4 +51,4 @@ class Deck extends React.Component {
   }
 }
 
-export default withRouter(Deck);
+export default withRouter(DeckShow);
