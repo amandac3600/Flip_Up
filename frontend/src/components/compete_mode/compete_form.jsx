@@ -44,8 +44,10 @@ class CompeteForm extends React.Component {
       )
     })
   }
+  
   renderDecks() {
-    return this.props.decks.map( deck => {
+    return Object.values(this.props.decks).map( deck => {
+      if (!deck.cards.length) return '';
       return (
         <div key={deck._id} className='compete-main-deck-item'>
           <div>
@@ -58,7 +60,7 @@ class CompeteForm extends React.Component {
           </div>
           <div>
             <span>Number of Cards:</span>
-            <span>{deck.categories ? deck.categories.join(',') : ''}</span>
+            <span>{deck.cards.length}</span>
           </div>
         </div>
       )

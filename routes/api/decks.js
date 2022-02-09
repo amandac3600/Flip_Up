@@ -24,8 +24,18 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
   }
 
     query.sort({ name: 1 })
-      .then(decks => {
-        res.json(decks)
+      .then(async decks => {
+        const payload = {};
+
+        for (let i = 0; i < decks.length; i++) {
+          const newDeck = await Object.assign({}, decks[i]._doc);
+          const cards = await Card.find({ deck: decks[i].id })
+          const cardIds = cards.map(card => card.id)
+          newDeck['cards'] = cardIds;
+          payload[decks[i].id] = newDeck;
+        }
+
+        return res.json(payload)
       })
       .catch(err => res.status(404).json({ nodecksfound: 'No matching decks found' }));
 });
@@ -38,9 +48,7 @@ router.get('/:id', passport.authenticate('jwt', { session: false }), async (req,
   const deckUser = await User.findOne({ _id: deck.user })
 
   if (deckUser.id === req.user.id || deck.public) {
-    console.log(deck.id)
     const cards = await Card.find({deck: deck.id})
-    console.log(cards)
     return res.json({
       deck,
       cards: cards.map(card => card.id)
