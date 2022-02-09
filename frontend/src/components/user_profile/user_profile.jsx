@@ -10,9 +10,10 @@ class UserProfile extends React.Component {
         super(props)
 
         this.state = {
-            id: props.currentUser.id
-
+            id: props.currentUser.id,
+            decks: props.decks
         }
+        
         // this.getUserDecks = this.getUserDecks.bind(this)
         this.handleClick = this.handleClick.bind(this)
 
@@ -21,25 +22,35 @@ class UserProfile extends React.Component {
     componentDidMount() {
         this.props.fetchUser(this.state.id)
             .then(action => {
+                console.log('in component did mount', action.currentUser.decks)
                 this.setState({
                     user: {
                         username: action.currentUser.username, 
-                        deck_ids: action.currentUser.decks, 
                         wins: action.currentUser.wins, 
                         loses: action.currentUser.loses,
                         points: action.currentUser.point, 
                         decks: action.currentUser.decks,
                        
                     }
+                    
             })}) 
         
+        this.props.getDecks() 
+            .then(action => {
+                this.setState({
+                    decks: Object.values(action.decks)
+                })
+            })
+        
+    
         this.props.getFriends(this.state.id)
             .then(action => {
                 console.log({action})
                 console.log('action.friends:', action.friends)
                 this.setState({
                     user: {
-                        friends: action.friends
+                        friends: action.friends, 
+                        ...this.state.user
                     }
                 })
             })
@@ -47,10 +58,11 @@ class UserProfile extends React.Component {
     }
 
     getUserDecks() {
-        console.log('inside get user decks', this.state.decks)
-        return this.state.decks.filter(user_deck => {
+        return this.state.decks.filter(deck => {
+            console.log('user decks', this.state.user.decks)
+            console.log('state.user', this.state.user)
             return (
-                this.state.user.deck_ids.includes(user_deck._id) 
+                this.state.user.decks.includes(deck._id) 
             )
         })
 
@@ -68,7 +80,8 @@ class UserProfile extends React.Component {
     }
 
     renderDecks() {
-        const decks = this.state.user.decks
+        const decks = this.getUserDecks()
+        console.log('inside render decks', decks)
         if (decks.length === 0){
             return (
                 <div>
@@ -121,8 +134,7 @@ class UserProfile extends React.Component {
     }
 
     render() {
- 
-        if(!this.state.user) return (
+        if(!this.state.user || !this.state.decks) return (
             <p> loading</p>
         )
         const user = this.state.user.username
@@ -143,9 +155,9 @@ class UserProfile extends React.Component {
                                 <Link to="/profile/update">Edit profile</Link>
                             </div>
                             <div className='profile-user-stats'>
-                                <p>Wins: {this.state.user.wins.length}</p>
-                                <p>Loses: {this.state.user.wins.length}</p>
-                                <p>Points: {this.state.user.points}</p>
+                                {/* <p>Wins: {this.state.user.wins.length}</p>
+                                <p>Loses: {this.state.user.loses.length}</p>
+                                <p>Points: {this.state.user.points}</p> */}
                             </div>
                         </div>
                         <div className="profile-deck-scroller">
