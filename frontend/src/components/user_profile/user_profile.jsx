@@ -174,9 +174,6 @@ class UserProfile extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className='about-footer'>
-                    <Footer/>
-                </div>
             </div>
         )
     }
