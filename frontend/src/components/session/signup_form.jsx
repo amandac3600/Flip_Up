@@ -52,10 +52,10 @@ class SignupForm extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.usernameSubmit}>
-          <div className='signup-nav'>
+        <div className='signup-nav'>
             <NavContainer/>
-          </div>
+        </div>
+        <form onSubmit={this.usernameSubmit}>
           <div className='signup-links'>
               <h2 className='signup-links-signup'>Sign Up</h2>
               <Link to="/login" className='signup-links-login'>Log In</Link>
@@ -106,9 +106,6 @@ class SignupForm extends React.Component {
           </div>
             
         </form>
-        <div className='signup-footer'>
-          <Footer/>
-        </div>
       </div>
     );
   }

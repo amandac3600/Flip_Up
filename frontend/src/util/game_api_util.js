@@ -22,7 +22,7 @@ export const createGame = (game) => {
 
 //update a game
 export const updateGame = (game) => {
-  return axios.patch(`/api/games/${game.id}`, game);
+  return axios.patch(`/api/games/${game.game._id}`, game);
 };
 
 // //delete a game

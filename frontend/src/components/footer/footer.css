@@ -6,6 +6,8 @@
   padding-top: 25px;
   height: 45px;
   width: 98.9vw;
+  position: absolute;
+  bottom: 0;
 }
 
 .footer-github-link, .footer-about-link {
