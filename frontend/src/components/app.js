@@ -29,6 +29,7 @@ const App = () => (
       <ProtectedRoute path="/decks/:id" component={DeckContainer} />
 
       <ProtectedRoute exact path="/compete" component={CompeteFormContainer} />
+
       <ProtectedRoute path="/compete/:gameId" component={CompeteModeContainer} />
 
       <AuthRoute exact path="/login" component={LoginFormContainer} />
