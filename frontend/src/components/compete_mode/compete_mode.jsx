@@ -84,7 +84,7 @@ export default class CompeteMode extends React.Component {
     let friendPlayer;
     let winner = this.state.game.winner;
 
-    if (this.state.game.player1Id === this.props.users.currentUser.id) {
+    if (this.state.game.player1Id === this.props.users.current.id) {
       const friend = this.props.users.friends[this.state.game.player2Id];
       friendName = this.props.users.friends[this.state.game.player2Id].username;
       if (winner === friend._id) winner = friendName;
@@ -106,7 +106,7 @@ export default class CompeteMode extends React.Component {
           <div className='compete-mode-results'>
             <div>
               <span>Player 1: </span>
-              <span>{this.props.users.currentUser.username}</span>
+              <span>{this.props.users.current.username}</span>
             </div>
             <div>
               <span>Number Correct: </span>
