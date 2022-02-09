@@ -62,15 +62,15 @@ router.get('/current', passport.authenticate('jwt', {session: false}), async (re
   const decks = await Deck.find({user: req.user.id});
   return (
     res.json({
-      id: user.id,
-      username: user.username,
+      id: req.user.id,
+      username: req.user.username,
       decks: decks.map(deck => deck.id),
-      points: user.points,
-      friendIds: user.friendIds,
-      pendingRequests: user.pendingRequests,
-      outgoingRequests: user.outgoingRequests,
-      wins: user.wins,
-      losses: user.losses,
+      points: req.user.points,
+      friendIds: req.user.friendIds,
+      pendingRequests: req.user.pendingRequests,
+      outgoingRequests: req.user.outgoingRequests,
+      wins: req.user.wins,
+      losses: req.user.losses,
     })
   )
 })
