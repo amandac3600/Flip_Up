@@ -1,13 +1,13 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import "./study.css";
-import StudyCardContainer from './study_card_container';
-import NavContainer from '../nav/nav_container';
-import ExperienceBarContainer from './../experience_bar/experience_bar_container'
+import "./experienceBar.css";
 
-class Study extends React.Component {
+class ExperienceBar extends React.Component {
   constructor(props) {
     super(props);
+    this.props.fetchUser(this.props.currentUser.id).then((user)=>{
+        console.log(user)
+    })
     this.exp = 24;
     this.cap = 100;
     this.level = 1;
@@ -24,21 +24,20 @@ class Study extends React.Component {
     this.calculated = false;
     
   }
-  
-  animateExpBar() {
 
+  componentDidMount() {
+    this.calculateExpBar()
   }
 
   calculateExpBar() {
-    if (!document.getElementById('study-page-exp-bar')) return
     this.calculated = true;
-    let oldWidth = document.getElementById('study-page-exp-bar').style.width
+    let oldWidth = document.getElementById('exp-bar').style.width
     oldWidth = oldWidth.slice(0, oldWidth.length - 1)
     let newWidth = (this.exp / this.cap)*100
     oldWidth = parseInt(oldWidth, 10)
     setTimeout(function moveExp(){
       oldWidth += 0.05;
-      document.getElementById('study-page-exp-bar').style.width = `${oldWidth}%`
+      document.getElementById('exp-bar').style.width = `${oldWidth}%`
       if (oldWidth < newWidth) {
         setTimeout(moveExp, 1)
       }
@@ -54,21 +53,21 @@ class Study extends React.Component {
     return `Lvl ${this.level + 1}`
   }
 
-  render() {
-    if (this.calculated === false) this.calculateExpBar()
+  render() { 
     return (
       <div>
-          <div className='splash-nav'>
-            <NavContainer/>
+          <div className='experience-bar-level' >
+          <div>{this.getCurrentLevel()}</div>
+            <div>{this.getNextLevel()}</div>
           </div>
-          <ExperienceBarContainer/>
-          <div className='study-page-container'> 
-              <StudyCardContainer/>
+          <div className='experience-bar-container' >
+            <div className="meter red">
+              <span id='exp-bar' style={{width: '0%'}}></span>
+            </div>
           </div>
-          
       </div>
     );
   }
 }
 
-export default withRouter(Study);
+export default withRouter(ExperienceBar);

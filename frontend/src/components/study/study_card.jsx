@@ -225,7 +225,7 @@ class StudyCard extends React.Component {
     }
 
   getCard() {
-    
+    if (!this.props.cards[this.cardId2]) return
     if (!this.props.cards[this.cardId]) return
     if (this.freeMode === false) {
         if (this.currentCard === 1) {
