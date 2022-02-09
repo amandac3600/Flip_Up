@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const CardSchema = new Schema({
-  Deck: {
+  deck: {
     type: Schema.Types.ObjectId,
     ref: 'Deck'
   },
@@ -17,6 +17,14 @@ const CardSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  reviewed: {
+    type: Date,
+    default: Date.now
+  },
+  count: {
+    type: Number,
+    default: 0
   }
 })
 

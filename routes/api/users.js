@@ -10,36 +10,56 @@ const Deck = require('../../models/Deck');
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
-//get all users registered for serach bar
+//get all users registered for search bar
 router.get("/", (req, res) => {
-  User.find()
+  const keyword = req.body.keyword;
+  const query = keyword ? 
+    User.find({username: { $regex: keyword, $options: "i" }}) :
+    User.find();
+  query
     .sort({username: 1})
-    .then(users => res.json(users))
+    .then(users => {
+      res.json(users.map(user => ({
+        id: user.id, 
+        username: user.username,
+        email: user.email,
+      })))
+    })
     .catch(err => res.status(404).json({nousers: 'No users found'}))
 });
 
 //return data of user logged in
-router.get('/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
+router.get('/find/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
   const decks = await Deck.find({user: req.user.id});
   return (
     res.json({
       id: req.user.id,
       username: req.user.username,
-      email: req.user.email,
-      deck: decks.map(deck => deck.id)
+      decks: decks.map(deck => deck.id),
+      point: req.user.points,
+      friendIds: req.user.friendIds,
+      pendingRequests: req.user.pendingRequests,
+      outgoingRequests: req.user.outgoingRequests,
+      wins: req.user.wins,
+      losses: req.user.losses,
     })
   )
 })
 
-//return data of current user. for testing only
+//return data of current user
 router.get('/current', passport.authenticate('jwt', {session: false}), async (req, res) => {
   const decks = await Deck.find({user: req.user.id});
   return (
     res.json({
-      id: req.user.id,
-      username: req.user.username,
-      email: req.user.email,
-      deck: decks.map(deck => deck.id)
+      id: user.id,
+      username: user.username,
+      decks: decks.map(deck => deck.id),
+      point: user.points,
+      friendIds: user.friendIds,
+      pendingRequests: user.pendingRequests,
+      outgoingRequests: user.outgoingRequests,
+      wins: user.wins,
+      losses: user.losses,
     })
   )
 })
@@ -100,12 +120,21 @@ router.post('/register', (req, res) => {
           return res.status(404).json({email: 'This user does not exist'});
         }
         
-        
         bcrypt.compare(password, user.password)
         .then(async (isMatch) => {
             if (isMatch) {
               const decks = await Deck.find({ user: user.id });
-              const payload = { id: user.id, name: user.name, decks: decks.map(deck => deck.id)};
+              const payload = { 
+                id: user.id,
+                username: user.username,
+                decks: decks.map(deck => deck.id),
+                point: user.points,
+                friendIds: user.friendIds,
+                pendingRequests: user.pendingRequests,
+                outgoingRequests: user.outgoingRequests,
+                wins: user.wins,
+                losses: user.losses,
+              };
             jwt.sign(
                 payload,
                 keys.secretOrKey,
@@ -123,27 +152,130 @@ router.post('/register', (req, res) => {
       })
   })
 
-// router.patch('/', passport.authenticate('jwt', { session: false }), (req, res) => {
-//   const { errors, isValid } = validateRegisterInput(req.body);
+router.patch('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+  if (req.body.username) {
+    const takenUsername = User.findOne({ username: req.body.username });
+    if (takenUsername.username) return res.status(404).json({ nouser: 'Username already taken.' })
+  }
+  if (req.body.email) {
+    const takenEmail = User.findOne({ email: req.body.email });
+    if (takenEmail.email) return res.status(404).json({ nouser: 'Email already taken.' })
+  }
 
-//   if (!isValid) {
-//     return res.status(400).json(errors);
-//   }
+  User.findOne({ _id: req.user.id })
+    .then( async user => {
+      if (req.body.password) user.password = req.body.password;
+      if (req.body.password2) user.password2 = req.body.password2;
+      if (req.body.username) user.username = req.body.username;
+      if (req.body.email) user.email = req.body.email;
+      if (req.body.points) user.points = req.body.points;
+      if (req.body.winId) user.wins.push(req.body.winId);
+      if (req.body.lossId) user.losses.push(req.body.lossId);
 
-//   const email = req.body.email;
-//   const password = req.body.password;
-//   const username = req.body.username;
-//   const takenUsername = User.findOne({username: username});
-//   if (takenUsername) return res.status(404).json({ nouser: 'Username already taken.' })
+      const { errors, isValid } = validateRegisterInput(user, 'patch');
 
-//   User.findOne({ _id: req.user.id })
-//     .then( user => {
+      if (!isValid) return res.status(400).json(errors);
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(user.password, salt, (err, hash) => {
+          if (err) throw err;
+          user.password = hash;
+          delete user.password2;
+          user.save()
+            .then(async user => {
+              const decks = await Deck.find({ user: req.user.id });
+              const payload = { 
+                id: user.id, 
+                username: user.username, 
+                decks: decks.map(deck => deck.id),
+                point: user.points,
+                friendIds: user.friendIds,
+                pendingRequests: user.pendingRequests,
+                outgoingRequests: user.outgoingRequests,
+                wins: user.wins,
+                losses: user.losses,
+              };
+              return res.json(payload)
+            })
+            .catch(err => console.log(err));
+        })
+      })
+    })
+    .catch(err => res.status(404).json({ nouser: 'Unable to find user' }))
+})
 
-//       user.email = req.body.email;
-//       user.username = req.body.username;
-//       user.save().then(user => res.json(user));
-//     })
-//     .catch(err => res.status(404).json({ nouser: 'Unable to find user' }))
-// })
+const removeFromArray = (id, user, arrayName) => {
+  const index = user[arrayName].indexOf(id);
+  if (index !== -1) user[arrayName].splice(index, 1);
+}
+
+router.get('/friends', passport.authenticate('jwt', { session: false }), (req, res) => {
+  User.findOne({ _id: req.user.id })
+    .then(async user => {
+      const friendIds = user.friendIds;
+      const payload = {};
+      
+      for (let i = 0; i < friendIds.length; i++) {
+        const friend = await User.findOne({ _id: friendIds[i] });
+        payload[friend._id] = friend;
+      }
+
+      return res.json(payload);
+    })
+    .catch(err => res.status(404).json({ nouser: 'Unable to find user' }))
+})
+
+router.patch('/friend', passport.authenticate('jwt', { session: false }), (req, res) => {
+  User.findOne({ _id: req.user.id })
+    .then(async user => {
+      const friendId = req.body.friendId;
+      const friend = await User.findOne({ _id: friendId });
+      const requestType = req.body.requestType;
+      switch (requestType) {
+        case 'approve':
+          user.friendIds.push(friendId);
+          friend.friendIds.push(user.id);
+          removeFromArray(friendId, user, 'pendingRequests');
+          removeFromArray(user.id, friend, 'outgoingRequests');
+          break;
+        case 'remove':
+          removeFromArray(friendId, user, 'friendIds');
+          removeFromArray(user.id, friend, 'friendIds');
+          break;
+        case 'deny':
+          removeFromArray(friendId, user, 'pendingRequests');
+          removeFromArray(user.id, friend, 'outgoingRequests');
+          break;
+        case 'cancel':
+          removeFromArray(friendId, user, 'outgoingRequests');
+          removeFromArray(user.id, friend, 'pendingRequests');
+          break;
+        case 'request':
+          if (!user.outgoingRequests.includes(friendId)) {
+            user.outgoingRequests.push(friendId);
+          }
+          if (!friend.pendingRequests.includes(user.id)) {
+            friend.pendingRequests.push(user.id);
+          break;
+        }
+      }
+      user.save()
+        .then(async (user) => {
+          const decks = await Deck.find({ user: req.user.id });
+          const payload = {
+            id: user.id,
+            username: user.username,
+            decks: decks.map(deck => deck.id),
+            point: user.points,
+            friendIds: user.friendIds,
+            pendingRequests: user.pendingRequests,
+            outgoingRequests: user.outgoingRequests,
+            wins: user.wins,
+            losses: user.losses,
+          };
+          return res.json(payload)
+      })
+    })
+    .catch(err => res.status(404).json({ nouser: 'Unable to find user' }))
+})
 
 module.exports = router;

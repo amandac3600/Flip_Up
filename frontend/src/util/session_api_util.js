@@ -16,3 +16,23 @@ export const signup = (userData) => {
 export const login = (userData) => {
   return axios.post('/api/users/login', userData);
 };
+
+// export const fetchUsers = () => {
+//     return axios.get('/api/users')
+// }
+
+export const fetchUser = id => {
+  return axios.get(`/api/users/find/${id}`)
+}
+
+export const getFriends = () => {
+  return axios.get(`/api/users/friends`)
+}
+
+export const editUser = (userData) => {
+    return axios.patch('/api/users/update', userData)
+}
+
+// export const updateProfilePic = (userData)=>{
+//   return axios.post('/api/users/updateProfilePic',userData)
+// }

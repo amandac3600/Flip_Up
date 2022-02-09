@@ -11,7 +11,7 @@ const DeckSchema = new Schema({
     required: true
   },
   category: {
-    type: String,
+    type: [String],
     required: false
   },
   public: {
@@ -23,5 +23,8 @@ const DeckSchema = new Schema({
     default: Date.now
   }
 })
+
+DeckSchema.index({ name: 'text', category: 'text' });
+
 
 module.exports = Deck = mongoose.model('Deck', DeckSchema);
