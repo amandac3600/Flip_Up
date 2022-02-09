@@ -1,4 +1,4 @@
-import { RECEIVE_CURRENT_USER, RECEIVE_USER_LOGOUT, RECEIVE_FRIENDS } from "../actions/session_actions";
+import { RECEIVE_CURRENT_USER, RECEIVE_USER_LOGOUT, RECEIVE_FRIENDS, RECEIVE_SEARCH } from "../actions/session_actions";
 
 const usersReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -12,6 +12,9 @@ const usersReducer = (state = {}, action) => {
       return {};
     case RECEIVE_FRIENDS:
       nextState['friends'] = action.friends;
+      return nextState;
+    case RECEIVE_SEARCH:
+      nextState['search'] = action.users;
       return nextState;
     default:
       return state;

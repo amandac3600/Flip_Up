@@ -5,12 +5,13 @@ import { fetchUser, getFriends } from '../../actions/session_actions';
 import { getDecks, getDeck } from '../../actions/deck_actions';
 import { createGame, getGame, getPendingGames, getCompleteGames } from '../../actions/game_actions';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
     decks: state.entities.decks,
     cards: state.entities.cards,
     users: state.entities.users,
     games: state.entities.games,
+    deckId: ownProps.deckId
   };
 };
 

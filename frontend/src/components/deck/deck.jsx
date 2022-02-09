@@ -1,14 +1,20 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import CardFormContainer from './../card/card_form_container'
-import CardIndexContainer from './../card/card_index_container'
+import CardFormContainer from './../card/card_form_container';
+import CardIndexContainer from './../card/card_index_container';
+import NavContainer from '../nav/nav_container';
+import CompeteFormContainer from '../compete_mode/compete_form_container';
+
 
 class Deck extends React.Component {
   constructor(props) {
     super(props);
     this.props.getDeck(this.props.ownProps.match.params.id)
-    this.state = { addCard: false }
+    this.state = { 
+      addCard: false }
   }
+
+
 
   getCategories() {
     return this.props.deckInfo.deck.category.map((category, idx)=>{
@@ -24,9 +30,10 @@ class Deck extends React.Component {
   }
 
   render() {
+    if (!this.props.deckInfo || !this.props.deckInfo.deck) return null;
     return (
-      this.props.deckInfo ? this.props.deckInfo.deck ?
       <div>
+          <NavContainer />
         <div>{this.props.deckInfo.deck.name}</div>
         <div>Categories: {this.getCategories()}</div>
         <div>Number of cards: {this.props.deckInfo.cards.length}</div>
@@ -40,8 +47,8 @@ class Deck extends React.Component {
         <br/>
         <br/>
         <CardIndexContainer/>
+        {this.props.deckInfo.cards.length >= 4 ? <CompeteFormContainer deckId={this.props.match.params.id} history={this.props.history}/> : ''}
       </div>
-       : <div></div> : <div></div>
     );
   }
 }
