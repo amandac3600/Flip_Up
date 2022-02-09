@@ -1,8 +1,13 @@
 import axios from 'axios';
 
 //get all decks
-export const getDecks = (filters,) => {
-  return axios.get('/api/decks', filters);
+export const getDecks = (filters) => {
+  if (filters) {
+    return axios.get(`/api/decks/search/${filters}`);
+  } else {
+    return axios.get(`/api/decks/search/`);
+
+  }
 };
 
 //get a single deck

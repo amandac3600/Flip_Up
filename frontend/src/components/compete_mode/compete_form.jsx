@@ -2,13 +2,14 @@ import React from 'react';
 import './compete_form.css'
 import NavContainer from '../nav/nav_container'
 
-class CompeteForm extends React.Component {
+export default class CompeteForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       player2Id: '',
       deckId: '',
-      errors: ''
+      errors: '',
+      filters: [],
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -16,7 +17,7 @@ class CompeteForm extends React.Component {
   componentDidMount() {
     Promise.all([
       this.props.fetchUser(),
-      this.props.getDecks(),
+      this.props.getDecks(this.state.filters.join('+')),
       this.props.getFriends(),
     ])
     .then()
@@ -48,6 +49,8 @@ class CompeteForm extends React.Component {
   }
 
   renderDecks() {
+    if (!Object.keys(this.props.decks).length) return '';
+
     return Object.values(this.props.decks).map( deck => {
       if (!deck.cards.length) return '';
       return (
@@ -89,7 +92,7 @@ class CompeteForm extends React.Component {
   }
 
   render() {
-    if (!this.props.decks || !Object.keys(this.props.decks).length || !this.props.users || !this.props.users.friends || !this.props.games ) return null;
+    if (!this.props.decks || !this.props.users || !this.props.users.friends || !this.props.games ) return null;
     console.log('render', this.state)
     return (
       <div className='compete-main-div'>
@@ -114,5 +117,3 @@ class CompeteForm extends React.Component {
     );
   }
 }
-
-export default CompeteForm;
