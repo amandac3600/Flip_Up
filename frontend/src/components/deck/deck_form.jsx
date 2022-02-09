@@ -44,12 +44,10 @@ class DeckForm extends React.Component {
 
   deckSubmit(e) {
     e.preventDefault();
-    const newState = Object.assign({}, this.state, {category: Array.toString(this.state.category)})
+    const newState = Object.assign({}, this.state, {category: this.state.category.join(',')})
     this.props.submit(newState)
-    .then((deck)=>{
-      console.log(deck)
-      // route to the newly created deck
-      this.props.history.push(`/decks/${deck.id}`)
+    .then((res)=>{
+      this.props.history.push(`/decks/${res.deck._id}`)
     })
   }
 

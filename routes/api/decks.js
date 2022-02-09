@@ -9,12 +9,35 @@ const Card = require('../../models/Card');
 
 const validateDeckInput = require('../../validation/deck');
 
-// returns all public decks
-router.get('/', (req, res) => {
-  Deck.find({public: true })
-    .sort({ name: 1 })
-    .then(decks => res.json(decks))
-    .catch(err => res.status(404).json({ nodecksfound: 'No decks found' }));
+// returns all public and user created decks based on filter
+router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+  let query;
+  if (req.body.filters) {
+    const filters = req.body.filters.split(',');
+    query = Deck.find({
+      $and:
+        [{ category: { $in: filters } },
+        { $or: [{ public: true }, { user: req.user.id }] }]
+    });
+  } else {
+    query = Deck.find({ $or: [{ public: true }, { user: req.user.id }] });
+  }
+
+    query.sort({ name: 1 })
+      .then(async decks => {
+        const payload = {};
+
+        for (let i = 0; i < decks.length; i++) {
+          const newDeck = await Object.assign({}, decks[i]._doc);
+          const cards = await Card.find({ deck: decks[i].id })
+          const cardIds = cards.map(card => card.id)
+          newDeck['cards'] = cardIds;
+          payload[decks[i].id] = newDeck;
+        }
+
+        return res.json(payload)
+      })
+      .catch(err => res.status(404).json({ nodecksfound: 'No matching decks found' }));
 });
 
 // returns specific deck. allows only owner or if desk if public
@@ -59,12 +82,12 @@ router.post('/',
     const deck = await Deck.findOne({ name: req.body.name, user: req.user.id })
 
     if (deck) return res.status(400).json({ invalidname: 'Deck name already exists'});
+    const category = req.body.category.split(',').map(cat => cat.trim())
     
     const newDeck = new Deck({
       user: req.user.id,
       name: req.body.name,
-      // category: req.body.category.split(',').map(cat => cat.trim()),
-      category: req.body.category,
+      category: category,
       public: req.body.public
     });
 
@@ -76,30 +99,29 @@ router.post('/',
 router.patch('/:id',
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
-    const { errors, isValid } = validateDeckInput(req.body);
-
-    if (!isValid) return res.status(400).json(errors);
-
     const deck = await Deck.findOne({_id: req.params.id})
 
     if (deck) {
-
       const deckUser = await User.findOne({_id: deck.user})
-
-      if (deckUser.id === req.user.id) {
-        if (deck.name) {
-          const checkDeckName = await Deck.findOne({ name: req.body.name })
-          if (!checkDeckName) deck.name = req.body.name;
-        }
-        if (deck.category) deck.category = req.body.category;
-        // if (deck.category) deck.category = req.body.category.split(',').map(cat => cat.trim()),
-
-        deck.public = req.body.public;
-
-        deck.save().then(deck => res.json(deck))
-      } else {
-        return res.status(404).json({ invaliduser: 'You do not own this deck' })
+      if (deckUser.id !== req.user.id) {
+        return res.status(404).json({ invaliduser: 'You do not own this deck' });
+      };
+      if (req.body.name) {
+        const checkDeckName = await Deck.findOne({ name: req.body.name })
+        if (checkDeckName) return res.status(404).json({ invalidname: 'Deck name already exists' });
+        deck.name = req.body.name;
       }
+      // if (req.body.category) deck.category = req.body.category;
+      if (req.body.category) {
+        const cats = req.body.category.split(',').map(cat => cat.trim())
+        deck.category = cats;
+      }
+      if (req.body.public) deck.public = req.body.public;
+
+      const { errors, isValid } = validateDeckInput(deck);
+      if (!isValid) return res.status(400).json(errors);
+
+      deck.save().then(deck => res.json(deck))
     } else {
       return res.status(404).json({ nodecksfound: 'No decks found with that id' });
     }
@@ -114,7 +136,6 @@ router.delete('/:id',
 
     if (deck) {
       const deckUser = await User.findOne({ _id: deck.user })
-
       if (deckUser.id === req.user.id) {
         Deck.deleteOne({ _id: req.params.id })
         .then(() => res.json({ deleted: "Deck was deleted" }))

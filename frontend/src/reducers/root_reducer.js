@@ -6,7 +6,7 @@ import entitiesReducer from './entities_reducer';
 const RootReducer = combineReducers({
   session: sessionReducer,
   errors: errorsReducer,
-  enities: entitiesReducer
+  entities: entitiesReducer
 });
 
 export default RootReducer;

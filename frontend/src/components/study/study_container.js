@@ -1,14 +1,13 @@
 import { connect } from 'react-redux';
-import Deck from './deck';
+import Study from './study';
 import { getDeck } from './../../actions/deck_actions'
+
 
 
 const mapStateToProps = (state, ownProps) => {
   console.log(state)
   return {
-    deckInfo: state.entities.decks[ownProps.match.params.id],
-    ownProps,
-    decks: state.entities.decks
+    
   };
 };
 
@@ -18,4 +17,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Deck);
+export default connect(mapStateToProps, mapDispatchToProps)(Study);
