@@ -87,7 +87,7 @@
 }
 
 .splash-cat-list-item {
-  border: 1px solid rgb(185, 185, 185);
+  border: 1px solid rgb(100, 100, 100);
   background-color: whitesmoke;
   color: whitesmoke;
   padding: 10px;
@@ -126,7 +126,7 @@
   color: rgb(32, 46, 131);
   display: flex;
   justify-content: center;
-  margin-top: 2%;
+  margin-top: 1.8%;
   margin-bottom: 5%;
 }
 
@@ -141,6 +141,7 @@
   color: rgb(32, 46, 131);
   padding: 30px;
   height: 11vw;
+  min-height: 125px;
   width: 22%;
   border-radius: 4px;
   font-size: 22px;
@@ -190,6 +191,7 @@
 
 .splash-block-2 {
   height: 48%;
+  max-height: 500px;
   padding-top: 4%;
   background-color: aliceblue;
 }

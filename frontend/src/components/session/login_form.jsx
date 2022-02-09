@@ -48,10 +48,10 @@ class LoginForm extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <div className='login-nav'>
+        <div className='login-nav'>
             <NavContainer/>
           </div>
+        <form onSubmit={this.handleSubmit}>
           <div className='login-links'>
             <Link to="/signup" className='login-links-signup'>Sign Up</Link>
             <h2 className='login-links-login'>Log In</h2>
@@ -80,9 +80,6 @@ class LoginForm extends React.Component {
           </div>
           
         </form>
-        <div className='login-footer'>
-            <Footer/>
-          </div>
       </div>
     );
   }

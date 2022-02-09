@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
   query
     .sort({username: 1})
     .then(users => {
-      res.json(users.map(user => ({
+      res.json(users.map(user => ({ 
         id: user.id, 
         username: user.username,
         email: user.email,
@@ -36,7 +36,7 @@ router.get('/find/:id', passport.authenticate('jwt', {session: false}), async (r
       id: req.user.id,
       username: req.user.username,
       decks: decks.map(deck => deck.id),
-      point: req.user.points,
+      points: req.user.points,
       friendIds: req.user.friendIds,
       pendingRequests: req.user.pendingRequests,
       outgoingRequests: req.user.outgoingRequests,
@@ -54,7 +54,7 @@ router.get('/current', passport.authenticate('jwt', {session: false}), async (re
       id: user.id,
       username: user.username,
       decks: decks.map(deck => deck.id),
-      point: user.points,
+      points: user.points,
       friendIds: user.friendIds,
       pendingRequests: user.pendingRequests,
       outgoingRequests: user.outgoingRequests,
@@ -128,7 +128,7 @@ router.post('/register', (req, res) => {
                 id: user.id,
                 username: user.username,
                 decks: decks.map(deck => deck.id),
-                point: user.points,
+                points: user.points,
                 friendIds: user.friendIds,
                 pendingRequests: user.pendingRequests,
                 outgoingRequests: user.outgoingRequests,
@@ -187,7 +187,7 @@ router.patch('/', passport.authenticate('jwt', { session: false }), (req, res) =
                 id: user.id, 
                 username: user.username, 
                 decks: decks.map(deck => deck.id),
-                point: user.points,
+                points: user.points,
                 friendIds: user.friendIds,
                 pendingRequests: user.pendingRequests,
                 outgoingRequests: user.outgoingRequests,
@@ -265,7 +265,7 @@ router.patch('/friend', passport.authenticate('jwt', { session: false }), (req, 
             id: user.id,
             username: user.username,
             decks: decks.map(deck => deck.id),
-            point: user.points,
+            points: user.points,
             friendIds: user.friendIds,
             pendingRequests: user.pendingRequests,
             outgoingRequests: user.outgoingRequests,
