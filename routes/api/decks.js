@@ -32,8 +32,6 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
           const cards = await Card.find({ deck: decks[i].id })
           const cardIds = cards.map(card => card.id)
           newDeck['cards'] = cardIds;
-          // console.log(cards.map(card => card.id))
-          // console.log(payload[deck.id])
           payload[decks[i].id] = newDeck;
         }
 
@@ -50,9 +48,7 @@ router.get('/:id', passport.authenticate('jwt', { session: false }), async (req,
   const deckUser = await User.findOne({ _id: deck.user })
 
   if (deckUser.id === req.user.id || deck.public) {
-    console.log(deck.id)
     const cards = await Card.find({deck: deck.id})
-    console.log(cards)
     return res.json({
       deck,
       cards: cards.map(card => card.id)
