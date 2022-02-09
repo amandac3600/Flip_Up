@@ -50,30 +50,30 @@ export default class Splash extends React.Component {
                     <p className='splash-pop-list-item-cat'>Animals</p>
                     <p className='splash-pop-list-item-cat'>Science</p>
                   </div>
-                  <Link to="/" className='splash-pop-list-item-user-container'>
+                  <div to="/" className='splash-pop-list-item-user-container'>
                     <img className='splash-pop-list-item-user-pic' src="https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png" alt="user profile pic" />
                     <p className='splash-pop-list-item-user'>Porter</p>
-                  </Link>
+                  </div>
                 </Link>
                 <Link to="/" className='splash-pop-list-item'>Japanese Greetings
                   <div className='splash-pop-list-item-cat-container'>
                     <p className='splash-pop-list-item-cat'>Languages</p>
                     <p className='splash-pop-list-item-cat'>Japanese</p>
                   </div>
-                  <Link to="/" className='splash-pop-list-item-user-container'>
+                  <div to="/" className='splash-pop-list-item-user-container'>
                     <img className='splash-pop-list-item-user-pic' src="https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png" alt="user profile pic" />
                     <p className='splash-pop-list-item-user'>Luther</p>
-                  </Link>
+                  </div>
                 </Link>
                 <Link to="/" className='splash-pop-list-item'>Parts of Speech
                   <div className='splash-pop-list-item-cat-container'>
                     <p className='splash-pop-list-item-cat'>Languages</p>
                     <p className='splash-pop-list-item-cat'>English</p>
                   </div>
-                  <Link to="/" className='splash-pop-list-item-user-container'>
+                  <div to="/" className='splash-pop-list-item-user-container'>
                     <img className='splash-pop-list-item-user-pic' src="https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png" alt="user profile pic" />
                     <p className='splash-pop-list-item-user'>Kali</p>
-                  </Link>
+                  </div>
                 </Link>
               </div>
             </div>
