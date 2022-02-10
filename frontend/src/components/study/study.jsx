@@ -13,8 +13,9 @@ class Study extends React.Component {
   }
   
   getDeckCategories(deckId) {
-    return this.props.decks[deckId].category.map((category)=>{
-      return <div>
+    if (!this.props.decks[deckId].category) return
+    return this.props.decks[deckId].category.map((category, idx)=>{
+      return <div key={idx} >
                 <div>{category}</div>
             </div>
     })
@@ -30,7 +31,7 @@ class Study extends React.Component {
 
   getEachDeck() {
     return Object.keys(this.props.decks).slice(0).reverse().map((key, idx)=>{
-      if (idx > 0) {
+      if (this.props.decks[key]._id !== this.props.match.params.id && this.props.decks[key].cards.length > 0) {
         return <div key={key} className='study-page-deck-list-item grow3' onClick={()=>this.moveToNextDeck(key)} >
                 <div >
                   <div>{this.props.decks[key].name}</div>
