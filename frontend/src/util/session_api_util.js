@@ -25,9 +25,6 @@ export const fetchUsers = (keyword) => {
   }
 }
 
-// export const fetchUser = id => {
-//   return axios.get(`/api/users/find/${id}`)
-// }
 
 export const fetchUser = () => {
   return axios.get(`/api/users/current`)
@@ -41,6 +38,9 @@ export const editUser = (userData) => {
     return axios.patch('/api/users/', userData)
 }
 
+export const requestFriend = friendData => {
+  return axios.patch(`/api/users/friends`, friendData)
+}
 // export const updateProfilePic = (userData)=>{
 //   return axios.post('/api/users/updateProfilePic',userData)
 // }

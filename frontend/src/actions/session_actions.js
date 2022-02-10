@@ -99,6 +99,16 @@ export const editUser = data => dispatch => {
     ))
 };
 
+export const requestFriend = friendData => dispatch => {
+  SessionApiUtil.requestFriend(friendData)
+    .then(user => (
+      dispatch(receiveCurrentUser(user.data))
+    ), err=> (
+      dispatch(receiveErrors(err.response.data))
+    ))
+};
+
+
 // export const updateProfilePic = data => dispatch => {
 //   SessionApiUtil.updateProfilePic(data)
 //     .then(user => (
