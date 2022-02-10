@@ -3,6 +3,7 @@ import NavContainer from '../nav/nav_container';
 import Timer from './timer';
 import './compete_mode.css'
 import Sparkles from '../study/sparkles';
+import FishAnimation from './fish_animation';
 
 export default class CompeteMode extends React.Component {
   constructor(props) {
@@ -41,6 +42,17 @@ export default class CompeteMode extends React.Component {
   }
 
   handleAnswerClick(e) {
+    const emojiCodes = [128011, 128025, 128031, 128032, 128033, 128044, 128051];
+    const randomEmoji = emojiCodes[Math.floor(Math.random() * emojiCodes.length)];
+    const emojiDiv = document.createElement('div');
+    
+    emojiDiv.setAttribute('class', 'fish-emoji');
+    emojiDiv.setAttribute('id', 'fish-emoji');
+    emojiDiv.innerHTML = `&#${randomEmoji};`;
+    emojiDiv.style.top = `${Math.random()*90}%`;
+    const competeDiv = document.querySelector('.compete-mode-div');
+    competeDiv.insertBefore(emojiDiv, competeDiv.firstChild);
+
     const answerChoice = e.currentTarget.textContent;
     const correctAnswer = this.state.cards[this.state.currentIndex].back;
 
