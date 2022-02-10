@@ -2,6 +2,7 @@ import * as SessionApiUtil from '../util/session_api_util';
 import jwt_decode from 'jwt-decode';
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
+export const RECEIVE_USER = "RECEIVE_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
 export const RECEIVE_USER_SIGN_IN = "RECEIVE_USER_SIGN_IN";
@@ -12,6 +13,11 @@ export const RECEIVE_SEARCH = "RECEIVE_SEARCH";
 export const receiveCurrentUser = currentUser => ({
   type: RECEIVE_CURRENT_USER,
   currentUser
+});
+
+export const receiveUser = user => ({
+  type: RECEIVE_USER,
+  user
 });
 
 export const receiveUserSignIn = () => ({
@@ -63,10 +69,19 @@ export const logout = () => dispatch => {
   dispatch(logoutUser())
 };
 
-export const fetchUser = () => dispatch => (
-  SessionApiUtil.fetchUser() 
+export const fetchCurrentUser = () => dispatch => (
+  SessionApiUtil.fetchCurrentUser() 
     .then(user => (
       dispatch(receiveCurrentUser(user.data))
+    ), err => (
+      dispatch(receiveErrors(err.response.data))
+    ))
+)
+
+export const fetchUser = (userId) => dispatch => (
+  SessionApiUtil.fetchUser(userId) 
+    .then(user => (
+      dispatch(receiveUser(user.data))
     ), err => (
       dispatch(receiveErrors(err.response.data))
     ))

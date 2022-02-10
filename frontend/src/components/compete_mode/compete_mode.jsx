@@ -3,6 +3,7 @@ import NavContainer from '../nav/nav_container';
 import Timer from './timer';
 import './compete_mode.css'
 import Sparkles from '../study/sparkles';
+import CompeteResults from './compete_results';
 
 export default class CompeteMode extends React.Component {
   constructor(props) {
@@ -23,17 +24,18 @@ export default class CompeteMode extends React.Component {
     // delete after testing
     this.props.getPendingGames();
     // keep
+    this.props.getDecks();
     this.props.getGame(this.props.match.params.gameId)
       .then((res) => {
         const game = res.game;
         this.setState({game: game});
-        Promise.all([this.props.fetchUser(),this.props.getFriends()])
+        Promise.all([this.props.fetchCurrentUser(),this.props.getFriends()])
           .then( () => {
             this.props.getCards(game.deck).then((res) => {
               if (game.player1Id === this.props.users.current.id) {
-                this.setState({ player: 'player1' ,friendPlayer: 'player2', cards: Object.values(res.cards) })
+                this.setState({ cards: Object.values(res.cards), player: 'player1' })
               } else {
-                this.setState({ player: 'player2', friendPlayer: 'player1', cards: Object.values(res.cards) })
+                this.setState({ cards: Object.values(res.cards), player: 'player2' })
               }
             });
           })
@@ -135,70 +137,14 @@ export default class CompeteMode extends React.Component {
     )
   }
 
-  renderResults() {
-    const friendPlayer = this.state.friendPlayer;
-    const player = this.state.player;
-    const friend = this.props.users.friends[this.state.game[`${friendPlayer}Id`]]
-    const friendName = friend.username;
-
-    let winner = this.state.game.winner;
-    if (winner === friend._id) winner = friendName;
-    if (winner === this.props.users.current.id) winner = this.props.users.current.username;
-
-    const friendTime = this.state.game[`${friendPlayer}Time`] ? `${(this.state.game[`${friendPlayer}Time`]/60000).toFixed(2)} minutes` : 'In Progress';
-
-    return (
-      <div>
-        <div className='compete-mode-results-div'>
-          <h1 className='compete-results-title'>Challenge Results</h1>
-          <table>
-            <tbody className='compete-results-table'>
-              <tr>
-                <th>Results</th>
-                <th>Player 1</th>
-                <th>Player 2</th>
-              </tr>
-
-              <tr>
-                <td>Username</td>
-                <td>{this.props.users.current.username}</td>
-                <td>{friendName}</td>
-              </tr>
-
-              <tr>
-                <td>Number Correct</td>
-                <td>{this.state.game[`${player}Correct`]}</td>
-                <td>{this.state.game[`${friendPlayer}Correct`] || 'In Progress'}</td>
-              </tr>
-
-              <tr>
-                <td>Number Incorrect</td>
-                <td>{this.state.cards.length - this.state.game[`${player}Correct`]}</td>
-                <td>{this.state.cards.length - this.state.game[`${friendPlayer}Correct`] || 'In Progress'}</td>
-              </tr>
-
-              <tr>
-                <td>Time</td>
-                <td>{`${(this.state.game[`${player}Time`] / 60000).toFixed(2)} minutes`}</td>
-                <td>{friendTime}</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <Sparkles><div className='compete-winner-div'>{winner ? `${winner} won this round!` : ''}</div></Sparkles>
-        </div>
-        
-      </div>
-      
-    )
-  }
-
   render() {
     if (!this.props.decks || !this.props.users || !this.props.users.friends || !this.props.games || !this.state.cards) return null;
 
     let display;
-    // if (!this.state.begin) display = this.renderBegin();
-    if (this.state.playerTime || this.state.game[`${this.state.player}Time`]) display =  this.renderResults();
+    if (!this.state.begin) display = this.renderBegin();
+    if (this.state.playerTime || this.state.game[`${this.state.player}Time`]) {
+      display = <CompeteResults user={this.props.users.current} friends={this.props.users.friends} game={this.state.game} cards={this.state.cards}decks={this.props.decks} />
+    };
 
     if (this.state.cards && this.state.cards.length < 4) 
       display = (<div className='compete-minimum'>

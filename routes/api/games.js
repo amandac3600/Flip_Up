@@ -92,12 +92,22 @@ router.patch('/:id',
     }
 
     if (game.player1Time && game.player2Time) {
+      const player2 = await User.findOne({ _id: game.player2Id });
+
       if ((game.player1Correct > game.player2Correct) || (game.player1Correct === game.player2Correct && game.player1Time < game.player2Time)) {
         game.winner = game.player1Id;
+        player1.wins.push(player2.id);
+        player1.points += 100;
+        player2.losses.push(player1.id);
       } else {
         game.winner = game.player2Id;
+        player2.wins.push(player1.id);
+        player2.points += 100;
+        player1.losses.push(player2.id);
       }
     }
+    player2.save();
+    player1.save();
     game.save().then(game => res.json(game));
   }
 );
@@ -111,7 +121,10 @@ router.delete('/:id',
     const player2 = await User.findOne({ _id: game.player2Id});
 
     if (player1.id!== req.user.id && player2.id !== req.user.id ) {
-      return res.status(404).json({ unautorized: 'User is not part of this challenge' })
+      return res.status(404).json({ unauthorized: 'User is not part of this challenge' })
+    }
+    if (game.winner ) {
+      return res.status(403).json({ forbidden: 'Cannot delete completed challenges' })
     }
     Game.deleteOne({ _id: req.params.id })
       .then(() => res.json({ deleted: "Game was deleted" }))
