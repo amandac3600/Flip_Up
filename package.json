@@ -11,7 +11,6 @@
     "frontend": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run frontend\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
-
   },
   "repository": {
     "type": "git",
@@ -34,6 +33,7 @@
     "passport-jwt": "^4.0.0",
     "react-icons": "^4.3.1",
     "react-responsive-carousel": "^3.2.22",
+    "styled-components": "^5.3.3",
     "validator": "^13.7.0"
   },
   "devDependencies": {
