@@ -144,6 +144,7 @@ export default class CompeteMode extends React.Component {
     let winner = this.state.game.winner;
     if (winner === friend._id) winner = friendName;
     if (winner === this.props.users.current.id) winner = this.props.users.current.username;
+    const winnerDiv = winner ? <Sparkles><div className='compete-winner-div'>{ `${winner} won this round!`}</div></Sparkles> : '';
 
     const friendTime = this.state.game[`${friendPlayer}Time`] ? `${(this.state.game[`${friendPlayer}Time`]/60000).toFixed(2)} minutes` : 'In Progress';
 
@@ -185,12 +186,39 @@ export default class CompeteMode extends React.Component {
             </tbody>
           </table>
 
-          <Sparkles><div className='compete-winner-div'>{winner ? `${winner} won this round!` : ''}</div></Sparkles>
+          {winnerDiv}
         </div>
-        
+
+        <div className='deck-form-other-decks-container' >
+          <div><div>Edit Decks</div></div>
+          <div className='deck-form-page-deck-list-container'>
+            <div className='deck-form-page-deck-list' >
+              {this.getEachDeck()}
+            </div>
+          </div>
+          <div className='deck-form-page-deck-list-shadow' ></div>
+        </div>      
+
       </div>
       
     )
+  }
+
+  getEachDeck() {
+    return Object.keys(this.props.decks).slice(0).reverse().map((key, idx) => {
+      if (idx > 0) {
+        return <div key={key} className='deck-form-page-deck-list-item grow3' onClick={() => {}} >
+          <div >
+            <div>{this.props.decks[key].name}</div>
+            {/* <div>{this.getNumberOfCards(key)}</div> */}
+          </div>
+          <div>
+            {/* {this.getDeckCategories(key)} */}
+          </div>
+        </div>
+      }
+
+    })
   }
 
   render() {

@@ -79,9 +79,30 @@ router.get('/user/:user_id', passport.authenticate('jwt', { session: false }), a
   if (!decks) return res.status(404).json({ nodecksfound: 'No decks found from that user' });
 
   if (req.params.user_id === req.user.id) {
-    return res.json(decks);
+    const payload = {};
+
+    for (let i = 0; i < decks.length; i++) {
+      const newDeck = await Object.assign({}, decks[i]._doc);
+      const cards = await Card.find({ deck: decks[i].id })
+      const cardIds = cards.map(card => card.id)
+      newDeck['cards'] = cardIds;
+      payload[decks[i].id] = newDeck;
+    }
+
+    return res.json(payload)
   } else {
-    return res.json(decks.filter(deck => deck.public ))
+    const publicDecks = decks.filter(deck => deck.public)
+    const payload = {};
+
+    for (let i = 0; i < publicDecks.length; i++) {
+      const newDeck = await Object.assign({}, publicDecks[i]._doc);
+      const cards = await Card.find({ deck: publicDecks[i].id })
+      const cardIds = cards.map(card => card.id)
+      newDeck['cards'] = cardIds;
+      payload[publicDecks[i].id] = newDeck;
+    }
+
+    return res.json(payload)
   }
 });
 
