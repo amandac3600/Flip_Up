@@ -30,9 +30,9 @@ export default class CompeteMode extends React.Component {
           .then( () => {
             this.props.getCards(game.deck).then((res) => {
               if (game.player1Id === this.props.users.current.id) {
-                this.setState({ player: 'player1' ,friendPlayer: 'player2', cards: res.cards })
+                this.setState({ player: 'player1' ,friendPlayer: 'player2', cards: Object.values(res.cards) })
               } else {
-                this.setState({ player: 'player2', friendPlayer: 'player1', cards: res.cards })
+                this.setState({ player: 'player2', friendPlayer: 'player1', cards: Object.values(res.cards) })
               }
             });
           })
@@ -115,7 +115,7 @@ export default class CompeteMode extends React.Component {
     const player = this.state.player;
     let winner = this.state.game.winner;
     const friend = this.props.users.friends[this.state.game[`${friendPlayer}Id`]]
-    const friendName = this.props.users.friends[this.state.game[`${friendPlayer}Id`]].username;
+    const friendName = friend.username;
 
     const friendTime = this.state.game[`${friendPlayer}Time`] ? `${(this.state.game[`${friendPlayer}Time`]/60000).toFixed(2)} minutes` : 'In Progress';
 
@@ -172,7 +172,8 @@ export default class CompeteMode extends React.Component {
     if (this.state.playerTime || this.state.game[`${this.state.player}Time`]) return this.renderResults();
     if (!this.state.begin) return this.renderBegin();
 
-    if (this.state.cards && this.state.cards.length < 4) return (
+    if (this.state.cards && this.state.cards.length < 4) 
+    return (
       <div>
         <NavContainer />
         Decks must have minimum of 4 cards to use in battle mode.
