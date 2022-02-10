@@ -30,9 +30,9 @@ export default class Splash extends React.Component {
             <div className='splash-cat-container'>
               <h3 className='splash-cat-title'>Find Decks By Category</h3>
               <div className='splash-cat-list'>
-                <Link to="/" className='splash-cat-list-item'><img src={math} alt="Math" className='splash-cat-list-pic'/></Link>
-                <Link to="/" className='splash-cat-list-item'><img src={science} alt="Science" className='splash-cat-list-pic'/></Link>
-                <Link to="/" className='splash-cat-list-item'><img src={language} alt="Science" className='splash-cat-list-pic'/></Link>
+                <Link to="/search/math" className='splash-cat-list-item'><img src={math} alt="Math" className='splash-cat-list-pic'/></Link>
+                <Link to="/search/science" className='splash-cat-list-item'><img src={science} alt="Science" className='splash-cat-list-pic'/></Link>
+                <Link to="/search/language" className='splash-cat-list-item'><img src={language} alt="Language" className='splash-cat-list-pic'/></Link>
               </div>
               <div className='splash-cat-name-list'>
                 <p className='splash-cat-name-list-item'>Math</p>

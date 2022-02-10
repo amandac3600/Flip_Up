@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch) => {
     getFriends: () => dispatch(getFriends()),
     getDecks: (filters) => dispatch(getDecks(filters)),
     getDeck: (deckId) => dispatch(getDeck(deckId)),
-    fetchUser: (id) => dispatch(fetchUser(id)),
+    fetchUser: () => dispatch(fetchUser()),
     createGame: (game) => dispatch(createGame(game)),
     getGame: (gameId) => dispatch(getGame(gameId)),
     getPendingGames: () => dispatch(getPendingGames()),

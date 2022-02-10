@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import "./card_form.css"
 
 class CardForm extends React.Component {
   constructor(props) {
@@ -26,9 +27,9 @@ class CardForm extends React.Component {
   //return whether or not the user is creating or editing a card
   getCardHeader() {
     if (this.props.type === 'create') {
-      return 'Create Card'
+      return ''
     } else {
-      return 'Edit Card'
+      return 'Edit Card:'
     }
   }
 
@@ -46,8 +47,8 @@ class CardForm extends React.Component {
   render() {
     console.log(this.props)
     return (
-      <div>
-        <div>{this.getCardHeader()}</div>
+      <div className='create-form'>
+        <div className='create-form-title'>{this.getCardHeader()}</div>
         <form onSubmit={this.cardSubmit.bind(this)}>
           <div>
             <input id='card-form-front' type="text"
@@ -62,7 +63,7 @@ class CardForm extends React.Component {
               placeholder="back"
             />
             <br />
-            <input type="submit" value="Submit" />
+            <input className='card-form-submit' type="submit" value="Create Card" />
           </div>
         </form>
       </div>

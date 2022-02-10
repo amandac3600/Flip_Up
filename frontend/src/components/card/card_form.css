@@ -1,0 +1,38 @@
+.create-form {
+  position: absolute;
+}
+
+.create-form-title {
+  margin-top: 20px;
+  color: rgb(40, 57, 155);
+  font-weight: 500;
+}
+
+#card-form-front, #card-form-back {
+  border: none;
+  outline: none;
+  background-color: aliceblue;
+  border-bottom: 1px solid rgb(40, 57, 155);
+  margin-top: 8px;
+  color: rgb(40, 57, 155);
+}
+
+::placeholder {
+  color: rgb(40, 57, 155);
+  font-size: 15px;
+}
+
+.card-form-submit {
+  border: none;
+  margin-top: 10px;
+  background-color: rgb(255, 255, 255);
+  font-size: 14px;
+  border: 1px solid rgb(40, 57, 155);
+  border-radius: 3px;
+  color: rgb(40, 57, 155);
+}
+
+.card-form-submit:hover {
+  background-color: rgb(220, 220, 220);
+}
+
