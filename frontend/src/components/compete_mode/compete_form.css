@@ -1,10 +1,10 @@
 .compete-form-div {
   position: absolute;
-  margin-left: 200px;
+  margin-left: 300px;
   top: 120px;
   border: 1px solid lightgray;
   border-radius: 4px;
-  width: 60%;
+  width: 50%;
   padding: 10px;
   background-color: white;
   /* display: flex;
@@ -36,6 +36,11 @@ input[type='radio']:checked .compete-form-friend-item{
   background-color: rgb(40, 57, 155);
   color: whitesmoke;
   font-family: Montserrat, Arial, Helvetica, sans-serif;
-  padding: 3px 5px;
-  font-size: 14px;
+  padding: 4px 6px;
+  font-size: 15px;
+}
+
+.compete-form-button:hover {
+  transition: all 0.2s;
+  background-color: rgb(21, 32, 94);
 }
