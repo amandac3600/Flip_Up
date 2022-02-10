@@ -5,7 +5,8 @@
     width: 100%;
     padding-top:20px; 
     padding-bottom: 20px;
-    background-image:  url('http://localhost:3000/static/media/ocean.b2bebab11c0bc273f3fc.jpg');
+    /* background-image:  url('http://localhost:3000/static/media/ocean.b2bebab11c0bc273f3fc.jpg'); */
+    background-image:  url('https://i.ytimg.com/vi/TQOO9h_U44Q/maxresdefault.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -28,7 +29,7 @@
     box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29);
     margin: 5px;
     width: 30%;
-    background: whitesmoke;
+    background: rgba(247, 242, 242, 0.59);
 }
 
 .profile-info-div {
@@ -45,7 +46,7 @@
     flex-direction: column;
     align-items: center; 
     width: 35%;
-    background: whitesmoke;
+    background: rgba(247, 242, 242, 0.59);;
 
     border-radius: 10px;
     box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29);
@@ -64,7 +65,7 @@
     align-items: center;
     justify-content: center;
     width: 60%;
-    background: whitesmoke;
+    background: rgba(247, 242, 242, 0.59);;
     border-radius: 10px;
     box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29)
 }
@@ -79,7 +80,7 @@
     margin: 5px;
     border-radius: 10px;
     box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29);
-    background: whitesmoke;
+    background: rgba(247, 242, 242, 0.59);;
 
 
 }

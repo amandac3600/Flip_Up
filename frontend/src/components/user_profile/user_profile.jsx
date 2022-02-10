@@ -5,7 +5,7 @@ import Footer from '../footer/footer';
 import './user_profile.css';
 import './friends_search.css';
 import { DeckCarousel } from '../deck-carousel/deck_carousel';
-import  FriendsSearch  from './friends_search';
+import  FriendsSearchContainer  from './friends_search_container';
 
 
 class UserProfile extends React.Component {
@@ -13,7 +13,7 @@ class UserProfile extends React.Component {
         super(props)
 
         this.state = {
-            id: props.currentUser.id,
+            // id: props.currentUser.id,
             decks: props.decks,
             showFriendModal: false
         }   
@@ -63,7 +63,6 @@ class UserProfile extends React.Component {
 
     getUserDecks() {
         return this.state.decks.filter(deck => {
-            console.log("state", this.state)
             return (
                 this.state.user.decks.includes(deck._id) 
             )
@@ -112,7 +111,7 @@ class UserProfile extends React.Component {
                 <div>
                     <h3 className = 'profile-no-friends'>You haven't made any friends yet!</h3>
                     <button className='profile-create-deck-button' onClick={() => this.setState({showFriendModal: true}) }>Find a friend now!</button>
-                    <div className={ this.state.showFriendModal ? 'modal' : 'none'}><FriendsSearch off={()=> this.setState({showFriendModal: false})} /></div>
+                    <div className={ this.state.showFriendModal ? 'modal' : 'none'}><FriendsSearchContainer off={()=> this.setState({showFriendModal: false})} /></div>
                 </div>
             )
         }
