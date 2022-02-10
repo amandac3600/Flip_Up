@@ -99,6 +99,7 @@
 
 .login-error {
   margin-top: 5px;
+  color: red;
 }
 
 .login-footer {
