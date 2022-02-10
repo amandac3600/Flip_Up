@@ -7,27 +7,22 @@ class SearchBar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      find: ''
+      find: '',
+      filters: []
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.clearErrors = this.clearErrors.bind(this);
   }
 
-  handleChange(field) {
-    return (e) => this.setState({[field]: e.currentTarget.value})
+  handleChange(e) {
+    let cats = e.currentTarget.value.split(' ');
+    this.setState({filters: cats})
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.searchBusinesses(this.state.find)
-      .then(() => this.props.history.push(`/search/${this.state.find}`))
-      .fail(() => this.props.history.push(`/search/${this.state.find}`))
-  }
-
-  clearErrors(e) {
-    this.props.clearErrors()
+    this.props.history.push(`/search/${this.state.filters.join('+')}`);
   }
 
   render() {
@@ -35,7 +30,7 @@ class SearchBar extends React.Component {
       <div>
         <form className="search-bar-form" onSubmit={this.handleSubmit}>
           <div className="search-input-container">
-            <input className="search-input" type="text" onChange={this.handleChange('find')} placeholder="Find decks by category or grade" />
+            <input className="search-input" type="text" onChange={this.handleChange} placeholder="Enter categories separated by a space" value={this.state.filters.join(' ')}/>
           </div>
           <button className="search-button" type="submit" onClick={this.clearErrors}><AiOutlineSearch /></button>
         </form>

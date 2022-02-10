@@ -1,0 +1,64 @@
+.deck-show-full-page {
+  background-color: aliceblue;
+  height: 100%;
+}
+
+.deck-show-page {
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+  margin: 5%;
+}
+
+.deck-show-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: rgb(40, 57, 155);
+}
+
+.deck-show-cats {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.deck-show-cat {
+  background-color: rgb(40, 57, 155);
+  border-radius: 6px;
+  padding: 3px 5px;
+  color: whitesmoke;
+  margin-right: 8px;
+}
+
+.deck-show-cards {
+  color: rgb(40, 57, 155);
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+.deck-show-study {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(40, 57, 155);
+  width: 96px;
+  padding: 5px 7px;
+  border-radius: 5px;
+  color: rgb(40, 57, 155);
+  font-weight: 500;
+}
+
+.deck-show-add {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(40, 57, 155);
+  width: 85px;
+  padding: 5px 7px;
+  border-radius: 5px;
+  color: rgb(40, 57, 155);
+  font-weight: 500;
+}
+
+.deck-show-study:hover, .deck-show-add:hover {
+  cursor: pointer;
+  background-color: rgb(210, 210, 210);
+  transition: all 0.2s;
+}
+
+.deck-show-compete {
+  margin-top: 100px;
+}

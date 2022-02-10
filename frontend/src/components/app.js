@@ -10,10 +10,11 @@ import UserProfileContainer from './user_profile/user_profile_container';
 import DeckFormContainer from './deck/deck_form_container'
 import CardFormContainer from './card/card_form_container'
 import StudyContainer from './study/study_container'
-import DeckContainer from './deck/deck_container'
+import DeckShowContainer from './deck/deck_show_container'
 import CompeteFormContainer from './compete_mode/compete_form_container';
 import CompeteModeContainer from './compete_mode/compete_mode_container';
 import "./reset.css"
+import SearchResultIndexContainer from './search/search_result_index_container';
 
 const App = () => (
   <div>
@@ -24,7 +25,9 @@ const App = () => (
 
       <ProtectedRoute exact path="/decks/new" component={DeckFormContainer} />
       <ProtectedRoute path="/decks/:id/study" component={StudyContainer} />
-      <ProtectedRoute path="/decks/:id" component={DeckContainer} />
+      <ProtectedRoute path="/decks/:id" component={DeckShowContainer} />
+      <ProtectedRoute path="/search/:filters" component={SearchResultIndexContainer}/>
+      <ProtectedRoute path="/search/" component={SearchResultIndexContainer}/>
 
       <ProtectedRoute exact path="/compete" component={CompeteFormContainer} />
 

@@ -76,8 +76,8 @@ export default class CompeteForm extends React.Component {
     return (
       <div className='compete-form-div'>
         <form onSubmit={this.handleSubmit}>
-        <div>
-          Select a friend to challenge. By winning you get extra experience points!
+        <div className='compete-form-message'>
+          Select a friend below to challenge. Winner earns extra experience points!
         </div>
 
         <div className='compete-form-friend-div'>
@@ -86,7 +86,7 @@ export default class CompeteForm extends React.Component {
           </div>
         </div>
 
-        <button className='compete-form-submit-button'>Challenge Opponent</button>
+        <button className='compete-form-button'>Challenge Opponent</button>
         <div className='compete-form-errors'>{this.state.errors}</div>
         </form>
       </div>

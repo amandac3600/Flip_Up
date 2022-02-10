@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Deck from './deck';
+import DeckShow from './deck_show';
 import { getDeck } from './../../actions/deck_actions'
 
 
@@ -18,4 +18,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Deck);
+export default connect(mapStateToProps, mapDispatchToProps)(DeckShow);
