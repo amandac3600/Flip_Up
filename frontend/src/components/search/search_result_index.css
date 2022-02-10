@@ -2,20 +2,32 @@
 .search-index-container {
   display: flex;
   justify-content: center;
+  
 }
 
 .search-index-list {
   width: 200px;
   font-family: Montserrat, Arial, Helvetica, sans-serif;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .search-index-item {
-  width: 200%;
+  width: 100%;
   border: 1px solid lightgrey;
-  margin: 100px;
+  margin: 10px;
   text-decoration: none;
   color: rgb(40, 57, 155);
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.search-index-item > div {
+  align-self: center;
+  text-align: center;
 }
 
 .search-item-name {

@@ -48,6 +48,14 @@ export const getDecks = (filters) => dispatch => {
     ))
 };
 
+export const getUserDecks = (userId) => dispatch => {
+    return DeckApiUtil.getUserDecks(userId)
+    .then((res) => (
+        dispatch(receiveDecks(res.data))
+    ))
+};
+
+
 export const updateDeck = (deck) => dispatch => (
     DeckApiUtil.updateDeck(deck)
     .then((res) => (

@@ -15,6 +15,11 @@ export const getDeck = (deckId) => {
   return axios.get(`/api/decks/${deckId}`);
 };
 
+//get all decks of that user
+export const getUserDecks = (userId) => {
+  return axios.get(`/api/decks/user/${userId}`);
+};
+
 //create a deck
 export const createDeck = (deck) => {
     return axios.post(`/api/decks/`, deck);
@@ -27,5 +32,6 @@ export const updateDeck = (deck) => {
 
 //delete a deck
 export const deleteDeck = (deckId) => {
-    return axios.post(`/api/decks/${deckId}`);
+    return axios.delete(`/api/decks/${deckId}`);
 };
+
