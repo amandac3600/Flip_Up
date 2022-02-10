@@ -152,7 +152,7 @@ class UserProfile extends React.Component {
                             <>
                                 <div className="profile-user-info">
                                     {/* <img src="https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png" alt="user profile pic" /> */}
-                                    <ProfileIcon user={this.state.user}/>
+                                    <ProfileIcon user={this.state.user} updateUser={this.props.updateUser}/>
                                     <p>{this.state.user.username}</p>
                                     {/* <Link to="/profile/update">Edit profile</Link> */}
                                 </div>
