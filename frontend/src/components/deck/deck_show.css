@@ -48,6 +48,7 @@
   border-radius: 5px;
   color: rgb(40, 57, 155);
   font-weight: 500;
+  margin-bottom: 15px;
 }
 
 .deck-show-add {
@@ -66,6 +67,22 @@
   width: 100px;
   padding: 5px 7px;
   border-radius: 5px;
+  color: rgb(40, 57, 155);
+  font-weight: 500;
+}
+
+.deck-show-user-container {
+  display: flex;
+  margin-top: -5px;
+}
+
+.deck-show-user-pic {
+  width: 40px;
+}
+
+.deck-show-user-name {
+  margin-top: 12px;
+  margin-left: 3px;
   color: rgb(40, 57, 155);
   font-weight: 500;
 }
