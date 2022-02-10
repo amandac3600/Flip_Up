@@ -52,7 +52,7 @@
 }
 
 .search-index-item {
-  width: 200%;
+  width: 150%;
   border: 1px solid lightgrey;
   background-color: white;
   margin: 10px;
@@ -83,11 +83,17 @@
 }
 
 .search-item-cat {
+  display: inline-block;
   background-color: rgb(40, 57, 155);
   color: whitesmoke;
   border-radius: 6px;
   padding: 3px 5px;
   font-size: 14px;
+  margin-right: 5px;
+}
+
+.search-item-cat:first-child {
+  margin-left: -1px;
 }
 
 .search-item-cards {
