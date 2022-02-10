@@ -1,0 +1,375 @@
+.deck-form-container {
+    height: calc(100vh - 70px);
+}
+
+
+
+#deck-form-name {
+    width: 100px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgb(40, 57, 155);
+    outline: none;
+    transform: scale(3);
+    margin-left: 150px;
+    margin-top: 50px;
+    color: rgb(40, 57, 155);
+}
+
+#deck-form-name::placeholder {
+    color: rgba(40, 57, 155, 0.596);
+}
+
+#deck-form-public {
+    margin-top: 40px;
+    margin-right: -50px;
+    
+    
+}
+
+#deck-form-public-label {
+    margin-top: 30px;
+    margin-left: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(40, 57, 155);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.deck-form-categories {
+    margin-left: 50px;
+    font-size: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(40, 57, 155);
+}
+
+#deck-form-history {
+    visibility: hidden;
+}
+
+#deck-form-science {
+    visibility: hidden;
+}
+
+#deck-form-grammar {
+    visibility: hidden;
+}
+
+#deck-form-math {
+    visibility: hidden;
+}
+
+#deck-form-animals {
+    visibility: hidden;
+}
+
+#deck-form-languages {
+    visibility: hidden;
+}
+
+#deck-form-japanese {
+    visibility: hidden;
+}
+
+#deck-form-english {
+    visibility: hidden;
+}
+
+#deck-form-history-label {
+    padding: 5px;
+    background-color: rgba(40, 57, 155, 0.64);
+    color: whitesmoke;
+    border-radius: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .8rem;
+    user-select: none;
+    cursor: pointer;
+}
+
+#deck-form-science-label {
+    padding: 5px;
+    background-color: rgba(40, 57, 155, 0.64);
+    color: whitesmoke;
+    border-radius: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .8rem;
+    user-select: none;
+    cursor: pointer;
+}
+
+#deck-form-grammar-label {
+    padding: 5px;
+    background-color: rgba(40, 57, 155, 0.64);
+    color: whitesmoke;
+    border-radius: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .8rem;
+    user-select: none;
+    cursor: pointer;
+}
+
+#deck-form-math-label {
+    padding: 5px;
+    background-color: rgba(40, 57, 155, 0.64);
+    color: whitesmoke;
+    border-radius: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .8rem;
+    user-select: none;
+    cursor: pointer;
+}
+
+#deck-form-animals-label {
+    padding: 5px;
+    background-color: rgba(40, 57, 155, 0.64);
+    color: whitesmoke;
+    border-radius: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .8rem;
+    user-select: none;
+    cursor: pointer;
+}
+
+#deck-form-languages-label {
+    padding: 5px;
+    background-color: rgba(40, 57, 155, 0.64);
+    color: whitesmoke;
+    border-radius: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .8rem;
+    user-select: none;
+    cursor: pointer;
+}
+
+#deck-form-japanese-label {
+    padding: 5px;
+    background-color: rgba(40, 57, 155, 0.64);
+    color: whitesmoke;
+    border-radius: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .8rem;
+    user-select: none;
+    cursor: pointer;
+}
+
+#deck-form-english-label {
+    padding: 5px;
+    background-color: rgba(40, 57, 155, 0.64);
+    color: whitesmoke;
+    border-radius: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .8rem;
+    user-select: none;
+    cursor: pointer;
+}
+
+.checked {
+    background-color: #28399b !important;
+}
+
+
+.deck-form-categories-container {
+    display: flex;
+    margin-left: 30px;
+    margin-top: 10px;
+    width: 350px;
+    flex-wrap: wrap;
+    line-height: 2;
+}
+
+.deck-form-submit-button {
+    height: 40px;
+    margin-left: 50px;
+    margin-top: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.aws-btn {
+    --button-primary-color: #28399b !important;
+    --button-primary-color-dark: #18266d !important;
+    --button-primary-color-light: whitesmoke !important;
+    --button-primary-color-hover: #2b40b9 !important;
+    --button-primary-border: none !important;
+    --button-default-border-radius: 5px !important;
+    --button-raise-level: 5px !important;
+    --button-hover-pressure: 3 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.deck-form-other-decks-container {
+    margin-top: 30px;
+    margin-left: 100px;
+    width: 400px;
+    height: 500px;
+    border-radius: 4px;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.deck-form-page-deck-list {
+    
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+
+.deck-form-page-deck-list-shadow {
+    width: 400px;
+    position: absolute;
+    height: 10px;
+    margin-top: 490px;
+    box-shadow: inset 0px -10px 5px -5px rgba(0, 0, 0, 0.226) !important;
+}
+
+.deck-form-other-decks-container > div:first-child {
+    align-self: center;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 20px;
+    font-size: 2.2rem;
+    color: rgb(40, 57, 155)
+    
+}
+
+.deck-form-page-display-container {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.deck-form-page-display-container::-webkit-scrollbar {
+    display: none;
+}
+
+.deck-form-page-deck-list-item {
+    align-self: center;
+    width: 90%;
+    height: 90px;
+    border-radius: 4px;
+    background-color: rgb(40, 57, 155);
+    margin-top: 15px;
+    -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
+    box-shadow: 2px 3px 5px -2px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+    cursor: pointer;
+    color: whitesmoke;
+}
+
+.deck-form-page-deck-list-item > :first-child{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    margin-left: 20px;
+    color: whitesmoke;
+}
+
+.deck-form-page-deck-list-item > :last-child{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.1rem;
+    margin-top: 12px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.deck-form-page-deck-list-item > :last-child > div{
+    align-self: center;
+    font-size: 14px;
+    font-weight: 500;
+    margin-right: 10px;
+    padding: 5px;
+    background-color: whitesmoke;
+    color: rgb(40, 57, 155);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.deck-form-page-deck-list-item > :last-child > div > div {
+    align-self: center;
+}
+
+
+.deck-form-page-deck-list-container {
+    overflow: scroll;
+    
+}
+
+.deck-form-page-deck-list-container::-webkit-scrollbar {
+    display: none;
+  }
+
+
+
+
+.grow2 { 
+transition: all .2s ease-in-out; 
+}
+    
+.grow2:hover { 
+transform: scale(1.1); 
+}
+
+.grow3 { 
+transition: all .2s ease-in-out; 
+}
+    
+.grow3:hover { 
+transform: scale(1.05); 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.deck-form-and-decks {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}

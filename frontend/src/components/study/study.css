@@ -1,9 +1,25 @@
 
+.study-page-total-div {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.study-page-total-div::-webkit-scrollbar {
+    display: none;
+}
+
+.study-page-card-exp {
+    z-index: 5;
+}
+
 .study-page-container {
+    margin-top: 50px;
     display: flex;
     justify-content: center;
-    height: 75vh;
+    z-index: 5;
 }
+
+
 
 .study-card-sparkles {
     position: relative;
@@ -71,15 +87,34 @@
 #study-card-front {
     border-radius: 4px;
     border: 1px solid black;
-    width: 200px;
+    width: 500px;
     height: 300px;
     display: flex;
     justify-content: center;
-    font-size: 1.3rem;
+    font-size: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+    background-color: whitesmoke;
+}
+
+.study-card-shadow {
+    border-radius: 4px;
+    border: 1px solid black;
+    width: 500px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
     text-align: center;
     box-shadow: 3px 5px 0px 0px rgb(47, 163, 240), 6px 10px 0px 0px rgb(123, 191, 247), 9px 15px 0px 0px rgb(167, 217, 253), 5px 5px 15px 5px rgba(0,0,0,0);
+    user-select: none;
+    background-color: whitesmoke;
+    position: absolute;
+    z-index: -1;
 }
 
 
@@ -90,16 +125,16 @@
 #study-card-front2 {
     border-radius: 4px;
     border: 1px solid black;
-    width: 200px;
+    width: 500px;
     height: 300px;
     display: none;
     justify-content: center;
-    font-size: 1.3rem;
+    font-size: 2rem;
     text-align: center;
     cursor: pointer;
     font-family: Arial, Helvetica, sans-serif;
-    box-shadow: 3px 3px 0px 0px rgb(57, 171, 248), 7px 7px 0px 0px rgb(123, 191, 247), 11px 11px 0px 0px rgb(167, 217, 253), 5px 5px 15px 5px rgba(0,0,0,0);
-
+    user-select: none;
+    background-color: whitesmoke;
 }
 
 #study-card-front2 > div {
@@ -108,15 +143,15 @@
 
 #study-card-front-no {
     border: 1px solid black;
-    width: 200px;
+    width: 500px;
     height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     font-size: 1.1rem;
     font-family: Arial, Helvetica, sans-serif;
-    box-shadow: 3px 3px 0px 0px rgb(57, 171, 248), 7px 7px 0px 0px rgb(123, 191, 247), 11px 11px 0px 0px rgb(167, 217, 253), 5px 5px 15px 5px rgba(0,0,0,0);
-
+    user-select: none;
+    background-color: whitesmoke;
 }
 
 #study-card-front-no > div {
@@ -132,7 +167,7 @@
     display: flex;
     justify-content: center;
     font-family: Arial, Helvetica, sans-serif;
-
+    user-select: none;
 }
 
 #study-card-front-no > div:last-child > div {
@@ -142,32 +177,35 @@
 #study-card-back {
     border-radius: 4px;
     border: 1px solid black;
-    width: 200px;
+    width: 500px;
     height: 300px;
     justify-content: center;
     display: none;
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
-    box-shadow: 3px 3px 0px 0px rgb(57, 171, 248), 7px 7px 0px 0px rgb(123, 191, 247), 11px 11px 0px 0px rgb(167, 217, 253), 5px 5px 15px 5px rgba(0,0,0,0);
-
+    user-select: none;
+    background-color: whitesmoke;
 }
 
 #study-card-back-spin1 {
     position: absolute;
     border-radius: 4px;
     border: 1px solid black;
-    width: 200px;
+    width: 500px;
     height: 300px;
     justify-content: center;
     display: none;
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
     background-color: white;
+    user-select: none;
+    background-color: whitesmoke;
 }
 
 #study-card-back-spin1 > div:nth-child(1) {
-    font-size: 1.3rem;
+    font-size: 2rem;
     text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #study-card-back-spin1 > div:nth-child(2) {
@@ -180,6 +218,7 @@
 
 #study-card-back-spin1 > div:nth-child(3) {
     font-size: 1rem;
+    margin-bottom: 40px;
 }
 
 #study-card-back-spin1 > div {
@@ -187,8 +226,9 @@
 }
 
 #study-card-back > div:nth-child(1) {
-    font-size: 1.3rem;
+    font-size: 2rem;
     text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #study-card-back > div:nth-child(2) {
@@ -201,6 +241,7 @@
 
 #study-card-back > div:nth-child(3) {
     font-size: 1rem;
+    margin-bottom: 40px;
 }
 
 #study-card-back > div {
@@ -210,7 +251,7 @@
 
 .study-card-back-buttons {
     position: absolute;
-    width: 200px;
+    width: 500px;
     height: 300px;
     display: flex;
     justify-content: space-between;
@@ -219,7 +260,7 @@
 .study-card-back-buttons > div {
     align-self: flex-end;
     width: 50%;
-    height: 50px;
+    height: 100px;
     display: flex;
     justify-content: center;
     cursor: pointer;
@@ -239,17 +280,19 @@
 
 #study-card-back2 {
     border: 1px solid black;
-    width: 200px;
+    width: 500px;
     height: 300px;
     justify-content: center;
     display: none;
     flex-direction: column;
-    box-shadow: 3px 3px 0px 0px rgb(57, 171, 248), 7px 7px 0px 0px rgb(123, 191, 247), 11px 11px 0px 0px rgb(167, 217, 253), 5px 5px 15px 5px rgba(0,0,0,0);
     border-radius: 4px;
+    user-select: none;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: whitesmoke;
 }
 
 #study-card-back2 > div:nth-child(1) {
-    font-size: 1.3rem;
+    font-size: 2rem;
     text-align: center;
 }
 
@@ -262,6 +305,7 @@
 
 #study-card-back2 > div:nth-child(3) {
     font-size: 1rem;
+    margin-bottom: 40px;
 }
 
 #study-card-back2 > div {
@@ -271,7 +315,7 @@
 
 .study-card-back-buttons2 {
     position: absolute;
-    width: 200px;
+    width: 500px;
     height: 300px;
     display: flex;
     justify-content: space-between;
@@ -310,17 +354,18 @@
     position: absolute;
     border-radius: 4px;
     border: 1px solid black;
-    width: 200px;
+    width: 500px;
     height: 300px;
     justify-content: center;
     display: none;
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: white;
+    background-color: whitesmoke;
+    user-select: none;
 }
 
 #study-card-back-spin2 > div:nth-child(1) {
-    font-size: 1.3rem;
+    font-size: 2rem;
     text-align: center;
 }
 
@@ -334,6 +379,7 @@
 
 #study-card-back-spin2 > div:nth-child(3) {
     font-size: 1rem;
+    margin-bottom: 40px;
 }
 
 #study-card-back-spin2 > div {
@@ -344,17 +390,17 @@
     position: absolute;
     border-radius: 4px;
     border: 1px solid black;
-    width: 200px;
+    width: 500px;
     height: 300px;
     justify-content: center;
     display: none;
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: white;
+    background-color: whitesmoke;
 }
 
 #study-card-back-spin3 > div:nth-child(1) {
-    font-size: 1.3rem;
+    font-size: 2rem;
     text-align: center;
 }
 
@@ -368,6 +414,7 @@
 
 #study-card-back-spin3 > div:nth-child(3) {
     font-size: 1rem;
+    margin-bottom: 40px;
 }
 
 #study-card-back-spin3 > div {
@@ -378,17 +425,18 @@
     position: absolute;
     border-radius: 4px;
     border: 1px solid black;
-    width: 200px;
+    width: 500px;
     height: 300px;
     justify-content: center;
     display: none;
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: white;
+    background-color: whitesmoke;
+    user-select: none;
 }
 
 #study-card-back-spin4 > div:nth-child(1) {
-    font-size: 1.3rem;
+    font-size: 2rem;
     text-align: center;
 }
 
@@ -402,6 +450,7 @@
 
 #study-card-back-spin4 > div:nth-child(3) {
     font-size: 1rem;
+    margin-bottom: 40px;
 }
 
 #study-card-back-spin4 > div {
@@ -412,7 +461,7 @@
     position: absolute;
     border-radius: 4px;
     border: 1px solid black;
-    width: 200px;
+    width: 500px;
     height: 300px;
     justify-content: center;
     display: none;
@@ -422,7 +471,7 @@
 }
 
 #study-card-back-spin5 > div:nth-child(1) {
-    font-size: 1.3rem;
+    font-size: 2rem;
     text-align: center;
 }
 
@@ -436,6 +485,7 @@
 
 #study-card-back-spin5 > div:nth-child(3) {
     font-size: 1rem;
+    margin-bottom: 40px;
 }
 
 #study-card-back-spin5 > div {
@@ -446,17 +496,18 @@
     position: absolute;
     border-radius: 4px;
     border: 1px solid black;
-    width: 200px;
+    width: 500px;
     height: 300px;
     justify-content: center;
     display: none;
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: white;
+    background-color: whitesmoke;
+    user-select: none;
 }
 
 #study-card-back-spin6 > div:nth-child(1) {
-    font-size: 1.3rem;
+    font-size: 2rem;
     text-align: center;
 }
 
@@ -470,6 +521,7 @@
 
 #study-card-back-spin6 > div:nth-child(3) {
     font-size: 1rem;
+    margin-bottom: 40px;
 }
 
 #study-card-back-spin6 > div {
@@ -480,17 +532,18 @@
     position: absolute;
     border-radius: 4px;
     border: 1px solid black;
-    width: 200px;
+    width: 500px;
     height: 300px;
     justify-content: center;
     display: none;
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: white;
+    background-color: whitesmoke;
+    user-select: none;
 }
 
 #study-card-back-spin7 > div:nth-child(1) {
-    font-size: 1.3rem;
+    font-size: 2rem;
     text-align: center;
 }
 
@@ -504,6 +557,7 @@
 
 #study-card-back-spin7 > div:nth-child(3) {
     font-size: 1rem;
+    margin-bottom: 40px;
 }
 
 #study-card-back-spin7 > div {
@@ -638,12 +692,127 @@
 
 
 .study-other-decks-container {
-    position: absolute;
+    margin-top: 122px;
+    margin-left: 1050px;
     width: 400px;
     height: 500px;
     background-color: #28399B;
-    top: 0px;
-    right: 0px;
-    margin-top: 200px;
-    margin-right: 100px;
+    position: absolute;
+    background-color: whitesmoke;
+    border-radius: 4px;
+    border: 1px solid black;
+    box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.39);
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.study-page-deck-list {
+    
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+
+.study-page-deck-list-shadow {
+    width: 100%;
+    position: absolute;
+    height: 10px;
+    margin-top: 490px;
+    box-shadow: inset 0px -10px 5px -5px rgba(0, 0, 0, 0.226) !important;
+}
+
+.study-other-decks-container > div:first-child {
+    align-self: center;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 20px;
+    font-size: 1.1rem;
+    
+}
+
+.study-page-display-container {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.study-page-display-container::-webkit-scrollbar {
+    display: none;
+}
+
+.study-page-deck-list-item {
+    align-self: center;
+    width: 90%;
+    height: 90px;
+    border-radius: 4px;
+    background-color: whitesmoke;
+    border: 1px solid black;
+    margin-top: 15px;
+    -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
+    box-shadow: 2px 3px 5px -2px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+    cursor: pointer;
+}
+
+.study-page-deck-list-item > :first-child{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.study-page-deck-list-item > :last-child{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.1rem;
+    margin-top: 12px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.study-page-deck-list-item > :last-child > div{
+    align-self: center;
+    font-size: 14px;
+    font-weight: 500;
+    margin-right: 10px;
+    padding: 5px;
+    background-color: rgb(32, 46, 131);
+    color: whitesmoke;
+    border-radius: 4px;
+}
+
+.study-page-deck-list-item > :last-child > div > div {
+    align-self: center;
+}
+
+
+.study-page-deck-list-container {
+    overflow: scroll;
+    
+}
+
+.study-page-deck-list-container::-webkit-scrollbar {
+    display: none;
+  }
+
+
+
+
+.grow2 { 
+transition: all .2s ease-in-out; 
+}
+    
+.grow2:hover { 
+transform: scale(1.1); 
+}
+
+.grow3 { 
+transition: all .2s ease-in-out; 
+}
+    
+.grow3:hover { 
+transform: scale(1.05); 
 }
