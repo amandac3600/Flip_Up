@@ -41,6 +41,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: whitesmoke;
+  -webkit-box-shadow: 5px 5px 15px 5px rgb(40, 57, 155), -7px -5px 15px 5px #8CFF85, 12px 10px 15px 7px #91c3cf, -10px -7px 27px 1px #91c3cf, -23px -42px 5px -9px rgba(0,0,0,0); 
+  box-shadow: 5px 5px 15px 5px rgb(40, 57, 155), -7px -5px 15px 5px #c4d3e0, 12px 10px 15px 7px #85c4ff, -10px -7px 27px 1px #91c3cf, -23px -42px 5px -9px rgba(0,0,0,0);
 }
 
 .compete-answer-choices-div {
@@ -60,6 +63,9 @@
   font-size: 50px;
   padding: 20px;
   margin: 20px;
+  background-color: whitesmoke;
+  -webkit-box-shadow: 0px 10px 13px -7px #000000, -23px -42px 5px -9px rgba(0,0,0,0); 
+  box-shadow: 0px 10px 13px -7px #000000, -23px -42px 5px -9px rgba(0,0,0,0);
 }
 
 .compete-answer-choice:hover {

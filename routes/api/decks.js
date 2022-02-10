@@ -33,10 +33,11 @@ router.get('/search', passport.authenticate('jwt', { session: false }), (req, re
 router.get('/search/:filters', passport.authenticate('jwt', { session: false }), (req, res) => {
   const filters = req.params.filters.split('+');
   Deck.find({
-    $and:
-      [{ category: { $in: filters } },
-      { $or: [{ public: true }, { user: req.user.id }] }]
-  })
+    $or: [{ name: { $regex: filters.join(' '), $options: "i" }}, {
+      $and:
+        [{ category: { $in: filters } },
+        { $or: [{ public: true }, { user: req.user.id }] }]
+    }]})
   .sort({ name: 1 })
     .then(async decks => {
       const payload = {};

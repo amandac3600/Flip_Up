@@ -40,48 +40,6 @@ export default class CompeteMode extends React.Component {
       })
   }
 
-  renderAnswers() {
-    const cards = this.state.cards.slice();
-    let answers = [cards[this.state.currentIndex].back];
-    cards.splice(this.state.currentIndex,1);
-
-    while (answers.length < 4) {
-      const randomIndex = [Math.floor(Math.random() * cards.length)];
-      answers.push(cards[randomIndex].back);
-      cards.splice(randomIndex, 1);
-    }
-
-    answers = answers.sort();
-    return (
-      <div className='compete-answer-choices-div'>
-        <div className='compete-answer-choices-subdiv'>
-          <div className='compete-answer-choice' onClick={this.handleAnswerClick}>{answers[0]}</div>
-          <div className='compete-answer-choice' onClick={this.handleAnswerClick}>{answers[1]}</div>
-        </div>
-
-        <div className='compete-answer-choices-subdiv'>
-          <div className='compete-answer-choice' onClick={this.handleAnswerClick}>{answers[2]}</div>
-          <div className='compete-answer-choice' onClick={this.handleAnswerClick}>{answers[3]}</div>
-        </div>
-      </div>
-    )
-  }
-
-  renderCompeteMode() {
-
-    return(
-      <div>
-        <Timer />
-          <div className='compete-mode-cards'>
-            <div className='compete-mode-front'>
-              {this.state.cards[this.state.currentIndex].front}
-            </div>
-            {this.renderAnswers()}
-          </div>
-      </div>
-    )
-  }
-
   handleAnswerClick(e) {
     const answerChoice = e.currentTarget.textContent;
     const correctAnswer = this.state.cards[this.state.currentIndex].back;
@@ -120,6 +78,47 @@ export default class CompeteMode extends React.Component {
           <div className='compete-mode-directions'>The winner will be determined by who gets the most question correct. <br /><br />If there is a tie, whoever finishes in the least amount of time will win.</div>
 
           <button className='compete-mode-begin-button' onClick={this.handleBeginGame}>Begin Game</button>
+        </div>
+      </div>
+    )
+  }
+
+  renderCompeteMode() {
+    return (
+      <div>
+        <Timer />
+        <div className='compete-mode-cards'>
+          <div className='compete-mode-front'>
+            {this.state.cards[this.state.currentIndex].front}
+          </div>
+          {this.renderAnswers()}
+        </div>
+      </div>
+    )
+  }
+
+  renderAnswers() {
+    const cards = this.state.cards.slice();
+    let answers = [cards[this.state.currentIndex].back];
+    cards.splice(this.state.currentIndex, 1);
+
+    while (answers.length < 4) {
+      const randomIndex = [Math.floor(Math.random() * cards.length)];
+      answers.push(cards[randomIndex].back);
+      cards.splice(randomIndex, 1);
+    }
+
+    answers = answers.sort();
+    return (
+      <div className='compete-answer-choices-div'>
+        <div className='compete-answer-choices-subdiv'>
+          <div className='compete-answer-choice' onClick={this.handleAnswerClick}>{answers[0]}</div>
+          <div className='compete-answer-choice' onClick={this.handleAnswerClick}>{answers[1]}</div>
+        </div>
+
+        <div className='compete-answer-choices-subdiv'>
+          <div className='compete-answer-choice' onClick={this.handleAnswerClick}>{answers[2]}</div>
+          <div className='compete-answer-choice' onClick={this.handleAnswerClick}>{answers[3]}</div>
         </div>
       </div>
     )
@@ -182,7 +181,6 @@ export default class CompeteMode extends React.Component {
       
     )
   }
-
 
   render() {
     if (!this.props.decks || !this.props.users || !this.props.users.friends || !this.props.games || !this.state.cards) return null;
