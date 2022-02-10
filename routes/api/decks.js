@@ -143,11 +143,11 @@ router.patch('/:id',
         return res.status(401).json({ unauthorized: 'You do not own this deck' });
       };
       if (req.body.name) {
-        const checkDeckName = await Deck.findOne({ name: req.body.name })
-        if (checkDeckName) return res.status(404).json({ invalidname: 'Deck name already exists' });
+        const checkDeckName = await Deck.findOne({name: req.body.name, public: true });
+        if (checkDeckName && checkDeckName.id !== deck.id) return res.status(404).json({ invalidname: 'Deck name already exists' });
         deck.name = req.body.name;
       }
-      // if (req.body.category) deck.category = req.body.category;
+      
       if (req.body.category) {
         const cats = req.body.category.split(',').map(cat => cat.trim())
         deck.category = cats;

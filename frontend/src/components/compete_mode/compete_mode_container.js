@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import CompeteMode from './compete_mode';
 import {getCards} from '../../actions/card_actions';
-import { getDecks, getDeck } from '../../actions/deck_actions';
+import { getDecks, getDeck, getUserDecks } from '../../actions/deck_actions';
 import { fetchUser, getFriends } from '../../actions/session_actions';
 import { createGame, getGame, getPendingGames, getCompleteGames, updateGame } from '../../actions/game_actions';
 
@@ -19,6 +19,7 @@ const mapDispatchToProps = (dispatch) => {
     getCards: (deckId) => dispatch(getCards(deckId)),
     getFriends: () => dispatch(getFriends()),
     getDecks: (filters) => dispatch(getDecks(filters)),
+    getUserDecks: (userId) => dispatch(getUserDecks(userId)),
     getDeck: (deckId) => dispatch(getDeck(deckId)),
     fetchUser: () => dispatch(fetchUser()),
     createGame: (game) => dispatch(createGame(game)),
