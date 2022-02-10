@@ -3,7 +3,7 @@ import * as GameApiUtil from '../util/game_api_util';
 export const RECEIVE_GAME = "RECEIVE_GAME";
 export const RECEIVE_PENDING_GAMES = "RECEIVE_PENDING_GAMES";
 export const RECEIVE_COMPLETE_GAMES = "RECEIVE_COMPLETE_GAMES";
-// export const DELETE_GAME = "DELETE_GAME";
+export const DELETE_GAME = "DELETE_GAME";
 export const RECEIVE_GAME_ERRORS = "RECEIVE_GAME_ERRORS";
 
 const receiveGame = game => ({
@@ -21,10 +21,10 @@ const receiveCompleteGames = games => ({
   games
 });
 
-// const deleteGame = (gameId) => ({
-//   type: DELETE_GAME,
-//   gameId
-// });
+const removeGame = (gameId) => ({
+  type: DELETE_GAME,
+  gameId
+});
 
 const receiveErrors = (errors) => ({
   type: RECEIVE_GAME_ERRORS,
@@ -66,6 +66,14 @@ export const createGame = (game) => dispatch => (
 export const updateGame = (game) => dispatch => (
   GameApiUtil.updateGame(game).then((game) => (
     dispatch(receiveGame(game.data))
+  ), err => (
+    dispatch(receiveErrors(err.response.data))
+  ))
+);
+
+export const deleteGame = (gameId) => dispatch => (
+  GameApiUtil.deleteGame(gameId).then((res) => (
+    dispatch(removeGame(gameId))
   ), err => (
     dispatch(receiveErrors(err.response.data))
   ))

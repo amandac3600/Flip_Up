@@ -243,8 +243,8 @@ router.patch('/friends', passport.authenticate('jwt', { session: false }), (req,
       const requestType = req.body.requestType;
       switch (requestType) {
         case 'approve':
-          user.friendIds.push(friendId);
-          friend.friendIds.push(user.id);
+          if (!user.friendIds.includes(friendId))  {user.friendIds.push(friendId)};
+          if (!friend.friendIds.includes(user.id))  {friend.friendIds.push(user.id);}
           removeFromArray(friendId, user, 'pendingRequests');
           removeFromArray(user.id, friend, 'outgoingRequests');
           break;
@@ -269,6 +269,7 @@ router.patch('/friends', passport.authenticate('jwt', { session: false }), (req,
           break;
         }
       }
+      friend.save();
       user.save()
         .then(async (user) => {
           const decks = await Deck.find({ user: req.user.id });

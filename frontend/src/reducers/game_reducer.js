@@ -1,4 +1,4 @@
-import { RECEIVE_GAME, RECEIVE_PENDING_GAMES, RECEIVE_COMPLETE_GAMES } from '../actions/game_actions';
+import { RECEIVE_GAME, RECEIVE_PENDING_GAMES, RECEIVE_COMPLETE_GAMES, DELETE_GAME } from '../actions/game_actions';
 
 const gameReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -12,6 +12,10 @@ const gameReducer = (state = {}, action) => {
       return nextState;
     case RECEIVE_COMPLETE_GAMES:
       nextState['complete'] = action.games;
+      return nextState;
+    case DELETE_GAME:
+      console.log(nextState)
+      delete nextState[action.gameId]
       return nextState;
     default:
       return state;
