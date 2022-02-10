@@ -5,13 +5,14 @@
 }
 
 .search-index-list {
-  width: 200px;
+  width: 300px;
   font-family: Montserrat, Arial, Helvetica, sans-serif;
 }
 
 .search-index-item {
-  width: 200%;
+  width: 300px;
   border: 1px solid lightgrey;
+  padding: 10px;
   margin: 100px;
   text-decoration: none;
   color: rgb(40, 57, 155);
