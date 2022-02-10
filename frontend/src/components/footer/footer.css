@@ -1,12 +1,18 @@
+.footer {
+  display: flex;
+  align-content: flex-end;
+}
 .footer-links {
   display: flex;
   justify-content: space-around;
+
   font-family: Montserrat, Arial, Helvetica, sans-serif;
   background-color: rgb(40, 57, 155);
   padding-top: 25px;
   height: 45px;
-  width: 98.9vw;
-  margin-top: 30%;
+  width: 100%;
+
+
 }
 
 .footer-github-link, .footer-about-link {

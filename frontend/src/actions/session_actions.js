@@ -5,6 +5,7 @@ export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
 export const RECEIVE_USER_SIGN_IN = "RECEIVE_USER_SIGN_IN";
+export const UPDATE_USER = "UPDATE_USER";
 export const RECEIVE_FRIENDS = "RECEIVE_FRIENDS";
 export const RECEIVE_SEARCH = "RECEIVE_SEARCH";
 
@@ -89,7 +90,7 @@ export const getFriends = () => dispatch => (
     ))
 )
 
-export const editUser = data => dispatch => {
+export const updateUser = data => dispatch => {
   SessionApiUtil.editUser(data)
     .then(user => (
       dispatch(receiveCurrentUser(user))
