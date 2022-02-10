@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Challenges from './challenges';
 import { getDeck } from '../../actions/deck_actions';
 import { fetchUser, getFriends } from '../../actions/session_actions';
-import { getGame, getPendingGames, getCompleteGames} from '../../actions/game_actions';
+import { getGame, getPendingGames, getCompleteGames, deleteGame} from '../../actions/game_actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -21,6 +21,7 @@ const mapDispatchToProps = (dispatch) => {
     getGame: (gameId) => dispatch(getGame(gameId)),
     getPendingGames: () => dispatch(getPendingGames()),
     getCompleteGames: () => dispatch(getCompleteGames()),
+    deleteGame: (gameId) => dispatch(deleteGame(gameId)),
   }
 }
 

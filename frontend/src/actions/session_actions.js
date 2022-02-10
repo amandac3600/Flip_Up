@@ -90,7 +90,7 @@ export const getFriends = () => dispatch => (
     ))
 )
 
-export const updateUser = data => dispatch => {
+export const editUser = data => dispatch => {
   SessionApiUtil.editUser(data)
     .then(user => (
       dispatch(receiveCurrentUser(user.data))
