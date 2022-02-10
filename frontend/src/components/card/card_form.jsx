@@ -27,9 +27,9 @@ class CardForm extends React.Component {
   //return whether or not the user is creating or editing a card
   getCardHeader() {
     if (this.props.type === 'create') {
-      return 'Create Card'
+      return ''
     } else {
-      return 'Edit Card'
+      return 'Edit Card:'
     }
   }
 
@@ -63,7 +63,7 @@ class CardForm extends React.Component {
               placeholder="back"
             />
             <br />
-            <input type="submit" value="Submit" />
+            <input className='card-form-submit' type="submit" value="Create Card" />
           </div>
         </form>
       </div>
