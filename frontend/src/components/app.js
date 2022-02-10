@@ -6,7 +6,7 @@ import About from './about/about'
 import Footer from './footer/footer'
 import LoginFormContainer from './session/login_form_container'
 import SignupFormContainer from './session/signup_form_container'
-import UpdateUserFormContainer from './user_profile/update_user_form_container';
+// import UpdateUserFormContainer from './user_profile/update_user_form_container';
 import UserProfileContainer from './user_profile/user_profile_container';
 import DeckFormContainer from './deck/deck_form_container'
 import CardFormContainer from './card/card_form_container'
