@@ -17,7 +17,7 @@
   border: 1px solid gray;
   width: 300px;
   height: 300px;
-  overflow: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 
@@ -55,7 +55,7 @@
   color: black;
 }
 
-.challenges-request-item:hover, .challenges-request-item:hover .challenges-request-item-title{
+.challenges-request-item:hover, .challenges-request-item:hover .challenges-request-item-title, .challenges-request-item:hover .challenges-request-item-info{
   cursor: pointer;
   background-color: rgb(40, 57, 155);
   color: white;
