@@ -26,7 +26,7 @@ export default class Challenges extends React.Component {
         )
       });;
     // delete if fetched by profile page
-    this.props.fetchUser();
+    this.props.fetchCurrentUser();
     this.props.getFriends();
   }
 

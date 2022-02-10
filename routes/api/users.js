@@ -41,18 +41,19 @@ router.get("/search/:keyword", (req, res) => {
 
 //return data of user logged in
 router.get('/find/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
-  const decks = await Deck.find({user: req.user.id});
+  const decks = await Deck.find({user: req.params.id});
+  const user = await User.findOne({_id: req.params.id});
   return (
     res.json({
-      id: req.user.id,
-      username: req.user.username,
+      id: user.id,
+      username: user.username,
       decks: decks.map(deck => deck.id),
-      points: req.user.points,
-      friendIds: req.user.friendIds,
-      pendingRequests: req.user.pendingRequests,
-      outgoingRequests: req.user.outgoingRequests,
-      wins: req.user.wins,
-      losses: req.user.losses,
+      points: user.points,
+      friendIds: user.friendIds,
+      pendingRequests: user.pendingRequests,
+      outgoingRequests: user.outgoingRequests,
+      wins: user.wins,
+      losses: user.losses,
     })
   )
 })
@@ -182,6 +183,7 @@ router.patch('/', passport.authenticate('jwt', { session: false }), (req, res) =
       if (req.body.points) user.points = req.body.points;
       if (req.body.winId) user.wins.push(req.body.winId);
       if (req.body.lossId) user.losses.push(req.body.lossId);
+      if (req.body.icon) user.icon = req.body.icon;
 
       const { errors, isValid } = validateRegisterInput(user, 'patch');
 

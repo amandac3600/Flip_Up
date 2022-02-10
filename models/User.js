@@ -38,6 +38,11 @@ const UserSchema = new Schema({
       type: [Schema.Types.ObjectId],
       ref: 'User'
     },
+    icon: {
+      type: String,
+      required: true,
+      default: '128044'
+    },
     date: {
       type: Date,
       default: Date.now
