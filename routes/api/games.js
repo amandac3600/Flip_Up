@@ -92,12 +92,22 @@ router.patch('/:id',
     }
 
     if (game.player1Time && game.player2Time) {
+      const player2 = await User.findOne({ _id: game.player2Id });
+
       if ((game.player1Correct > game.player2Correct) || (game.player1Correct === game.player2Correct && game.player1Time < game.player2Time)) {
         game.winner = game.player1Id;
+        player1.wins.push(player2.id);
+        player1.points += 100;
+        player2.losses.push(player1.id);
       } else {
         game.winner = game.player2Id;
+        player2.wins.push(player1.id);
+        player2.points += 100;
+        player1.losses.push(player2.id);
       }
     }
+    player2.save();
+    player1.save();
     game.save().then(game => res.json(game));
   }
 );
