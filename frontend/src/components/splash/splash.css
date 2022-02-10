@@ -15,6 +15,7 @@
   z-index: -1;
   margin-top: -150px;
   filter: opacity(70%) brightness(180%);
+  overflow: hidden;
 }
 
 .splash-container {
@@ -35,6 +36,7 @@
   font-weight: 800;
   margin-top: 110px;
   margin-bottom: 35px;
+  z-index: 5;
 }
 
 .splash-main-description {
