@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import "./footer.css"
 
 class Footer extends React.Component {
+  
   render() {
     return (
-      <div className='footer-links'>
+      <div id='footer-total-container' className='footer-links'>
         <h4 className='footer-github'>
           <a className='footer-github-link' href="https://github.com/amandac3600/Flip_Up" target="_blank" rel="noopener noreferrer">Project Repo</a>
         </h4>
