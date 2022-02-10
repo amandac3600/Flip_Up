@@ -6,7 +6,6 @@ import './user_profile.css';
 import './friends_search.css';
 import { DeckCarousel } from '../deck-carousel/deck_carousel';
 import  FriendsSearchContainer  from './friends_search_container';
-import { loadingSpinner } from '../loading-spinner/loading-spinner';
 
 class UserProfile extends React.Component {
     constructor(props) {
@@ -147,24 +146,26 @@ class UserProfile extends React.Component {
 
                 </div>
                 <div className='profile-content'>
-                    {/* are we adding nav bar here or on app?? */}
                     <div className="profile-left-div">
                         <div className="profile-info-div">
-                            <div className="profile-user-info">
-                                <img src="https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png" alt="user profile pic" />
-                                <p>{this.state.user.username}</p>
-                                <Link to="/profile/update">Edit profile</Link>
-                            </div>
-                            <div className='profile-user-stats'>
-                                {this.renderStats()}
-                                {/* <p>Wins: {this.state.user.wins.length}</p>
-                                <p>Loses: {this.state.user.loses.length}</p>
-                                <p>Points: {this.state.user.points}</p> */}
-                            </div>
+                            <>
+                                <div className="profile-user-info">
+                                    <img src="https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png" alt="user profile pic" />
+                                    <p>{this.state.user.username}</p>
+                                    {/* <Link to="/profile/update">Edit profile</Link> */}
+                                </div>
+                                <div className='profile-user-stats'>
+                                    {this.renderStats()}
+                                </div>
+                            </>
                         </div>
-                        <div className="profile-deck-scroller">
-                            {this.renderDecks()}
-                            
+                        <div className="profile-vert-box">
+                            <div className="profile-deck-scroller">
+                                {this.renderDecks()}
+                            </div>
+                            <div className="profile-battle-box">
+
+                            </div>
                         </div>
                     </div>
                     <div className="profile-right-div">

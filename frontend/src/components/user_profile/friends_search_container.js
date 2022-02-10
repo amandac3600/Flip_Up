@@ -4,6 +4,7 @@ import {fetchUsers, requestFriend} from '../../actions/session_actions'
 
 
 const mapStateToProps = (state) => ({
+  currentUser: state.session.user,
   friends: Object.values(state.entities.users.friends),
   users: Object.values(state.entities.users)
 })

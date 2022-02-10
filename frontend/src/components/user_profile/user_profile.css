@@ -15,10 +15,10 @@
 
 .profile-left-div {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
 
-    width: 60%;
+    width: 70%;
     /* border: 2px solid green;  */
     margin: 5px;
 }   
@@ -29,15 +29,14 @@
     border-radius: 10px;
     box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29);
     margin: 5px;
-    width: 30%;
+    width: 25%;
     background: rgba(247, 242, 242, 0.59);
 }
 
 .profile-info-div {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    /* border: 2px solid yellow; */
+    flex-direction: column;
+    
     margin: 5px;
     margin-bottom: 35px;
 
@@ -46,9 +45,9 @@
     display: flex;
     flex-direction: column;
     align-items: center; 
-    width: 35%;
-    background: rgba(247, 242, 242, 0.59);;
-
+    width: 65%;
+    margin-bottom: 10%;
+    background: rgba(247, 242, 242, 0.59);
     border-radius: 10px;
     box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29);
     /* margin-bottom: 15px;
@@ -59,30 +58,36 @@
     width: 100%;
     height: auto;
 }
-
+/* .profile-vert-box {
+    display: flex;
+    flex-direction: column;
+} */
 .profile-user-stats {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 60%;
+    height: 35%;
+    width: 65%;
     background: rgba(247, 242, 242, 0.59);;
     border-radius: 10px;
-    box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29)
+    box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29);
+    margin-bottom: 15%;
 }
 
 /* DECK */
 
 .profile-deck-scroller {
     display: flex;
-    height: 300px; 
+    height: 45%; 
+    width: 60%;
     align-items: center;
     justify-content: center;
     margin: 5px;
     border-radius: 10px;
     box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29);
     background: rgba(247, 242, 242, 0.59);;
-
+    overflow: hidden;
 
 }
 
@@ -136,8 +141,8 @@
 
 .profile-no-friends {
     display: flex;
-    margin-top: 40%; 
-    align-content: center;
+    justify-content: center;
+    align-items: center;
     line-height: 50px;
     
 }
