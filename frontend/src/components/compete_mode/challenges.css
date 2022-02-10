@@ -1,0 +1,15 @@
+.challenges-requests-div {
+  display: flex;
+}
+
+.challenges-pending, .challenges-complete {
+  border: 1px solid gray;
+  width: 300px;
+  height: 300px;
+  overflow: scroll;
+}
+
+.challenges-request-item {
+  margin: 10px;
+  border: 1px solid blue;
+}

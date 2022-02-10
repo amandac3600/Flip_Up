@@ -3,9 +3,13 @@
     flex-direction: row;
     justify-content: space-evenly;
     width: 100%;
-    margin-top: 20px;
-  
- 
+    padding-top:20px; 
+    padding-bottom: 20px;
+    /* background-image:  url('http://localhost:3000/static/media/ocean.b2bebab11c0bc273f3fc.jpg'); */
+    background-image:  url('https://i.ytimg.com/vi/TQOO9h_U44Q/maxresdefault.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
 }
 
 .profile-left-div {
@@ -25,7 +29,7 @@
     box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29);
     margin: 5px;
     width: 30%;
-
+    background: rgba(247, 242, 242, 0.59);
 }
 
 .profile-info-div {
@@ -42,6 +46,8 @@
     flex-direction: column;
     align-items: center; 
     width: 35%;
+    background: rgba(247, 242, 242, 0.59);;
+
     border-radius: 10px;
     box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29);
     /* margin-bottom: 15px;
@@ -59,6 +65,7 @@
     align-items: center;
     justify-content: center;
     width: 60%;
+    background: rgba(247, 242, 242, 0.59);;
     border-radius: 10px;
     box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29)
 }
@@ -72,10 +79,26 @@
     justify-content: center;
     margin: 5px;
     border-radius: 10px;
-    box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29)
+    box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29);
+    background: rgba(247, 242, 242, 0.59);;
+
 
 }
 
+.profile-create-deck-button {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(255, 255, 255);
+    border: white;
+    border-bottom: 1px solid rgb(55, 60, 75);
+}
+
+.profile-create-deck-button:hover{
+    font-weight: bolder;
+    box-shadow: 5px 5px 15px 2px rgba(34, 44, 133, 0.19);
+
+}
 .profile-no-decks {
    
     font-weight: 800;
@@ -87,17 +110,33 @@
 }
 
 /* FRIENDS */
-.profile-friends-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 
-    margin: 5px;
-}
 .profile-friends-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: flex-end;
+    font-size: 30px;
+    height: 50px;
     border-bottom: 1px solid black;
+    margin: 25px;
+
+}
+
+.profile-friends-list {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* justify-content: center; */
+    align-items: center;
     margin: 5px;
+}
+
+
+.profile-no-friends {
+    display: flex;
+    margin-top: 40%; 
+    align-content: center;
+    line-height: 50px;
+    
 }

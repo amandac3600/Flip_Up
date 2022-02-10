@@ -5,38 +5,39 @@
 }
 
 .search-input {
-  color: rgb(17, 26, 78);
-  background-color: whitesmoke;
-  height: 35px;
+  color: whitesmoke;
+  height: 32px;
   width: 350px;
   border: none;
-  border-radius: 4px 0 0 4px;
+  background-color: rgb(40, 57, 155);
+  border-bottom: 1px solid whitesmoke;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
   padding-left: 10px;
 }
 
-::placeholder {
+.search-input::placeholder {
   font-family: Montserrat, Arial, Helvetica, sans-serif;
-  color: rgb(100, 100, 100);
+  color: rgb(150, 150, 150);
 }
 
 .search-input:focus-visible {
   border: none;
   outline: none;
+  border-bottom: 1px solid whitesmoke;
 }
 
 .search-button {
   border: none;
-  color: rgb(23, 23, 187);
+  color: whitesmoke;
   font-size: 18px;
   font-weight: bold;
   padding-top: 5px;
-  width: 45px;
-  border-radius: 0 4px 4px 0;
-  background-color: rgb(224, 224, 224);
+  background-color: rgb(40, 57, 155);
+  border-bottom: 1px solid whitesmoke;
 }
 
 .search-button:hover {
   cursor: pointer;
-  background-color: rgb(196, 196, 214);
+  color: gray;
 }
 

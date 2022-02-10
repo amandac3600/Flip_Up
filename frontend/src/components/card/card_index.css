@@ -1,0 +1,52 @@
+.card-index-container {
+  margin-top: 30px;
+}
+
+.card-index-container:first-child {
+  margin-top: 100px;
+}
+
+.card-index-card {
+  display: flex;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  width: 80%;
+  padding: 10px 20px;
+  background-color: white;
+}
+
+.card-index-front, .card-index-back {
+  width: 50%;
+  height: 70px;
+  color: rgb(182, 181, 181);
+  font-size: 15px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.card-index-front {
+  border-right: 1px solid lightgray;
+}
+
+.card-index-back {
+  margin-left: 20px;
+}
+
+.card-index-front-body, .card-index-back-body {
+  margin-top: 10px;
+  color: rgb(40, 57, 155);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.card-index-delete {
+  color: rgb(40, 57, 155);
+  height: 18px;
+  padding: 4px 6px;
+  font-size: 20px;
+}
+
+.card-index-delete:hover {
+  cursor: pointer;
+  color: rgb(9, 16, 58);
+}

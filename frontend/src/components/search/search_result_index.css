@@ -1,0 +1,42 @@
+
+.search-index-container {
+  display: flex;
+  justify-content: center;
+}
+
+.search-index-list {
+  width: 200px;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+}
+
+.search-index-item {
+  width: 200%;
+  border: 1px solid lightgrey;
+  margin: 100px;
+  text-decoration: none;
+  color: rgb(40, 57, 155);
+}
+
+.search-item-name {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.search-item-cats {
+  display: flex;
+}
+
+.search-item-cat {
+  background-color: rgb(40, 57, 155);
+  color: whitesmoke;
+  border-radius: 6px;
+  padding: 3px 5px;
+  font-size: 15px;
+}
+
+.search-item-cards {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  padding-top: 10px;
+}
