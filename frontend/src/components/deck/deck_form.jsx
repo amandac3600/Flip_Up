@@ -1,8 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import "react-awesome-button/dist/styles.css";
+
 import "./deck_form.css"
 import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
 import NavBarContainer from './../nav/nav_container'
 
 
@@ -34,8 +35,10 @@ class DeckForm extends React.Component {
   }
 
   componentDidMount() {
-    let that = this
-    setTimeout(function stateSetter(){
+    
+    if (this.props.type !== 'create') {
+      let that = this
+      setTimeout(function stateSetter(){
       if (that.props.deck) {
         that.setCategoryLabelState(that.props.deck.category)
         that.setState({
@@ -47,6 +50,8 @@ class DeckForm extends React.Component {
         setTimeout(stateSetter, 100)
       }
     },100)  
+    }
+    
   }
 
   componentDidUpdate() {
