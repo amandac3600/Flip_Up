@@ -59,7 +59,7 @@
   font-size: 15px;
 }
 
-::placeholder {
+.login-input-email::placeholder, .login-input-password::placeholder  {
   color: rgb(189, 189, 189);
 }
 
@@ -85,7 +85,16 @@
 }
 
 .login-errors {
-  
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+  color: red;
+  text-align: center;
+}
+
+.login-error {
+  margin-top: 5px;
 }
 
 .login-footer {

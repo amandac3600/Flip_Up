@@ -59,7 +59,7 @@
   font-size: 15px;
 }
 
-::placeholder {
+.signup-input::placeholder, .signup-input-password::placeholder {
   color: rgb(189, 189, 189);
 }
 
@@ -82,6 +82,19 @@
   cursor: pointer;
   transition: all 0.2s;
   background-color: rgb(228, 228, 228);
+}
+
+.signup-errors {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+  color: red;
+  text-align: center;
+}
+
+.signup-error {
+  margin-top: 5px;
 }
 
 .signup-footer {
