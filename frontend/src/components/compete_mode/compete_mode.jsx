@@ -2,6 +2,7 @@ import React from 'react';
 import NavContainer from '../nav/nav_container';
 import Timer from './timer';
 import './compete_mode.css'
+import Sparkles from '../study/sparkles';
 
 export default class CompeteMode extends React.Component {
   constructor(props) {
@@ -174,10 +175,11 @@ export default class CompeteMode extends React.Component {
             </tbody>
           </table>
 
-          <div className='compete-winner-div'>{winner ? `${winner} won this round!` : ''}</div>
+          <Sparkles><div className='compete-winner-div'>{winner ? `${winner} won this round!` : ''}</div></Sparkles>
         </div>
         
       </div>
+      
     )
   }
 
@@ -188,7 +190,7 @@ export default class CompeteMode extends React.Component {
     console.log('render', this.state)
 
     let display;
-    if (!this.state.begin) display = this.renderBegin();
+    // if (!this.state.begin) display = this.renderBegin();
     if (this.state.playerTime || this.state.game[`${this.state.player}Time`]) display =  this.renderResults();
 
     if (this.state.cards && this.state.cards.length < 4) 
