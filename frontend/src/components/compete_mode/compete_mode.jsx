@@ -29,7 +29,7 @@ export default class CompeteMode extends React.Component {
       .then((res) => {
         const game = res.game;
         this.setState({game: game});
-        Promise.all([this.props.fetchUser(),this.props.getFriends()])
+        Promise.all([this.props.fetchCurrentUser(),this.props.getFriends()])
           .then( () => {
             this.props.getCards(game.deck).then((res) => {
               if (game.player1Id === this.props.users.current.id) {
