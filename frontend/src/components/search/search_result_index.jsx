@@ -47,14 +47,24 @@ export default class SearchResultIndex extends React.Component {
     return (
       <div>
         <NavContainer />
-
         <div className='search-index-container'>
-          <div className='search-index-list'>
-            {this.renderDecks()}
+          <div>
+            <h2 className='search-index-pop-cat'>Popular Categories:</h2>
+            <div className='search-index-pop-cat-list'>
+              <Link className='search-index-pop-cat-item' to="/search/science">Science</Link>
+              <Link className='search-index-pop-cat-item' to="/search/languages">Languages</Link>
+              <Link className='search-index-pop-cat-item' to="/search/math">Math</Link>
+            </div>
           </div>
-        </div>
+          <div className='search-index-container'>
+            <div className='search-index-list'>
+              {this.renderDecks()}
+            </div>
+          </div>
 
-        <div>{this.state.errors}</div>
+          <div>{this.state.errors}</div>
+        </div>
+        
       </div>
     );
   }

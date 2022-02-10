@@ -1,3 +1,7 @@
+.login-page {
+  height: 100vh;
+}
+
 .login-form-container {
   display: flex;
   justify-content: center;

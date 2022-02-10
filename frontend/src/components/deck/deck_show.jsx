@@ -15,6 +15,10 @@ class DeckShow extends React.Component {
       addCard: false }
   }
 
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
+
   getCategories() {
     return this.props.deckInfo.deck.category.map((category, idx)=>{
       return <Link to={`/search/${category}`} key={idx} className='deck-show-cat'>{category}</Link>

@@ -1,7 +1,6 @@
 .splash-page {
   font-family: Montserrat, Arial, Helvetica, sans-serif;
-  height: 95vw;
-  z-index: 5;
+  height: 100vh;
 }
 
 .splash-nav {
@@ -202,7 +201,7 @@
   height: 45%;
   max-height: 500px;
   padding-top: 4%;
-  margin-top: 2%;
+  margin-top: 0;
   background-color: aliceblue;
 }
 
