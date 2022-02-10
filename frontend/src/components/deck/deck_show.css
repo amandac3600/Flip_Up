@@ -25,6 +25,12 @@
   padding: 3px 5px;
   color: whitesmoke;
   margin-right: 8px;
+  text-decoration: none;
+}
+
+.deck-show-cat:hover {
+  transition: all 0.2s;
+  background-color: rgb(21, 32, 94);
 }
 
 .deck-show-cards {

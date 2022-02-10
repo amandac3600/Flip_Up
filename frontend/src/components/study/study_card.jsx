@@ -102,7 +102,7 @@ class StudyCard extends React.Component {
     if (answer === 'correct') {
         let user = Object.assign({}, this.props.currentUser);
         user.points += 2;
-        this.props.editUser(user)
+        this.props.updateUser(user)
         let card
         if (cardNum === 1) { 
             this.currentCard = 2;
@@ -135,7 +135,7 @@ class StudyCard extends React.Component {
         let user = Object.assign({}, this.props.currentUser);
         user.points += 2;
         console.log(user)
-        this.props.editUser(user)
+        this.props.updateUser(user)
         let card
         if (cardNum === 1) { 
             this.currentCard = 2;
@@ -539,7 +539,9 @@ class StudyCard extends React.Component {
     
     : this.timeToReview ? <div>
                 <div id='study-card-sparkles-container1' >
-                <Sparkles><div className='study-card-sparkles' ></div></Sparkles>
+                <Sparkles>
+                    <div className='study-card-sparkles' ></div>
+                </Sparkles>
                 </div>
                 <div id='study-card-sparkles-container2' >
                 <Sparkles><div className='study-card-sparkles' ></div></Sparkles>
@@ -566,9 +568,10 @@ class StudyCard extends React.Component {
                 {this.spinningCard5()}
                 {this.spinningCard6()}
                 {this.spinningCard7()}
+                <Sparkles>
                 <div id='study-card-front' onClick={()=>this.showBack(1)} >
                     <div>{this.props.cards[this.cardId].front}</div>
-                </div>
+                </div></Sparkles>
                 <div id='study-card-back' >
                     <div>{this.props.cards[this.cardId].back}</div>
                     <div></div>
