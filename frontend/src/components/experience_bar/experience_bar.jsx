@@ -5,31 +5,15 @@ import "./experienceBar.css";
 class ExperienceBar extends React.Component {
   constructor(props) {
     super(props);
-    this.props.fetchUser(this.props.currentUser.id).then((user)=>{
-        console.log(user)
-    })
-    this.exp = 24;
-    this.cap = 100;
-    this.level = 1;
-    if (this.exp < 300 && this.exp > 100) {
-      this.level = 2;
-      this.cap = 300;
-    } else if (this.exp < 600 && this.exp > 300) {
-      this.level = 3;
-      this.cap = 600;
-    } else if (this.exp < 1100 && this.exp > 600) {
-      this.level = 4
-      this.cap = 1100;
-    }
-    this.calculated = false;
-    
+    this.props.fetchUser(this.props.currentUser.id)
   }
 
-  componentDidMount() {
+  componentDidUpdate() {
     this.calculateExpBar()
   }
 
   calculateExpBar() {
+    if (!this.props.users.current) return
     this.calculated = true;
     let oldWidth = document.getElementById('exp-bar').style.width
     oldWidth = oldWidth.slice(0, oldWidth.length - 1)
@@ -54,6 +38,21 @@ class ExperienceBar extends React.Component {
   }
 
   render() { 
+    if (!this.props.users.current) return <div></div>
+    this.exp = this.props.users.current.points
+    this.cap = 100;
+    this.level = 1;
+    if (this.exp < 300 && this.exp > 100) {
+    this.level = 2;
+    this.cap = 300;
+    } else if (this.exp < 600 && this.exp > 300) {
+    this.level = 3;
+    this.cap = 600;
+    } else if (this.exp < 1100 && this.exp > 600) {
+    this.level = 4
+    this.cap = 1100;
+    }
+    
     return (
       <div>
           <div className='experience-bar-level' >

@@ -16,7 +16,7 @@ import CompeteModeContainer from './compete_mode/compete_mode_container';
 import "./reset.css"
 
 const App = () => (
-  <div>
+  <div className='app-container' >
     <Switch>
       <ProtectedRoute exact path="/profile" component={UserProfileContainer} />
       <Route exact path="/" component={Splash} />

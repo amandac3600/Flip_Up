@@ -78,7 +78,7 @@ export const getFriends = () => dispatch => (
 export const editUser = data => dispatch => {
   SessionApiUtil.editUser(data)
     .then(user => (
-      dispatch(receiveCurrentUser(user))
+      dispatch(receiveCurrentUser(user.data))
     ), err=> (
       dispatch(receiveErrors(err.response.data))
     ))

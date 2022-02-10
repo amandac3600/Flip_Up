@@ -2,11 +2,71 @@
 .study-page-container {
     display: flex;
     justify-content: center;
+    height: 75vh;
 }
 
-.study-card-full-container {
-    align-self: center;
+.study-card-sparkles {
+    position: relative;
+    width: 60px;
+    height: 130px;
 }
+
+#study-card-sparkles-container1 {
+    position: absolute;
+    transform: rotate(45deg);
+    margin-top: -80px;
+    margin-left: 300px;
+    display: none;
+}
+
+#study-card-sparkles-container2 {
+    position: absolute;
+    transform: rotate(45deg);
+    margin-top: -80px;
+    margin-left: 300px;
+    display: none;
+}
+
+#study-card-sparkles-container3 {
+    position: absolute;
+    transform: rotate(45deg);
+    margin-top: -80px;
+    margin-left: 300px;
+    display: none;
+}
+
+#study-card-sparkles-container4 {
+    position: absolute;
+    transform: rotate(45deg);
+    margin-top: -80px;
+    margin-left: 300px;
+    display: none;
+}
+
+#study-card-sparkles-container5 {
+    position: absolute;
+    transform: rotate(45deg);
+    margin-top: -80px;
+    margin-left: 300px;
+    display: none;
+}
+
+#study-card-sparkles-container6 {
+    position: absolute;
+    transform: rotate(45deg);
+    margin-top: -80px;
+    margin-left: 300px;
+    display: none;
+}
+
+#study-card-sparkles-container7 {
+    position: absolute;
+    transform: rotate(45deg);
+    margin-top: -80px;
+    margin-left: 300px;
+    display: none;
+}
+
 
 #study-card-front {
     border-radius: 4px;
@@ -18,6 +78,7 @@
     font-size: 1.3rem;
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
+    text-align: center;
     box-shadow: 3px 5px 0px 0px rgb(47, 163, 240), 6px 10px 0px 0px rgb(123, 191, 247), 9px 15px 0px 0px rgb(167, 217, 253), 5px 5px 15px 5px rgba(0,0,0,0);
 }
 
@@ -34,6 +95,7 @@
     display: none;
     justify-content: center;
     font-size: 1.3rem;
+    text-align: center;
     cursor: pointer;
     font-family: Arial, Helvetica, sans-serif;
     box-shadow: 3px 3px 0px 0px rgb(57, 171, 248), 7px 7px 0px 0px rgb(123, 191, 247), 11px 11px 0px 0px rgb(167, 217, 253), 5px 5px 15px 5px rgba(0,0,0,0);
@@ -90,8 +152,43 @@
 
 }
 
+#study-card-back-spin1 {
+    position: absolute;
+    border-radius: 4px;
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    justify-content: center;
+    display: none;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+}
+
+#study-card-back-spin1 > div:nth-child(1) {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+#study-card-back-spin1 > div:nth-child(2) {
+    border-top: 1px solid black;
+    width: 90%;
+    margin-top: 15px;
+    padding-top: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#study-card-back-spin1 > div:nth-child(3) {
+    font-size: 1rem;
+}
+
+#study-card-back-spin1 > div {
+    align-self: center;
+}
+
 #study-card-back > div:nth-child(1) {
     font-size: 1.3rem;
+    text-align: center;
 }
 
 #study-card-back > div:nth-child(2) {
@@ -153,6 +250,7 @@
 
 #study-card-back2 > div:nth-child(1) {
     font-size: 1.3rem;
+    text-align: center;
 }
 
 #study-card-back2 > div:nth-child(2) {
@@ -198,6 +296,228 @@
 .study-card-back-buttons2 > div > div {
     align-self: center;
 }
+
+
+
+
+
+
+
+
+
+
+#study-card-back-spin2 {
+    position: absolute;
+    border-radius: 4px;
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    justify-content: center;
+    display: none;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+}
+
+#study-card-back-spin2 > div:nth-child(1) {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+#study-card-back-spin2 > div:nth-child(2) {
+    border-top: 1px solid black;
+    width: 90%;
+    margin-top: 15px;
+    padding-top: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#study-card-back-spin2 > div:nth-child(3) {
+    font-size: 1rem;
+}
+
+#study-card-back-spin2 > div {
+    align-self: center;
+}
+
+#study-card-back-spin3 {
+    position: absolute;
+    border-radius: 4px;
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    justify-content: center;
+    display: none;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+}
+
+#study-card-back-spin3 > div:nth-child(1) {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+#study-card-back-spin3 > div:nth-child(2) {
+    border-top: 1px solid black;
+    width: 90%;
+    margin-top: 15px;
+    padding-top: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#study-card-back-spin3 > div:nth-child(3) {
+    font-size: 1rem;
+}
+
+#study-card-back-spin3 > div {
+    align-self: center;
+}
+
+#study-card-back-spin4 {
+    position: absolute;
+    border-radius: 4px;
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    justify-content: center;
+    display: none;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+}
+
+#study-card-back-spin4 > div:nth-child(1) {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+#study-card-back-spin4 > div:nth-child(2) {
+    border-top: 1px solid black;
+    width: 90%;
+    margin-top: 15px;
+    padding-top: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#study-card-back-spin4 > div:nth-child(3) {
+    font-size: 1rem;
+}
+
+#study-card-back-spin4 > div {
+    align-self: center;
+}
+
+#study-card-back-spin5 {
+    position: absolute;
+    border-radius: 4px;
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    justify-content: center;
+    display: none;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+}
+
+#study-card-back-spin5 > div:nth-child(1) {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+#study-card-back-spin5 > div:nth-child(2) {
+    border-top: 1px solid black;
+    width: 90%;
+    margin-top: 15px;
+    padding-top: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#study-card-back-spin5 > div:nth-child(3) {
+    font-size: 1rem;
+}
+
+#study-card-back-spin5 > div {
+    align-self: center;
+}
+
+#study-card-back-spin6 {
+    position: absolute;
+    border-radius: 4px;
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    justify-content: center;
+    display: none;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+}
+
+#study-card-back-spin6 > div:nth-child(1) {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+#study-card-back-spin6 > div:nth-child(2) {
+    border-top: 1px solid black;
+    width: 90%;
+    margin-top: 15px;
+    padding-top: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#study-card-back-spin6 > div:nth-child(3) {
+    font-size: 1rem;
+}
+
+#study-card-back-spin6 > div {
+    align-self: center;
+}
+
+#study-card-back-spin7 {
+    position: absolute;
+    border-radius: 4px;
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    justify-content: center;
+    display: none;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+}
+
+#study-card-back-spin7 > div:nth-child(1) {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+#study-card-back-spin7 > div:nth-child(2) {
+    border-top: 1px solid black;
+    width: 90%;
+    margin-top: 15px;
+    padding-top: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#study-card-back-spin7 > div:nth-child(3) {
+    font-size: 1rem;
+}
+
+#study-card-back-spin7 > div {
+    align-self: center;
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -299,3 +619,31 @@
   .red > span {
     background-image: linear-gradient(rgb(161, 214, 250), rgb(57, 171, 248));
   }
+
+  @keyframes spinnow {
+    100% {
+        transform: rotate(-360deg);
+        -webkit-transform: rotate(-360deg);
+    }
+}
+
+@keyframes spinnowReverse {
+    100% {
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+
+
+
+.study-other-decks-container {
+    position: absolute;
+    width: 400px;
+    height: 500px;
+    background-color: #28399B;
+    top: 0px;
+    right: 0px;
+    margin-top: 200px;
+    margin-right: 100px;
+}

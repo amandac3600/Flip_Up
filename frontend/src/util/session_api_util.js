@@ -30,7 +30,7 @@ export const getFriends = () => {
 }
 
 export const editUser = (userData) => {
-    return axios.patch('/api/users/update', userData)
+    return axios.patch('/api/users/', userData)
 }
 
 // export const updateProfilePic = (userData)=>{
