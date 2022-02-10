@@ -31,6 +31,7 @@
     "mongoose": "^6.2.0",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",
+    "react-awesome-button": "^6.5.1",
     "react-icons": "^4.3.1",
     "react-responsive-carousel": "^3.2.22",
     "styled-components": "^5.3.3",
