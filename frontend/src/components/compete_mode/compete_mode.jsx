@@ -19,6 +19,9 @@ export default class CompeteMode extends React.Component {
   }
 
   componentDidMount() {
+    // delete after testing
+    this.props.getPendingGames();
+    // keep
     this.props.getGame(this.props.match.params.gameId)
       .then((res) => {
         const game = res.game;
@@ -91,7 +94,7 @@ export default class CompeteMode extends React.Component {
   }
 
   handleBeginGame()  {
-    this.setState({ startTime: Date.now(), begin: true }, () => console.log('start time', this.state));
+    this.setState({ startTime: Date.now(), begin: true });
   }
 
   renderBegin() {
@@ -168,6 +171,13 @@ export default class CompeteMode extends React.Component {
     console.log('render', this.state)
     if (this.state.playerTime || this.state.game[`${this.state.player}Time`]) return this.renderResults();
     if (!this.state.begin) return this.renderBegin();
+
+    if (this.state.cards && this.state.cards.length < 4) return (
+      <div>
+        <NavContainer />
+        Decks must have minimum of 4 cards to use in battle mode.
+      </div>
+    )
     return (
       <div>
         <NavContainer />
