@@ -19,6 +19,8 @@ router.get("/search", (req, res) => {
           id: user.id, 
           username: user.username,
           email: user.email,
+          icon: user.icon
+
         })))
       })
       .catch(err => res.status(404).json({nousers: 'No users found'}))
@@ -34,6 +36,7 @@ router.get("/search/:keyword", (req, res) => {
           id: user.id, 
           username: user.username,
           email: user.email,
+          icon: user.icon
         })))
       })
       .catch(err => res.status(404).json({nousers: 'No users found'}))
@@ -54,6 +57,7 @@ router.get('/find/:id', passport.authenticate('jwt', {session: false}), async (r
       outgoingRequests: user.outgoingRequests,
       wins: user.wins,
       losses: user.losses,
+      icon: user.icon
     })
   )
 })
@@ -72,6 +76,7 @@ router.get('/current', passport.authenticate('jwt', {session: false}), async (re
       outgoingRequests: req.user.outgoingRequests,
       wins: req.user.wins,
       losses: req.user.losses,
+      icon: req.user.icon
     })
   )
 })
@@ -146,6 +151,7 @@ router.post('/register', (req, res) => {
                 outgoingRequests: user.outgoingRequests,
                 wins: user.wins,
                 losses: user.losses,
+                icon: user.icon
               };
             jwt.sign(
                 payload,
@@ -206,6 +212,7 @@ router.patch('/', passport.authenticate('jwt', { session: false }), (req, res) =
                 outgoingRequests: user.outgoingRequests,
                 wins: user.wins,
                 losses: user.losses,
+                icon: user.icon,
               };
               return res.json(payload)
             })
@@ -285,6 +292,7 @@ router.patch('/friends', passport.authenticate('jwt', { session: false }), (req,
             outgoingRequests: user.outgoingRequests,
             wins: user.wins,
             losses: user.losses,
+            icon: user.icon
           };
           return res.json(payload)
       })

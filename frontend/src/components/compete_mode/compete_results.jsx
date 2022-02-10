@@ -3,16 +3,17 @@ import Sparkles from '../study/sparkles';
 import { Link } from 'react-router-dom';
 
 const getDecks = (decks) => {
-  return Object.values(decks).slice(10).map((deck) => {
-      return <div key={deck._id} className='deck-form-page-deck-list-item grow3' onClick={() => { }} >
+  const decksSlice = Object.values(decks).filter(deck => deck.cards.length >  2).slice(0, 10)
+  return decksSlice.map((deck) => {
+      return <div key={deck._id} className='deck-form-page-deck-list-item grow3'>
         <Link to={`/decks/${deck._id}`}>
           <div >
             <div>{deck.name}</div>
-            {/* <div>{this.getNumberOfCards(key)}</div> */}
+            <div>{deck.cards.length} cards</div>
           </div>
 
           <div>
-            {/* {this.getDeckCategories(key)} */}
+            {deck.category}
           </div>
         </Link>
       </div>
