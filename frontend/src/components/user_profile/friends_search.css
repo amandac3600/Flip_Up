@@ -4,7 +4,7 @@
 
 .modal {
     display: block;
-    z-index: 1;
+    z-index: 10;
     position: fixed;
     left: 50%;
     top: 50%;
@@ -13,7 +13,7 @@
     border-radius: 10px;
     box-shadow: 5px 10px 15px 2px rgba(0,0,0,0.59);
     width: 400px;
-    min-height: 500px;
+    min-height: 400px;
     padding: 10px; 
 
 }
@@ -35,3 +35,14 @@
     border-radius: 100%;
 }
 
+.friend-search-result-li {
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    align-content: space-between; 
+}
+.friend-search-thumbnail {
+    
+    width: 40px; 
+    height: 40px; 
+}

@@ -5,10 +5,11 @@
     width: 100%;
     padding-top:20px; 
     padding-bottom: 20px;
+    background-color: aliceblue;
     /* background-image:  url('http://localhost:3000/static/media/ocean.b2bebab11c0bc273f3fc.jpg'); */
-    background-image:  url('https://i.ytimg.com/vi/TQOO9h_U44Q/maxresdefault.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
+    /* background-image:  url('https://i.ytimg.com/vi/TQOO9h_U44Q/maxresdefault.jpg'); */
+    /* background-repeat: no-repeat;
+    background-size: cover; */
 
 }
 
@@ -139,4 +140,25 @@
     align-content: center;
     line-height: 50px;
     
+}
+
+.loader {
+    display: block;
+    z-index: 10;
+    position: fixed;
+    margin-left: 50%;
+    margin-top: 50%;
+    /* transform: translate(-50%, -50%); */
+    border: 16px solid #163253; 
+    border-top: 16px solid #0c4870; 
+    border-radius: 50%;
+    width: 600px;
+    height: 600px;
+    animation: spin 2s linear infinite;
+  
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

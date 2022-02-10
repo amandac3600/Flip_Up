@@ -6,14 +6,14 @@ import './user_profile.css';
 import './friends_search.css';
 import { DeckCarousel } from '../deck-carousel/deck_carousel';
 import  FriendsSearchContainer  from './friends_search_container';
-
+import { loadingSpinner } from '../loading-spinner/loading-spinner';
 
 class UserProfile extends React.Component {
     constructor(props) {
         super(props)
-
+        console.log('in constructor', this.props)
         this.state = {
-            // id: props.currentUser.id,
+            user: props.currentUser,
             decks: props.decks,
             showFriendModal: false
         }   
@@ -25,21 +25,7 @@ class UserProfile extends React.Component {
 
 
     componentDidMount() {
-        this.props.fetchUser(this.state.id)
-            .then(action => {
-                this.setState({
-                    user: {
-                        username: action.currentUser.username, 
-                        wins: action.currentUser.wins, 
-                        loses: action.currentUser.loses,
-                        points: action.currentUser.point, 
-                        decks: action.currentUser.decks,
-                       
-                    }
-
-                    
-            })}) 
-        
+ 
         this.props.getDecks() 
             .then(action => {
                 this.setState({
@@ -62,6 +48,7 @@ class UserProfile extends React.Component {
     }
 
     getUserDecks() {
+        console.log('in get user decks', this.state.user.decks)
         return this.state.decks.filter(deck => {
             return (
                 this.state.user.decks.includes(deck._id) 
@@ -127,24 +114,27 @@ class UserProfile extends React.Component {
     }
 
     renderStats() {
-        let wins 
-        let losses
-        let points
+        // let wins 
+        // let losses
+        // let points
 
         // if (this.state.user.wins.length === 0){
         //     wins = 
         // }
-        <div className='profile-user-stats'>
+        return (
+        <div >
             <p>Wins: {this.state.user.wins.length}</p>
             <p>Loses: {this.state.user.wins.length}</p>
             <p>Points: {this.state.user.points}</p>
         </div>
+        )
+
     }
 
     render() {
 
         if(!this.state.user || !this.state.decks) return (
-            <p> loading</p>
+            <div className='loader'></div>
         )
         const user = this.state.user.username
         
@@ -166,6 +156,7 @@ class UserProfile extends React.Component {
                                 <Link to="/profile/update">Edit profile</Link>
                             </div>
                             <div className='profile-user-stats'>
+                                {this.renderStats()}
                                 {/* <p>Wins: {this.state.user.wins.length}</p>
                                 <p>Loses: {this.state.user.loses.length}</p>
                                 <p>Points: {this.state.user.points}</p> */}

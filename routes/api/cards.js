@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 
 const Card = require('../../models/Card');
+const Deck = require('../../models/Deck');
 const validateCardInput = require('../../validation/card')
 
 // return all cards. testing only
@@ -43,11 +44,15 @@ router.get('/:id', (req, res) => {
 router.post('/deck/:deck_id',
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
+    const deck = await Deck.findOne({ _id: req.params.deck_id })
+    const user = await User.findOne({ _id: deck.user })
+    if (user.id !== req.user.id) return res.status(401).json({ unauthorized: 'You do not own this deck' })
+
     const { errors, isValid } = validateCardInput(req.body);
 
     if (!isValid) return res.status(400).json(errors);
     const takenCard = await Card.findOne({ deck: req.params.deck_id, front: req.body.front });
-    if (takenCard) return res.status(404).json({duplicate: 'Card with this front already exists'});
+    if (takenCard) return res.status(400).json({duplicate: 'Card with this front already exists'});
     const newCard = new Card({
       deck: req.params.deck_id,
       front: req.body.front,
@@ -62,9 +67,15 @@ router.post('/deck/:deck_id',
 router.patch('/:id',
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
+    
+    const card = await Card.findOne({_id: req.params.id});
+    const deck = await Deck.findOne({ _id: card.deck })
+    const user = await User.findOne({ _id: deck.user })
+    if (user.id !== req.user.id) return res.status(401).json({ unauthorized: 'You do not own this card' })
+
     const takenCard = await Card.findOne({ deck: req.params.deck_id, front: req.body.front });
     if (takenCard) return res.status(404).json({ duplicate: 'Card with this front already exists' });
-    const card = await Card.findOne({_id: req.params.id});
+    
     if (req.body.front) card.front = req.body.front;
     if (req.body.back) card.back = req.body.back;
     card.reviewed = Date.now();
@@ -82,7 +93,11 @@ router.patch('/:id',
 // delete specific card
 router.delete('/:id',
   passport.authenticate('jwt', { session: false }),
-  (req, res) => {
+  async (req, res) => {
+    const card = await Card.findOne({ _id: req.params.id});
+    const deck = await Deck.findOne({ _id: card.deck})
+    const user = await User.findOne({ _id: deck.user})
+    if (user.id !== req.user.id) return res.status(401).json({ unauthorized: 'You do not own this card'})
     Card.deleteOne({ _id: req.params.id })
       .then(() => res.json({ deleted: "Card was deleted" }))
       .catch(err => res.status(404).json({ nocardfound: 'No card found with that ID' }))

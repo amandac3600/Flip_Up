@@ -13,6 +13,7 @@ class DeckShow extends React.Component {
     this.props.getDeck(this.props.ownProps.match.params.id)
     this.state = { 
       addCard: false }
+    this.handleDeleteDeck = this.handleDeleteDeck.bind(this);
   }
 
   componentDidMount() {
@@ -32,6 +33,12 @@ class DeckShow extends React.Component {
     null
   }
 
+  handleDeleteDeck() {
+    this.props.deleteDeck(this.props.match.params.id).then((res) => {
+      this.props.history.push('/')
+    })
+  }
+
   render() {
     if (!this.props.deckInfo || !this.props.deckInfo.deck) return null;
     return (
@@ -49,6 +56,7 @@ class DeckShow extends React.Component {
           <div className='deck-show-cards'>{this.props.deckInfo.cards.length} cards</div>
           {this.getCardForm()}
           <br/>
+          <div onClick={this.handleDeleteDeck}>Delete Deck</div>
           <br/>
           <div>
             {this.props.deckInfo.cards.length >= 4 ? <CompeteFormContainer deckId={this.props.match.params.id} history={this.props.history}/> : ''}
