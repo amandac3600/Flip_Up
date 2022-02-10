@@ -74,7 +74,7 @@ export const createDeck = (deck) => dispatch => (
 
 export const deleteDeck = (deckId) => dispatch => (
     DeckApiUtil.deleteDeck(deckId)
-    .then((deckId) => (
+    .then(() => (
         dispatch(removeDeck(deckId))
     ))
 );
