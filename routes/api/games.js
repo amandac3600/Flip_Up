@@ -121,7 +121,10 @@ router.delete('/:id',
     const player2 = await User.findOne({ _id: game.player2Id});
 
     if (player1.id!== req.user.id && player2.id !== req.user.id ) {
-      return res.status(404).json({ unautorized: 'User is not part of this challenge' })
+      return res.status(404).json({ unauthorized: 'User is not part of this challenge' })
+    }
+    if (game.winner ) {
+      return res.status(403).json({ forbidden: 'Cannot delete completed challenges' })
     }
     Game.deleteOne({ _id: req.params.id })
       .then(() => res.json({ deleted: "Game was deleted" }))
