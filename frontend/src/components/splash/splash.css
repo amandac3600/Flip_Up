@@ -1,5 +1,6 @@
 .splash-page {
   font-family: Montserrat, Arial, Helvetica, sans-serif;
+  height: 95vw;
 }
 
 .splash-bg {
@@ -191,9 +192,10 @@
 }
 
 .splash-block-2 {
-  height: 48%;
+  height: 45%;
   max-height: 500px;
   padding-top: 4%;
+  margin-top: 2%;
   background-color: aliceblue;
 }
 

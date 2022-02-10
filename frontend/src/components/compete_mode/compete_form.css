@@ -36,6 +36,11 @@ input[type='radio']:checked .compete-form-friend-item{
   background-color: rgb(40, 57, 155);
   color: whitesmoke;
   font-family: Montserrat, Arial, Helvetica, sans-serif;
-  padding: 3px 5px;
-  font-size: 14px;
+  padding: 4px 6px;
+  font-size: 15px;
+}
+
+.compete-form-button:hover {
+  transition: all 0.2s;
+  background-color: rgb(21, 32, 94);
 }

@@ -4,6 +4,7 @@ import CardFormContainer from './../card/card_form_container';
 import CardIndexContainer from './../card/card_index_container';
 import NavContainer from '../nav/nav_container';
 import CompeteFormContainer from '../compete_mode/compete_form_container';
+import { Link } from 'react-router-dom';
 import "./deck_show.css"
 
 class DeckShow extends React.Component {
@@ -16,7 +17,7 @@ class DeckShow extends React.Component {
 
   getCategories() {
     return this.props.deckInfo.deck.category.map((category, idx)=>{
-      return <span key={idx} className='deck-show-cat'>{category}</span>
+      return <Link to={`/search/${category}`} key={idx} className='deck-show-cat'>{category}</Link>
     })
   }
 
