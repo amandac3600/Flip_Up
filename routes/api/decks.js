@@ -69,7 +69,7 @@ router.get('/:id', passport.authenticate('jwt', { session: false }), async (req,
       cards: cards.map(card => card.id)
     });
   } else {
-    return res.status(404).json({ nopermission: 'You do not have permission to view this deck' })
+    return res.status(401).json({ unauthorized: 'You do not have permission to view this deck' })
   }
 });
 
@@ -119,7 +119,7 @@ router.patch('/:id',
     if (deck) {
       const deckUser = await User.findOne({_id: deck.user})
       if (deckUser.id !== req.user.id) {
-        return res.status(404).json({ invaliduser: 'You do not own this deck' });
+        return res.status(401).json({ unauthorized: 'You do not own this deck' });
       };
       if (req.body.name) {
         const checkDeckName = await Deck.findOne({ name: req.body.name })
@@ -156,7 +156,7 @@ router.delete('/:id',
         .then(() => res.json({ deleted: "Deck was deleted" }))
         .catch(err => res.status(404).json({ unabletodelete: 'Unable to delete' }))
       } else {
-        return res.status(404).json({ invaliduser: 'You do not own this deck' });
+        return res.status(401).json({ unauthorized: 'You do not own this deck' });
       }
       
     } else {
