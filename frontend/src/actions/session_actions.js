@@ -93,7 +93,7 @@ export const getFriends = () => dispatch => (
 export const updateUser = data => dispatch => {
   SessionApiUtil.editUser(data)
     .then(user => (
-      dispatch(receiveCurrentUser(user))
+      dispatch(receiveCurrentUser(user.data))
     ), err=> (
       dispatch(receiveErrors(err.response.data))
     ))

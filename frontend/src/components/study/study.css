@@ -1,0 +1,649 @@
+
+.study-page-container {
+    display: flex;
+    justify-content: center;
+    height: 75vh;
+}
+
+.study-card-sparkles {
+    position: relative;
+    width: 60px;
+    height: 130px;
+}
+
+#study-card-sparkles-container1 {
+    position: absolute;
+    transform: rotate(45deg);
+    margin-top: -80px;
+    margin-left: 300px;
+    display: none;
+}
+
+#study-card-sparkles-container2 {
+    position: absolute;
+    transform: rotate(45deg);
+    margin-top: -80px;
+    margin-left: 300px;
+    display: none;
+}
+
+#study-card-sparkles-container3 {
+    position: absolute;
+    transform: rotate(45deg);
+    margin-top: -80px;
+    margin-left: 300px;
+    display: none;
+}
+
+#study-card-sparkles-container4 {
+    position: absolute;
+    transform: rotate(45deg);
+    margin-top: -80px;
+    margin-left: 300px;
+    display: none;
+}
+
+#study-card-sparkles-container5 {
+    position: absolute;
+    transform: rotate(45deg);
+    margin-top: -80px;
+    margin-left: 300px;
+    display: none;
+}
+
+#study-card-sparkles-container6 {
+    position: absolute;
+    transform: rotate(45deg);
+    margin-top: -80px;
+    margin-left: 300px;
+    display: none;
+}
+
+#study-card-sparkles-container7 {
+    position: absolute;
+    transform: rotate(45deg);
+    margin-top: -80px;
+    margin-left: 300px;
+    display: none;
+}
+
+
+#study-card-front {
+    border-radius: 4px;
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 3px 5px 0px 0px rgb(47, 163, 240), 6px 10px 0px 0px rgb(123, 191, 247), 9px 15px 0px 0px rgb(167, 217, 253), 5px 5px 15px 5px rgba(0,0,0,0);
+}
+
+
+#study-card-front > div {
+    align-self: center;
+}
+
+#study-card-front2 {
+    border-radius: 4px;
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    display: none;
+    justify-content: center;
+    font-size: 1.3rem;
+    text-align: center;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 3px 3px 0px 0px rgb(57, 171, 248), 7px 7px 0px 0px rgb(123, 191, 247), 11px 11px 0px 0px rgb(167, 217, 253), 5px 5px 15px 5px rgba(0,0,0,0);
+
+}
+
+#study-card-front2 > div {
+    align-self: center;
+}
+
+#study-card-front-no {
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 3px 3px 0px 0px rgb(57, 171, 248), 7px 7px 0px 0px rgb(123, 191, 247), 11px 11px 0px 0px rgb(167, 217, 253), 5px 5px 15px 5px rgba(0,0,0,0);
+
+}
+
+#study-card-front-no > div {
+    align-self: center;
+}
+
+#study-card-front-no > div:last-child {
+    font-size: .9rem;
+    margin-top: 5px;
+    padding: 5px;
+    cursor: pointer;
+    background-color: rgb(65, 147, 255);
+    display: flex;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+#study-card-front-no > div:last-child > div {
+    align-self: center;
+}
+
+#study-card-back {
+    border-radius: 4px;
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    justify-content: center;
+    display: none;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 3px 3px 0px 0px rgb(57, 171, 248), 7px 7px 0px 0px rgb(123, 191, 247), 11px 11px 0px 0px rgb(167, 217, 253), 5px 5px 15px 5px rgba(0,0,0,0);
+
+}
+
+#study-card-back-spin1 {
+    position: absolute;
+    border-radius: 4px;
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    justify-content: center;
+    display: none;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+}
+
+#study-card-back-spin1 > div:nth-child(1) {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+#study-card-back-spin1 > div:nth-child(2) {
+    border-top: 1px solid black;
+    width: 90%;
+    margin-top: 15px;
+    padding-top: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#study-card-back-spin1 > div:nth-child(3) {
+    font-size: 1rem;
+}
+
+#study-card-back-spin1 > div {
+    align-self: center;
+}
+
+#study-card-back > div:nth-child(1) {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+#study-card-back > div:nth-child(2) {
+    border-top: 1px solid black;
+    width: 90%;
+    margin-top: 15px;
+    padding-top: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#study-card-back > div:nth-child(3) {
+    font-size: 1rem;
+}
+
+#study-card-back > div {
+    align-self: center;
+}
+
+
+.study-card-back-buttons {
+    position: absolute;
+    width: 200px;
+    height: 300px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.study-card-back-buttons > div {
+    align-self: flex-end;
+    width: 50%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.study-card-back-buttons > div:first-child {
+    /* background-color: rgb(255, 202, 202); */
+}
+.study-card-back-buttons > div:last-child {
+    /* background-color: rgb(215, 253, 215); */
+}
+
+.study-card-back-buttons > div > div {
+    align-self: center;
+}
+
+
+#study-card-back2 {
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    justify-content: center;
+    display: none;
+    flex-direction: column;
+    box-shadow: 3px 3px 0px 0px rgb(57, 171, 248), 7px 7px 0px 0px rgb(123, 191, 247), 11px 11px 0px 0px rgb(167, 217, 253), 5px 5px 15px 5px rgba(0,0,0,0);
+    border-radius: 4px;
+}
+
+#study-card-back2 > div:nth-child(1) {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+#study-card-back2 > div:nth-child(2) {
+    border-top: 1px solid black;
+    width: 90%;
+    margin-top: 15px;
+    padding-top: 25px;
+}
+
+#study-card-back2 > div:nth-child(3) {
+    font-size: 1rem;
+}
+
+#study-card-back2 > div {
+    align-self: center;
+}
+
+
+.study-card-back-buttons2 {
+    position: absolute;
+    width: 200px;
+    height: 300px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.study-card-back-buttons2 > div {
+    align-self: flex-end;
+    width: 50%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.study-card-back-buttons2 > div:first-child {
+    background-color: rgba(255, 0, 0, 0.7);
+}
+.study-card-back-buttons2 > div:last-child {
+    background-color: rgba(0, 128, 0, 0.7);
+}
+
+.study-card-back-buttons2 > div > div {
+    align-self: center;
+}
+
+
+
+
+
+
+
+
+
+
+#study-card-back-spin2 {
+    position: absolute;
+    border-radius: 4px;
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    justify-content: center;
+    display: none;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+}
+
+#study-card-back-spin2 > div:nth-child(1) {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+#study-card-back-spin2 > div:nth-child(2) {
+    border-top: 1px solid black;
+    width: 90%;
+    margin-top: 15px;
+    padding-top: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#study-card-back-spin2 > div:nth-child(3) {
+    font-size: 1rem;
+}
+
+#study-card-back-spin2 > div {
+    align-self: center;
+}
+
+#study-card-back-spin3 {
+    position: absolute;
+    border-radius: 4px;
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    justify-content: center;
+    display: none;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+}
+
+#study-card-back-spin3 > div:nth-child(1) {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+#study-card-back-spin3 > div:nth-child(2) {
+    border-top: 1px solid black;
+    width: 90%;
+    margin-top: 15px;
+    padding-top: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#study-card-back-spin3 > div:nth-child(3) {
+    font-size: 1rem;
+}
+
+#study-card-back-spin3 > div {
+    align-self: center;
+}
+
+#study-card-back-spin4 {
+    position: absolute;
+    border-radius: 4px;
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    justify-content: center;
+    display: none;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+}
+
+#study-card-back-spin4 > div:nth-child(1) {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+#study-card-back-spin4 > div:nth-child(2) {
+    border-top: 1px solid black;
+    width: 90%;
+    margin-top: 15px;
+    padding-top: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#study-card-back-spin4 > div:nth-child(3) {
+    font-size: 1rem;
+}
+
+#study-card-back-spin4 > div {
+    align-self: center;
+}
+
+#study-card-back-spin5 {
+    position: absolute;
+    border-radius: 4px;
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    justify-content: center;
+    display: none;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+}
+
+#study-card-back-spin5 > div:nth-child(1) {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+#study-card-back-spin5 > div:nth-child(2) {
+    border-top: 1px solid black;
+    width: 90%;
+    margin-top: 15px;
+    padding-top: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#study-card-back-spin5 > div:nth-child(3) {
+    font-size: 1rem;
+}
+
+#study-card-back-spin5 > div {
+    align-self: center;
+}
+
+#study-card-back-spin6 {
+    position: absolute;
+    border-radius: 4px;
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    justify-content: center;
+    display: none;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+}
+
+#study-card-back-spin6 > div:nth-child(1) {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+#study-card-back-spin6 > div:nth-child(2) {
+    border-top: 1px solid black;
+    width: 90%;
+    margin-top: 15px;
+    padding-top: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#study-card-back-spin6 > div:nth-child(3) {
+    font-size: 1rem;
+}
+
+#study-card-back-spin6 > div {
+    align-self: center;
+}
+
+#study-card-back-spin7 {
+    position: absolute;
+    border-radius: 4px;
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    justify-content: center;
+    display: none;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+}
+
+#study-card-back-spin7 > div:nth-child(1) {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+#study-card-back-spin7 > div:nth-child(2) {
+    border-top: 1px solid black;
+    width: 90%;
+    margin-top: 15px;
+    padding-top: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#study-card-back-spin7 > div:nth-child(3) {
+    font-size: 1rem;
+}
+
+#study-card-back-spin7 > div {
+    align-self: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.study-page-level {
+    width: 480px;
+    margin: 0 auto;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.study-page-experience-bar-container {
+    width: 500px;
+    margin: 0 auto;
+}
+
+
+
+
+.meter {
+    box-sizing: content-box;
+    height: 20px; /* Can be anything */
+    position: relative;
+    margin: 1px 0 20px 0; /* Just for demo spacing */
+    background: #28399B;
+    border-radius: 25px;
+    padding: 4px;
+    box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+  }
+  .meter > span {
+    display: block;
+    height: 100%;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: rgb(43, 194, 83);
+    background-image: linear-gradient(
+      center bottom,
+      rgb(43, 194, 83) 37%,
+      rgb(84, 240, 84) 69%
+    );
+    box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3),
+      inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+  }
+  .meter > span:after,
+  .animate > span > span {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.2) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.2) 75%,
+      transparent 75%,
+      transparent
+    );
+    z-index: 1;
+    background-size: 50px 50px;
+    animation: move 8s linear infinite;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    overflow: hidden;
+  }
+  
+  .animate > span:after {
+    display: none;
+  }
+  
+  @keyframes move {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 50px 50px;
+    }
+  }
+  
+  .red > span {
+    background-image: linear-gradient(rgb(161, 214, 250), rgb(57, 171, 248));
+  }
+
+  @keyframes spinnow {
+    100% {
+        transform: rotate(-360deg);
+        -webkit-transform: rotate(-360deg);
+    }
+}
+
+@keyframes spinnowReverse {
+    100% {
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+
+
+
+.study-other-decks-container {
+    position: absolute;
+    width: 400px;
+    height: 500px;
+    background-color: #28399B;
+    top: 0px;
+    right: 0px;
+    margin-top: 200px;
+    margin-right: 100px;
+}
