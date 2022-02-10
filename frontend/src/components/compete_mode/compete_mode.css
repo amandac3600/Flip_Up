@@ -23,10 +23,8 @@
 .compete-timer-div {
   display: flex;
   justify-content: center;
-}
-
-.compete-mode-cards {
-  margin-top: 100px;
+  font-size: 50px;
+  margin-top: 20px;
 }
 
 .compete-mode-front {
@@ -34,7 +32,7 @@
   height: 200px;
   border-radius: 5px;
   border: 1px solid gray;
-  margin: 100px auto;
+  margin: 50px auto;
   font-size: 50px;
   display: flex;
   align-items: center;

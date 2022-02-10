@@ -1,5 +1,6 @@
 import React from 'react';
 import NavContainer from '../nav/nav_container';
+import Timer from './timer';
 import './compete_mode.css'
 
 export default class CompeteMode extends React.Component {
@@ -7,7 +8,6 @@ export default class CompeteMode extends React.Component {
     super(props);
     this.state = {
       startTime: '',
-      currentTime:'',
       endTime: '',
       playerTime: '',
       playerCorrect: 0,
@@ -83,8 +83,6 @@ export default class CompeteMode extends React.Component {
       playerTime: playerTime
     }, () => {
       if (this.state.playerTime) {
-        console.log('after game')
-        
         this.props.updateGame(this.state).then(res => {
           this.setState({game: res.game});
         });
@@ -93,7 +91,7 @@ export default class CompeteMode extends React.Component {
   }
 
   handleBeginGame()  {
-    this.setState({ startTime: Date.now(), begin: true });
+    this.setState({ startTime: Date.now(), begin: true }, () => console.log('start time', this.state));
   }
 
   renderBegin() {
@@ -163,34 +161,18 @@ export default class CompeteMode extends React.Component {
     )
   }
 
-  renderTimer() {
-    let timer = 0;
-    const timerFunc = () => timer += 1;
-    setInterval(timerFunc, 1000);
-    return () => {
-      
-      const seconds = timer % 60;
-      const minutes = Math.floor(timer / 60);
-
-      return (
-      <div className='compete-timer-div'>
-      {minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-      </div>
-      )
-    }
-  }
 
   render() {
     if (!this.props.decks || !this.props.users || !this.props.users.friends || !this.props.games || !this.state.cards) return null;
 
     console.log('render', this.state)
-    // if (this.state.endTime || this.state.game[`${this.state.player}Time`]) return this.renderResults();
+    if (this.state.playerTime || this.state.game[`${this.state.player}Time`]) return this.renderResults();
     if (!this.state.begin) return this.renderBegin();
     return (
       <div>
         <NavContainer />
 
-        {this.renderTimer()()}
+        <Timer />
         <div className='compete-mode-cards'>
           <div className='compete-mode-front'>
             {this.state.cards[this.state.currentIndex].front}
