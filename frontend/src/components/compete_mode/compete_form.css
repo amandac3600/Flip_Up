@@ -1,20 +1,24 @@
 .compete-form-div {
-  margin: auto;
-  border: 1px solid gray;
-  width: 400px;
+  position: absolute;
+  margin-left: 200px;
+  top: 120px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  width: 60%;
+  padding: 10px;
+  background-color: white;
   /* display: flex;
   flex-direction: column;
   justify-content: center; */
 }
 
-/* .compete-form {
-  display: flex;
-  justify-content: center;
-} */
+.compete-form-message {
+  color: rgb(40, 57, 155);
+  font-weight: 600;
+}
 
 .compete-form-friend-list {
-  width: 300px;
-  height: 600px;
+  height: 220px;
 }
 
 .compete-form-friend-item {
@@ -24,4 +28,14 @@
 
 input[type='radio']:checked .compete-form-friend-item{
   background-color: blue;
+}
+
+.compete-form-button {
+  border: none;
+  border-radius: 4px;
+  background-color: rgb(40, 57, 155);
+  color: whitesmoke;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+  padding: 3px 5px;
+  font-size: 14px;
 }
