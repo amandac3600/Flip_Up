@@ -11,7 +11,8 @@ const mapStateToProps = (state, ownProps) => {
     cards: state.entities.cards,
     users: state.entities.users,
     games: state.entities.games,
-    deckId: ownProps.deckId
+    deckId: ownProps.deckId,
+    currentUser: state.session.user
   };
 };
 

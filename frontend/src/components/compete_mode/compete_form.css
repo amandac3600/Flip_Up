@@ -1,13 +1,25 @@
 .compete-form-div {
   position: relative;
   margin-left: 300px;
-  top: -180px;
+  top: -205px;
   border: 1px solid lightgray;
   border-radius: 4px;
   width: 50%;
   padding: 10px;
   background-color: white;
-  margin-bottom: -180px;
+  margin-bottom: -200px;
+}
+
+.compete-form-div-user {
+  position: relative;
+  margin-left: 300px;
+  top: -245px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  width: 50%;
+  padding: 10px;
+  background-color: white;
+  margin-bottom: -230px;
 }
 
 .compete-form-message {

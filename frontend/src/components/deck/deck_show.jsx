@@ -43,10 +43,10 @@ class DeckShow extends React.Component {
     if (this.props.deckInfo.deck.user === this.props.currentUser.id) {
       return (
         <div>
+        <div onClick={this.handleDeleteDeck} className='deck-show-delete-deck'>Delete Deck</div>
+        <br/>
         <div className='deck-show-add' onClick={()=>this.setState({ addCard: true })} >Add Cards</div>
         {this.getCardForm()}
-        <br/>
-        <div onClick={this.handleDeleteDeck} className='deck-show-delete-deck'>Delete Deck</div>
         </div>
       )
     }

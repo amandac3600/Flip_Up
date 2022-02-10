@@ -71,14 +71,19 @@ export default class CompeteForm extends React.Component {
   }
 
   handleCurrent() {
-
+    if (this.props.decks[this.props.deckId].deck.user === this.props.currentUser.id) {
+      return 'compete-form-div-user'
+    } else {
+      return 'compete-form-div'
+    }
   }
 
   render() {
     if (!this.props.users || !this.props.users.friends || !this.props.games ) return null;
-    // console.log(this.props.decks)
+    // console.log(this.props.decks[this.props.deckId].deck.user)
+    // console.log(this.props.currentUser.id)
     return (
-      <div className='compete-form-div'>
+      <div className={this.handleCurrent()}>
         <form onSubmit={this.handleSubmit}>
         <div className='compete-form-message'>
           Select a friend below to challenge. Winner earns extra experience points!
