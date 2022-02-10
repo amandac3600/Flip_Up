@@ -35,6 +35,26 @@ class FriendsSearch extends React.Component {
             
     }
 
+    renderSearchResults() {
+        if (this.state.list.length === 0 || !this.state.list) {
+            return <div />
+        } else { 
+            return (
+                <div>
+                    {this.state.list.map(friend => (
+                        <li className = 'friend-search-results-li'>
+                            <img className='friend-search-thumbnail' src="https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png" alt="user profile pic" />
+                            {friend.username}
+                            <button onClick={() => {
+                                this.props.requestFriend({friendId: friend.id, requestType: 'request'})
+                                    
+                                }}>add friend</button>
+                        </li>
+                    ))}
+                </div>
+        ) }
+    }
+
     render() {
         console.log("render -this.state.list", this.state.list)
         if (!this.state.list) {
@@ -51,15 +71,9 @@ class FriendsSearch extends React.Component {
                     </div>
                     <button className = "buttonX" onClick={() => this.props.off()}>x</button>
                 </div>
-                <ul>
-                {this.state.list.map(friend => (
-                    <li>
-                        {friend.username}
-                        <button>add friend</button>
-                    </li>
-                ))}
-                   
-                </ul>
+                <div>
+                    {this.renderSearchResults()}
+                </div>
             </div>
         )
 

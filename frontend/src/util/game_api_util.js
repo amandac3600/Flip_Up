@@ -26,6 +26,6 @@ export const updateGame = (game) => {
 };
 
 // //delete a game
-// export const deleteGame = (gameId) => {
-//   return axios.delete(`/api/cards/${gameId}`);
-// };
+export const deleteGame = (gameId) => {
+  return axios.delete(`/api/games/${gameId}`);
+};

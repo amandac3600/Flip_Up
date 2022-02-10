@@ -23,7 +23,14 @@ router.get('/pending', passport.authenticate('jwt', { session: false }),(req, re
     [{winner: {$exists: false}}, 
       { $or: [{ player1Id: req.user.id }, { player2Id: req.user.id }]}] 
     })
-    .then(game => res.json(game))
+    .then(games => {
+      const payload = {}
+      for (let i = 0; i < games.length; i++) {
+        payload[games[i].id] = games[i];
+      }
+
+      return res.json(payload)
+    })
     .catch(err =>
       res.status(404).json({ nogamefound: 'No pending games found' })
     );
@@ -34,7 +41,14 @@ router.get('/complete', passport.authenticate('jwt', { session: false }),(req, r
     [{ winner: { $exists: true } }, 
       { $or: [{ player1Id: req.user.id }, { player2Id: req.user.id }] }] 
     })
-    .then(game => res.json(game))
+    .then(games => {
+      const payload = {}
+      for (let i = 0; i < games.length; i++) {
+        payload[games[i].id] = games[i];
+      }
+
+      return res.json(payload)
+    })
     .catch(err =>
       res.status(404).json({ nogamefound: 'No complete games found' })
     );
@@ -89,13 +103,20 @@ router.patch('/:id',
 );
 
 // delete specific game
-// router.delete('/:id',
-//   passport.authenticate('jwt', { session: false }),
-//   (req, res) => {
-//     Game.deleteOne({ _id: req.params.id })
-//       .then(() => res.json({ deleted: "Game was deleted" }))
-//       .catch(err => res.status(404).json({ nogamefound: 'No game found with that ID' }))
-//   }
-// );
+router.delete('/:id',
+  passport.authenticate('jwt', { session: false }),
+  async (req, res) => {
+    const game = await Game.findOne({_id: req.params.id});
+    const player1 = await User.findOne({_id: game.player1Id});
+    const player2 = await User.findOne({ _id: game.player2Id});
+
+    if (player1.id!== req.user.id && player2.id !== req.user.id ) {
+      return res.status(404).json({ unautorized: 'User is not part of this challenge' })
+    }
+    Game.deleteOne({ _id: req.params.id })
+      .then(() => res.json({ deleted: "Game was deleted" }))
+      .catch(err => res.status(404).json({ nogamefound: 'No game found with that ID' }))
+  }
+);
 
 module.exports = router;

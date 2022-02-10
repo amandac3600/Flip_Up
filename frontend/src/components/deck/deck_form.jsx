@@ -1,9 +1,16 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import "react-awesome-button/dist/styles.css";
+import "./deck_form.css"
+import { AwesomeButton } from "react-awesome-button";
+import NavBarContainer from './../nav/nav_container'
+
 
 class DeckForm extends React.Component {
   constructor(props) {
     super(props);
+    this.props.deleteDeck('620537f9f03145de7a40aaff');
+    this.props.getUserDecks(this.props.currentUser.id)
     if (this.props.type === 'create') {
       this.state = {
         name: '',
@@ -30,8 +37,10 @@ class DeckForm extends React.Component {
     } else if (field === 'history' || field === 'science' || field === 'grammar' || field === 'math' || field === 'animals' || field === 'languages' || field === 'japanese' || field === 'english') {
       return e => {
         if (e.currentTarget.checked) {
+          document.getElementById(`deck-form-${field}-label`).classList.add("checked");
           return this.setState({ category: [...this.state.category, ...[field]] })
         } else {
+          document.getElementById(`deck-form-${field}-label`).classList.remove("checked");
           return this.setState({ category: this.state.category.filter(x => x !== field) });
         }
       }
@@ -51,62 +60,110 @@ class DeckForm extends React.Component {
     })
   }
 
+  buttonFunction() {
+    return false
+  }
+
+  getDeckCategories(deckId) {
+    return this.props.decks[deckId].category.map((category)=>{
+      return <div>
+                <div>{category}</div>
+            </div>
+    })
+  }
+  
+  getNumberOfCards(deckId) {
+  }
+
+  getEachDeck() {
+    return Object.keys(this.props.decks).slice(0).reverse().map((key, idx)=>{
+      if (idx > 0) {
+        return <div key={key} className='deck-form-page-deck-list-item grow3' onClick={()=>this.moveToNextDeck(key)} >
+                <div >
+                  <div>{this.props.decks[key].name}</div>
+                  <div>{this.getNumberOfCards(key)}</div>
+                </div>
+                <div>
+                  {this.getDeckCategories(key)}
+                </div>
+            </div>
+      }
+      
+    })
+  }
+
   render() {
     console.log(this.state)
     return (
-      <div>
+      <div className='deck-form-container' >
+        <NavBarContainer/>
+        <div className='deck-form-and-decks' >
         <form onSubmit={this.deckSubmit.bind(this)}>
           <div>
             <br />
-            <div>Deck Title</div>
-            <input type="text"
+            <input id='deck-form-name' type="text"
               value={this.state.name}
               onChange={this.update('name')}
-              placeholder="Deck Title"
+              placeholder="Deck Name"
             />
             <br />
             <div>
+              <label id='deck-form-public-label' htmlFor="deck-form-public">Make this deck public?</label>
               <input id='deck-form-public' checked={this.state.public} type="checkbox" value={this.state.public} onChange={this.update('public')} />
-              <label htmlFor="deck-form-public">Public</label>
+              
             </div>
             <br />
             <br />
-            <div>Categories</div>
+            <div className='deck-form-categories' >Categories</div>
+            <div className='deck-form-categories-container' >
             <div>
               <input id='deck-form-history' checked={this.state.category.includes('history')} type="checkbox" value='history' onChange={this.update('history')} />
-              <label htmlFor="deck-form-history">History</label>
+              <label id='deck-form-history-label' htmlFor="deck-form-history">History</label>
             </div>
             <div>
               <input id='deck-form-science' checked={this.state.category.includes('science')} type="checkbox" value='science' onChange={this.update('science')} />
-              <label htmlFor="deck-form-science">Science</label>
+              <label id='deck-form-science-label' htmlFor="deck-form-science">Science</label>
             </div>
             <div>
               <input id='deck-form-grammar' checked={this.state.category.includes('grammar')} type="checkbox" value='grammar' onChange={this.update('grammar')} />
-              <label htmlFor="deck-form-grammar">Grammar</label>
+              <label id='deck-form-grammar-label' htmlFor="deck-form-grammar">Grammar</label>
             </div>
             <div>
               <input id='deck-form-math' checked={this.state.category.includes('math')} type="checkbox" value='math' onChange={this.update('math')} />
-              <label htmlFor="deck-form-math">Math</label> 
+              <label id='deck-form-math-label' htmlFor="deck-form-math">Math</label> 
             </div>
             <div>
-              <input id='deck-form-math' checked={this.state.category.includes('animals')} type="checkbox" value='animals' onChange={this.update('animals')} />
-              <label htmlFor="deck-form-math">Animals</label> 
+              <input id='deck-form-animals' checked={this.state.category.includes('animals')} type="checkbox" value='animals' onChange={this.update('animals')} />
+              <label id='deck-form-animals-label' htmlFor="deck-form-animals">Animals</label> 
             </div>
             <div>
-              <input id='deck-form-math' checked={this.state.category.includes('languages')} type="checkbox" value='languages' onChange={this.update('languages')} />
-              <label htmlFor="deck-form-math">Languages</label> 
+              <input id='deck-form-languages' checked={this.state.category.includes('languages')} type="checkbox" value='languages' onChange={this.update('languages')} />
+              <label id='deck-form-languages-label' htmlFor="deck-form-languages">Languages</label> 
             </div>
             <div>
-              <input id='deck-form-math' checked={this.state.category.includes('japanese')} type="checkbox" value='japanese' onChange={this.update('japanese')} />
-              <label htmlFor="deck-form-math">Japanese</label> 
+              <input id='deck-form-japanese' checked={this.state.category.includes('japanese')} type="checkbox" value='japanese' onChange={this.update('japanese')} />
+              <label id='deck-form-japanese-label' htmlFor="deck-form-japanese">Japanese</label> 
             </div>
             <div>
-              <input id='deck-form-math' checked={this.state.category.includes('english')} type="checkbox" value='english' onChange={this.update('english')} />
-              <label htmlFor="deck-form-math">English</label> 
+              <input id='deck-form-english' checked={this.state.category.includes('english')} type="checkbox" value='english' onChange={this.update('english')} />
+              <label id='deck-form-english-label' htmlFor="deck-form-english">English</label>
+              
             </div>
-            <input type="submit" value="Submit" />
+            </div>
+            <AwesomeButton className='deck-form-submit-button' type="primary">Save Deck</AwesomeButton>
           </div>
         </form>
+        
+        <div className='deck-form-other-decks-container' >
+              <div><div>Edit Decks</div></div>
+                <div className='deck-form-page-deck-list-container'>
+                <div className='deck-form-page-deck-list' >
+                  {this.getEachDeck()}
+                </div>
+              </div>
+              <div className='deck-form-page-deck-list-shadow' ></div>
+          </div>
+        </div>
       </div>
     );
   }

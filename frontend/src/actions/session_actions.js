@@ -90,7 +90,7 @@ export const getFriends = () => dispatch => (
     ))
 )
 
-export const updateUser = data => dispatch => {
+export const editUser = data => dispatch => {
   SessionApiUtil.editUser(data)
     .then(user => (
       dispatch(receiveCurrentUser(user.data))
@@ -98,6 +98,16 @@ export const updateUser = data => dispatch => {
       dispatch(receiveErrors(err.response.data))
     ))
 };
+
+export const requestFriend = friendData => dispatch => {
+  SessionApiUtil.requestFriend(friendData)
+    .then(user => (
+      dispatch(receiveCurrentUser(user.data))
+    ), err=> (
+      dispatch(receiveErrors(err.response.data))
+    ))
+};
+
 
 // export const updateProfilePic = data => dispatch => {
 //   SessionApiUtil.updateProfilePic(data)
