@@ -59,7 +59,7 @@
   font-size: 15px;
 }
 
-::placeholder {
+.login-input-email::placeholder, .login-input-password::placeholder  {
   color: rgb(189, 189, 189);
 }
 
@@ -85,7 +85,7 @@
 }
 
 .login-errors {
-  
+
 }
 
 .login-footer {

@@ -59,7 +59,7 @@
   font-size: 15px;
 }
 
-::placeholder {
+.signup-input::placeholder, .signup-input-password::placeholder {
   color: rgb(189, 189, 189);
 }
 
