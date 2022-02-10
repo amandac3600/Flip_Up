@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import CardIndex from './card_index';
-import { getCard, deleteCard } from './../../actions/card_actions'
+import { getCard, deleteCard, getCards } from './../../actions/card_actions'
 
 
 const mapStateToProps = (state) => {
@@ -13,7 +13,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getCard: (id)=> dispatch(getCard(id)),
-    deleteCard: (id)=> dispatch(deleteCard(id))
+    deleteCard: (id)=> dispatch(deleteCard(id)),
+    getCards: (deckId) => dispatch(getCards(deckId))
   }
 }
 

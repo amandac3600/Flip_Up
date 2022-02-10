@@ -18,7 +18,15 @@ const validateCardInput = require('../../validation/card')
 router.get('/deck/:deck_id', (req, res) => {
   Card.find({ deck: req.params.deck_id })
     .sort({ date: -1 })
-    .then(cards => res.json(cards))
+    .then(cards => {
+      const payload = {}
+      
+      for (let i = 0; i < cards.length; i++) {
+        payload[cards[i].id] = cards[i];
+      }
+
+      return res.json(payload)
+    })
     .catch(err => res.status(404).json({ nocardsfound: 'No cards found' }));
 });
 

@@ -6,34 +6,42 @@ import {BsTrash} from 'react-icons/bs';
 class CardIndex extends React.Component {
   constructor(props) {
     super(props);
-    this.cards = this.props.decks[this.props.match.params.id].cards
-    this.cards.map((id)=>{
-        this.props.getCard(id)
-    })
+    this.state = {
+      loading: true
+    }
+  }
+
+  componentDidMount() {
+    this.props.getCards(this.props.match.params.id)
+      .then(this.setState({ loading: false}))
   }
 
   getCards() {
-      return Object.keys(this.props.cards).map((key)=>{
-        return <div key={key} style={{display: 'flex'}} className='card-index-container'>
-                  <div className='card-index-card'>
-                    <div className='card-index-front' >Front: 
-                      <div className='card-index-front-body'>
-                        {this.props.cards[key].front}
-                      </div>
+    const cards = Object.values(this.props.cards);
+    if (!cards.length) return 'No cards in deck';
+
+    return cards.map(card=>{
+      return <div key={card._id} style={{display: 'flex'}} className='card-index-container'>
+                <div className='card-index-card'>
+                  <div className='card-index-front' >Front: 
+                    <div className='card-index-front-body'>
+                      {card.front}
                     </div>
-                    <div className='card-index-back' >Back: 
-                      <div className='card-index-back-body'>
-                        {this.props.cards[key].back}
-                      </div>
-                    </div>
-                    
                   </div>
-                    <div className='card-index-delete' onClick={()=>this.props.deleteCard(key)} ><BsTrash/></div>
+                  <div className='card-index-back' >Back: 
+                    <div className='card-index-back-body'>
+                      {card.back}
+                    </div>
+                  </div>
+                  
                 </div>
-      })
+                  <div className='card-index-delete' onClick={()=>this.props.deleteCard(card._id)} ><BsTrash/></div>
+              </div>
+    })
   }
 
   render() {
+    if (this.state.loading) return null;
     return (
       <div>
         {this.getCards()}
