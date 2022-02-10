@@ -1,38 +1,101 @@
+/* Begin loading page */
+.compete-mode-begin {
+  width: 50%;
+  height: 100%;
+  margin: 100px auto;
+}
+
 .compete-mode-directions {
-  border: 1px solid gray;
-  width: 500px;
-  margin: 50px auto;
+  font-size: 50px;
+  text-align: center;
+  margin: 50px;
+}
+.compete-mode-begin-button {
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  background-color: rgb(40, 57, 155);
+  color: white;
+  margin: auto;
+}
+
+/* Compete page */
+.compete-timer-div {
+  display: flex;
+  justify-content: center;
+  font-size: 50px;
+  margin-top: 20px;
 }
 
 .compete-mode-front {
-  width: 200px;
-  height: 300px;
+  width: 300px;
+  height: 200px;
+  border-radius: 5px;
   border: 1px solid gray;
-  text-align: center;
-  margin: auto;
+  margin: 50px auto;
+  font-size: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.compete-answer-choice {
-  width: 100px;
-  height: 30px;
-  border: 1px solid gray;
-  text-align: center;
-  margin: auto;
+.compete-answer-choices-div {
+  display: flex;
+  flex-direction: column;
 }
 
-.compete-answer-choice:hover {
-  background-color: rgb(124, 168, 209);
-}
-.compete-mode-results-div {
+.compete-answer-choices-subdiv {
   display: flex;
   justify-content: center;
 }
 
-.compete-mode-results {
+.compete-answer-choice {
   width: 300px;
-  height: 200px;
   border: 1px solid gray;
+  border-radius: 5px;
+  font-size: 50px;
+  padding: 20px;
+  margin: 20px;
 }
-.compete-mode-results div {
+
+.compete-answer-choice:hover {
+  background-color: rgb(40, 57, 155);
+  color: white;
+}
+
+/* styling for results page */
+.compete-mode-results-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 200px;
+}
+
+.compete-results-title {
+  font-size: 50px;
+}
+
+.compete-results-table {
+  border:1px solid gray;
+  margin: 50px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+.compete-results-table td, .compete-results-table th {
   padding: 10px;
+}
+
+.compete-results-table tr, .compete-results-table td, .compete-results-table th {
+  border:1px solid gray;
+}
+
+.compete-results-table th {
+  background-color: rgb(40, 57, 155);
+  color: white;
+  font-weight: bold;
+}
+
+.compete-results-table tr:nth-child(odd) {
+  background-color: rgb(175, 181, 216);
 }

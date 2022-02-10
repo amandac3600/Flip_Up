@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Study from './study';
+import StudyCard from './study_card';
 import { getDeck } from './../../actions/deck_actions'
 import { getCard, updateCard } from './../../actions/card_actions'
 import { editUser } from './../../actions/session_actions'
@@ -18,8 +18,8 @@ const mapDispatchToProps = (dispatch) => {
     getDeck: (id)=>dispatch(getDeck(id)),
     getCard: (id)=>dispatch(getCard(id)),
     updateCard: (card)=>dispatch(updateCard(card)),
-    editUser: (user)=>dispatch(editUser(user))
+    editUser: (id)=>dispatch(editUser(id))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Study);
+export default connect(mapStateToProps, mapDispatchToProps)(StudyCard);

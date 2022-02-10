@@ -1,52 +1,67 @@
 import React from 'react';
 import NavContainer from '../nav/nav_container';
+import Timer from './timer';
 import './compete_mode.css'
 
 export default class CompeteMode extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      startTime: Date.now(),
+      startTime: '',
       endTime: '',
       playerTime: '',
       playerCorrect: 0,
-      currentIndex: 0
+      currentIndex: 0,
+      begin: false,
     }
     this.handleAnswerClick = this.handleAnswerClick.bind(this);
+    this.handleBeginGame = this.handleBeginGame.bind(this);
   }
 
   componentDidMount() {
+    // delete after testing
+    this.props.getPendingGames();
+    // keep
     this.props.getGame(this.props.match.params.gameId)
       .then((res) => {
         const game = res.game;
         this.setState({game: game});
-        this.props.fetchUser(game.player1Id);
-        this.props.getFriends();
-        this.props.getCards(game.deck).then((res) => {
-          this.setState({ cards: res.cards})
-        });
+        Promise.all([this.props.fetchUser(),this.props.getFriends()])
+          .then( () => {
+            this.props.getCards(game.deck).then((res) => {
+              if (game.player1Id === this.props.users.current.id) {
+                this.setState({ player: 'player1' ,friendPlayer: 'player2', cards: Object.values(res.cards) })
+              } else {
+                this.setState({ player: 'player2', friendPlayer: 'player1', cards: Object.values(res.cards) })
+              }
+            });
+          })
       })
   }
 
   renderAnswers() {
-    const answerSet = new Set();
     const cards = this.state.cards.slice();
-    answerSet.add(cards[this.state.currentIndex].back);
+    let answers = [cards[this.state.currentIndex].back];
     cards.splice(this.state.currentIndex,1);
 
-    while (answerSet.size < 4) {
+    while (answers.length < 4) {
       const randomIndex = [Math.floor(Math.random() * cards.length)];
-      answerSet.add(cards[randomIndex].back);
+      answers.push(cards[randomIndex].back);
       cards.splice(randomIndex, 1);
     }
 
-    const answers = [...answerSet].sort();
+    answers = answers.sort();
     return (
-      <div>
-        <div className='compete-answer-choice' onClick={this.handleAnswerClick}>{answers[0]}</div>
-        <div className='compete-answer-choice' onClick={this.handleAnswerClick}>{answers[1]}</div>
-        <div className='compete-answer-choice' onClick={this.handleAnswerClick}>{answers[2]}</div>
-        <div className='compete-answer-choice' onClick={this.handleAnswerClick}>{answers[3]}</div>
+      <div className='compete-answer-choices-div'>
+        <div className='compete-answer-choices-subdiv'>
+          <div className='compete-answer-choice' onClick={this.handleAnswerClick}>{answers[0]}</div>
+          <div className='compete-answer-choice' onClick={this.handleAnswerClick}>{answers[1]}</div>
+        </div>
+
+        <div className='compete-answer-choices-subdiv'>
+          <div className='compete-answer-choice' onClick={this.handleAnswerClick}>{answers[2]}</div>
+          <div className='compete-answer-choice' onClick={this.handleAnswerClick}>{answers[3]}</div>
+        </div>
       </div>
     )
   }
@@ -71,7 +86,6 @@ export default class CompeteMode extends React.Component {
       playerTime: playerTime
     }, () => {
       if (this.state.playerTime) {
-        console.log('after game')
         this.props.updateGame(this.state).then(res => {
           this.setState({game: res.game});
         });
@@ -79,93 +93,104 @@ export default class CompeteMode extends React.Component {
     })
   }
 
-  renderResults() {
-    let friendName;
-    let friendPlayer;
-    let winner = this.state.game.winner;
+  handleBeginGame()  {
+    this.setState({ startTime: Date.now(), begin: true });
+  }
 
-    if (this.state.game.player1Id === this.props.users.current.id) {
-      const friend = this.props.users.friends[this.state.game.player2Id];
-      friendName = this.props.users.friends[this.state.game.player2Id].username;
-      if (winner === friend._id) winner = friendName;
-      friendPlayer = 'player2';
-    } else {
-      const friend = this.props.users.friends[this.state.game.player1Id];
-      friendName = this.props.users.friends[this.state.game.player1Id].username;
-      if (winner === friend._id) winner = friendName;
-      friendPlayer = 'player1';
-    }
-    const friendTime = this.state.game[`${friendPlayer}Time`] ? `${this.state.game[`${friendPlayer}Time`]/1000} seconds` : 'In Progress';
-
+  renderBegin() {
     return (
-      <div>
-        
+      <div >
+        <NavContainer />
+        <div className='compete-mode-begin'>
+          <div className='compete-mode-directions'>The winner will be determined by who gets the most question correct. <br /><br />If there is a tie, whoever finishes in the least amount of time will win.</div>
 
-        <div>Challenge Over!</div>
-        <div className='compete-mode-results-div'>
-          <div className='compete-mode-results'>
-            <div>
-              <span>Player 1: </span>
-              <span>{this.props.users.current.username}</span>
-            </div>
-            <div>
-              <span>Number Correct: </span>
-              <span>{this.state.playerCorrect}</span>
-            </div>
-            <div>
-              <span>Number Incorrect: </span>
-              <span>{this.state.cards.length - this.state.playerCorrect}</span>
-            </div>
-            <div>
-              <span>Time: </span>
-              <span>{this.state.playerTime/1000} seconds</span>
-            </div>
-          </div>
-
-          <div className='compete-mode-results'>
-            <div>
-              <span>Player 2: </span>
-              <span>{friendName}</span>
-            </div>
-            <div>
-              <span>Number Correct: </span>
-              <span>{this.state.game[`${friendPlayer}Correct`] || 'In Progress'}</span>
-            </div>
-            <div>
-              <span>Number Incorrect: </span>
-              <span>{this.state.cards.length - this.state.game[`${friendPlayer}Correct`] || 'In Progress'}</span>
-            </div>
-            <div>
-              <span>Time: </span>
-              <span>{friendTime}</span>
-            </div>
-          </div>
+          <button className='compete-mode-begin-button' onClick={this.handleBeginGame}>Begin Game</button>
         </div>
-
-        <div>{winner ? `${winner} won this round!` : ''}</div>
       </div>
     )
   }
+
+  renderResults() {
+    const friendPlayer = this.state.friendPlayer;
+    const player = this.state.player;
+    let winner = this.state.game.winner;
+    const friend = this.props.users.friends[this.state.game[`${friendPlayer}Id`]]
+    const friendName = friend.username;
+
+    const friendTime = this.state.game[`${friendPlayer}Time`] ? `${(this.state.game[`${friendPlayer}Time`]/60000).toFixed(2)} minutes` : 'In Progress';
+
+    return (
+      <div>
+        <NavContainer />
+        <div className='compete-mode-results-div'>
+          <h1 className='compete-results-title'>Challenge Results</h1>
+          <table>
+            <tbody className='compete-results-table'>
+              <tr>
+                <th>Results</th>
+                <th>Player 1</th>
+                <th>Player 2</th>
+              </tr>
+
+              <tr>
+                <td>Username</td>
+                <td>{this.props.users.current.username}</td>
+                <td>{friendName}</td>
+              </tr>
+
+              <tr>
+                <td>Number Correct</td>
+                <td>{this.state.game[`${player}Correct`]}</td>
+                <td>{this.state.game[`${friendPlayer}Correct`] || 'In Progress'}</td>
+              </tr>
+
+              <tr>
+                <td>Number Incorrect</td>
+                <td>{this.state.cards.length - this.state.game[`${player}Correct`]}</td>
+                <td>{this.state.cards.length - this.state.game[`${friendPlayer}Correct`] || 'In Progress'}</td>
+              </tr>
+
+              <tr>
+                <td>Time</td>
+                <td>{`${(this.state.game[`${player}Time`] / 60000).toFixed(2)} minutes`}</td>
+                <td>{friendTime}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div>{winner ? `${winner} won this round!` : ''}</div>
+        </div>
+      </div>
+    )
+  }
+
 
   render() {
     if (!this.props.decks || !this.props.users || !this.props.users.friends || !this.props.games || !this.state.cards) return null;
 
     console.log('render', this.state)
+    if (this.state.playerTime || this.state.game[`${this.state.player}Time`]) return this.renderResults();
+    if (!this.state.begin) return this.renderBegin();
 
-    if (this.state.endTime) return this.renderResults();
-
+    if (this.state.cards && this.state.cards.length < 4) 
+    return (
+      <div>
+        <NavContainer />
+        Decks must have minimum of 4 cards to use in battle mode.
+      </div>
+    )
     return (
       <div>
         <NavContainer />
 
-        <div className='compete-mode-directions'>The winner will be determined by who gets the most question correct. If there is a tie, whoever finishes in the least amount of time will win.</div>
-
+        <Timer />
         <div className='compete-mode-cards'>
           <div className='compete-mode-front'>
             {this.state.cards[this.state.currentIndex].front}
           </div>
           {this.renderAnswers()}
         </div>
+
       </div>
     );
   }
