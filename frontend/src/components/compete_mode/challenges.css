@@ -28,7 +28,13 @@
   color: white;
 }
 
+.challenges-request-item-div {
+  display: flex;
+  align-items: center;
+}
+
 .challenges-request-item {
+  width: 80%;
   margin: 10px;
   border: 1px solid rgb(40, 57, 155);
   border-radius: 5px;
@@ -53,4 +59,10 @@
   cursor: pointer;
   background-color: rgb(40, 57, 155);
   color: white;
+}
+
+.challenges-delete-button {
+  cursor: pointer;
+  padding: 5px;
+  z-index: 5;
 }

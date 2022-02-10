@@ -192,8 +192,8 @@ export default class CompeteMode extends React.Component {
     if (this.state.playerTime || this.state.game[`${this.state.player}Time`]) display =  this.renderResults();
 
     if (this.state.cards && this.state.cards.length < 4) 
-      display = (<div>
-        Decks must have minimum of 4 cards to use in battle mode.
+      display = (<div className='compete-minimum'>
+        Decks must have minimum of 4 cards to use in battle mode. Please select a different deck.
       </div>);
 
     display ||= this.renderCompeteMode();

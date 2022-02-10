@@ -79,6 +79,7 @@
 
 .compete-results-title {
   font-size: 50px;
+  padding: 10px;
 }
 
 .compete-results-table {
@@ -110,4 +111,10 @@
   margin: 50px auto;
   font-size: 50px;
   text-align: center;
+}
+
+.compete-minimum {
+  width: 50%;
+  margin: 100px auto;
+  font-size: 50px;
 }
