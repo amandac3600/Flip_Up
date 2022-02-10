@@ -17,7 +17,7 @@
 
 .search-input::placeholder {
   font-family: Montserrat, Arial, Helvetica, sans-serif;
-  color: rgb(150, 150, 150);
+  color: rgb(189, 189, 189);
 }
 
 .search-input:focus-visible {

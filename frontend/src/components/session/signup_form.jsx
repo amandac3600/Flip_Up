@@ -51,7 +51,7 @@ class SignupForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='signup-page'>
         <div className='signup-nav'>
             <NavContainer/>
         </div>

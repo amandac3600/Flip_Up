@@ -19,7 +19,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
 	font-family: Montserrat, Arial, Helvetica, sans-serif;
 	text-decoration: none;
-	color: inherit;
+	color: rgb(40, 57, 155);
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
