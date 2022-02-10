@@ -70,9 +70,13 @@ export default class CompeteForm extends React.Component {
       })
   }
 
+  handleCurrent() {
+
+  }
+
   render() {
     if (!this.props.users || !this.props.users.friends || !this.props.games ) return null;
-    console.log('render', this.state)
+    console.log(this.props.decks)
     return (
       <div className='compete-form-div'>
         <form onSubmit={this.handleSubmit}>

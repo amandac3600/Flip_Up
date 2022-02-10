@@ -1,9 +1,10 @@
 .card-index-container {
+  position: relative;
   margin-top: 30px;
 }
 
 .card-index-container:first-child {
-  margin-top: 100px;
+  margin-top: 5%;
 }
 
 .card-index-card {
@@ -44,6 +45,10 @@
   height: 18px;
   padding: 4px 6px;
   font-size: 20px;
+}
+
+#hidden {
+  visibility: hidden;
 }
 
 .card-index-delete:hover {

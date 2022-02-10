@@ -39,24 +39,43 @@ class DeckShow extends React.Component {
     })
   }
 
+  handleEditDeck() {
+    if (this.props.deckInfo.deck.user === this.props.currentUser.id) {
+      return (
+        <div>
+        <div className='deck-show-add' onClick={()=>this.setState({ addCard: true })} >Add Cards</div>
+        {this.getCardForm()}
+        <br/>
+        <div onClick={this.handleDeleteDeck} className='deck-show-delete-deck'>Delete Deck</div>
+        </div>
+      )
+    }
+  }
+
+  handleShowUser() {
+    if (this.props.deckInfo.deck.user !== this.props.currentUser.id) {
+      return (
+        <div>
+          {this.props.deckInfo.deck.user}
+        </div>
+      )
+    }
+  }
+
   render() {
     if (!this.props.deckInfo || !this.props.deckInfo.deck) return null;
+    // console.log(this.props.fetchUsers(this.props.deckInfo.deck.user))  
     return (
       <div className='deck-show-full-page'>
           <NavContainer />
         <div className='deck-show-page'>
           <div className='deck-show-name'>{this.props.deckInfo.deck.name}</div>
           <div className='deck-show-cats'>{this.getCategories()}</div>
-          <br/>
-          <div >
-            <div className='deck-show-study' onClick={()=>this.props.ownProps.history.push(`/decks/${this.props.deckInfo.deck._id}/study`)} >Study Deck</div>
-            <br/>
-            <div className='deck-show-add' onClick={()=>this.setState({ addCard: true })} >Add Cards</div>
-          </div>
           <div className='deck-show-cards'>{this.props.deckInfo.cards.length} cards</div>
-          {this.getCardForm()}
           <br/>
-          <div onClick={this.handleDeleteDeck}>Delete Deck</div>
+          <div className='deck-show-study' onClick={()=>this.props.ownProps.history.push(`/decks/${this.props.deckInfo.deck._id}/study`)} >Study Deck</div>
+          <br/>
+          <div>{this.handleEditDeck()}</div>
           <br/>
           <div>
             {this.props.deckInfo.cards.length >= 4 ? <CompeteFormContainer deckId={this.props.match.params.id} history={this.props.history}/> : ''}
