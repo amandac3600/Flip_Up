@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import "./card_form.css"
 
 class CardForm extends React.Component {
   constructor(props) {
@@ -46,8 +47,8 @@ class CardForm extends React.Component {
   render() {
     console.log(this.props)
     return (
-      <div>
-        <div>{this.getCardHeader()}</div>
+      <div className='create-form'>
+        <div className='create-form-title'>{this.getCardHeader()}</div>
         <form onSubmit={this.cardSubmit.bind(this)}>
           <div>
             <input id='card-form-front' type="text"

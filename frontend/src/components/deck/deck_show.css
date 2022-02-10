@@ -1,3 +1,8 @@
+.deck-show-full-page {
+  background-color: aliceblue;
+  height: 100%;
+}
+
 .deck-show-page {
   font-family: Montserrat, Arial, Helvetica, sans-serif;
   margin: 5%;
@@ -29,7 +34,8 @@
 }
 
 .deck-show-study {
-  background-color: rgb(230, 230, 230);
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(40, 57, 155);
   width: 96px;
   padding: 5px 7px;
   border-radius: 5px;
@@ -38,7 +44,8 @@
 }
 
 .deck-show-add {
-  background-color: rgb(230, 230, 230);
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(40, 57, 155);
   width: 85px;
   padding: 5px 7px;
   border-radius: 5px;
@@ -50,4 +57,8 @@
   cursor: pointer;
   background-color: rgb(210, 210, 210);
   transition: all 0.2s;
+}
+
+.deck-show-compete {
+  margin-top: 100px;
 }

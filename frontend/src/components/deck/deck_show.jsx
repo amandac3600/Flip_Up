@@ -30,7 +30,7 @@ class DeckShow extends React.Component {
   render() {
     if (!this.props.deckInfo || !this.props.deckInfo.deck) return null;
     return (
-      <div>
+      <div className='deck-show-full-page'>
           <NavContainer />
         <div className='deck-show-page'>
           <div className='deck-show-name'>{this.props.deckInfo.deck.name}</div>
@@ -45,8 +45,12 @@ class DeckShow extends React.Component {
           {this.getCardForm()}
           <br/>
           <br/>
+          <div>
+            {this.props.deckInfo.cards.length >= 4 ? <CompeteFormContainer deckId={this.props.match.params.id} history={this.props.history}/> : ''}
+          </div>
+          
           <CardIndexContainer/>
-          {this.props.deckInfo.cards.length >= 4 ? <CompeteFormContainer deckId={this.props.match.params.id} history={this.props.history}/> : ''}
+          
         </div>
 
       </div>

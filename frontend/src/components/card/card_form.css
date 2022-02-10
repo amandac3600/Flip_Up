@@ -1,0 +1,24 @@
+.create-form {
+  position: absolute;
+}
+
+.create-form-title {
+  margin-top: 20px;
+  color: rgb(40, 57, 155);
+  font-weight: 500;
+}
+
+.card-form-front, .card-form-back {
+  border: none;
+  outline: none;
+}
+
+input[type="text"] {
+  border: none;
+  outline: none;
+}
+
+::placeholder {
+  color: rgb(40, 57, 155);
+}
+
