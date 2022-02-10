@@ -154,7 +154,7 @@ router.delete('/:id',
       if (deckUser.id === req.user.id) {
         Deck.deleteOne({ _id: req.params.id })
         .then(() => res.json({ deleted: "Deck was deleted" }))
-        .catch(err => res.status(404).json({ nodeckfound: 'No deck found with that ID' }))
+        .catch(err => res.status(404).json({ unabletodelete: 'Unable to delete' }))
       } else {
         return res.status(404).json({ invaliduser: 'You do not own this deck' });
       }
