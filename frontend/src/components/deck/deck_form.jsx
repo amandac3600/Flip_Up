@@ -9,7 +9,7 @@ import NavBarContainer from './../nav/nav_container'
 class DeckForm extends React.Component {
   constructor(props) {
     super(props);
-    this.props.deleteDeck('620537f9f03145de7a40aaff');
+    
     this.props.getUserDecks(this.props.currentUser.id)
     if (this.props.type === 'create') {
       this.state = {
@@ -93,6 +93,9 @@ class DeckForm extends React.Component {
   }
 
   render() {
+    this.props.deleteDeck("62019235520623485c244ff7").then((res)=>{
+      console.log(res)
+    });
     console.log(this.state)
     return (
       <div className='deck-form-container' >
