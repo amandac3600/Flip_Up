@@ -1,19 +1,19 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
-const profileIcon = document.getElementById('user-profile-icon');
 
-const renderIcons = () => {
-  const emojiCodeRanges = [128005, 128063]
-  for (let i = emojiCodeRanges[0]; i < emojiCodeRanges[1]; i++) {
-    profileIcon.append(`<span class='emoji' id='&#${i}'>&#${i}</span>`)
-  }
-}
+
+// const renderIcons = () => {
+//   const emojiCodeRanges = [128005, 128063]
+//   for (let i = emojiCodeRanges[0]; i < emojiCodeRanges[1]; i++) {
+//     profileIcon.append(`<span class='emoji' id='&#${i}'>&#${i}</span>`)
+//   }
+// }
 
 const ProfileIcon = ({user}) => {
   const [icon, setIcon] = useState(user.icon);
 
   useEffect(() => {
-    
+    const profileIcon = document.getElementById('user-profile-icon');
     profileIcon.innerHTML = `&#${icon};`
   })
 
