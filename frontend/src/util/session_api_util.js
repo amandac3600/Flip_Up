@@ -26,8 +26,12 @@ export const fetchUsers = (keyword) => {
 }
 
 
-export const fetchUser = () => {
+export const fetchCurrentUser = () => {
   return axios.get(`/api/users/current`)
+}
+
+export const fetchUser = (userId) => {
+  return axios.get(`/api/users/find/${userId}`)
 }
 
 export const getFriends = () => {

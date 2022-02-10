@@ -15,7 +15,7 @@ export default class CompeteForm extends React.Component {
 
   componentDidMount() {
     Promise.all([
-      this.props.fetchUser(),
+      this.props.fetchCurrentUser(),
       // this.props.getDecks(this.state.filters.join('+')),
       this.props.getFriends(),
     ])

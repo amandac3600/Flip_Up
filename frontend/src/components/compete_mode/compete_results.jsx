@@ -3,19 +3,20 @@ import Sparkles from '../study/sparkles';
 import { Link } from 'react-router-dom';
 
 const getDecks = (decks) => {
-  // return Object.keys(decks).slice(10).map((key) => {
-  //     return <div key={key} className='deck-form-page-deck-list-item grow3' onClick={() => { }} >
-  //       <div >
-  //         <Link>
-  //         <div>{decks[key].name}</div>
-  //         {/* <div>{this.getNumberOfCards(key)}</div> */}
-  //       {/* </div> */}
-  //       <div>
-  //         {/* {this.getDeckCategories(key)} */}
-  //       </div>
-  //       </Link>
-  //     </div>
-  // })
+  return Object.values(decks).slice(10).map((deck) => {
+      return <div key={deck._id} className='deck-form-page-deck-list-item grow3' onClick={() => { }} >
+        <Link to={`/decks/${deck._id}`}>
+          <div >
+            <div>{deck.name}</div>
+            {/* <div>{this.getNumberOfCards(key)}</div> */}
+          </div>
+
+          <div>
+            {/* {this.getDeckCategories(key)} */}
+          </div>
+        </Link>
+      </div>
+  })
 }
 
 const CompeteResults = ({user, friends, game, cards, decks}) => {
