@@ -17,7 +17,7 @@ import "./reset.css"
 import SearchResultIndexContainer from './search/search_result_index_container';
 
 const App = () => (
-  <div>
+  <div className='app-div'>
     <Switch>
       <ProtectedRoute exact path="/profile" component={UserProfileContainer} />
       <Route exact path="/" component={Splash} />

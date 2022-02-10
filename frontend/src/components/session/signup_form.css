@@ -84,6 +84,19 @@
   background-color: rgb(228, 228, 228);
 }
 
+.signup-errors {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+  color: red;
+  text-align: center;
+}
+
+.signup-error {
+  margin-top: 5px;
+}
+
 .signup-footer {
   margin-top: 35vw;
   width: 100vw;
