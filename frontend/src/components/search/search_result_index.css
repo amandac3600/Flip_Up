@@ -8,6 +8,7 @@
 .search-index-list {
   width: 300px;
   font-family: Montserrat, Arial, Helvetica, sans-serif;
+  display: flex;
 }
 
 .search-index-item {

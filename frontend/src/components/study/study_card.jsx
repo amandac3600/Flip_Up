@@ -102,7 +102,7 @@ class StudyCard extends React.Component {
     if (answer === 'correct') {
         let user = Object.assign({}, this.props.currentUser);
         user.points += 2;
-        this.props.editUser(user)
+        this.props.updateUser(user)
         let card
         if (cardNum === 1) { 
             this.currentCard = 2;
@@ -135,7 +135,7 @@ class StudyCard extends React.Component {
         let user = Object.assign({}, this.props.currentUser);
         user.points += 2;
         console.log(user)
-        this.props.editUser(user)
+        this.props.updateUser(user)
         let card
         if (cardNum === 1) { 
             this.currentCard = 2;
