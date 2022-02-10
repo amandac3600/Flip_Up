@@ -182,6 +182,7 @@ router.patch('/', passport.authenticate('jwt', { session: false }), (req, res) =
       if (req.body.points) user.points = req.body.points;
       if (req.body.winId) user.wins.push(req.body.winId);
       if (req.body.lossId) user.losses.push(req.body.lossId);
+      if (req.body.icon) user.icon = req.body.icon;
 
       const { errors, isValid } = validateRegisterInput(user, 'patch');
 

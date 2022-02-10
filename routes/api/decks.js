@@ -69,7 +69,7 @@ router.get('/:id', passport.authenticate('jwt', { session: false }), async (req,
       cards: cards.map(card => card.id)
     });
   } else {
-    return res.status(404).json({ nopermission: 'You do not have permission to view this deck' })
+    return res.status(401).json({ unauthorized: 'You do not have permission to view this deck' })
   }
 });
 
@@ -79,9 +79,30 @@ router.get('/user/:user_id', passport.authenticate('jwt', { session: false }), a
   if (!decks) return res.status(404).json({ nodecksfound: 'No decks found from that user' });
 
   if (req.params.user_id === req.user.id) {
-    return res.json(decks);
+    const payload = {};
+
+    for (let i = 0; i < decks.length; i++) {
+      const newDeck = await Object.assign({}, decks[i]._doc);
+      const cards = await Card.find({ deck: decks[i].id })
+      const cardIds = cards.map(card => card.id)
+      newDeck['cards'] = cardIds;
+      payload[decks[i].id] = newDeck;
+    }
+
+    return res.json(payload)
   } else {
-    return res.json(decks.filter(deck => deck.public ))
+    const publicDecks = decks.filter(deck => deck.public)
+    const payload = {};
+
+    for (let i = 0; i < publicDecks.length; i++) {
+      const newDeck = await Object.assign({}, publicDecks[i]._doc);
+      const cards = await Card.find({ deck: publicDecks[i].id })
+      const cardIds = cards.map(card => card.id)
+      newDeck['cards'] = cardIds;
+      payload[publicDecks[i].id] = newDeck;
+    }
+
+    return res.json(payload)
   }
 });
 
@@ -119,14 +140,14 @@ router.patch('/:id',
     if (deck) {
       const deckUser = await User.findOne({_id: deck.user})
       if (deckUser.id !== req.user.id) {
-        return res.status(404).json({ invaliduser: 'You do not own this deck' });
+        return res.status(401).json({ unauthorized: 'You do not own this deck' });
       };
       if (req.body.name) {
-        const checkDeckName = await Deck.findOne({ name: req.body.name })
-        if (checkDeckName) return res.status(404).json({ invalidname: 'Deck name already exists' });
+        const checkDeckName = await Deck.findOne({name: req.body.name, public: true });
+        if (checkDeckName && checkDeckName.id !== deck.id) return res.status(404).json({ invalidname: 'Deck name already exists' });
         deck.name = req.body.name;
       }
-      // if (req.body.category) deck.category = req.body.category;
+      
       if (req.body.category) {
         const cats = req.body.category.split(',').map(cat => cat.trim())
         deck.category = cats;
@@ -156,7 +177,7 @@ router.delete('/:id',
         .then(() => res.json({ deleted: "Deck was deleted" }))
         .catch(err => res.status(404).json({ unabletodelete: 'Unable to delete' }))
       } else {
-        return res.status(404).json({ invaliduser: 'You do not own this deck' });
+        return res.status(401).json({ unauthorized: 'You do not own this deck' });
       }
       
     } else {
