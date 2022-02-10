@@ -36,25 +36,25 @@ export default class Challenges extends React.Component {
     if(!deck || !friend) return '';
 
     let winner = 'In Progress';
-    if (game.winner && game.winner === friend.id) {
+    if (game.winner && game.winner === friend._id) {
       winner = friend.username;
-    } else if (game.winner && game.winner !== friend.id) {
+    } else if (game.winner && game.winner !== friend._id) {
       winner = this.props.users.current.username;
     }
 
     return(
       <div className='challenges-request-item'>
-        <Link to={`/compete/${game._id}`}>
+        <Link to={`/compete/${game._id}`} className='challenges-link'>
           <div>
-            <span>Opponent: </span>
+            <span className='challenges-request-item-title'>Opponent: </span>
             <span>{friend.username}</span>
           </div>
           <div>
-            <span>Deck: </span>
+            <span className='challenges-request-item-title'>Deck: </span>
             <span>{deck.deck.name}</span>
           </div>
           <div>
-            <span>Winner: </span>
+            <span className='challenges-request-item-title'>Winner: </span>
             <span>{winner}</span>
           </div>
         </Link>
@@ -70,17 +70,17 @@ export default class Challenges extends React.Component {
 
     return (
       <div className='challenges-div'>
-        <div>Challenges</div>
+        <h2 className='challenges-title'>Challenges</h2>
 
         <div className='challenges-requests-div'>
           <div className='challenges-pending'>
-            <div>Pending: </div>
-            {pendingChallenges}
+            <div className='challenges-pending-title'>Pending: </div>
+            <div className='challenges-pending-list'>{pendingChallenges}</div>
           </div>
 
           <div className='challenges-complete'>
-            <div>Complete: </div>
-            {completeChallenges}
+            <div className='challenges-complete-title'>Complete: </div>
+            <div className='challenges-complete-list'>{completeChallenges}</div>
           </div>
 
         </div>

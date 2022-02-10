@@ -1,3 +1,7 @@
+.compete-mode-div {
+  height: 100vh;
+}
+
 /* Begin loading page */
 .compete-mode-begin {
   width: 50%;
@@ -61,6 +65,7 @@
 .compete-answer-choice:hover {
   background-color: rgb(40, 57, 155);
   color: white;
+  cursor: pointer;
 }
 
 /* styling for results page */
@@ -69,7 +74,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 200px;
+  margin: 100px;
 }
 
 .compete-results-title {
@@ -98,4 +103,11 @@
 
 .compete-results-table tr:nth-child(odd) {
   background-color: rgb(175, 181, 216);
+}
+
+.compete-winner-div {
+  width: 100%;
+  margin: 50px auto;
+  font-size: 50px;
+  text-align: center;
 }

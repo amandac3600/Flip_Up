@@ -66,6 +66,21 @@ export default class CompeteMode extends React.Component {
     )
   }
 
+  renderCompeteMode() {
+
+    return(
+      <div>
+        <Timer />
+          <div className='compete-mode-cards'>
+            <div className='compete-mode-front'>
+              {this.state.cards[this.state.currentIndex].front}
+            </div>
+            {this.renderAnswers()}
+          </div>
+      </div>
+    )
+  }
+
   handleAnswerClick(e) {
     const answerChoice = e.currentTarget.textContent;
     const correctAnswer = this.state.cards[this.state.currentIndex].back;
@@ -100,7 +115,6 @@ export default class CompeteMode extends React.Component {
   renderBegin() {
     return (
       <div >
-        <NavContainer />
         <div className='compete-mode-begin'>
           <div className='compete-mode-directions'>The winner will be determined by who gets the most question correct. <br /><br />If there is a tie, whoever finishes in the least amount of time will win.</div>
 
@@ -113,15 +127,17 @@ export default class CompeteMode extends React.Component {
   renderResults() {
     const friendPlayer = this.state.friendPlayer;
     const player = this.state.player;
-    let winner = this.state.game.winner;
     const friend = this.props.users.friends[this.state.game[`${friendPlayer}Id`]]
     const friendName = friend.username;
+
+    let winner = this.state.game.winner;
+    if (winner === friend._id) winner = friendName;
+    if (winner === this.props.users.current.id) winner = this.props.users.current.username;
 
     const friendTime = this.state.game[`${friendPlayer}Time`] ? `${(this.state.game[`${friendPlayer}Time`]/60000).toFixed(2)} minutes` : 'In Progress';
 
     return (
       <div>
-        <NavContainer />
         <div className='compete-mode-results-div'>
           <h1 className='compete-results-title'>Challenge Results</h1>
           <table>
@@ -158,8 +174,9 @@ export default class CompeteMode extends React.Component {
             </tbody>
           </table>
 
-          <div>{winner ? `${winner} won this round!` : ''}</div>
+          <div className='compete-winner-div'>{winner ? `${winner} won this round!` : ''}</div>
         </div>
+        
       </div>
     )
   }
@@ -169,28 +186,21 @@ export default class CompeteMode extends React.Component {
     if (!this.props.decks || !this.props.users || !this.props.users.friends || !this.props.games || !this.state.cards) return null;
 
     console.log('render', this.state)
-    if (this.state.playerTime || this.state.game[`${this.state.player}Time`]) return this.renderResults();
-    if (!this.state.begin) return this.renderBegin();
+
+    let display;
+    if (!this.state.begin) display = this.renderBegin();
+    if (this.state.playerTime || this.state.game[`${this.state.player}Time`]) display =  this.renderResults();
 
     if (this.state.cards && this.state.cards.length < 4) 
-    return (
-      <div>
-        <NavContainer />
+      display = (<div>
         Decks must have minimum of 4 cards to use in battle mode.
-      </div>
-    )
+      </div>);
+
+    display ||= this.renderCompeteMode();
     return (
-      <div>
+      <div className='compete-mode-div'>
         <NavContainer />
-
-        <Timer />
-        <div className='compete-mode-cards'>
-          <div className='compete-mode-front'>
-            {this.state.cards[this.state.currentIndex].front}
-          </div>
-          {this.renderAnswers()}
-        </div>
-
+        {display}
       </div>
     );
   }

@@ -14,6 +14,7 @@ import StudyContainer from './study/study_container'
 import DeckShowContainer from './deck/deck_show_container'
 import CompeteFormContainer from './compete_mode/compete_form_container';
 import CompeteModeContainer from './compete_mode/compete_mode_container';
+import ChallengesContainer from './compete_mode/challenges_container';
 import "./reset.css"
 import SearchResultIndexContainer from './search/search_result_index_container';
 
@@ -32,6 +33,7 @@ const App = () => (
       <ProtectedRoute path="/search/" component={SearchResultIndexContainer}/>
 
       <ProtectedRoute exact path="/compete" component={CompeteFormContainer} />
+      <ProtectedRoute exact path="/challenges" component={ChallengesContainer} />
 
       <ProtectedRoute path="/compete/:gameId" component={CompeteModeContainer} />
 
