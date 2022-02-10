@@ -27,7 +27,7 @@ class DeckForm extends React.Component {
       return e => this.setState({ [field]: e.currentTarget.checked });
     
     // set category state
-    } else if (field === 'history' || field === 'science' || field === 'grammar' || field === 'math') {
+    } else if (field === 'history' || field === 'science' || field === 'grammar' || field === 'math' || field === 'animals' || field === 'languages' || field === 'japanese' || field === 'english') {
       return e => {
         if (e.currentTarget.checked) {
           return this.setState({ category: [...this.state.category, ...[field]] })
@@ -35,7 +35,7 @@ class DeckForm extends React.Component {
           return this.setState({ category: this.state.category.filter(x => x !== field) });
         }
       }
-
+ 
     //set all other input states
     } else {
       return e => this.setState({ [field]: e.currentTarget.value });
@@ -87,6 +87,22 @@ class DeckForm extends React.Component {
             <div>
               <input id='deck-form-math' checked={this.state.category.includes('math')} type="checkbox" value='math' onChange={this.update('math')} />
               <label htmlFor="deck-form-math">Math</label> 
+            </div>
+            <div>
+              <input id='deck-form-math' checked={this.state.category.includes('animals')} type="checkbox" value='animals' onChange={this.update('animals')} />
+              <label htmlFor="deck-form-math">Animals</label> 
+            </div>
+            <div>
+              <input id='deck-form-math' checked={this.state.category.includes('languages')} type="checkbox" value='languages' onChange={this.update('languages')} />
+              <label htmlFor="deck-form-math">Languages</label> 
+            </div>
+            <div>
+              <input id='deck-form-math' checked={this.state.category.includes('japanese')} type="checkbox" value='japanese' onChange={this.update('japanese')} />
+              <label htmlFor="deck-form-math">Japanese</label> 
+            </div>
+            <div>
+              <input id='deck-form-math' checked={this.state.category.includes('english')} type="checkbox" value='english' onChange={this.update('english')} />
+              <label htmlFor="deck-form-math">English</label> 
             </div>
             <input type="submit" value="Submit" />
           </div>
