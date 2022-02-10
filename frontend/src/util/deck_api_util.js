@@ -27,7 +27,8 @@ export const createDeck = (deck) => {
 
 //update a deck
 export const updateDeck = (deck) => {
-    return axios.patch(`/api/decks/${deck.id}`, deck);
+  console.log(deck)
+    return axios.patch(`/api/decks/${deck._id}`, deck);
 };
 
 //delete a deck

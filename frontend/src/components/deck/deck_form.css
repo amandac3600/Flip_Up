@@ -182,8 +182,8 @@
     height: 40px;
     margin-left: 50px;
     margin-top: 20px;
-    font-family: Arial, Helvetica, sans-serif;
 }
+
 
 .aws-btn {
     --button-primary-color: #28399b !important;
@@ -253,7 +253,8 @@
 
 
 .deck-form-page-deck-list-shadow {
-    width: 400px;
+    width: 380px;
+    margin-left: 10px;
     position: absolute;
     height: 10px;
     margin-top: 490px;
@@ -262,10 +263,10 @@
 
 .deck-form-other-decks-container > div:first-child {
     align-self: center;
-    font-family: Arial, Helvetica, sans-serif;
     padding-top: 20px;
     font-size: 2.2rem;
-    color: rgb(40, 57, 155)
+    color: rgb(40, 57, 155); 
+    font-weight: bold;
     
 }
 
@@ -297,6 +298,10 @@
     font-size: 1.1rem;
     margin-top: 20px;
     margin-left: 20px;
+    color: whitesmoke;
+}
+
+.deck-form-page-deck-list-item > :first-child > div{
     color: whitesmoke;
 }
 

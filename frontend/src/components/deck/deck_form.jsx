@@ -17,16 +17,44 @@ class DeckForm extends React.Component {
         public: false,
         category: []
       };
-    } else {
+     } else if (this.props.deck) {
       this.state = {
         name: this.props.deck.name,
         public: this.props.deck.public,
         category: this.props.deck.category
       };
+    } else {
+      this.state = {
+        name: '',
+        public: false,
+        category: []
+      };
     }
     
   }
 
+  componentDidMount() {
+    let that = this
+    setTimeout(function stateSetter(){
+      if (that.props.deck) {
+        that.setCategoryLabelState(that.props.deck.category)
+        that.setState({
+          name: that.props.deck.name,
+          public: that.props.deck.public,
+          category: that.props.deck.category
+        })
+      } else {
+        setTimeout(stateSetter, 100)
+      }
+    },100)  
+  }
+
+  componentDidUpdate() {
+    if (Object.keys(this.props.decks).length < 4) {
+        document.getElementById('deck-form-page-deck-list-shadow').style.display = 'none';
+    }
+    
+  }
 
   update(field) {
     // set public state
@@ -51,9 +79,16 @@ class DeckForm extends React.Component {
     }
   }
 
+
+  setCategoryLabelState(categories) {
+    categories.map((field)=>{
+      document.getElementById(`deck-form-${field}-label`).classList.add("checked");
+    })
+  }
+
   deckSubmit(e) {
     e.preventDefault();
-    const newState = Object.assign({}, this.state, {category: this.state.category.join(',')})
+    const newState = Object.assign({}, this.state, {category: this.state.category.join(',')}, {_id: this.props.match.params.id})
     this.props.submit(newState)
     .then((res)=>{
       this.props.history.push(`/decks/${res.deck._id}`)
@@ -65,8 +100,8 @@ class DeckForm extends React.Component {
   }
 
   getDeckCategories(deckId) {
-    return this.props.decks[deckId].category.map((category)=>{
-      return <div>
+    return this.props.decks[deckId].category.map((category, idx)=>{
+      return <div key={idx} >
                 <div>{category}</div>
             </div>
     })
@@ -75,10 +110,15 @@ class DeckForm extends React.Component {
   getNumberOfCards(deckId) {
   }
 
+  editDeck(key) {
+    this.props.location.pathname = ''
+    this.props.history.push(`decks/${this.props.decks[key]._id}/edit`)
+  }
+
   getEachDeck() {
     return Object.keys(this.props.decks).slice(0).reverse().map((key, idx)=>{
       if (idx > 0) {
-        return <div key={key} className='deck-form-page-deck-list-item grow3' onClick={()=>this.moveToNextDeck(key)} >
+        return <div key={key} className='deck-form-page-deck-list-item grow3' onClick={()=>this.editDeck(key)} >
                 <div >
                   <div>{this.props.decks[key].name}</div>
                   <div>{this.getNumberOfCards(key)}</div>
@@ -93,9 +133,7 @@ class DeckForm extends React.Component {
   }
 
   render() {
-    this.props.deleteDeck("62019235520623485c244ff7").then((res)=>{
-      console.log(res)
-    });
+    console.log(this.props)
     console.log(this.state)
     return (
       <div className='deck-form-container' >
@@ -153,7 +191,7 @@ class DeckForm extends React.Component {
               
             </div>
             </div>
-            <AwesomeButton className='deck-form-submit-button' type="primary">Save Deck</AwesomeButton>
+            <AwesomeButton id='deck-form-submit-button' className='deck-form-submit-button' type="primary">Save Deck</AwesomeButton>
           </div>
         </form>
         
@@ -164,7 +202,7 @@ class DeckForm extends React.Component {
                   {this.getEachDeck()}
                 </div>
               </div>
-              <div className='deck-form-page-deck-list-shadow' ></div>
+              <div id='deck-form-page-deck-list-shadow' className='deck-form-page-deck-list-shadow' ></div>
           </div>
         </div>
       </div>
