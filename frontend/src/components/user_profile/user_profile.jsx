@@ -112,10 +112,14 @@ class UserProfile extends React.Component {
                     console.log({friend})
                     return (
                          <li>{friend.username}</li>
+                         
                     )
                    
                  })}
             </ul>
+            <button className='profile-create-deck-button' onClick={() => this.setState({showFriendModal: true}) }>Find a friend now!</button>
+             <div className={ this.state.showFriendModal ? 'modal' : 'none'}><FriendsSearchContainer off={()=> this.setState({showFriendModal: false})} /></div>
+
         </div>
         )
         
@@ -165,7 +169,7 @@ class UserProfile extends React.Component {
                             <>
                                 <div className="profile-user-info">
                                     <ProfileIcon className='profile-user-icon' user={this.state.user} updateUser={this.props.updateUser} isCurrent={true}/>
-                                    <p>{this.state.user.username}</p>
+                                    <p>{this.props.users.current.username}</p>
                                     {/* <Link to="/profile/update">Edit profile</Link> */}
                                 </div>
                                 <div className='profile-user-stats'>
