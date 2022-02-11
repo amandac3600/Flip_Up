@@ -158,7 +158,7 @@ class UserProfile extends React.Component {
                         <div className="profile-info-div">
                             <>
                                 <div className="profile-user-info">
-                                    <ProfileIcon className='profile-user-icon' user={this.state.user} updateUser={this.props.updateUser}/>
+                                    <ProfileIcon className='profile-user-icon' user={this.state.user} updateUser={this.props.updateUser} isCurrent={true}/>
                                     <p>{this.state.user.username}</p>
                                     {/* <Link to="/profile/update">Edit profile</Link> */}
                                 </div>
