@@ -39,6 +39,7 @@
 }
 
 .compete-mode-front {
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
   max-width: 1280px;
   height: 17vh;
   border-radius: 5px;
@@ -59,19 +60,23 @@
 .compete-answer-choice-span {
   width: 1000px;
   line-height: 5;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
 }
 
 .compete-answer-choices-div {
   display: flex;
   flex-direction: column;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
 }
 
 .compete-answer-choices-subdiv {
   display: flex;
   justify-content: center;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
 }
 
 .compete-answer-choice {
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
   width: 600px;
   height: 17vh;
   /* border: 1px solid gray; */
@@ -156,6 +161,7 @@
   width: 50%;
   margin: 100px auto;
   font-size: 50px;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
 }
 
 .fish-emoji {
