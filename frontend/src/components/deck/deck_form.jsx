@@ -1,37 +1,61 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import "react-awesome-button/dist/styles.css";
+
 import "./deck_form.css"
 import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
 import NavBarContainer from './../nav/nav_container'
 
 
 class DeckForm extends React.Component {
   constructor(props) {
     super(props);
-    this.props.fetchCurrentUser();
-    // this.props.deleteDeck('620537f9f03145de7a40aaff');
-
-    this.state = {
-      name: '',
-      public: false,
-      category: []
-    };
-
+    
+    this.props.getUserDecks(this.props.currentUser.id)
+    if (this.props.type === 'create') {
+      this.state = {
+        name: '',
+        public: false,
+        category: []
+      };
+     } else if (this.props.deck) {
+      this.state = {
+        name: this.props.deck.name,
+        public: this.props.deck.public,
+        category: this.props.deck.category
+      };
+    } else {
+      this.state = {
+        name: '',
+        public: false,
+        category: []
+      };
+    }
     
   }
 
   componentDidMount() {
-    this.props.getUserDecks(this.props.currentUser.id).then(res => {
-      if (this.props.type === 'update') {
-        console.log(res)
-        this.setState = ({
-          name: this.props.deck.name,
-          public: this.props.deck.public,
-          category: this.props.deck.category
-        });
+    
+    if (this.props.type !== 'create') {
+      let that = this
+      setTimeout(function stateSetter(){
+      if (that.props.deck) {
+        that.setCategoryLabelState(that.props.deck.category)
+        that.setState({
+          name: that.props.deck.name,
+          public: that.props.deck.public,
+          category: that.props.deck.category
+        })
+      } else {
+        setTimeout(stateSetter, 100)
       }
-    });
+    },100)  
+    }
+    
+  }
+
+  componentDidUpdate() {
+    
   }
 
   update(field) {
@@ -57,9 +81,16 @@ class DeckForm extends React.Component {
     }
   }
 
+
+  setCategoryLabelState(categories) {
+    categories.map((field)=>{
+      document.getElementById(`deck-form-${field}-label`).classList.add("checked");
+    })
+  }
+
   deckSubmit(e) {
     e.preventDefault();
-    const newState = Object.assign({}, this.state, {category: this.state.category.join(',')})
+    const newState = Object.assign({}, this.state, {category: this.state.category.join(',')}, {_id: this.props.match.params.id})
     this.props.submit(newState)
     .then((res)=>{
       this.props.history.push(`/decks/${res.deck._id}`)
@@ -71,8 +102,8 @@ class DeckForm extends React.Component {
   }
 
   getDeckCategories(deckId) {
-    return this.props.decks[deckId].category.map((category)=>{
-      return <div>
+    return this.props.decks[deckId].category.map((category, idx)=>{
+      return <div key={idx} >
                 <div>{category}</div>
             </div>
     })
@@ -81,10 +112,18 @@ class DeckForm extends React.Component {
   getNumberOfCards(deckId) {
   }
 
+  editDeck(key) {
+    this.props.location.pathname = ''
+    this.props.history.push(`decks/${this.props.decks[key]._id}/edit`)
+  }
+
   getEachDeck() {
-    return Object.keys(this.props.decks).slice(0).reverse().map((key, idx)=>{
-      if (idx > 0) {
-        return <div key={key} className='deck-form-page-deck-list-item grow3' onClick={()=>this.moveToNextDeck(key)} >
+    if (!document.getElementById('study-page-deck-list-shadow')) return
+    let counter = 0;
+    let div = Object.keys(this.props.decks).slice(0).reverse().map((key, idx)=>{
+      if (idx > 0 && this.props.decks[key]._id !== this.props.match.params.id) {
+        counter += 1
+        return <div key={key} className='deck-form-page-deck-list-item grow3' onClick={()=>this.editDeck(key)} >
                 <div >
                   <div>{this.props.decks[key].name}</div>
                   <div>{this.getNumberOfCards(key)}</div>
@@ -96,9 +135,14 @@ class DeckForm extends React.Component {
       }
       
     })
+    if (counter < 4) {
+      document.getElementById('study-page-deck-list-shadow').classList.remove('study-page-deck-list-shadow')
+    }
+    return div
   }
 
   render() {
+    console.log(this.props)
     console.log(this.state)
     return (
       <div className='deck-form-container' >
@@ -156,7 +200,8 @@ class DeckForm extends React.Component {
               
             </div>
             </div>
-            <AwesomeButton className='deck-form-submit-button' type="primary">Save Deck</AwesomeButton>
+            <div className='deck-form-submit-button-div' ><AwesomeButton id='deck-form-submit-button' className='deck-form-submit-button' type="primary">Save Deck</AwesomeButton></div>
+            
           </div>
         </form>
         
@@ -167,7 +212,7 @@ class DeckForm extends React.Component {
                   {this.getEachDeck()}
                 </div>
               </div>
-              <div className='deck-form-page-deck-list-shadow' ></div>
+              <div id='study-page-deck-list-shadow' className='deck-form-page-deck-list-shadow' ></div>
           </div>
         </div>
       </div>

@@ -4,6 +4,8 @@ import Timer from './timer';
 import './compete_mode.css'
 import Sparkles from '../study/sparkles';
 import CompeteResults from './compete_results';
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
 
 export default class CompeteMode extends React.Component {
   constructor(props) {
@@ -50,10 +52,9 @@ export default class CompeteMode extends React.Component {
     emojiDiv.setAttribute('class', 'fish-emoji');
     emojiDiv.setAttribute('id', 'fish-emoji');
     emojiDiv.innerHTML = `&#${randomEmoji};`;
-    emojiDiv.style.top = `${Math.random()*90}%`;
+    emojiDiv.style.top = `${Math.random()*85}%`;
     const competeDiv = document.querySelector('.compete-mode-div');
     competeDiv.insertBefore(emojiDiv, competeDiv.firstChild);
-
     const answerChoice = e.currentTarget.textContent;
     const correctAnswer = this.state.cards[this.state.currentIndex].back;
 
@@ -98,7 +99,7 @@ export default class CompeteMode extends React.Component {
 
   renderCompeteMode() {
     return (
-      <div>
+      <div className='compete-mode-total-container' >
         <Timer />
         <div className='compete-mode-cards'>
           <div className='compete-mode-front'>
@@ -125,13 +126,13 @@ export default class CompeteMode extends React.Component {
     return (
       <div className='compete-answer-choices-div'>
         <div className='compete-answer-choices-subdiv'>
-          <div className='compete-answer-choice' onClick={this.handleAnswerClick}>{answers[0]}</div>
-          <div className='compete-answer-choice' onClick={this.handleAnswerClick}>{answers[1]}</div>
+        <AwesomeButton  className='compete-answer-choice compete-quiz-button' type="primary"  ><span className='compete-answer-choice-span' onClick={this.handleAnswerClick} >{answers[0]}</span></AwesomeButton>
+          <AwesomeButton className='compete-answer-choice compete-quiz-button' type="primary"><span className='compete-answer-choice-span' onClick={this.handleAnswerClick} >{answers[1]}</span></AwesomeButton>
         </div>
 
         <div className='compete-answer-choices-subdiv'>
-          <div className='compete-answer-choice' onClick={this.handleAnswerClick}>{answers[2]}</div>
-          <div className='compete-answer-choice' onClick={this.handleAnswerClick}>{answers[3]}</div>
+        <AwesomeButton className='compete-answer-choice compete-quiz-button' type="primary"><span className='compete-answer-choice-span' onClick={this.handleAnswerClick} >{answers[2]}</span></AwesomeButton>
+        <AwesomeButton className='compete-answer-choice compete-quiz-button' type="primary" ><span className='compete-answer-choice-span' onClick={this.handleAnswerClick} >{answers[3]}</span></AwesomeButton>
         </div>
       </div>
     )
@@ -155,7 +156,9 @@ export default class CompeteMode extends React.Component {
     return (
       <div className='compete-mode-div'>
         <NavContainer />
-        {display}
+        <div className='compete-mode-answer-cards-timer' >
+          {display}
+        </div>
       </div>
     );
   }

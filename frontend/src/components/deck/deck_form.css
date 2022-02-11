@@ -180,9 +180,15 @@
 
 .deck-form-submit-button {
     height: 40px;
+    margin-right: -1000px !important;
+    
+    margin-top: 20px;
+}
+
+.deck-form-submit-button-div {
+    height: 40px;
     margin-left: 50px;
     margin-top: 20px;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .aws-btn {
@@ -244,7 +250,7 @@
 }
 
 .deck-form-page-deck-list {
-    
+    margin-top: 15px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -253,7 +259,8 @@
 
 
 .deck-form-page-deck-list-shadow {
-    width: 400px;
+    width: 380px;
+    margin-left: 10px;
     position: absolute;
     height: 10px;
     margin-top: 490px;
@@ -262,10 +269,10 @@
 
 .deck-form-other-decks-container > div:first-child {
     align-self: center;
-    font-family: Arial, Helvetica, sans-serif;
     padding-top: 20px;
     font-size: 2.2rem;
-    color: rgb(40, 57, 155)
+    color: rgb(40, 57, 155); 
+    font-weight: bold;
     
 }
 
@@ -285,7 +292,7 @@
     height: 90px;
     border-radius: 4px;
     background-color: rgb(40, 57, 155);
-    margin-top: 15px;
+    margin-bottom: 15px;
     -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
     box-shadow: 2px 3px 5px -2px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
     cursor: pointer;
@@ -300,13 +307,17 @@
     color: whitesmoke;
 }
 
+.deck-form-page-deck-list-item > :first-child > div{
+    color: whitesmoke;
+}
+
 .deck-form-page-deck-list-item > :last-child{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.1rem;
     margin-top: 12px;
     margin-left: 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
     width: 90%;
 }
 

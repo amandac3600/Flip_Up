@@ -1,22 +1,27 @@
 import { connect } from 'react-redux';
 import DeckForm from './deck_form';
-import { updateDeck, deleteDeck, getUserDecks } from './../../actions/deck_actions'
-import { fetchCurrentUser } from '../../actions/session_actions';
+import { updateDeck } from './../../actions/deck_actions'
+import { getUserDecks, deleteDeck } from './../../actions/deck_actions'
 
 const mapStateToProps = (state, ownProps) => {
+  let myDeck
+  Object.keys(state.entities.decks).map((key)=>{
+    if (state.entities.decks[key]._id === ownProps.match.params.id) {
+      myDeck = state.entities.decks[key]
+    }
+  })
   return {
+    deck: myDeck,
+    type: 'update',
     currentUser: state.session.user,
-    deck: state.entities.decks[ownProps.match.params.id],
-    type: 'update'
+    decks: state.entities.decks
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    submit: (deck)=>dispatch(updateDeck(deck)),
-    deleteDeck: (deckId) => dispatch(deleteDeck(deckId)),
-    fetchCurrentUser: () => dispatch(fetchCurrentUser()),
-    getUserDecks: (userId) => dispatch(getUserDecks(userId)),
+    getUserDecks: (userId)=>dispatch(getUserDecks(userId)),
+    submit: (deck)=>dispatch(updateDeck(deck))
   }
 }
 

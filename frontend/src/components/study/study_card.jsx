@@ -11,7 +11,8 @@ class StudyCard extends React.Component {
     this.reviewCounter = 0;
     this.update = true;
     
-    this.props.getDeck(this.props.match.params.id).then(()=>{
+    this.props.getDeck(this.props.match.params.id).then((deck)=>{
+        console.log(deck)
         this.currentCard = 1;
         this.cardId = this.props.decks[this.props.match.params.id].cards[this.counter]
         this.cardId2 = this.props.decks[this.props.match.params.id].cards[this.counter + 1]
@@ -329,14 +330,14 @@ class StudyCard extends React.Component {
         marginLeft = parseInt(marginLeft.slice(0, marginLeft.length - 2), 10)
         let modifierUp = 0.1;
         setTimeout(function moveCard(){
-            if (marginTop > -200) {
-                marginTop = parseInt(marginTop, 10)
-                modifierUp += 0.4;
-                marginTop -= 10 - modifierUp
-                marginTop = marginTop.toFixed(1)
-                document.getElementById(id).style.marginTop = `${marginTop}px`
-            } 
-            if (marginLeft > -window.innerWidth && marginTop > -window.innerHeight) {
+
+            marginTop = parseInt(marginTop, 10)
+            modifierUp += 0.4;
+            marginTop -= 10 - modifierUp
+            marginTop = marginTop.toFixed(1)
+            document.getElementById(id).style.marginTop = `${marginTop}px`
+            console.log(window.innerHeight)
+            if (marginLeft > -window.innerWidth && marginTop > -window.innerHeight  && marginTop < window.innerHeight/2 - 250) {
                 marginLeft = parseInt(marginLeft, 10)
                 marginLeft -= 8
                 marginLeft = marginLeft.toFixed(1)
@@ -363,7 +364,7 @@ class StudyCard extends React.Component {
                 marginTop = marginTop.toFixed(1)
                 document.getElementById(id).style.marginTop = `${marginTop}px`
             } 
-            if (marginLeft < window.innerWidth && marginTop < window.innerHeight) {
+            if (marginLeft < window.innerWidth && marginTop < window.innerHeight  && marginTop < window.innerHeight/2 - 250) {
                 marginLeft = parseInt(marginLeft, 10)
                 marginLeft += 8
                 marginLeft = marginLeft.toFixed(1)
