@@ -31,6 +31,11 @@
 
 .compete-form-friend-list {
   height: 220px;
+  overflow: scroll;
+}
+
+.compete-form-friend-list::-webkit-scrollbar {
+  display: none;
 }
 
 .compete-form-friend-item {
@@ -90,6 +95,7 @@ input[type='radio']:checked .compete-form-friend-item{
   font-family: Montserrat, Arial, Helvetica, sans-serif;
   padding: 4px 6px;
   font-size: 15px;
+  margin-top: 10px;
 }
 
 .compete-form-button:hover {
