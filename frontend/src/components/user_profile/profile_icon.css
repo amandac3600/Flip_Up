@@ -1,19 +1,14 @@
-#user-profile-icon{
+.profile-user-info .user-profile-icon{
   font-size: 70px;
 }
 
 .user-profile-icon-div {
-  width: 100px;
-  height: 100px;
-  background-color: aliceblue;
-  border: 5px solid rgb(40, 57, 155);
-  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#profile-icon-options {
+.profile-icon-options {
   width: 200px;
   height: 200px;
   position: fixed;
@@ -25,7 +20,7 @@
   padding: 10px;
 }
 
-#profile-icon-options::-webkit-scrollbar {
+.profile-icon-options::-webkit-scrollbar {
   display: none;
 }
 
@@ -42,6 +37,6 @@
   
 }
 
-#profile-icon-options.hidden {
+.profile-icon-options.hidden {
   display: none;
 }
