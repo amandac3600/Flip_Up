@@ -64,7 +64,7 @@ class FriendsSearch extends React.Component {
                 <div><ul className ="friends-search-result">
                     {this.state.list.map(friend => (
                         <li className = 'friend-search-results-li'>
-                                <ProfileIcon className='friend-search-thumbnail' user={friend} isCurrent={true}/>                                
+                                <ProfileIcon className='friend-search-thumbnail' user={friend} isCurrent={false}/>                                
                                 {friend.username}
                                 <div>{this.addFriendButton(friend.id)}</div>
                        
