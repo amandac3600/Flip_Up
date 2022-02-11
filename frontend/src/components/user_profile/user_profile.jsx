@@ -113,7 +113,9 @@ class UserProfile extends React.Component {
                     return (
 
                         <li> 
-                            <img className= 'friends-list-thumbnail' src='https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png' alt='profile generic'/>
+                            <ProfileIcon user={friend} isCurrent={false}/>
+
+                            {/* <img className= 'friends-list-thumbnail' src='https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png' alt='profile generic'/> */}
                             {friend.username}
                         </li>
                          
@@ -148,7 +150,7 @@ class UserProfile extends React.Component {
     }
 
     render() {
-
+        
         if(!this.state.user || !this.state.decks) return (
             <div className='loading-spinner'>
                 <div className="loadingio-spinner-ripple-9llcti0jtos"><div className="ldio-6bedd410xds">
@@ -157,7 +159,7 @@ class UserProfile extends React.Component {
                 <style type="text/css"></style>
             </div>
         )
-        const user = this.state.user.username
+   
         
         return (
             <div className='user-profile-total-container' >
@@ -173,7 +175,7 @@ class UserProfile extends React.Component {
                             <>
                                 <div className="profile-user-info">
 
-                                    {/* <ProfileIcon className='profile-user-icon' user={this.props.currentUser} updateUser={this.props.updateUser} isCurrent={true}/> */}
+                                    <ProfileIcon className='profile-user-icon' user={this.props.users.current} updateUser={this.props.updateUser} isCurrent={true}/>
                                     <p>{this.props.users.current.username}</p>
 
                                     {/* <Link to="/profile/update">Edit profile</Link> */}
