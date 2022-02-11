@@ -7,6 +7,8 @@ import './friends_search.css';
 import { DeckCarousel } from '../deck-carousel/deck_carousel';
 import  FriendsSearchContainer  from './friends_search_container';
 import ProfileIcon from './profile_icon';
+import ChallengesContainer from '../compete_mode/challenges_container';
+
 
 class UserProfile extends React.Component {
     constructor(props) {
@@ -111,7 +113,7 @@ class UserProfile extends React.Component {
             </ul>
         </div>
 
-    }
+    }   
 
     renderStats() {
         // let wins 
@@ -134,7 +136,12 @@ class UserProfile extends React.Component {
     render() {
 
         if(!this.state.user || !this.state.decks) return (
-            <div className='loader'></div>
+            <div className='loading-spinner'>
+                <div class="loadingio-spinner-ripple-9llcti0jtos"><div class="ldio-6bedd410xds">
+                <div></div><div></div>
+                </div></div>
+                <style type="text/css"></style>
+            </div>
         )
         const user = this.state.user.username
         
@@ -151,8 +158,7 @@ class UserProfile extends React.Component {
                         <div className="profile-info-div">
                             <>
                                 <div className="profile-user-info">
-                                    {/* <img src="https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png" alt="user profile pic" /> */}
-                                    <ProfileIcon user={this.state.user} updateUser={this.props.updateUser}/>
+                                    <ProfileIcon className='profile-user-icon' user={this.state.user} updateUser={this.props.updateUser} isCurrent={true}/>
                                     <p>{this.state.user.username}</p>
                                     {/* <Link to="/profile/update">Edit profile</Link> */}
                                 </div>
@@ -162,11 +168,13 @@ class UserProfile extends React.Component {
                             </>
                         </div>
                         <div className="profile-vert-box">
-                            <div className="profile-deck-scroller">
-                                {this.renderDecks()}
-                            </div>
                             <div className="profile-battle-box">
-
+                                <ChallengesContainer />
+                            </div>
+                            <div className="profile-deck-scroller">
+                                Your Decks
+                                
+                                {this.renderDecks()}
                             </div>
                         </div>
                     </div>
