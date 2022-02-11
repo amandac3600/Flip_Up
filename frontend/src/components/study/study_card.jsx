@@ -101,8 +101,10 @@ class StudyCard extends React.Component {
         }
     }
     if (answer === 'correct') {
+        console.log(this.props.currentUser)
         let user = Object.assign({}, this.props.currentUser);
         user.points += 2;
+        console.log(user)
         this.props.updateUser(user)
         let card
         if (cardNum === 1) { 

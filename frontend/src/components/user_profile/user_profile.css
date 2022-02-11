@@ -15,6 +15,10 @@
 
 }
 
+.user-profile-total-container {
+    height: calc(100vh - 70px);
+}
+
 .profile-left-div {
     display: flex;
     flex-direction: row;

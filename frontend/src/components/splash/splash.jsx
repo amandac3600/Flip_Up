@@ -20,12 +20,16 @@ export default class Splash extends React.Component {
           <NavContainer/>
         </div>
         <div className='splash-body'>
-          <img src={ocean} alt="ocean" className='splash-bg'/>
-          <h1 className='splash-main-title'>Flip Up</h1>
+          <div className='splash-image-container' >
+            <img src={ocean} alt="ocean" className='splash-bg'/>
+            <h1 className='splash-main-title'>Flip Up</h1>
           <p className='splash-main-description'>The one-stop source to create flashcards, quiz yourself using your own decks or others, and compete against others to test your knowledge and earn rewards</p>
           <div className='splash-make-deck-container'>
             <Link to="/decks/new" className='splash-make-deck'>Make your first deck today</Link>
           </div>
+          </div>
+          
+          
           <div className='splash-block'>
             <div className='splash-cat-container'>
               <h3 className='splash-cat-title'>Find Decks By Category</h3>
