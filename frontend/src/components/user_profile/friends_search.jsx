@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
+import ProfileIcon from './profile_icon';
 
 class FriendsSearch extends React.Component {
     constructor(props) {
@@ -63,8 +64,7 @@ class FriendsSearch extends React.Component {
                 <div><ul className ="friends-search-result">
                     {this.state.list.map(friend => (
                         <li className = 'friend-search-results-li'>
-                                <img className='friend-search-thumbnail' src="https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png" alt="user profile pic" />
-                                {friend.username}
+                                <ProfileIcon className='profile-user-icon' user={friend} updateUser={this.props.updateUser}/>                                {friend.username}
                                 <div>{this.addFriendButton(friend.id)}</div>
                        
                         </li>
