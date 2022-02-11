@@ -180,10 +180,16 @@
 
 .deck-form-submit-button {
     height: 40px;
-    margin-left: 50px;
+    margin-right: -1000px !important;
+    
     margin-top: 20px;
 }
 
+.deck-form-submit-button-div {
+    height: 40px;
+    margin-left: 50px;
+    margin-top: 20px;
+}
 
 .aws-btn {
     --button-primary-color: #28399b !important;
@@ -244,7 +250,7 @@
 }
 
 .deck-form-page-deck-list {
-    
+    margin-top: 15px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -286,7 +292,7 @@
     height: 90px;
     border-radius: 4px;
     background-color: rgb(40, 57, 155);
-    margin-top: 15px;
+    margin-bottom: 15px;
     -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
     box-shadow: 2px 3px 5px -2px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
     cursor: pointer;
@@ -311,7 +317,7 @@
     margin-top: 12px;
     margin-left: 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
     width: 90%;
 }
 

@@ -55,9 +55,6 @@ class DeckForm extends React.Component {
   }
 
   componentDidUpdate() {
-    if (Object.keys(this.props.decks).length < 4) {
-        document.getElementById('deck-form-page-deck-list-shadow').style.display = 'none';
-    }
     
   }
 
@@ -121,8 +118,11 @@ class DeckForm extends React.Component {
   }
 
   getEachDeck() {
-    return Object.keys(this.props.decks).slice(0).reverse().map((key, idx)=>{
-      if (idx > 0) {
+    if (!document.getElementById('study-page-deck-list-shadow')) return
+    let counter = 0;
+    let div = Object.keys(this.props.decks).slice(0).reverse().map((key, idx)=>{
+      if (idx > 0 && this.props.decks[key]._id !== this.props.match.params.id) {
+        counter += 1
         return <div key={key} className='deck-form-page-deck-list-item grow3' onClick={()=>this.editDeck(key)} >
                 <div >
                   <div>{this.props.decks[key].name}</div>
@@ -135,6 +135,10 @@ class DeckForm extends React.Component {
       }
       
     })
+    if (counter < 4) {
+      document.getElementById('study-page-deck-list-shadow').classList.remove('study-page-deck-list-shadow')
+    }
+    return div
   }
 
   render() {
@@ -196,7 +200,8 @@ class DeckForm extends React.Component {
               
             </div>
             </div>
-            <AwesomeButton id='deck-form-submit-button' className='deck-form-submit-button' type="primary">Save Deck</AwesomeButton>
+            <div className='deck-form-submit-button-div' ><AwesomeButton id='deck-form-submit-button' className='deck-form-submit-button' type="primary">Save Deck</AwesomeButton></div>
+            
           </div>
         </form>
         
@@ -207,7 +212,7 @@ class DeckForm extends React.Component {
                   {this.getEachDeck()}
                 </div>
               </div>
-              <div id='deck-form-page-deck-list-shadow' className='deck-form-page-deck-list-shadow' ></div>
+              <div id='study-page-deck-list-shadow' className='deck-form-page-deck-list-shadow' ></div>
           </div>
         </div>
       </div>

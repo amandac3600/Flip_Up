@@ -9,6 +9,11 @@ export default class Timer extends React.Component {
     this.startTime = this.startTime.bind(this);
   }
 
+
+
+
+  
+
   componentDidMount() {
     setInterval(this.startTime, 1000);
   }
@@ -27,8 +32,10 @@ export default class Timer extends React.Component {
     const minutes = Math.floor(time / 60);
 
     return (
+      <div>
       <div className='compete-timer-div'>
         {minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+      </div>
       </div>
     )
 

@@ -78,7 +78,7 @@ const range = (start, end, step = 1) => {
     return output;
   };
 const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
-const DEFAULT_COLOR = '#9AD2F8';
+const DEFAULT_COLOR = '#22328f';
 const generateSparkle = color => {
   const sparkle = {
     id: String(random(10000, 99999)),
