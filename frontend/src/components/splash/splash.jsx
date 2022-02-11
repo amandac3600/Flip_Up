@@ -65,14 +65,15 @@ export default class Splash extends React.Component {
                     <p className='splash-pop-list-item-user'>Luther</p>
                   </div>
                 </Link>
-                <Link to="/decks/6204a5625bb36c5ea5a680c3" className='splash-pop-list-item'>Parts of Speech
+                <Link to="/decks/6205b8e1c00840ac653d5254" className='splash-pop-list-item'>Cat Terms
                   <div className='splash-pop-list-item-cat-container'>
+                    <p className='splash-pop-list-item-cat'>Animals</p>
                     <p className='splash-pop-list-item-cat'>Languages</p>
                     <p className='splash-pop-list-item-cat'>English</p>
                   </div>
                   <div to="/" className='splash-pop-list-item-user-container'>
                     <img className='splash-pop-list-item-user-pic' src="https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png" alt="user profile pic" />
-                    <p className='splash-pop-list-item-user'>Kali</p>
+                    <p className='splash-pop-list-item-user'>Boba</p>
                   </div>
                 </Link>
               </div>
