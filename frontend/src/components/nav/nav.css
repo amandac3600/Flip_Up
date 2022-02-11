@@ -72,6 +72,15 @@
   margin-right: 20px;
 }
 
+.nav-user-welcome-link {
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+.nav-user-welcome-link:hover {
+  border-bottom: 1px solid whitesmoke;
+}
+
 .nav-user-welcome {
   margin: 22px -10px 0 0;
 }

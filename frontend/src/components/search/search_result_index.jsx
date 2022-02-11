@@ -27,6 +27,7 @@ export default class SearchResultIndex extends React.Component {
 
     return Object.values(this.props.decks).map( deck => {
       if (!deck.cards.length) return null;
+      if (!deck.category) return null;
       let cats = deck.category.map(cat => {
         return <div className='search-item-cat'>{cat}</div>
       })

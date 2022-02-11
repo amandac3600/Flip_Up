@@ -7,6 +7,10 @@ import "./nav.css"
 
 class Nav extends React.Component {
 
+  componentDidMount() {
+    this.props.fetchCurrentUser()
+  }
+
   render() {
     let nav;
     if (this.props.location.pathname === "/login" || this.props.location.pathname === "/signup") {
@@ -40,7 +44,7 @@ class Nav extends React.Component {
           <SearchBarContainer className='nav-search-bar'/>
         </div>
         <div className='nav-user-logout'>
-          <h4 className='nav-user-welcome'>Welcome, {this.props.currentUser.username}!</h4>
+          <h4 className='nav-user-welcome'>Welcome, <Link to='/profile' className='nav-user-welcome-link'>{this.props.currentUser.username}!</Link></h4>
           <button className='nav-user-logout-button' onClick={() => this.props.logout()}>Log Out</button>
         </div>
       </nav>
