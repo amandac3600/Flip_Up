@@ -9,7 +9,7 @@ const usersReducer = (state = {}, action) => {
       nextState['current'] = action.currentUser;
       return nextState;
     case RECEIVE_USER:
-      nextState[action.user._id] = action.user;
+      nextState[action.user.id] = action.user;
       return nextState;
     case UPDATE_USER:
             nextState[action.user._id] = action.user;
