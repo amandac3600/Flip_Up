@@ -79,6 +79,8 @@ router.patch('/:id',
   async (req, res) => {
     const game = await Game.findOne({ _id: req.params.id });
     const player1 = await User.findOne({ _id: game.player1Id });
+    const player2 = await User.findOne({ _id: game.player2Id });
+    
     if (req.body.playerCorrect === undefined || req.body.playerTime === undefined ) {
       return res.status(404).json({invaliddata: 'Missing data on round'})
     }
@@ -92,8 +94,6 @@ router.patch('/:id',
     }
 
     if (game.player1Time && game.player2Time) {
-      const player2 = await User.findOne({ _id: game.player2Id });
-
       if ((game.player1Correct > game.player2Correct) || (game.player1Correct === game.player2Correct && game.player1Time < game.player2Time)) {
         game.winner = game.player1Id;
         player1.wins.push(player2.id);

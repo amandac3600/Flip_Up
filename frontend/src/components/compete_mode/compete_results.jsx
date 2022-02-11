@@ -3,22 +3,25 @@ import Sparkles from '../study/sparkles';
 import { Link } from 'react-router-dom';
 
 const getDecks = (decks) => {
-  // return Object.keys(decks).slice(10).map((key) => {
-  //     return <div key={key} className='deck-form-page-deck-list-item grow3' onClick={() => { }} >
-  //       <div >
-  //         <Link>
-  //         <div>{decks[key].name}</div>
-  //         {/* <div>{this.getNumberOfCards(key)}</div> */}
-  //       {/* </div> */}
-  //       <div>
-  //         {/* {this.getDeckCategories(key)} */}
-  //       </div>
-  //       </Link>
-  //     </div>
-  // })
+  const decksSlice = Object.values(decks).filter(deck => deck.cards.length >  2).slice(0, 10)
+  return decksSlice.map((deck) => {
+      return <div key={deck._id} className='deck-form-page-deck-list-item grow3'>
+        <Link to={`/decks/${deck._id}`}>
+          <div >
+            <div>{deck.name}</div>
+            <div>{deck.cards.length} cards</div>
+          </div>
+
+          <div>
+            {deck.category}
+          </div>
+        </Link>
+      </div>
+  })
 }
 
 const CompeteResults = ({user, friends, game, cards, decks}) => {
+  
   let player;
   let friendPlayer;
   if (game.player1Id === user.id) {
@@ -39,7 +42,7 @@ const CompeteResults = ({user, friends, game, cards, decks}) => {
   const friendTime = game[`${friendPlayer}Time`] ? `${(game[`${friendPlayer}Time`] / 60000).toFixed(2)} minutes` : 'In Progress';
 
   return (
-    <div>
+    <div className='compete-mode-results-flex-div'>
       <div className='compete-mode-results-div'>
         <h1 className='compete-results-title'>Challenge Results</h1>
         <table>

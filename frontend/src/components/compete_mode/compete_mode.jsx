@@ -31,7 +31,7 @@ export default class CompeteMode extends React.Component {
       .then((res) => {
         const game = res.game;
         this.setState({game: game});
-        Promise.all([this.props.fetchUser(),this.props.getFriends()])
+        Promise.all([this.props.fetchCurrentUser(),this.props.getFriends()])
           .then( () => {
             this.props.getCards(game.deck).then((res) => {
               if (game.player1Id === this.props.users.current.id) {
@@ -75,7 +75,7 @@ export default class CompeteMode extends React.Component {
     }, () => {
       if (this.state.playerTime) {
         this.props.updateGame(this.state).then(res => {
-          this.setState({game: res.game});
+          this.setState({game: res.game}, () => console.log(this.state.game));
         });
       }
     })
@@ -138,97 +138,11 @@ export default class CompeteMode extends React.Component {
     )
   }
 
-  // renderResults() {
-  //   const friendPlayer = this.state.friendPlayer;
-  //   const player = this.state.player;
-  //   const friend = this.props.users.friends[this.state.game[`${friendPlayer}Id`]]
-  //   const friendName = friend.username;
-
-  //   let winner = this.state.game.winner;
-  //   if (winner === friend._id) winner = friendName;
-  //   if (winner === this.props.users.current.id) winner = this.props.users.current.username;
-  //   const winnerDiv = winner ? <Sparkles><div className='compete-winner-div'>{ `${winner} won this round!`}</div></Sparkles> : '';
-
-  //   const friendTime = this.state.game[`${friendPlayer}Time`] ? `${(this.state.game[`${friendPlayer}Time`]/60000).toFixed(2)} minutes` : 'In Progress';
-
-  //   return (
-  //     <div>
-  //       <div className='compete-mode-results-div'>
-  //         <h1 className='compete-results-title'>Challenge Results</h1>
-  //         <table>
-  //           <tbody className='compete-results-table'>
-  //             <tr>
-  //               <th>Results</th>
-  //               <th>Player 1</th>
-  //               <th>Player 2</th>
-  //             </tr>
-
-  //             <tr>
-  //               <td>Username</td>
-  //               <td>{this.props.users.current.username}</td>
-  //               <td>{friendName}</td>
-  //             </tr>
-
-  //             <tr>
-  //               <td>Number Correct</td>
-  //               <td>{this.state.game[`${player}Correct`]}</td>
-  //               <td>{this.state.game[`${friendPlayer}Correct`] || 'In Progress'}</td>
-  //             </tr>
-
-  //             <tr>
-  //               <td>Number Incorrect</td>
-  //               <td>{this.state.cards.length - this.state.game[`${player}Correct`]}</td>
-  //               <td>{this.state.cards.length - this.state.game[`${friendPlayer}Correct`] || 'In Progress'}</td>
-  //             </tr>
-
-  //             <tr>
-  //               <td>Time</td>
-  //               <td>{`${(this.state.game[`${player}Time`] / 60000).toFixed(2)} minutes`}</td>
-  //               <td>{friendTime}</td>
-  //             </tr>
-  //           </tbody>
-  //         </table>
-
-  //         {winnerDiv}
-  //       </div>
-
-  //       <div className='deck-form-other-decks-container' >
-  //         <div><div>More Decks to Try</div></div>
-  //         <div className='deck-form-page-deck-list-container'>
-  //           <div className='deck-form-page-deck-list' >
-  //             {this.getEachDeck()}
-  //           </div>
-  //         </div>
-  //         <div className='deck-form-page-deck-list-shadow' ></div>
-  //       </div>      
-
-  //     </div>
-      
-  //   )
-  // }
-
-  // getEachDeck() {
-  //   return Object.keys(this.props.decks).slice(0).reverse().map((key, idx) => {
-  //     if (idx > 0) {
-  //       return <div key={key} className='deck-form-page-deck-list-item grow3' onClick={() => {}} >
-  //         <div >
-  //           <div>{this.props.decks[key].name}</div>
-  //           {/* <div>{this.getNumberOfCards(key)}</div> */}
-  //         </div>
-  //         <div>
-  //           {/* {this.getDeckCategories(key)} */}
-  //         </div>
-  //       </div>
-  //     }
-
-  //   })
-  // }
-
   render() {
     if (!this.props.decks || !this.props.users || !this.props.users.friends || !this.props.games || !this.state.cards) return null;
 
     let display;
-    // if (!this.state.begin) display = this.renderBegin();
+    if (!this.state.begin) display = this.renderBegin();
     if (this.state.playerTime || this.state.game[`${this.state.player}Time`]) {
       display = <CompeteResults user={this.props.users.current} friends={this.props.users.friends} game={this.state.game} cards={this.state.cards}decks={this.props.decks} />
     };

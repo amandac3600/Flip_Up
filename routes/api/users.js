@@ -19,6 +19,8 @@ router.get("/search", (req, res) => {
           id: user.id, 
           username: user.username,
           email: user.email,
+          icon: user.icon
+
         })))
       })
       .catch(err => res.status(404).json({nousers: 'No users found'}))
@@ -34,6 +36,7 @@ router.get("/search/:keyword", (req, res) => {
           id: user.id, 
           username: user.username,
           email: user.email,
+          icon: user.icon
         })))
       })
       .catch(err => res.status(404).json({nousers: 'No users found'}))
@@ -41,18 +44,20 @@ router.get("/search/:keyword", (req, res) => {
 
 //return data of user logged in
 router.get('/find/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
-  const decks = await Deck.find({user: req.user.id});
+  const decks = await Deck.find({user: req.params.id});
+  const user = await User.findOne({_id: req.params.id});
   return (
     res.json({
-      id: req.user.id,
-      username: req.user.username,
+      id: user.id,
+      username: user.username,
       decks: decks.map(deck => deck.id),
-      points: req.user.points,
-      friendIds: req.user.friendIds,
-      pendingRequests: req.user.pendingRequests,
-      outgoingRequests: req.user.outgoingRequests,
-      wins: req.user.wins,
-      losses: req.user.losses,
+      points: user.points,
+      friendIds: user.friendIds,
+      pendingRequests: user.pendingRequests,
+      outgoingRequests: user.outgoingRequests,
+      wins: user.wins,
+      losses: user.losses,
+      icon: user.icon
     })
   )
 })
@@ -71,6 +76,7 @@ router.get('/current', passport.authenticate('jwt', {session: false}), async (re
       outgoingRequests: req.user.outgoingRequests,
       wins: req.user.wins,
       losses: req.user.losses,
+      icon: req.user.icon
     })
   )
 })
@@ -145,6 +151,7 @@ router.post('/register', (req, res) => {
                 outgoingRequests: user.outgoingRequests,
                 wins: user.wins,
                 losses: user.losses,
+                icon: user.icon
               };
             jwt.sign(
                 payload,
@@ -190,7 +197,7 @@ router.patch('/', passport.authenticate('jwt', { session: false }), (req, res) =
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(user.password, salt, (err, hash) => {
           if (err) throw err;
-          user.password = hash;
+          if(req.body.password2) user.password = hash;
           delete user.password2;
           user.save()
             .then(async user => {
@@ -205,6 +212,7 @@ router.patch('/', passport.authenticate('jwt', { session: false }), (req, res) =
                 outgoingRequests: user.outgoingRequests,
                 wins: user.wins,
                 losses: user.losses,
+                icon: user.icon,
               };
               return res.json(payload)
             })
@@ -284,6 +292,7 @@ router.patch('/friends', passport.authenticate('jwt', { session: false }), (req,
             outgoingRequests: user.outgoingRequests,
             wins: user.wins,
             losses: user.losses,
+            icon: user.icon
           };
           return res.json(payload)
       })

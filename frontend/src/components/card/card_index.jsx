@@ -16,11 +16,22 @@ class CardIndex extends React.Component {
       .then(this.setState({ loading: false}))
   }
 
+  handleDelete() {
+    let key = Object.keys(this.props.decks)[0]
+    if (!this.props.decks[key].deck) return null
+    if (this.props.decks[key].deck.user === this.props.currentUser.id) {
+      return 'show'    
+    } else {
+      return 'hidden'
+    }
+  }
+
   getCards() {
     const cards = Object.values(this.props.cards);
     if (!cards.length) return 'No cards in deck';
 
     return cards.map(card=>{
+      
       return <div key={card._id} style={{display: 'flex'}} className='card-index-container'>
                 <div className='card-index-card'>
                   <div className='card-index-front' >Front: 
@@ -35,7 +46,8 @@ class CardIndex extends React.Component {
                   </div>
                   
                 </div>
-                  <div className='card-index-delete' onClick={()=>this.props.deleteCard(card._id)} ><BsTrash/></div>
+                
+                  <div className='card-index-delete' id={this.handleDelete()} onClick={()=>this.props.deleteCard(card._id)} ><BsTrash/></div>
               </div>
     })
   }

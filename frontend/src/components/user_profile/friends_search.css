@@ -26,7 +26,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid indigo;
     padding-bottom: 2px;
     margin-bottom: 15px;
 }
@@ -35,14 +35,27 @@
     border-radius: 100%;
 }
 
-.friend-search-result-li {
+.friends-search-result {
+    display: flex;
+    flex-direction: column;
+    align-items: space-between; 
+
+}
+.friend-search-results-li {
     display: flex; 
     flex-direction: row;
     align-items: center;
-    align-content: space-between; 
+    justify-content: space-between; 
+    height: 50px;
+    border-bottom: 1px solid indigo
 }
 .friend-search-thumbnail {
-    
-    width: 40px; 
-    height: 40px; 
+    width: 20px important;
+    border: 1px solid black;
+    padding: 3px;
+    border-radius: 100%;
+    font-size: 5em;
+    background-color: rgb(125, 182, 233);
+    margin-bottom: 10px;
 }
+

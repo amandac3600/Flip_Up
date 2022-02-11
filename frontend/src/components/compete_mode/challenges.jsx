@@ -26,7 +26,7 @@ export default class Challenges extends React.Component {
         )
       });;
     // delete if fetched by profile page
-    this.props.fetchUser();
+    this.props.fetchCurrentUser();
     this.props.getFriends();
   }
 
@@ -35,12 +35,11 @@ export default class Challenges extends React.Component {
       this.props.deleteGame(gameId)
         .then(() => {
           this.props.getPendingGames();
-          this.props.getCompleteGames();
         });
     }
   }
 
-  renderResults(game) {
+  renderResults(game, pending) {
     const friendPlayer = game.player1Id === this.props.users.current.id ? 'player2' : 'player1';
     const friendId = game[`${friendPlayer}Id`];
     const friend = this.props.friends[friendId];
@@ -53,6 +52,12 @@ export default class Challenges extends React.Component {
     } else if (game.winner && game.winner !== friend._id) {
       winner = this.props.users.current.username;
     }
+    let deleteButton = '';
+    if (pending) {
+      deleteButton = (<div onClick={this.handleDeleteGame(game._id)} className='challenges-delete-button'>
+        <BsTrash />
+      </div>)
+    }
 
     return(
       <div className='challenges-request-item-div' key={game._id}>
@@ -60,30 +65,28 @@ export default class Challenges extends React.Component {
           <Link to={`/compete/${game._id}`} className='challenges-link'>
             <div>
               <span className='challenges-request-item-title'>Opponent: </span>
-              <span>{friend.username}</span>
+              <span className='challenges-request-item-info'>{friend.username}</span>
             </div>
             <div>
               <span className='challenges-request-item-title'>Deck: </span>
-              <span>{deck.deck.name}</span>
+              <span className='challenges-request-item-info'>{deck.name}</span>
             </div>
             <div>
               <span className='challenges-request-item-title'>Winner: </span>
-              <span>{winner}</span>
+              <span className='challenges-request-item-info'>{winner}</span>
             </div>
           </Link>
         </div>
-        <div onClick={this.handleDeleteGame(game._id)} className='challenges-delete-button'>
-          <BsTrash />
-        </div>
+        {deleteButton}
       </div>
     )
   }
 
   render() {
-    if (!this.props.users.current || !this.props.users.friends || !this.props.games || !this.props.games.pending || !this.props.games.complete) return null;
+    if (!this.props.users.current || !this.props.users.friends || !this.props.games || !this.props.games.pending || !this.props.games.complete || !this.props.decks || !this.props.decks) return null;
 
-    const pendingChallenges = Object.values(this.props.games.pending).map(game => this.renderResults(game));
-    const completeChallenges = Object.values(this.props.games.complete).map(game => this.renderResults(game));
+    const pendingChallenges = Object.values(this.props.games.pending).map(game => this.renderResults(game, true));
+    const completeChallenges = Object.values(this.props.games.complete).map(game => this.renderResults(game, false));
 
     return (
       <div className='challenges-div'>
