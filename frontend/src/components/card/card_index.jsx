@@ -55,7 +55,7 @@ class CardIndex extends React.Component {
   render() {
     if (this.state.loading) return null;
     return (
-      <div>
+      <div className='card-index-get-cards'>
         {this.getCards()}
       </div>
     );
