@@ -21,6 +21,7 @@ const getDecks = (decks) => {
 }
 
 const CompeteResults = ({user, friends, game, cards, decks}) => {
+  
   let player;
   let friendPlayer;
   if (game.player1Id === user.id) {

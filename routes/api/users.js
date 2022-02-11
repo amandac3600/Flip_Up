@@ -197,7 +197,7 @@ router.patch('/', passport.authenticate('jwt', { session: false }), (req, res) =
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(user.password, salt, (err, hash) => {
           if (err) throw err;
-          user.password = hash;
+          if(req.body.password2) user.password = hash;
           delete user.password2;
           user.save()
             .then(async user => {
