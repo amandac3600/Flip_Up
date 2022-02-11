@@ -1,26 +1,44 @@
 import React, {useState, useEffect} from 'react';
+import './profile_icon.css'
 
+const renderIcons = () => {
+  const iconOptions = document.getElementById('profile-icon-options');
+  if (!iconOptions) return null;
+  const emojiCodeRanges = [128005, 128063]
 
+  for (let i = emojiCodeRanges[0]; i < emojiCodeRanges[1]; i++) {
+    const icon = document.createElement('span');
+    icon.setAttribute('class', 'profile-icon');
+    icon.setAttribute('id', `${i}`);
+    icon.innerHTML = `&#${i}`;
+    iconOptions.append(icon)
+  }
+}
 
-// const renderIcons = () => {
-//   const emojiCodeRanges = [128005, 128063]
-//   for (let i = emojiCodeRanges[0]; i < emojiCodeRanges[1]; i++) {
-//     profileIcon.append(`<span class='emoji' id='&#${i}'>&#${i}</span>`)
-//   }
-// }
+const toggleIconOptions = () => {
+  const iconOptions = document.getElementById('profile-icon-options');
+  iconOptions.classList.toggle('hidden')
+} 
 
-const ProfileIcon = ({user}) => {
+const ProfileIcon = ({ user, updateUser, isCurrent = true}) => {
   const [icon, setIcon] = useState(user.icon);
 
   useEffect(() => {
     const profileIcon = document.getElementById('user-profile-icon');
-    profileIcon.innerHTML = `&#${icon};`
+    profileIcon.innerHTML = `&#${icon}`
+    if (isCurrent) renderIcons();
   })
 
-
-
+  const handleIconClick = (e) => {
+    console.log(e.target.id);
+    setIcon(e.target.id)
+    updateUser({ icon: e.target.id})
+  }
   return(
-    <div id='user-profile-icon'></div>
+    <div className='user-profile-icon-div' onClick={toggleIconOptions}>
+      <div id='user-profile-icon'></div>
+      <div id='profile-icon-options' className='hidden' onClick={handleIconClick}></div>
+    </div>
   )
 }
 
