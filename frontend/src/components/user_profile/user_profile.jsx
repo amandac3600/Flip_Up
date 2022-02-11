@@ -27,7 +27,7 @@ class UserProfile extends React.Component {
 
 
     componentDidMount() {
- 
+        this.props.fetchCurrentUser();
         this.props.getDecks() 
             .then(action => {
                 this.setState({
@@ -137,7 +137,7 @@ class UserProfile extends React.Component {
 
         if(!this.state.user || !this.state.decks) return (
             <div className='loading-spinner'>
-                <div class="loadingio-spinner-ripple-9llcti0jtos"><div class="ldio-6bedd410xds">
+                <div className="loadingio-spinner-ripple-9llcti0jtos"><div className="ldio-6bedd410xds">
                 <div></div><div></div>
                 </div></div>
                 <style type="text/css"></style>
@@ -158,7 +158,7 @@ class UserProfile extends React.Component {
                         <div className="profile-info-div">
                             <>
                                 <div className="profile-user-info">
-                                    <ProfileIcon className='profile-user-icon' user={this.state.user} updateUser={this.props.updateUser} isCurrent={true}/>
+                                    <ProfileIcon className='profile-user-icon' user={this.props.currentUser} updateUser={this.props.updateUser} isCurrent={true}/>
                                     <p>{this.state.user.username}</p>
                                     {/* <Link to="/profile/update">Edit profile</Link> */}
                                 </div>

@@ -25,6 +25,8 @@ const ProfileIcon = ({ user, updateUser, isCurrent = true}) => {
   const [icon, setIcon] = useState(user.icon);
 
   useEffect(() => {
+    console.log(user)
+    console.log(user.username, icon)
     const profileIcon = document.querySelector(`.user-profile-icon.${user.username}`);
     profileIcon.innerHTML = `&#${icon}`
     if (isCurrent) renderIcons();
