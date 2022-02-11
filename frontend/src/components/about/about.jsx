@@ -6,6 +6,7 @@ import {AiFillLinkedin} from 'react-icons/ai'
 import alex from './alexpp.jpg';
 import amanda from './amandapp.jpeg'
 import laney from './laneypp.jpeg'
+import helen from './helen.jpeg'
 import "./about.css";
 
 export default class About extends React.Component {
@@ -37,7 +38,7 @@ export default class About extends React.Component {
             </div>
           </div>
           <div className='about-contrib-div'>
-            <img src={laney} alt="Laney Luong" className='about-profile-pic'/>
+            <img src={helen} alt="Helen Edwards" className='about-profile-pic'/>
             <p className='about-contrib-name'>Helen Edwards</p>
             <p className='about-contrib-descrip'>Hey, Helen here … So you want to know a bit about me?  Well I am a full stack software engineer, with experience in Ruby on Rails, React, Redux, NodeJS,  PostgreSQL.  I’ve got a couple of full stack projects under my belt.  Not enough?  Well in my spare time, I make pottery, practice the art of Kintsugi (repairing ceramics with gold), home-brew, bake, and am a PADI certified shark conservation specialist.</p>
             <p className='about-contrib-descrip'>My favorite sea animal is the jellyfish - they are just mesmerizing to watch!</p>

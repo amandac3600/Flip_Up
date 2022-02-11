@@ -51,13 +51,10 @@
 }
 
 .friend-search-thumbnail {
-    width: 20px;
-    /* border: 1px solid black; */
 
+    width:  30px;
     padding: 3px;
-    /* border-radius: 100%; */
-    /* font-size: 5em;
-    background-color: rgb(125, 182, 233); */
+
     margin-bottom: 10px;
 }
 

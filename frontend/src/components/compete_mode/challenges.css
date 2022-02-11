@@ -5,7 +5,7 @@
   align-items: center;
 }
 .challenges-title {
-  font-size: 30px;
+  font-size: 27px;
   padding: 10px;
 
 }
@@ -16,16 +16,23 @@
 
 .challenges-pending-list {
   border: 1px solid gray;
-  width: 250px;
-  height: 220px;
+  width: 18vw;
+  height: 30vh;
   overflow-y: auto;
   overflow-x: hidden;
- border-bottom-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  /* text-decoration: none; */
 }
+/* .challenges-pending-list a:link, a:visited {
+  text-decoration: none;
+  color: inherit;
+} */
+
 .challenges-complete-list {
   border: 1px solid gray;
-  width: 250px;
-  height: 220px;
+  width: 19vw;
+  height: 30vh;
+  margin-bottom: 5px;
   overflow-y: auto;
   overflow-x: hidden;
   border-bottom-right-radius: 5px;
@@ -46,6 +53,11 @@
   color: white;
   border-top-right-radius: 5px;
 }
+
+/* .challenges-complete-list a:link, a:visited {
+  text-decoration: none;
+  color: inherit;
+} */
 
 .challenges-request-item-div {
   display: flex;
