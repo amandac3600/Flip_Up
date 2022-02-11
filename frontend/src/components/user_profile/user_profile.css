@@ -3,10 +3,11 @@
     flex-direction: row;
     justify-content: space-evenly;
     width: 100%;
-    height: 77vh;
+    height: 80vh;
     padding-top:20px; 
     padding-bottom: 20px;
     background-color: aliceblue;
+    font-family: Montserrat, Arial, Helvetica, sans-serif;
     /* background-image:  url('http://localhost:3000/static/media/ocean.b2bebab11c0bc273f3fc.jpg'); */
     /* background-image:  url('https://i.ytimg.com/vi/TQOO9h_U44Q/maxresdefault.jpg'); */
     /* background-repeat: no-repeat;

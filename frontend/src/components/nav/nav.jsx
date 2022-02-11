@@ -7,10 +7,6 @@ import "./nav.css"
 
 class Nav extends React.Component {
 
-  componentDidMount() {
-    this.props.fetchCurrentUser()
-  }
-
   render() {
     let nav;
     if (this.props.location.pathname === "/login" || this.props.location.pathname === "/signup") {
@@ -22,20 +18,7 @@ class Nav extends React.Component {
           <SearchBarContainer/>
         </div>
       </nav>
-    } else if (!this.props.currentUser) {
-      nav = <nav className='nav-container'>
-        <div className='nav-logo'>
-          <Link className="nav-logo-link" to="/"><img src={logo} alt="Flip Up" width='45' height='45'/></Link>
-        </div>
-        <div className='nav-search'>
-          <SearchBarContainer/>
-        </div>
-        <div className="nav-login-signup">
-          <Link className="nav-login" to='/login'>Log In</Link>
-          <Link className="nav-signup" to='/signup'>Sign Up</Link>
-        </div>
-      </nav>
-    } else {
+    } else if (Object.keys(this.props.currentUser).length > 0) {
       nav = <nav className='nav-container'>
         <div className='nav-logo'>
           <Link className="nav-logo-link" to="/"><img src={logo} alt="Flip Up" width='45' height='45'/></Link>
@@ -48,8 +31,20 @@ class Nav extends React.Component {
           <button className='nav-user-logout-button' onClick={() => this.props.logout()}>Log Out</button>
         </div>
       </nav>
+    } else {
+      nav = <nav className='nav-container'>
+        <div className='nav-logo'>
+          <Link className="nav-logo-link" to="/"><img src={logo} alt="Flip Up" width='45' height='45'/></Link>
+        </div>
+        <div className='nav-search'>
+          <SearchBarContainer/>
+        </div>
+        <div className="nav-login-signup">
+          <Link className="nav-login" to='/login'>Log In</Link>
+          <Link className="nav-signup" to='/signup'>Sign Up</Link>
+        </div>
+      </nav>
     }
-
     return (
       nav
     )
