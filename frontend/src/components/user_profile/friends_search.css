@@ -49,9 +49,11 @@
     height: 50px;
     border-bottom: 1px solid indigo
 }
+
 .friend-search-thumbnail {
     width: 20px;
     /* border: 1px solid black; */
+
     padding: 3px;
     /* border-radius: 100%; */
     /* font-size: 5em;

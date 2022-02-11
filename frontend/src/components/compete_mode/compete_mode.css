@@ -200,3 +200,7 @@
   justify-content: center;
 }
 
+.compete-mode-results-flex-div {
+  display: flex;
+  justify-content: center;
+}

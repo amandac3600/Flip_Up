@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import './profile_icon.css'
 
 const renderIcons = () => {
-  const iconOptions = document.getElementById('profile-icon-options');
+  const iconOptions = document.querySelector('.profile-icon-options');
+  iconOptions.innerHTML = '';
   if (!iconOptions) return null;
   const emojiCodeRanges = [128005, 128063]
 
@@ -16,7 +17,7 @@ const renderIcons = () => {
 }
 
 const toggleIconOptions = () => {
-  const iconOptions = document.getElementById('profile-icon-options');
+  const iconOptions = document.querySelector('.profile-icon-options');
   iconOptions.classList.toggle('hidden')
 } 
 
@@ -24,22 +25,21 @@ const ProfileIcon = ({ user, updateUser, isCurrent = true}) => {
   const [icon, setIcon] = useState(user.icon);
 
   useEffect(() => {
-    const profileIcon = document.getElementById('user-profile-icon');
+
+    const profileIcon = document.querySelector(`.user-profile-icon.${user.username}`);
     profileIcon.innerHTML = `&#${icon}`
     if (isCurrent) renderIcons();
   })
 
   const handleIconClick = (e) => {
-    console.log(e.target.id);
     if (e.target.id === 'profile-icon-options') return;
     setIcon(e.target.id)
     updateUser({ icon: e.target.id})
   }
-  
   return(
-    <div className='user-profile-icon-div' onClick={toggleIconOptions}>
-      <div id='user-profile-icon'></div>
-      <div id='profile-icon-options' className='hidden' onClick={handleIconClick}></div>
+    <div className='user-profile-icon-div' onClick={isCurrent ? toggleIconOptions : () => {}}>
+      <div className={`user-profile-icon ${user.username}`}></div>
+      <div className='profile-icon-options hidden' onClick={handleIconClick}></div>
     </div>
   )
 }

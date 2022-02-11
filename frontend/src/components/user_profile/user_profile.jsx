@@ -156,7 +156,7 @@ class UserProfile extends React.Component {
         const user = this.state.user.username
         
         return (
-            <div>
+            <div className='user-profile-total-container' >
                  <div className='about-nav'>
                     <NavContainer/>
                 </div>
@@ -170,6 +170,7 @@ class UserProfile extends React.Component {
                                 <div className="profile-user-info">
                                     <ProfileIcon className='profile-user-icon' user={this.state.user} updateUser={this.props.updateUser} isCurrent={true}/>
                                     <p>{this.props.users.current.username}</p>
+
                                     {/* <Link to="/profile/update">Edit profile</Link> */}
                                 </div>
                                 <div className='profile-user-stats'>

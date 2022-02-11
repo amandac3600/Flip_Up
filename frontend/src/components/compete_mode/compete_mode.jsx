@@ -2,7 +2,6 @@ import React from 'react';
 import NavContainer from '../nav/nav_container';
 import Timer from './timer';
 import './compete_mode.css'
-import Sparkles from '../study/sparkles';
 import CompeteResults from './compete_results';
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";

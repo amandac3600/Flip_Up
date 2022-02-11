@@ -118,7 +118,7 @@ class DeckForm extends React.Component {
   }
 
   getEachDeck() {
-    if (!document.getElementById('study-page-deck-list-shadow')) return
+    if (!document.getElementById('study-page-deck-list-shadow')) return 
     let counter = 0;
     let div = Object.keys(this.props.decks).slice(0).reverse().map((key, idx)=>{
       if (idx > 0 && this.props.decks[key]._id !== this.props.match.params.id) {
@@ -135,8 +135,8 @@ class DeckForm extends React.Component {
       }
       
     })
-    if (counter < 4) {
-      document.getElementById('study-page-deck-list-shadow').classList.remove('study-page-deck-list-shadow')
+    if (counter > 4) {
+      document.getElementById('study-page-deck-list-shadow').classList.add('deck-form-page-deck-list-shadow')
     }
     return div
   }
@@ -212,7 +212,7 @@ class DeckForm extends React.Component {
                   {this.getEachDeck()}
                 </div>
               </div>
-              <div id='study-page-deck-list-shadow' className='deck-form-page-deck-list-shadow' ></div>
+              <div id='study-page-deck-list-shadow' ></div>
           </div>
         </div>
       </div>
