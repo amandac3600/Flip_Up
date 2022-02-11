@@ -111,7 +111,11 @@ class UserProfile extends React.Component {
                 {Object.values(this.props.users.friends).map(friend => {
                     console.log({friend})
                     return (
-                         <li>{friend.username}</li>
+
+                        <li> 
+                            <img className= 'friends-list-thumbnail' src='https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png' alt='profile generic'/>
+                            {friend.username}
+                        </li>
                          
                     )
                    
@@ -168,8 +172,10 @@ class UserProfile extends React.Component {
                         <div className="profile-info-div">
                             <>
                                 <div className="profile-user-info">
-                                    <ProfileIcon className='profile-user-icon' user={this.state.user} updateUser={this.props.updateUser} isCurrent={true}/>
+
+                                    {/* <ProfileIcon className='profile-user-icon' user={this.props.currentUser} updateUser={this.props.updateUser} isCurrent={true}/> */}
                                     <p>{this.props.users.current.username}</p>
+
                                     {/* <Link to="/profile/update">Edit profile</Link> */}
                                 </div>
                                 <div className='profile-user-stats'>

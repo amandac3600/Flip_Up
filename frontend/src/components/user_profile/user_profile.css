@@ -8,6 +8,7 @@
     padding-bottom: 20px;
     background-color: aliceblue;
     font-family: Montserrat, Arial, Helvetica, sans-serif;
+    color:rgb(40, 50, 92);
     /* background-image:  url('http://localhost:3000/static/media/ocean.b2bebab11c0bc273f3fc.jpg'); */
     /* background-image:  url('https://i.ytimg.com/vi/TQOO9h_U44Q/maxresdefault.jpg'); */
     /* background-repeat: no-repeat;
@@ -19,11 +20,10 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    width: 70%;
+    width: 80%;
     margin: 5px;
     margin-left: 15px;
 }   
-
 .profile-right-div {
     display: flex;
     flex-direction: column;
@@ -31,7 +31,7 @@
     box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29);
     margin: 5px;
     margin-right: 25px;
-    width: 25%;
+    width: 18%;
     background: rgba(247, 242, 242, 0.59);
 }
 
@@ -75,7 +75,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 45vw;
     height: 40vh;
     background: rgba(247, 242, 242, 0.59);;
     border-radius: 10px;
@@ -104,7 +104,7 @@
 .profile-deck-scroller {
     display: flex;
     height: 45%; 
-    width: 40vw;
+    width: 45vw;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -120,9 +120,9 @@
     display: flex;
     margin-left: auto;
     margin-right: auto;
-    background-color: aliceblue;
+    background-color: whitesmoke;
     border: white;
-    border-bottom: 1px solid rgb(55, 60, 75);
+    border-bottom: 1px solid rgb(20, 35, 46);
 }
 
 .profile-create-deck-button:hover{
@@ -138,6 +138,12 @@
 .profile-deck-li {
     border-radius: 10px;
     box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29)
+
+}
+
+.profile-deck-li :link, .profile-deck-li :visited{
+    text-decoration: none;
+    color: inherit;
 }
 
 /* FRIENDS */
@@ -158,12 +164,27 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    /* justify-content: center; */
-    align-items: center;
+    justify-content: space-between;
+    align-content: space-between;
     margin: 5px;
 }
+.profile-friends-list li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    padding-right: 30px;
+    border-bottom: 1px solid rgb(21, 28, 44)
+}
+.profile-friends-list li:hover{
+    background-color: rgb(184, 198, 211);
+}
 
-
+.friends-list-thumbnail{
+    width: 30px;
+    height: 30px;
+}
 .profile-no-friends {
     display: flex;
     justify-content: center;

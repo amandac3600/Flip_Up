@@ -24,11 +24,12 @@ export default class CompeteForm extends React.Component {
 
   renderFriends() {
     return Object.values(this.props.users.friends).map( friend => {
+
       return (
-        <div key={friend._id} className='compete-form-friend-item'>
+        <div key={friend.id} className='compete-form-friend-item'>
           <label>
             <div className='compete-form-select'>
-              <input type='radio' name='friend' className='compete-form-radio' value={friend._id} id={friend._id} onClick={this.handleClick('player2Id')} />
+              <input type='radio' name='friend' className='compete-form-radio' value={friend.id} id={friend.id} onClick={this.handleClick('player2Id')} />
               <span className='compete-form-username'>Username: </span>
               <span>{friend.username}</span>
             </div>
@@ -37,8 +38,8 @@ export default class CompeteForm extends React.Component {
               <span>{friend.points}</span>
             </div>
             <div className='compete-form-wins-losses'>
-              <span>Wins: {this.props.users.friends[friend._id].wins.length}</span>
-              <span className='compete-form-losses'>Losses: {this.props.users.friends[friend._id].losses.length}</span>
+              <span>Wins: {this.props.users.friends[friend.id].wins.length}</span>
+              <span className='compete-form-losses'>Losses: {this.props.users.friends[friend.id].losses.length}</span>
             </div>
           </label>
         </div>
