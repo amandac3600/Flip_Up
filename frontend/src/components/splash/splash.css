@@ -74,8 +74,8 @@
 }
 
 .splash-block {
-  height: 46%;
-  padding: 7% 0;
+  height: 44%;
+  padding: 6% 0;
   margin-top: 120px;
   background-color: rgb(57, 74, 184);
 }
@@ -87,7 +87,6 @@
   display: flex;
   justify-content: center;
   margin-bottom: 5%;
-  margin-top: 0.5%;
 }
 
 .splash-cat-list {
@@ -201,7 +200,7 @@
 .splash-block-2 {
   height: 48%;
   max-height: 500px;
-  padding: 2% 0 8% 0;
+  padding: 1% 0 6% 0;
   margin-top: 30px;
   background-color: aliceblue;
 }
