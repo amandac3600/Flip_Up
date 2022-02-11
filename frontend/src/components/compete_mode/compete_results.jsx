@@ -62,7 +62,7 @@ const CompeteResults = ({user, friends, game, cards, decks}) => {
             <tr>
               <td>Number Correct</td>
               <td>{game[`${player}Correct`]}</td>
-              <td>{game[`${friendPlayer}Correct`] || 'In Progress'}</td>
+              <td>{game[`${friendPlayer}Correct`] !== undefined ? game[`${friendPlayer}Correct`] : 'In Progress'}</td>
             </tr>
 
             <tr>
