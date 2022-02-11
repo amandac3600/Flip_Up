@@ -35,8 +35,9 @@ const CompeteResults = ({user, friends, game, cards, decks}) => {
   const friendName = friend.username;
 
   let winner = game.winner;
-  if (winner === friend._id) winner = friendName;
+  if (winner === friend.id) winner = friendName;
   if (winner === user.id) winner = user.username;
+  
   const winnerDiv = winner ? <Sparkles><div className='compete-winner-div'>{`${winner} won this round!`}</div></Sparkles> : '';
 
   const friendTime = game[`${friendPlayer}Time`] ? `${(game[`${friendPlayer}Time`] / 60000).toFixed(2)} minutes` : 'In Progress';
