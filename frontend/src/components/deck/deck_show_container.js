@@ -5,12 +5,12 @@ import { fetchUser } from '../../actions/session_actions';
 
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state)
   return {
     deckInfo: state.entities.decks[ownProps.match.params.id],
     ownProps,
     decks: state.entities.decks,
-    // currentUser: state.session.user
+    currentUser: state.session.user,
+    users: state.entities.users
   };
 };
 
@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getDeck: (id)=>dispatch(getDeck(id)),
     deleteDeck: (deckId) => dispatch(deleteDeck(deckId)),
-    // fetchUser: () => dispatch(fetchUser()),
+    fetchUser: (userId) => dispatch(fetchUser(userId)),
     // getUserDecks: (userId) => dispatch(getUserDecks(userId))
   }
 }

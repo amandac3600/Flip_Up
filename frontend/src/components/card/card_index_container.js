@@ -6,7 +6,8 @@ import { getCard, deleteCard, getCards } from './../../actions/card_actions'
 const mapStateToProps = (state) => {
   return {
     decks: state.entities.decks,
-    cards: state.entities.cards
+    cards: state.entities.cards,
+    currentUser: state.session.user
   };
 };
 

@@ -74,7 +74,7 @@ export default class CompeteMode extends React.Component {
     }, () => {
       if (this.state.playerTime) {
         this.props.updateGame(this.state).then(res => {
-          this.setState({game: res.game});
+          this.setState({game: res.game}, () => console.log(this.state.game));
         });
       }
     })
