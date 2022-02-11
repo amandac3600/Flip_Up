@@ -42,7 +42,7 @@ const CompeteResults = ({user, friends, game, cards, decks}) => {
   const friendTime = game[`${friendPlayer}Time`] ? `${(game[`${friendPlayer}Time`] / 60000).toFixed(2)} minutes` : 'In Progress';
 
   return (
-    <div>
+    <div className='compete-mode-results-flex-div'>
       <div className='compete-mode-results-div'>
         <h1 className='compete-results-title'>Challenge Results</h1>
         <table>
