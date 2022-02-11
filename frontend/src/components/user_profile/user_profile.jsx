@@ -15,8 +15,8 @@ class UserProfile extends React.Component {
         super(props)
         console.log('in constructor', this.props)
         this.state = {
-            user: props.currentUser,
-            decks: props.decks,
+            // user: props.currentUser,
+            decks: this.props.decks,
             showFriendModal: false
         }   
         
@@ -28,6 +28,7 @@ class UserProfile extends React.Component {
 
     componentDidMount() {
         this.props.fetchCurrentUser();
+        this.props.getFriends();
         this.props.getDecks() 
             .then(action => {
                 this.setState({
@@ -53,7 +54,7 @@ class UserProfile extends React.Component {
         console.log('in get user decks', this.state.user.decks)
         return this.state.decks.filter(deck => {
             return (
-                this.state.user.decks.includes(deck._id) 
+                this.props.users.current.decks.includes(deck._id) 
             )
         })
 
@@ -93,9 +94,9 @@ class UserProfile extends React.Component {
     
 
     renderFriends() {
+        console.log('render friend', this.props.users.friends)
 
-
-        if (!this.state.friends) {
+        if (!this.props.users.friends || this.props.users.friends === 0 ) {
             return (
                 <div>
                     <h3 className = 'profile-no-friends'>You haven't made any friends yet!</h3>
@@ -104,15 +105,24 @@ class UserProfile extends React.Component {
                 </div>
             )
         }
-
-        <div className="profile-friends-list">
+        return (
+            <div className="profile-friends-list">
             <ul>
-                {/* {this.state.user.friends.map(friend_id => (
-
-                ))} */}
+                {Object.values(this.props.users.friends).map(friend => {
+                    console.log({friend})
+                    return (
+                         <li>{friend.username}</li>
+                         
+                    )
+                   
+                 })}
             </ul>
-        </div>
+            <button className='profile-create-deck-button' onClick={() => this.setState({showFriendModal: true}) }>Find a friend now!</button>
+             <div className={ this.state.showFriendModal ? 'modal' : 'none'}><FriendsSearchContainer off={()=> this.setState({showFriendModal: false})} /></div>
 
+        </div>
+        )
+        
     }   
 
     renderStats() {
@@ -125,9 +135,9 @@ class UserProfile extends React.Component {
         // }
         return (
         <div >
-            <p>Wins: {this.state.user.wins.length}</p>
-            <p>Loses: {this.state.user.wins.length}</p>
-            <p>Points: {this.state.user.points}</p>
+            <p>Wins: {this.props.users.current.wins.length}</p>
+            <p>Loses: {this.props.users.current.wins.length}</p>
+            <p>Points: {this.props.users.current.points}</p>
         </div>
         )
 
@@ -158,8 +168,9 @@ class UserProfile extends React.Component {
                         <div className="profile-info-div">
                             <>
                                 <div className="profile-user-info">
-                                    <ProfileIcon className='profile-user-icon' user={this.props.currentUser} updateUser={this.props.updateUser} isCurrent={true}/>
-                                    <p>{this.state.user.username}</p>
+                                    <ProfileIcon className='profile-user-icon' user={this.state.user} updateUser={this.props.updateUser} isCurrent={true}/>
+                                    <p>{this.props.users.current.username}</p>
+
                                     {/* <Link to="/profile/update">Edit profile</Link> */}
                                 </div>
                                 <div className='profile-user-stats'>

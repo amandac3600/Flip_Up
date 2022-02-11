@@ -3,6 +3,13 @@
 }
 
 .user-profile-icon-div {
+
+  width: 100px;
+  height: 100px;
+  background-color: aliceblue;
+
+  border-radius: 50%;
+
   display: flex;
   justify-content: center;
   align-items: center;
