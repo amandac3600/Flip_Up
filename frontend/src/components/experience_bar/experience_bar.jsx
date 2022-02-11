@@ -13,7 +13,7 @@ class ExperienceBar extends React.Component {
   }
 
   calculateExpBar() {
-    if (!this.props.users[this.props.currentUser.id]) return
+    if (!this.props.currentUser) return
     this.calculated = true;
     let oldWidth = document.getElementById('exp-bar').style.width
     oldWidth = oldWidth.slice(0, oldWidth.length - 1)
@@ -39,8 +39,8 @@ class ExperienceBar extends React.Component {
 
   render() { 
     console.log(this.props)
-    if (!this.props.users[this.props.currentUser.id]) return <div>Hello world!</div>
-    this.exp = this.props.users[this.props.currentUser.id].points
+    if (!this.props.currentUser) return <div>Hello world!</div>
+    this.exp = this.props.currentUser.points
     
     this.cap = 100;
     this.level = 1;
