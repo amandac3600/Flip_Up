@@ -9,24 +9,30 @@ import NavBarContainer from './../nav/nav_container'
 class DeckForm extends React.Component {
   constructor(props) {
     super(props);
-    this.props.deleteDeck('620537f9f03145de7a40aaff');
-    this.props.getUserDecks(this.props.currentUser.id)
-    if (this.props.type === 'create') {
-      this.state = {
-        name: '',
-        public: false,
-        category: []
-      };
-    } else {
-      this.state = {
-        name: this.props.deck.name,
-        public: this.props.deck.public,
-        category: this.props.deck.category
-      };
-    }
+    this.props.fetchCurrentUser();
+    // this.props.deleteDeck('620537f9f03145de7a40aaff');
+
+    this.state = {
+      name: '',
+      public: false,
+      category: []
+    };
+
     
   }
 
+  componentDidMount() {
+    this.props.getUserDecks(this.props.currentUser.id).then(res => {
+      if (this.props.type === 'update') {
+        console.log(res)
+        this.setState = ({
+          name: this.props.deck.name,
+          public: this.props.deck.public,
+          category: this.props.deck.category
+        });
+      }
+    });
+  }
 
   update(field) {
     // set public state
