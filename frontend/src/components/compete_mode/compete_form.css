@@ -1,10 +1,10 @@
 .compete-form-div {
   position: relative;
-  margin-left: 300px;
+  margin-left: 250px;
   top: -205px;
   border: 1px solid lightgray;
   border-radius: 4px;
-  width: 50%;
+  width: 55%;
   padding: 10px;
   background-color: white;
   margin-bottom: -200px;
@@ -12,11 +12,11 @@
 
 .compete-form-div-user {
   position: relative;
-  margin-left: 300px;
+  margin-left: 400px;
   top: -245px;
   border: 1px solid lightgray;
   border-radius: 4px;
-  width: 50%;
+  width: 45%;
   padding: 10px;
   background-color: white;
   margin-bottom: -230px;
@@ -25,6 +25,8 @@
 .compete-form-message {
   color: rgb(40, 57, 155);
   font-weight: 600;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 
 .compete-form-friend-list {
@@ -32,12 +34,52 @@
 }
 
 .compete-form-friend-item {
-  border: 1px solid gray;
+  border: 1px solid lightgray;
   margin: 10px;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 15px;
+}
+
+.compete-form-friend-item:hover {
+  box-shadow: 1px 8px 12px rgb(0 0 0 / 10%);
+}
+
+.compete-form-friend-item:focus {
+  box-shadow: 1px 8px 12px rgb(0 0 0 / 10%);
+}
+
+.compete-form-select {
+  margin-bottom: 5px;
+}
+
+.compete-form-username {
+  margin-left: 5px;
+}
+
+.compete-form-points-container {
+  margin-bottom: 5px;
+}
+
+.compete-form-points {
+  margin-left: 27px;
+}
+
+.compete-form-wins-losses {
+  display: flex;
+  margin-left: 27px;
+}
+
+.compete-form-losses {
+  margin-left: 10px;
 }
 
 input[type='radio']:checked .compete-form-friend-item{
   background-color: blue;
+}
+
+.compete-form-radio {
+  /* visibility: hidden; */
 }
 
 .compete-form-button {
@@ -54,3 +96,4 @@ input[type='radio']:checked .compete-form-friend-item{
   transition: all 0.2s;
   background-color: rgb(21, 32, 94);
 }
+

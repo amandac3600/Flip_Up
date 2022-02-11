@@ -7,6 +7,10 @@ import "./nav.css"
 
 class Nav extends React.Component {
 
+  componentDidMount() {
+    this.props.fetchCurrentUser()
+  }
+
   render() {
     let nav;
     if (this.props.location.pathname === "/login" || this.props.location.pathname === "/signup") {

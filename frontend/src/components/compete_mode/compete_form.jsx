@@ -27,24 +27,19 @@ export default class CompeteForm extends React.Component {
       return (
         <div key={friend._id} className='compete-form-friend-item'>
           <label>
-          
-            <div>
-              <span>Username:</span>
+            <div className='compete-form-select'>
+              <input type='radio' name='friend' className='compete-form-radio' value={friend._id} id={friend._id} onClick={this.handleClick('player2Id')} />
+              <span className='compete-form-username'>Username: </span>
               <span>{friend.username}</span>
             </div>
-            <div>
-              <span>Points:</span>
+            <div className='compete-form-points-container'>
+              <span className='compete-form-points'>Points: </span>
               <span>{friend.points}</span>
             </div>
-            <div>
-              <span>Wins:</span>
-              <span>{}</span>
+            <div className='compete-form-wins-losses'>
+              <span>Wins: {this.props.users.friends[friend._id].wins.length}</span>
+              <span className='compete-form-losses'>Losses: {this.props.users.friends[friend._id].losses.length}</span>
             </div>
-            <div>
-              <span>Losses:</span>
-              <span></span>
-            </div>
-            <input type='radio' name='friend' value={friend._id} id={friend._id} onClick={this.handleClick('player2Id')} />
           </label>
         </div>
       )
@@ -80,8 +75,7 @@ export default class CompeteForm extends React.Component {
 
   render() {
     if (!this.props.users || !this.props.users.friends || !this.props.games ) return null;
-    // console.log(this.props.decks[this.props.deckId].deck.user)
-    // console.log(this.props.currentUser.id)
+    console.log(this.props.users.friends)
     return (
       <div className={this.handleCurrent()}>
         <form onSubmit={this.handleSubmit}>
