@@ -5,7 +5,8 @@ import { fetchUser } from './../../actions/session_actions'
 const mapStateToProps = (state) => {
   return {
     currentUser: state.session.user,
-    users: state.entities.users
+    users: state.entities.users,
+    state: state
   };
 };
 
