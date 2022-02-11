@@ -65,6 +65,7 @@
 
 .login-input-email::placeholder, .login-input-password::placeholder  {
   color: rgb(189, 189, 189);
+  font-size: 16px;
 }
 
 .login-input-email:focus-visible, .login-input-password:focus-visible {
