@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import FriendsSearch from './friends_search'
-import {fetchUsers, requestFriend, updateUser} from '../../actions/session_actions'
+import {fetchUsers, fetchCurrentUser, requestFriend, updateUser} from '../../actions/session_actions'
 
 
 const mapStateToProps = (state) => ({
@@ -12,7 +12,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
     searchFriends: (input) => dispatch(fetchUsers(input)),
     requestFriend: (input) => dispatch(requestFriend(input)),
-    updateUser: (user) => dispatch(updateUser(user))
+    updateUser: (user) => dispatch(updateUser(user)),
+    fetchCurrentUser: () => dispatch(fetchCurrentUser())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(FriendsSearch)
