@@ -160,7 +160,7 @@ class UserProfile extends React.Component {
         const user = this.state.user.username
         
         return (
-            <div>
+            <div className='user-profile-total-container' >
                  <div className='about-nav'>
                     <NavContainer/>
                 </div>

@@ -1,5 +1,6 @@
 import {connect}  from 'react-redux';
-import { fetchUser, getFriends, updateUser, fetchCurrentUser } from '../../actions/session_actions';
+import { fetchUser, fetchCurrentUser, getFriends, updateUser } from '../../actions/session_actions';
+
 import { getDecks } from '../../actions/deck_actions'
 import UserProfile from './user_profile'
 
