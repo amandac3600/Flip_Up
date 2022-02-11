@@ -31,9 +31,11 @@ const ProfileIcon = ({ user, updateUser, isCurrent = true}) => {
 
   const handleIconClick = (e) => {
     console.log(e.target.id);
+    if (e.target.id === 'profile-icon-options') return;
     setIcon(e.target.id)
     updateUser({ icon: e.target.id})
   }
+  
   return(
     <div className='user-profile-icon-div' onClick={toggleIconOptions}>
       <div id='user-profile-icon'></div>
