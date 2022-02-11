@@ -223,26 +223,37 @@ router.patch('/', passport.authenticate('jwt', { session: false }), (req, res) =
     .catch(err => res.status(404).json({ nouser: 'Unable to find user' }))
 })
 
-const removeFromArray = (id, user, arrayName) => {
-  const index = user[arrayName].indexOf(id);
-  if (index !== -1) user[arrayName].splice(index, 1);
-}
 
 router.get('/friends', passport.authenticate('jwt', { session: false }), (req, res) => {
   User.findOne({ _id: req.user.id })
     .then(async user => {
-      const friendIds = user.friendIds;
+      const friendIds = user.friendIds.concat(user.outgoingRequests, user.pendingRequests);
       const payload = {};
       
       for (let i = 0; i < friendIds.length; i++) {
         const friend = await User.findOne({ _id: friendIds[i] });
-        payload[friend._id] = friend;
+        payload[friend._id] = {
+          id: friend.id,
+          username: friend.username,
+          points: friend.points,
+          friendIds: friend.friendIds,
+          pendingRequests: friend.pendingRequests,
+          outgoingRequests: friend.outgoingRequests,
+          wins: friend.wins,
+          losses: friend.losses,
+          icon: friend.icon,
+        };
       }
 
       return res.json(payload);
     })
     .catch(err => res.status(404).json({ nouser: 'Unable to find user' }))
 })
+
+const removeFromArray = (id, user, arrayName) => {
+  const index = user[arrayName].indexOf(id);
+  if (index !== -1) user[arrayName].splice(index, 1);
+}
 
 router.patch('/friends', passport.authenticate('jwt', { session: false }), (req, res) => {
   User.findOne({ _id: req.user.id })

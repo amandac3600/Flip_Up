@@ -18,6 +18,7 @@ import CompeteModeContainer from './compete_mode/compete_mode_container';
 import ChallengesContainer from './compete_mode/challenges_container';
 import "./reset.css"
 import SearchResultIndexContainer from './search/search_result_index_container';
+import friend_requests_container from './user_profile/friend_requests_container';
 
 const App = () => (
   <div className='app-div'>
@@ -34,8 +35,12 @@ const App = () => (
       <ProtectedRoute path="/search/:filters" component={SearchResultIndexContainer}/>
       <ProtectedRoute path="/search/" component={SearchResultIndexContainer}/>
 
+      
+      {/* delete after testing */}
       <ProtectedRoute exact path="/compete" component={CompeteFormContainer} />
       <ProtectedRoute exact path="/challenges" component={ChallengesContainer} />
+      <ProtectedRoute exact path="/friends" component={friend_requests_container} />
+      {/* delete after testing */}
 
       <ProtectedRoute path="/compete/:gameId" component={CompeteModeContainer} />
 

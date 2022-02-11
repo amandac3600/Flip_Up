@@ -3,6 +3,7 @@ import './profile_icon.css'
 
 const renderIcons = () => {
   const iconOptions = document.getElementById('profile-icon-options');
+  iconOptions.innerHTML = '';
   if (!iconOptions) return null;
   const emojiCodeRanges = [128005, 128063]
 

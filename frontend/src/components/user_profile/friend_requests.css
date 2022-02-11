@@ -1,0 +1,50 @@
+.friend-requests-div {
+ border: 1px solid gray;
+ border-radius: 5px;
+ width: 80%;
+ height: 300px;
+ overflow: auto;
+}
+
+.friend-requests-div .friend-requests-title {
+  font-size: 50px;
+  text-align: center;
+  padding: 10px;
+}
+
+.friend-requests-lists-div {
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.friend-requests-outgoing, .friend-requests-pending {
+  border-top: 1px solid gray;
+  width: 50%;
+  padding: 10px;
+}
+
+.friend-request-list-item {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.friend-request-item-info {
+  padding: 10px;
+}
+
+.friend-request-button {
+  margin: 5px;
+  padding: 10px;
+  background-color: rgb(40, 57, 155);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.friend-request-button:hover {
+  background-color: whitesmoke;
+  color: rgb(40, 57, 155);
+}

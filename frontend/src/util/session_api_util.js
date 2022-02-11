@@ -45,6 +45,7 @@ export const editUser = (userData) => {
 export const requestFriend = friendData => {
   return axios.patch(`/api/users/friends`, friendData)
 }
+
 // export const updateProfilePic = (userData)=>{
 //   return axios.post('/api/users/updateProfilePic',userData)
 // }
