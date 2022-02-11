@@ -1,5 +1,6 @@
 .compete-mode-div {
   height: calc(100vh - 70px);
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
 }
 
 /* Begin loading page */
@@ -119,6 +120,7 @@
   align-items: center;
   justify-content: center;
   margin: 100px;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
 }
 
 .compete-results-title {
@@ -209,4 +211,5 @@
 .compete-mode-results-flex-div {
   display: flex;
   justify-content: center;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
 }
