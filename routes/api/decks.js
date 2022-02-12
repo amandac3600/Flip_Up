@@ -176,7 +176,7 @@ router.delete('/:id',
     if (deck) {
       const deckUser = await User.findOne({ _id: deck.user })
       if (deckUser.id === req.user.id) {
-        Cards.deleteMany({ deck: req.params.id })
+        Card.deleteMany({ deck: req.params.id })
         Deck.deleteOne({ _id: req.params.id })
         .then(() => res.json({ deleted: "Deck was deleted" }))
         .catch(err => res.status(404).json({ unabletodelete: 'Unable to delete' }))
