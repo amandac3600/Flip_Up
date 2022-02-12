@@ -18,6 +18,19 @@ class Nav extends React.Component {
           <SearchBarContainer/>
         </div>
       </nav>
+    } else if (this.props.currentUser === undefined) {
+      nav = <nav className='nav-container'>
+        <div className='nav-logo'>
+          <Link className="nav-logo-link" to="/"><img src={logo} alt="Flip Up" width='45' height='45'/></Link>
+        </div>
+        <div className='nav-search'>
+          <SearchBarContainer/>
+        </div>
+        <div className="nav-login-signup">
+          <Link className="nav-login" to='/login'>Log In</Link>
+          <Link className="nav-signup" to='/signup'>Sign Up</Link>
+        </div>
+      </nav>
     } else if (Object.keys(this.props.currentUser).length > 0) {
       nav = <nav className='nav-container'>
         <div className='nav-logo'>
@@ -29,19 +42,6 @@ class Nav extends React.Component {
         <div className='nav-user-logout'>
           <h4 className='nav-user-welcome'>Welcome, <Link to='/profile' className='nav-user-welcome-link'>{this.props.currentUser.username}!</Link></h4>
           <button className='nav-user-logout-button' onClick={() => this.props.logout()}>Log Out</button>
-        </div>
-      </nav>
-    } else {
-      nav = <nav className='nav-container'>
-        <div className='nav-logo'>
-          <Link className="nav-logo-link" to="/"><img src={logo} alt="Flip Up" width='45' height='45'/></Link>
-        </div>
-        <div className='nav-search'>
-          <SearchBarContainer/>
-        </div>
-        <div className="nav-login-signup">
-          <Link className="nav-login" to='/login'>Log In</Link>
-          <Link className="nav-signup" to='/signup'>Sign Up</Link>
         </div>
       </nav>
     }
