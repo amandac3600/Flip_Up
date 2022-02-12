@@ -73,6 +73,7 @@ export default class CompeteForm extends React.Component {
       return 'compete-form-div'
     }
   }
+  
 
   render() {
     if (!this.props.users || !this.props.users.friends || !this.props.games ) return null;

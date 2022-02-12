@@ -115,11 +115,14 @@ router.post('/',
     if (!isValid) {
       return res.status(400).json(errors);
     }
-    const deck = await Deck.findOne({ name: req.body.name, user: req.user.id })
+    const deck = await Deck.findOne({ name: req.body.name, public: true })
 
     if (deck) return res.status(400).json({ invalidname: 'Deck name already exists'});
+
     const category = req.body.category.split(',').map(cat => cat.trim())
     
+
+
     const newDeck = new Deck({
       user: req.user.id,
       name: req.body.name,

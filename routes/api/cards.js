@@ -7,14 +7,6 @@ const Card = require('../../models/Card');
 const Deck = require('../../models/Deck');
 const validateCardInput = require('../../validation/card')
 
-// return all cards. testing only
-// router.get('/', (req, res) => {
-//   Card.find()
-//     .sort({ date: -1 })
-//     .then(cards => res.json(cards))
-//     .catch(err => res.status(404).json({ nocardsfound: 'No cards found' }));
-// });
-
 // return all cards in a deck
 router.get('/deck/:deck_id', (req, res) => {
   Card.find({ deck: req.params.deck_id })

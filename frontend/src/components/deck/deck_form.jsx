@@ -16,19 +16,23 @@ class DeckForm extends React.Component {
       this.state = {
         name: '',
         public: false,
-        category: []
+        category: [],
+        errors: [],
       };
      } else if (this.props.deck) {
       this.state = {
         name: this.props.deck.name,
         public: this.props.deck.public,
-        category: this.props.deck.category
+        category: this.props.deck.category,
+        errors: [],
+
       };
     } else {
       this.state = {
         name: '',
         public: false,
-        category: []
+        category: [],
+        errors: [],
       };
     }
     
@@ -93,8 +97,9 @@ class DeckForm extends React.Component {
     const newState = Object.assign({}, this.state, {category: this.state.category.join(',')}, {_id: this.props.match.params.id})
     this.props.submit(newState)
     .then((res)=>{
+      // this.setState({ errors: [] })
       this.props.history.push(`/decks/${res.deck._id}`)
-    })
+    }, (err) => this.setState({errors: Object.values(err.response.data)}))
   }
 
   buttonFunction() {
@@ -139,6 +144,16 @@ class DeckForm extends React.Component {
       document.getElementById('study-page-deck-list-shadow').classList.add('deck-form-page-deck-list-shadow')
     }
     return div
+  }
+
+  renderErrors() {
+    if (!this.state.errors.length) return '';
+    return (
+    <div>
+      {this.state.errors.map(error => {
+        return ( <div> {error} </div> )
+      }) }
+    </div> )
   }
 
   render() {
@@ -201,7 +216,7 @@ class DeckForm extends React.Component {
             </div>
             </div>
             <div className='deck-form-submit-button-div' ><AwesomeButton id='deck-form-submit-button' className='deck-form-submit-button' type="primary">Save Deck</AwesomeButton></div>
-            
+            {this.renderErrors()}
           </div>
         </form>
         

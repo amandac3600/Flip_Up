@@ -10,12 +10,14 @@ class CardForm extends React.Component {
       this.state = {
         front: '',
         back: '',
-        deckId: this.props.match.params.id
+        deckId: this.props.match.params.id,
+        errors: []
       };
     } else {
       this.state = {
         front: this.props.card.front,
-        back: this.props.card.back
+        back: this.props.card.back,
+        errors: []
       };
     }
   }
@@ -37,15 +39,25 @@ class CardForm extends React.Component {
     e.preventDefault();
     if (this.props.type === 'create') {
       this.props.submit(this.state).then(()=>{
+        this.setState({ errors: [], front: '', back: '' });
         document.getElementById('card-form-front').value = ''
         document.getElementById('card-form-back').value = ''
-      })
+      }, (err) => this.setState({ errors: Object.values(err.response.data) }))
     } 
   }
 
+  renderErrors() {
+    if (!this.state.errors.length) return '';
+    return (
+      <div>
+        {this.state.errors.map(error => {
+          return (<div> {error} </div>)
+        })}
+      </div>)
+  }
 
   render() {
-    console.log(this.props)
+
     return (
       <div className='create-form'>
         <div className='create-form-title'>{this.getCardHeader()}</div>
@@ -64,6 +76,7 @@ class CardForm extends React.Component {
             />
             <br />
             <input className='card-form-submit' type="submit" value="Create Card" />
+            {this.renderErrors()}
           </div>
         </form>
       </div>
