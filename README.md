@@ -4,7 +4,8 @@ Flip Up is the first and only competitive flashcard studying platform.  Users ca
 
 ## Technologies
 
-- Mongoose, MongoDB, Express, Node.js, JavaScript, React, Redux, HTML, CSS, Validator.js 
+- Frontend: JavaScript, React, Redux, Node.js, HTML, CSS,
+- Backend: Mongoose, MongoDB, Express.js, Node.js, Validator.js 
 
 ## Key Features
 
@@ -26,6 +27,43 @@ Users can navigate to their profile to view their friends, created decks, win/lo
 ### CRUD for Friends
 Users can send, cancel, receive, approve, and deny friend requests from other users.  Users can also remove friends from their friends list. 
 
+## Code Highlights
+
+``` js
+ getTimeDifference(date) {
+    let now = new Date();
+    let lastReviewed = new Date(date);
+    return (Math.abs(now - lastReviewed)/1000)/60
+  }
+
+  checkReviewTime(cardId) {
+    let date = this.props.cards[cardId].reviewed
+    switch (this.props.cards[cardId].count) {
+        case 0:
+            return true
+        case 1:
+            return this.getTimeDifference(date) > .5 ? true : false
+        case 2:
+            return this.getTimeDifference(date) > 1 ? true : false
+        case 3:
+            return this.getTimeDifference(date) > 10 ? true : false
+        case 4:
+            return this.getTimeDifference(date) > 60 ? true : false
+        case 5:
+            return this.getTimeDifference(date) > 1440 ? true : false
+        case 6:
+            return this.getTimeDifference(date) > 2880 ? true : false
+        case 7:
+            return this.getTimeDifference(date) > 4320 ? true : false
+        case 8:
+            return this.getTimeDifference(date) > 7200 ? true : false
+        case 9:
+            return this.getTimeDifference(date) > 12960 ? true : false
+        default:
+            break;
+    } 
+  }
+```
 
 ## Future Improvements
 #### Reward System
