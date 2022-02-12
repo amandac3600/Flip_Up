@@ -147,7 +147,7 @@
 
 .profile-deck-li :link, .profile-deck-li :visited{
     text-decoration: none;
-    color: inherit;
+    color: black;
 }
 
 /* FRIENDS */

@@ -96,7 +96,7 @@ class UserProfile extends React.Component {
     renderFriends() {
         console.log('render friend', this.props.users.friends)
 
-        if (!this.props.users.friends || this.props.users.friends === 0 ) {
+        if (!this.props.users.friends || this.props.current.friendIds.length === 0 ) {
             return (
                 <div>
                     <h3 className = 'profile-no-friends'>You haven't made any friends yet!</h3>
@@ -108,11 +108,12 @@ class UserProfile extends React.Component {
         return (
             <div className="profile-friends-list">
             <ul>
-                {Object.values(this.props.users.friends).map(friend => {
-                    console.log({friend})
+                {this.props.current.friendIds.map(friendId => {
+                    const friend = this.props.users.friends[friendId];
+                    console.log(friend)
                     return (
 
-                        <li> 
+                        <li key={friendId}> 
                             <ProfileIcon user={friend} isCurrent={false}/>
 
                             {/* <img className= 'friends-list-thumbnail' src='https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png' alt='profile generic'/> */}
