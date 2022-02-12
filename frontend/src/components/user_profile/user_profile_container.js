@@ -6,6 +6,7 @@ import UserProfile from './user_profile'
 
 const mSTP = state => {
     return {
+    current: state.entities.users.current,
     users: state.entities.users,
     friends: state.entities.friends,     
     }
