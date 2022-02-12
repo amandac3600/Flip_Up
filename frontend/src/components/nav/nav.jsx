@@ -18,7 +18,7 @@ class Nav extends React.Component {
           <SearchBarContainer/>
         </div>
       </nav>
-    } else if (this.props.currentUser === undefined) {
+    } else if (this.props.currentUser === undefined || Object.keys(this.props.currentUser).length === 0) {
       nav = <nav className='nav-container'>
         <div className='nav-logo'>
           <Link className="nav-logo-link" to="/"><img src={logo} alt="Flip Up" width='45' height='45'/></Link>
@@ -31,7 +31,7 @@ class Nav extends React.Component {
           <Link className="nav-signup" to='/signup'>Sign Up</Link>
         </div>
       </nav>
-    } else if (Object.keys(this.props.currentUser).length > 0) {
+    } else {
       nav = <nav className='nav-container'>
         <div className='nav-logo'>
           <Link className="nav-logo-link" to="/"><img src={logo} alt="Flip Up" width='45' height='45'/></Link>
