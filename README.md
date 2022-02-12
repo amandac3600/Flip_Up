@@ -1,5 +1,8 @@
 # Flip Up!
 
+![Flip Up (5)-modified](https://user-images.githubusercontent.com/92603028/153731132-4871019f-eb12-4ba1-a3ab-19a588516b9a.png)
+
+
 [Flip Up](https://flipup.herokuapp.com/#/) is the first and only competitive flashcard studying platform.  Users can create and share custom decks on any subject and use them to compete with one another.  Users are incentivized to study and learn through experience points from studying and the glory that comes with winning a battle.
 
 ## Technologies
