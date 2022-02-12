@@ -6,7 +6,7 @@ import About from './about/about'
 import Footer from './footer/footer'
 import LoginFormContainer from './session/login_form_container'
 import SignupFormContainer from './session/signup_form_container'
-// import UpdateUserFormContainer from './user_profile/update_user_form_container';
+import UpdateUserFormContainer from './user_profile/update_user_form_container';
 import UserProfileContainer from './user_profile/user_profile_container';
 import DeckFormContainer from './deck/deck_form_container'
 import DeckEditFormContainer from './deck/deck_edit_form_container'
@@ -24,7 +24,7 @@ const App = () => (
   <div className='app-div'>
     <Switch>
       <ProtectedRoute exact path="/profile" component={UserProfileContainer} />
-      {/* <ProtectedRoute exact path="/profile/update" component={UpdateUserFormContainer} /> */}
+      <ProtectedRoute exact path="/profile/update" component={UpdateUserFormContainer} />
       
       <Route exact path="/about" component={About} />
 

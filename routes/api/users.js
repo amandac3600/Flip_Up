@@ -57,7 +57,9 @@ router.get('/find/:id', passport.authenticate('jwt', {session: false}), async (r
       outgoingRequests: user.outgoingRequests,
       wins: user.wins,
       losses: user.losses,
-      icon: user.icon
+      icon: user.icon,
+      email: user.email
+
     })
   )
 })
@@ -76,7 +78,8 @@ router.get('/current', passport.authenticate('jwt', {session: false}), async (re
       outgoingRequests: req.user.outgoingRequests,
       wins: req.user.wins,
       losses: req.user.losses,
-      icon: req.user.icon
+      icon: req.user.icon,
+      email: req.user.email
     })
   )
 })
@@ -151,7 +154,8 @@ router.post('/register', (req, res) => {
                 outgoingRequests: user.outgoingRequests,
                 wins: user.wins,
                 losses: user.losses,
-                icon: user.icon
+                icon: user.icon,
+                email: user.email
               };
             jwt.sign(
                 payload,
@@ -170,14 +174,15 @@ router.post('/register', (req, res) => {
       })
   })
 
-router.patch('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.patch('/', passport.authenticate('jwt', { session: false }), async (req, res) => {
+
   if (req.body.username) {
-    const takenUsername = User.findOne({ username: req.body.username });
-    if (takenUsername.username) return res.status(404).json({ nouser: 'Username already taken.' })
+    const takenUsername = await User.findOne({ username: req.body.username });
+    if (takenUsername.username && takenUsername.id !== req.user.id) return res.status(404).json({ nouser: 'Username already taken.' })
   }
   if (req.body.email) {
-    const takenEmail = User.findOne({ email: req.body.email });
-    if (takenEmail.email) return res.status(404).json({ nouser: 'Email already taken.' })
+    const takenEmail = await User.findOne({ email: req.body.email });
+    if (takenEmail.email && takenEmail.id !== req.user.id) return res.status(404).json({ nouser: 'Email already taken.' })
   }
 
   User.findOne({ _id: req.user.id })
@@ -190,10 +195,10 @@ router.patch('/', passport.authenticate('jwt', { session: false }), (req, res) =
       if (req.body.winId) user.wins.push(req.body.winId);
       if (req.body.lossId) user.losses.push(req.body.lossId);
       if (req.body.icon) user.icon = req.body.icon;
-
+
       const { errors, isValid } = validateRegisterInput(user, 'patch');
-
       if (!isValid) return res.status(400).json(errors);
+      
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(user.password, salt, (err, hash) => {
           if (err) throw err;
@@ -213,6 +218,8 @@ router.patch('/', passport.authenticate('jwt', { session: false }), (req, res) =
                 wins: user.wins,
                 losses: user.losses,
                 icon: user.icon,
+                email: user.email
+
               };
               return res.json(payload)
             })
@@ -242,6 +249,8 @@ router.get('/friends', passport.authenticate('jwt', { session: false }), (req, r
           wins: friend.wins,
           losses: friend.losses,
           icon: friend.icon,
+          email: user.email
+
         };
       }
 
@@ -303,7 +312,9 @@ router.patch('/friends', passport.authenticate('jwt', { session: false }), (req,
             outgoingRequests: user.outgoingRequests,
             wins: user.wins,
             losses: user.losses,
-            icon: user.icon
+            icon: user.icon,
+            email: user.email
+
           };
           return res.json(payload)
       })
