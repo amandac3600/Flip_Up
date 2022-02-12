@@ -11,7 +11,7 @@ const getDecks = (decks) => {
             <div>{deck.name}</div>
             <div>{deck.cards.length} cards</div>
           </div>
-
+          <br/>
           <div>
             {deck.category}
           </div>
