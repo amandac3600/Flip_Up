@@ -22,11 +22,13 @@ Users can create, edit, delete, and study flashcards and decks. Users can also m
 
 ### Study Mode
 Users can review flashcards by flipping over cards and marking them as correct or incorrect. Based on the user's input, the algorithm will determine how often each flashcard should appear based on spaced-repetition.  Users can also choose to review flashcards sooner than the algorithm designates if desired.
+
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/92603028/153730634-76fc4bd5-d9f2-48bc-8c07-87f1ac258ebd.gif)
 
 
 ### Competitive Mode
 Users can challenge their friends to compete against each other using a chosen flashcard deck. After both players have finished their turns, results will be tabulated and displayed, and the winner will receive points. The game is a multiple choice quiz that will be scored based on time and accuracy.
+
 ![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/92603028/153730902-3eaa5142-2854-4880-9701-16f7d239ffa0.gif)
 
 
