@@ -60,9 +60,10 @@ class FriendsSearch extends React.Component {
         //     return <div />
         // } else { 
             console.log("inside render search res", this.state.list)
+            const filteredList = this.state.list.filter(friend => ![this.props.currentUser.id, ...this.props.currentUser.friendIds].includes(friend.id))
             return (
                 <div><ul className ="friends-search-result">
-                    {this.state.list.map(friend => (
+                    {filteredList.map(friend => (
                         <li className = 'friend-search-results-li' key={friend.id}>
                                 {/* <img className='friend-search-thumbnail' src="https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png" alt='prof' /> */}
                                 <ProfileIcon user={friend} isCurrent={false}/>                                
