@@ -1,13 +1,44 @@
-.friend-requests-div {
- border: 1px solid gray;
- border-radius: 5px;
- width: 80%;
- height: 300px;
- overflow: auto;
+.friend_request_modal {
+
+  display: block;
+  z-index: 10;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: white; 
+  border-radius: 10px;
+  box-shadow: 5px 10px 15px 2px rgba(0,0,0,0.59);
+  width: 60%;
+  overflow: scroll; 
+  min-height: 400px;
+  padding: 10px; 
+  max-height: 85vh;
+
+
 }
 
+.buttonexit {
+  border-radius: 35%;
+  font-size: 15px;
+  margin: 15px;
+  background-color: rgb(40, 57, 155);
+  color: white;
+}
+
+.friend-requests-div {
+ /* border: 1px solid gray; */
+ border-radius: 5px;
+ width: 100%;
+
+}
+.friend-request-header{
+  display: flex; 
+  flex-direction: row;
+  justify-content: space-between;
+}
 .friend-requests-div .friend-requests-title {
-  font-size: 50px;
+  font-size: 35px;
   text-align: center;
   padding: 10px;
 }
@@ -17,6 +48,7 @@
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
+  font-size: 15px;
 }
 
 .friend-requests-outgoing, .friend-requests-pending {

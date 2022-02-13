@@ -62,7 +62,7 @@ class UpdateUserForm extends React.Component {
         <NavContainer />
         <form onSubmit={this.usernameSubmit} className='update-user-form'>
           <div className="update-user-form-items">
-            <div className='update-user-form-title'>Edit User Form</div>
+            <div className='update-user-form-title'>Update your profile:</div>
             <br />
             <label >Username:
               <br /><input type="text"

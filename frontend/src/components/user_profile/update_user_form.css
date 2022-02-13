@@ -1,10 +1,11 @@
 .update-user-form-container {
-  height: calc(100vh - 70px);
+  /* height: calc(100vh - 70px); */
+  /* margin-top: 30px; */
   color: white;
 }
 
 .update-user-form-title {
-  font-size: 50px;
+  font-size: 30px;
   text-align: center;
 }
 
@@ -24,15 +25,16 @@
   justify-content: space-between;
   align-items: center;
   padding: 50px;
+  margin: 50px; 
   border-radius: 5px;
 }
 .update-user-form-items label {
-  width: 100%;
+  width: 80%;
   text-align: center;
 }
 .update-user-form-items input[type='text'], .update-user-form-items input[type='password'] {
   width: 90%;
-  height: 50px;
+  height: 30px;
   margin-top: 10px;
   padding-left: 10px;
   font-size: 15px;
@@ -41,11 +43,12 @@
 }
 
 .update-user-form-items input[type='submit'] {
-  width: 90%;
-  height: 60px;
+  width: 75%;
+  height: 50px;
   border-radius: 5px;
   font-size: 20px;
   color: rgb(40, 57, 155);
+  background-color: aliceblue;
   cursor: pointer;
   font-weight: bold;
 }
