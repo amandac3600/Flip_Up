@@ -148,8 +148,8 @@ class DeckForm extends React.Component {
   renderErrors() {
     return (
     <div className='deck-form-errors'>
-      {this.state.errors.map(error => {
-        return ( <div> {error} </div> )
+      {this.state.errors.map((error, idx) => {
+        return ( <div key={idx}> {error} </div> )
       }) }
     </div> )
   }

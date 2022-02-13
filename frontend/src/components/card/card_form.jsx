@@ -49,9 +49,9 @@ class CardForm extends React.Component {
   renderErrors() {
     if (!this.state.errors.length) return '';
     return (
-      <div>
-        {this.state.errors.map(error => {
-          return (<div> {error} </div>)
+      <div className='card-form-errors'>
+        {this.state.errors.map((error,idx) => {
+          return (<div key={idx}> {error} </div>)
         })}
       </div>)
   }
