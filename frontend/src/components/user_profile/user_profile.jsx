@@ -18,7 +18,6 @@ import './friends_search.css';
 class UserProfile extends React.Component {
     constructor(props) {
         super(props)
-        console.log('in constructor', this.props)
         this.state = {
             // user: props.currentUser,
             decks: this.props.decks,
@@ -84,7 +83,7 @@ class UserProfile extends React.Component {
             return (
                 <div>
                     <h3 className = 'profile-no-decks'>You haven't made any decks yet!</h3>
-                    <button className='profile-create-deck-button'>Create your first deck now!</button>
+                    <div className= 'make-deck-button' onClick={this.handleClick}><AwesomeButton type="primary" >Create your first deck now!</AwesomeButton></div> 
                 </div>
             )
         }
@@ -101,8 +100,12 @@ class UserProfile extends React.Component {
                         </Link>
                 ))}
     
-        </div>
-                <button className='profile-create-deck-button' onClick={this.handleClick}>Create a new deck</button>
+            </div>
+                <div className= 'make-deck-button' onClick={this.handleClick}>
+                    <AwesomeButton type="primary" >
+                        Create a deck now!
+                    </AwesomeButton>
+                </div> 
             
             </div>
         )
@@ -117,7 +120,7 @@ class UserProfile extends React.Component {
             return (
                 <div>
                     <h3 className = 'profile-no-friends'>You haven't made any friends yet!</h3>
-                    <AwesomeButton type="primary" onClick={() => this.setState({showFriendModal: true}) }>Find a friend now!</AwesomeButton>
+                    <div className= 'find-frineds-button' onClick={() => this.setState({showFriendModal: true}) }><AwesomeButton type="primary" >Find a friend now!</AwesomeButton></div>
                     <div className={ this.state.showFriendModal ? 'modal' : 'none'}><FriendsSearchContainer off={()=> this.setState({showFriendModal: false})} /></div>
                 </div>
             )
@@ -139,7 +142,7 @@ class UserProfile extends React.Component {
                    
                  })}
             </ul>
-            <button className='profile-create-deck-button' onClick={() => this.setState({showFriendModal: true}) }>Find a friend now!</button>
+            <div className= 'find-frineds-button' onClick={() => this.setState({showFriendModal: true}) }><AwesomeButton type="primary" >Find a friend now!</AwesomeButton></div>
              <div className={ this.state.showFriendModal ? 'modal' : 'none'}><FriendsSearchContainer off={()=> this.setState({showFriendModal: false})} /></div>
 
         </div>
@@ -151,20 +154,16 @@ class UserProfile extends React.Component {
         const competitor = Object.values(this.props.users.friends).find(friend => friend.id === id)
         return (
             <>
-                <div><span className='prof-stats-icons'><ProfileIcon user={competitor} isCurrent={false}/></span>{competitor.username}</div>
+                <div className="prof-stats-competitor">
+                    <span className='prof-stats-icons'><ProfileIcon user={competitor} isCurrent={false}/></span>
+                    {competitor.username}</div>
             </>
             
         )
     }
 
     renderStats() {
-        // let wins 
-        // let losses
-        // let points
 
-        // if (this.state.user.wins.length === 0){
-        //     wins = 
-        // }
         return (
         <div className="prof-stats-div">
             <div className='stats-left-col'>
@@ -223,7 +222,7 @@ class UserProfile extends React.Component {
                                 </div>
                                 
                                 <div className="profile-user-decks">
-                                        <h2>Your Decks</h2>
+                                        <div className='profile-user-decks-header'>Your Decks</div>
                                 
                                         {this.renderDecks()}
                                 </div>
