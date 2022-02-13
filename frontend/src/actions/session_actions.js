@@ -123,6 +123,15 @@ export const requestFriend = friendData => dispatch => {
     ))
 };
 
+export const removeFriend = friendData => dispatch => {
+  return SessionApiUtil.removeFriend(friendData)
+    .then(user => (
+      dispatch(receiveCurrentUser(user.data))
+    ), err=> (
+      dispatch(receiveErrors(err.response.data))
+    ))
+};
+
 
 // export const updateProfilePic = data => dispatch => {
 //   SessionApiUtil.updateProfilePic(data)

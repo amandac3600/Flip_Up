@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
 import ProfileIcon from './profile_icon';
+import { AwesomeButton } from "react-awesome-button";
 
 class FriendsSearch extends React.Component {
     constructor(props) {
@@ -36,7 +37,6 @@ class FriendsSearch extends React.Component {
     }
 
     addFriendButton(id) {
-        console.log("props.user", this.state.currentUser)
         if (this.props.currentUser.outgoingRequests.includes(id)) {
            return (
                 <button className="friend-search-no-click-button" onClick={() => {
@@ -47,25 +47,20 @@ class FriendsSearch extends React.Component {
         } else if (this.props.currentUser.friendIds.includes(id)) {
             return <button className="friend-search-no-click-button">YourFriend</button>   
         } else {
-           return( <button onClick={() => {
+           return( <div onClick={() => {
                 this.props.requestFriend({friendId: id, requestType: 'request'})
-                }}>Add Friend</button> )
+                }}><AwesomeButton >Add Friend</AwesomeButton></div> )
         } 
         
     }
 
 
     renderSearchResults() {
-        // if (this.state.list.length === 0 || !this.state.list) {
-        //     return <div />
-        // } else { 
-            console.log("inside render search res", this.state.list)
             const filteredList = this.state.list.filter(friend => ![this.props.currentUser.id, ...this.props.currentUser.friendIds].includes(friend.id))
             return (
                 <div><ul className ="friends-search-result">
                     {filteredList.map(friend => (
                         <li className = 'friend-search-results-li' key={friend.id}>
-                                {/* <img className='friend-search-thumbnail' src="https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png" alt='prof' /> */}
                                 <ProfileIcon user={friend} isCurrent={false}/>                                
                                 {friend.username}
                                 <div>{this.addFriendButton(friend.id)}</div>
@@ -75,12 +70,11 @@ class FriendsSearch extends React.Component {
                     </ul>
                 </div>
         ) 
-    // }
+
     }
 
     render() {
-        // console.log("render -this.state.list", this.state.list)
-        console.log("render -this.state.friends", this.state.friends)
+
         let showList 
         this.state.list.length > 1 ? showList = 'block' : showList = 'none'
         if (!this.state.list) {
@@ -92,7 +86,7 @@ class FriendsSearch extends React.Component {
                     <div>
                         <form onSubmit={this.handleSubmit}>
                         <input type='search' value={this.state.inputValue} onChange= {this.friendFilterOnChange} placeholder="search for friends"/>
-                        <button><AiOutlineSearch /></button>
+                        <button className='friends-search-button'><AiOutlineSearch /></button>
                         </form>
                     </div>
                     <button className = "buttonX" onClick={() => this.props.off()}>X</button>

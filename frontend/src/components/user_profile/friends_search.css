@@ -15,6 +15,8 @@
     width: 450px;
     min-height: 400px;
     padding: 10px; 
+    max-height: 85vh;
+    overflow: scroll; 
 
 }
 
@@ -22,17 +24,49 @@
     padding: 10px;
 }
 
+.friends-search input {
+    padding: 5px;
+    padding-top: 6px;
+    width: 250px;
+    background-color: whitesmoke;
+    border: white;
+    border-bottom: 1px solid rgb(40, 57, 155);
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+
+
+}
+.friends-search-button  {
+    background-color:rgb(40, 57, 155);
+    padding: 6px;
+    border: white;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.friends-search-button * {
+    color: white;
+}
+.friends-search-button:hover {
+    background-color:rgb(25, 32, 75);
+}
 .friends-search-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border-bottom: 1px solid indigo;
     padding-bottom: 2px;
     margin-bottom: 15px;
 }
 
 .buttonX {
-    border-radius: 100%;
+    border-radius: 35%;
+    border-color: white;
+    background: rgb(40, 57, 155);
+    color: white;
+}
+
+.buttonX:hover {
+    background-color:rgb(25, 32, 75);
+
 }
 
 .friends-search-result {
@@ -58,3 +92,16 @@
     margin-bottom: 10px;
 }
 
+.friend-search-no-click-button {
+    padding: 12px; 
+    border-radius: 5px;
+    border: 1px solid rgb(40, 57, 155);
+    color:rgb(40, 57, 155);
+    font-family: Montserrat, Arial, Helvetica, sans-serif;
+
+}
+
+.friend-search-no-click-button:hover {
+    font-weight: bold;
+    box-shadow: 5px 5px 15px 2px rgba(34, 44, 133, 0.19);
+}

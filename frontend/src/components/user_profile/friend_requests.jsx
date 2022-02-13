@@ -54,8 +54,10 @@ export default class FriendRequests extends React.Component {
 
     return(
       <div className='friend-requests-div'>
-        <div className='friend-requests-title'>Pending friend requests</div>
-
+        <div className='friend-request-header'>
+          <div className='friend-requests-title'>Pending friend requests</div> 
+          <button className = "buttonexit" onClick={() => this.props.off()}>X</button>
+          </div>
         <div className='friend-requests-lists-div'>
           <div className='friend-requests-outgoing'>
             <div>Incoming friend requests:</div>
