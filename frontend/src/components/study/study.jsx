@@ -17,7 +17,7 @@ class Study extends React.Component {
   }
 
   getDeckName() {
-    return this.props.decks[this.props.match.params.id].name ? this.props.decks[this.props.match.params.id].name : this.props.decks[this.props.match.params.id].deck.name
+    return this.props.decks[this.props.match.params.id].name ? this.props.decks[this.props.match.params.id].name : this.props.decks[this.props.match.params.id].name
   }
   
   getDeckCategories(deckId) {
@@ -34,8 +34,8 @@ class Study extends React.Component {
   }
 
   getDeckCategories2(deckId) {
-    if (!this.props.decks[deckId].deck) return
-    return this.props.decks[deckId].deck.category.map((category, idx)=>{
+    if (!this.props.decks[deckId]) return
+    return this.props.decks[deckId].category.map((category, idx)=>{
       return <div key={idx} >
                 <div>{category}</div>
             </div>

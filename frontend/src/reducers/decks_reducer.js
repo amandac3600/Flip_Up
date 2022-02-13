@@ -5,7 +5,7 @@ import { CREATE_CARD, REMOVE_CARD } from '../actions/card_actions';
     let newState = Object.assign({}, state);
     switch(action.type) {
         case RECEIVE_DECK:
-            newState[action.deck.deck._id] = action.deck;
+            newState[action.deck._id] = action.deck;
             return newState;
         case RECEIVE_DECKS:
             return action.decks;

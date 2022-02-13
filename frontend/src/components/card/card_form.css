@@ -40,3 +40,6 @@
   background-color: rgb(220, 220, 220);
 }
 
+.card-form-errors {
+  padding-top: 10px;
+}
