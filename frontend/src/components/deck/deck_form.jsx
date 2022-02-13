@@ -97,7 +97,6 @@ class DeckForm extends React.Component {
     const newState = Object.assign({}, this.state, {category: this.state.category.join(',')}, {_id: this.props.match.params.id})
     this.props.submit(newState)
     .then((res)=>{
-      // this.setState({ errors: [] })
       this.props.history.push(`/decks/${res.deck._id}`)
     }, (err) => this.setState({errors: Object.values(err.response.data)}))
   }
@@ -147,9 +146,8 @@ class DeckForm extends React.Component {
   }
 
   renderErrors() {
-    if (!this.state.errors.length) return '';
     return (
-    <div>
+    <div className='deck-form-errors'>
       {this.state.errors.map(error => {
         return ( <div> {error} </div> )
       }) }

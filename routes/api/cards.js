@@ -66,7 +66,7 @@ router.patch('/:id',
     if (user.id !== req.user.id) return res.status(401).json({ unauthorized: 'You do not own this card' })
 
     const takenCard = await Card.findOne({ deck: req.params.deck_id, front: req.body.front });
-    if (takenCard) return res.status(404).json({ duplicate: 'Card with this front already exists' });
+    if (takenCard && takenCard.id !== req.params.id) return res.status(404).json({ duplicate: 'Card with this front already exists' });
     
     if (req.body.front) card.front = req.body.front;
     if (req.body.back) card.back = req.body.back;

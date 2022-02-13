@@ -67,7 +67,7 @@ export default class CompeteForm extends React.Component {
   }
 
   handleCurrent() {
-    if (this.props.decks[this.props.deckId].deck.user === this.props.currentUser.id) {
+    if (this.props.decks[this.props.deckId].user === this.props.currentUser.id) {
       return 'compete-form-div-user'
     } else {
       return 'compete-form-div'

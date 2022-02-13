@@ -388,3 +388,9 @@ transform: scale(1.05);
     justify-content: center;
     width: 100%;
 }
+
+.deck-form-errors {
+    margin-left: 50px;
+    padding-top: 20px;
+    color: #28399b;
+}
