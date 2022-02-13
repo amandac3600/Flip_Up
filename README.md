@@ -35,6 +35,7 @@ Users can challenge their friends to compete against each other using a chosen f
 ### User Profile
 Users can navigate to their profile to view their friends, created decks, win/loss statistics, and completed and pending challenges.  Users can also change their display emoji and access a form to edit their profile.  Users are also able to view pending friend requests.
 
+<img width="1000" alt="user-profile" src="https://user-images.githubusercontent.com/82063894/153771341-3edb3503-e186-4572-a7c3-77dc3e830404.png">
 
 ### CRUD for Friends
 Users can send, cancel, receive, approve, and deny friend requests from other users.  Users can also remove friends from their friends list. 
