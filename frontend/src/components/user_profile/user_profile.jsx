@@ -10,6 +10,7 @@ import ChallengesContainer from '../compete_mode/challenges_container';
 import FriendsRequestContainer from './friend_requests_container';
 import new_friend_icon from './new_friend_icon.png'
 import { AwesomeButton } from "react-awesome-button";
+import { BsTrash } from 'react-icons/bs';
 import "react-awesome-button/dist/styles.css";
 import './user_profile.css';
 import './friends_search.css';
@@ -27,7 +28,7 @@ class UserProfile extends React.Component {
         
         // this.getUserDecks = this.getUserDecks.bind(this)
         this.handleClick = this.handleClick.bind(this)
-
+        this.handleDeleteFriend = this.handleDeleteFriend.bind(this)
     }
 
 
@@ -65,15 +66,18 @@ class UserProfile extends React.Component {
 
     }
 
-    // getFriendsList(){
-    //     const friend_ids = this.state.user.friends_ids
-
-
-    // }
-
     handleClick(e) {
         e.preventDefault()
         this.props.history.push('/decks/new')
+    }
+
+    handleDeleteFriend(friendId) {
+        return(e) => {
+        this.props.removeFriend({friendId: friendId, requestType: 'remove'})
+            .then(() => {
+            this.props.getFriends();
+            });
+        }
     }
 
     renderDecks() {
@@ -136,6 +140,10 @@ class UserProfile extends React.Component {
                         <li key={friendId}> 
                             <ProfileIcon user={friend} isCurrent={false}/>
                             {friend.username}
+                            <div onClick={this.handleDeleteFriend(friendId)} 
+                                    className='friend-delete-button'>
+                                    <BsTrash />
+                            </div>
                         </li>
                          
                     )

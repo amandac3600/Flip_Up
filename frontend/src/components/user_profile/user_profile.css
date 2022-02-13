@@ -336,8 +336,14 @@
     border-bottom: 1px solid rgb(21, 28, 44);
    
 }
-.profile-friends-list li:hover{
-    background-color: rgb(184, 198, 211);
+
+.friend-delete-button {
+    padding: 5px;
+    border-radius: 3px;
+}
+.friend-delete-button:hover{
+    background-color: rgb(136, 22, 22);
+    color: white
 }
 
 .friends-list-thumbnail{
