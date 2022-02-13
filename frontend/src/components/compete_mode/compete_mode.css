@@ -43,14 +43,11 @@
   max-width: 1280px;
   height: 17vh;
   border-radius: 5px;
-  /* border: 1px solid gray; */
-  /* margin-top: 20px; */
   margin-bottom: 0px;
   font-size: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: whitesmoke; */
   align-self: center;
   align-self: center;
   padding-right: 40px;
@@ -75,18 +72,11 @@
 .compete-answer-choice {
   width: 600px;
   height: 17vh;
-  /* border: 1px solid gray; */
-  /* border-radius: 5px; */
   font-size: 50px;
-  /* padding-left: 20px;
-  padding-right: 20px; */
   margin: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: whitesmoke; */
-  /* -webkit-box-shadow: 0px 10px 13px -7px #000000, -23px -42px 5px -9px rgba(0,0,0,0); 
-  box-shadow: 0px 10px 13px -7px #000000, -23px -42px 5px -9px rgba(0,0,0,0); */
   word-wrap: normal;
   text-align: center;
 }
@@ -103,7 +93,6 @@
 }
 
 .compete-answer-choice:hover {
-  /* background-color: rgb(40, 57, 155); */
   color: white;
   cursor: pointer;
 }
