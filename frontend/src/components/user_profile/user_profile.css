@@ -157,9 +157,20 @@
 .prof-winslosses-row {
     display: flex;
     flex-direction: row;
-    
+    align-items: center;
 }
 
+.prof-stats-icons{
+    width: 15px;
+    height: 15px;
+    margin: 0px 5px 0px 5px
+}
+
+.render-competitors {
+    display: flex; 
+    flex-direction: row;
+    font-weight: normal;
+}
 /* DECKS */
 
 .profile-user-decks {
