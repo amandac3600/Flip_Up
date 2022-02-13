@@ -22,7 +22,6 @@ const toggleIconOptions = () => {
 } 
 
 const ProfileIcon = ({ user, updateUser, isCurrent = true}) => {
-  console.log(user)
   const [icon, setIcon] = useState(user.icon);
 
   useEffect(() => {

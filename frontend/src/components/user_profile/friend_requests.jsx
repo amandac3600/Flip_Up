@@ -3,11 +3,6 @@ import ProfileIcon from './profile_icon';
 import './friend_requests.css'
 
 export default class FriendRequests extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
-  // can delete after if called in profile;
   componentDidMount() {
     this.props.fetchCurrentUser();
     this.props.getFriends();

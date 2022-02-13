@@ -9,11 +9,6 @@ export default class Timer extends React.Component {
     this.startTime = this.startTime.bind(this);
   }
 
-
-
-
-  
-
   componentDidMount() {
     setInterval(this.startTime, 1000);
   }

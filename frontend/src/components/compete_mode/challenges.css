@@ -1,5 +1,4 @@
 .challenges-div {
-  /* margin: 20px auto; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,12 +20,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   border-bottom-left-radius: 5px;
-  /* text-decoration: none; */
 }
-/* .challenges-pending-list a:link, a:visited {
-  text-decoration: none;
-  color: inherit;
-} */
 
 .challenges-complete-list {
   border: 1px solid gray;
@@ -53,11 +47,6 @@
   color: white;
   border-top-right-radius: 5px;
 }
-
-/* .challenges-complete-list a:link, a:visited {
-  text-decoration: none;
-  color: inherit;
-} */
 
 .challenges-request-item-div {
   display: flex;
