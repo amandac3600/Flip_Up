@@ -15,5 +15,3 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FriendRequests);
-
-// can delete container if all passed through user profile

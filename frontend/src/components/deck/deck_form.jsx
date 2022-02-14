@@ -16,19 +16,23 @@ class DeckForm extends React.Component {
       this.state = {
         name: '',
         public: false,
-        category: []
+        category: [],
+        errors: [],
       };
      } else if (this.props.deck) {
       this.state = {
         name: this.props.deck.name,
         public: this.props.deck.public,
-        category: this.props.deck.category
+        category: this.props.deck.category,
+        errors: [],
+
       };
     } else {
       this.state = {
         name: '',
         public: false,
-        category: []
+        category: [],
+        errors: [],
       };
     }
     
@@ -94,7 +98,7 @@ class DeckForm extends React.Component {
     this.props.submit(newState)
     .then((res)=>{
       this.props.history.push(`/decks/${res.deck._id}`)
-    })
+    }, (err) => this.setState({errors: Object.values(err.response.data)}))
   }
 
   buttonFunction() {
@@ -141,9 +145,17 @@ class DeckForm extends React.Component {
     return div
   }
 
+  renderErrors() {
+    return (
+    <div className='deck-form-errors'>
+      {this.state.errors.map((error, idx) => {
+        return ( <div key={idx}> {error} </div> )
+      }) }
+    </div> )
+  }
+
   render() {
-    console.log(this.props)
-    console.log(this.state)
+    
     return (
       <div className='deck-form-container' >
         <NavBarContainer/>
@@ -201,7 +213,7 @@ class DeckForm extends React.Component {
             </div>
             </div>
             <div className='deck-form-submit-button-div' ><AwesomeButton id='deck-form-submit-button' className='deck-form-submit-button' type="primary">Save Deck</AwesomeButton></div>
-            
+            {this.renderErrors()}
           </div>
         </form>
         

@@ -1,28 +1,34 @@
 import React from 'react';
 import NavContainer from '../nav/nav_container';
 import { Link } from "react-router-dom";
+import ExperienceBarContainer from './../experience_bar/experience_bar_container';
 import Footer from '../footer/footer';
-import './user_profile.css';
-import './friends_search.css';
 import { DeckCarousel } from '../deck-carousel/deck_carousel';
 import  FriendsSearchContainer  from './friends_search_container';
 import ProfileIcon from './profile_icon';
 import ChallengesContainer from '../compete_mode/challenges_container';
+import FriendsRequestContainer from './friend_requests_container';
+import new_friend_icon from './new_friend_icon.png'
+import { AwesomeButton } from "react-awesome-button";
+import { BsTrash } from 'react-icons/bs';
+import "react-awesome-button/dist/styles.css";
+import './user_profile.css';
+import './friends_search.css';
 
 
 class UserProfile extends React.Component {
     constructor(props) {
         super(props)
-        console.log('in constructor', this.props)
         this.state = {
             // user: props.currentUser,
             decks: this.props.decks,
-            showFriendModal: false
+            showFriendModal: false, 
+            showFriendRequestModal: false
         }   
         
         // this.getUserDecks = this.getUserDecks.bind(this)
         this.handleClick = this.handleClick.bind(this)
-
+        this.handleDeleteFriend = this.handleDeleteFriend.bind(this)
     }
 
 
@@ -60,15 +66,18 @@ class UserProfile extends React.Component {
 
     }
 
-    // getFriendsList(){
-    //     const friend_ids = this.state.user.friends_ids
-
-
-    // }
-
     handleClick(e) {
         e.preventDefault()
         this.props.history.push('/decks/new')
+    }
+
+    handleDeleteFriend(friendId) {
+        return(e) => {
+        this.props.removeFriend({friendId: friendId, requestType: 'remove'})
+            .then(() => {
+            this.props.getFriends();
+            });
+        }
     }
 
     renderDecks() {
@@ -78,15 +87,30 @@ class UserProfile extends React.Component {
             return (
                 <div>
                     <h3 className = 'profile-no-decks'>You haven't made any decks yet!</h3>
-                    <button className='profile-create-deck-button'>Create your first deck now!</button>
+                    <div className= 'make-deck-button' onClick={this.handleClick}><AwesomeButton type="primary" >Create your first deck now!</AwesomeButton></div> 
                 </div>
             )
         }
 
         return (
             <div>
-                <DeckCarousel decks={decks} />
-                <button className='profile-create-deck-button' onClick={this.handleClick}>Create a new deck</button>
+             
+                <div className='profile-all-decks'>
+                    {decks.map(deck => (
+                        <Link to={`/decks/${deck._id}`}>
+                        <div className="carousel-deck-item" key={deck.id}   >
+                            {deck.name}
+                        </div>
+                        </Link>
+                ))}
+    
+            </div>
+                <div className= 'make-deck-button' onClick={this.handleClick}>
+                    <AwesomeButton type="primary" >
+                        Create a deck now!
+                    </AwesomeButton>
+                </div> 
+            
             </div>
         )
     }
@@ -96,11 +120,11 @@ class UserProfile extends React.Component {
     renderFriends() {
         console.log('render friend', this.props.users.friends)
 
-        if (!this.props.users.friends || this.props.users.friends === 0 ) {
+        if (!this.props.users.friends || this.props.current.friendIds.length === 0 ) {
             return (
                 <div>
                     <h3 className = 'profile-no-friends'>You haven't made any friends yet!</h3>
-                    <button className='profile-create-deck-button' onClick={() => this.setState({showFriendModal: true}) }>Find a friend now!</button>
+                    <div className= 'find-frineds-button' onClick={() => this.setState({showFriendModal: true}) }><AwesomeButton type="primary" >Find a friend now!</AwesomeButton></div>
                     <div className={ this.state.showFriendModal ? 'modal' : 'none'}><FriendsSearchContainer off={()=> this.setState({showFriendModal: false})} /></div>
                 </div>
             )
@@ -108,22 +132,25 @@ class UserProfile extends React.Component {
         return (
             <div className="profile-friends-list">
             <ul>
-                {Object.values(this.props.users.friends).map(friend => {
-                    console.log({friend})
+                {this.props.current.friendIds.map(friendId => {
+                    const friend = this.props.users.friends[friendId];
+                    console.log(friend)
                     return (
 
-                        <li> 
+                        <li key={friendId}> 
                             <ProfileIcon user={friend} isCurrent={false}/>
-
-                            {/* <img className= 'friends-list-thumbnail' src='https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png' alt='profile generic'/> */}
                             {friend.username}
+                            <div onClick={this.handleDeleteFriend(friendId)} 
+                                    className='friend-delete-button'>
+                                    <BsTrash />
+                            </div>
                         </li>
                          
                     )
                    
                  })}
             </ul>
-            <button className='profile-create-deck-button' onClick={() => this.setState({showFriendModal: true}) }>Find a friend now!</button>
+            <div className= 'find-frineds-button' onClick={() => this.setState({showFriendModal: true}) }><AwesomeButton type="primary" >Find a friend now!</AwesomeButton></div>
              <div className={ this.state.showFriendModal ? 'modal' : 'none'}><FriendsSearchContainer off={()=> this.setState({showFriendModal: false})} /></div>
 
         </div>
@@ -131,19 +158,40 @@ class UserProfile extends React.Component {
         
     }   
 
-    renderStats() {
-        // let wins 
-        // let losses
-        // let points
-
-        // if (this.state.user.wins.length === 0){
-        //     wins = 
-        // }
+    renderCompetitors(id) {
+        const competitor = Object.values(this.props.users.friends).find(friend => friend.id === id)
         return (
-        <div >
-            <p>Wins: {this.props.users.current.wins.length}</p>
-            <p>Loses: {this.props.users.current.wins.length}</p>
-            <p>Points: {this.props.users.current.points}</p>
+            <>
+                <div className="prof-stats-competitor">
+                    <span className='prof-stats-icons'><ProfileIcon user={competitor} isCurrent={false}/></span>
+                    {competitor.username}</div>
+            </>
+            
+        )
+    }
+
+    renderStats() {
+
+        return (
+        <div className="prof-stats-div">
+            <div className='stats-left-col'>
+                <div className = "stats-header">Stats:</div>   
+                <div className = "profile-points"> You've earned <br/> <span className="profile-points-bold">{this.props.users.current.points} </span>Points!</div>
+            </div>
+            
+            <div className='stats-right-col'>
+                    <div className='prof-winslosses-row'>{this.props.users.current.wins.length} Wins: 
+                        <ul className= "render-competitors">
+                            {this.props.users.current.wins.map(result => ( 
+                                <li >
+                                    {this.renderCompetitors(result)}
+
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className='prof-winslosses-row'> {this.props.users.current.losses.length} Losses: </div>
+            </div>
         </div>
         )
 
@@ -176,35 +224,50 @@ class UserProfile extends React.Component {
                                 <div className="profile-user-info">
 
                                     <ProfileIcon className='profile-user-icon' user={this.props.users.current} updateUser={this.props.updateUser} isCurrent={true}/>
-                                    <p>{this.props.users.current.username}</p>
+                                    <p>Hello, {this.props.users.current.username}!</p>
 
-                                    {/* <Link to="/profile/update">Edit profile</Link> */}
+                                    <Link to="/profile/update">Edit profile</Link>
                                 </div>
-                                <div className='profile-user-stats'>
-                                    {this.renderStats()}
+                                
+                                <div className="profile-user-decks">
+                                        <div className='profile-user-decks-header'>Your Decks</div>
+                                
+                                        {this.renderDecks()}
                                 </div>
+                                   
+                                
                             </>
                         </div>
                         <div className="profile-vert-box">
+                            <div className='profile-exp-bar'>
+                                 <ExperienceBarContainer />
+                            </div>
                             <div className="profile-battle-box">
                                 <ChallengesContainer />
                             </div>
-                            <div className="profile-deck-scroller">
-                                Your Decks
-                                
-                                {this.renderDecks()}
+                            <div className="profile-stats-container">
+                                 {this.renderStats()}
                             </div>
                         </div>
                     </div>
                     <div className="profile-right-div">
                         <div className= "profile-friends-header">
-                                Friends
+                               <>Friends</> 
+                               <div onClick={() => this.setState({showFriendRequestModal : true})} 
+                                    className = 'profile-new-friend-request'>
+                                        {this.props.current.pendingRequests.length > 0 ? <img className = 'profile-new-friend-request-show' src={new_friend_icon} alt="new friend!" /> : ""}
+                                </div> 
+                                <div className={ this.state.showFriendRequestModal ? 'friend_request_modal' : 'none'}>
+                                    <FriendsRequestContainer 
+                                        off={()=> this.setState({showFriendRequestModal: false})} />
+                                </div>
                         </div>
                         <div>
                             {this.renderFriends()}
                             
                         </div>
                     </div>
+                   
                 </div>
             </div>
         )

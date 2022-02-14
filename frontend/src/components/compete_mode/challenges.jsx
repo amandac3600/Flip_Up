@@ -25,7 +25,7 @@ export default class Challenges extends React.Component {
           }
         )
       });;
-    // delete if fetched by profile page
+
     this.props.fetchCurrentUser();
     this.props.getFriends();
   }
@@ -89,21 +89,30 @@ export default class Challenges extends React.Component {
     const completeChallenges = Object.values(this.props.games.complete).map(game => this.renderResults(game, false));
 
     return (
+
       <div className='challenges-div'>
         <h2 className='challenges-title'>Challenges</h2>
+       
+          <div className='challenges-requests-div'>
+            <div className='challenges-pending'>
+              <div className='challenges-pending-title'>Pending: </div>
+              <div className='challenges-pending-list'>
+                {pendingChallenges}
+              </div>
+            </div>
 
-        <div className='challenges-requests-div'>
-          <div className='challenges-pending'>
-            <div className='challenges-pending-title'>Pending: </div>
-            <div className='challenges-pending-list'>{pendingChallenges}</div>
+            <div className='challenges-complete'>
+              <div className='challenges-complete-title'>Complete: </div>
+              
+              <div className='challenges-complete-list'>  
+                {completeChallenges}
+              </div>
+            </div>
           </div>
+      
+        
 
-          <div className='challenges-complete'>
-            <div className='challenges-complete-title'>Complete: </div>
-            <div className='challenges-complete-list'>{completeChallenges}</div>
-          </div>
-
-        </div>
+        
       </div>
     )
   }

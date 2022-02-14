@@ -18,8 +18,8 @@ class CardIndex extends React.Component {
 
   handleDelete() {
     let key = Object.keys(this.props.decks)[0]
-    if (!this.props.decks[key].deck) return null
-    if (this.props.decks[key].deck.user === this.props.currentUser.id) {
+    if (!this.props.decks[key]) return null
+    if (this.props.decks[key].user === this.props.currentUser.id) {
       return 'show'    
     } else {
       return 'hidden'
@@ -55,7 +55,7 @@ class CardIndex extends React.Component {
   render() {
     if (this.state.loading) return null;
     return (
-      <div>
+      <div className='card-index-get-cards'>
         {this.getCards()}
       </div>
     );

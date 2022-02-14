@@ -16,7 +16,6 @@ export default class CompeteForm extends React.Component {
   componentDidMount() {
     Promise.all([
       this.props.fetchCurrentUser(),
-      // this.props.getDecks(this.state.filters.join('+')),
       this.props.getFriends(),
     ])
     .then()
@@ -61,22 +60,22 @@ export default class CompeteForm extends React.Component {
         this.props.history.push(`/compete/${res.game._id}`)
       })
       .catch(err => {
-        console.log('err', err)
         this.setState({ errors: err })
       })
   }
 
   handleCurrent() {
-    if (this.props.decks[this.props.deckId].deck.user === this.props.currentUser.id) {
+    if (this.props.decks[this.props.deckId].user === this.props.currentUser.id) {
       return 'compete-form-div-user'
     } else {
       return 'compete-form-div'
     }
   }
+  
 
   render() {
     if (!this.props.users || !this.props.users.friends || !this.props.games ) return null;
-    console.log(this.props.users.friends)
+
     return (
       <div className={this.handleCurrent()}>
         <form onSubmit={this.handleSubmit}>

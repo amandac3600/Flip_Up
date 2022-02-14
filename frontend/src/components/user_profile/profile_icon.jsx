@@ -26,7 +26,7 @@ const ProfileIcon = ({ user, updateUser, isCurrent = true}) => {
 
   useEffect(() => {
 
-    const profileIcon = document.querySelector(`.user-profile-icon.${user.username}`);
+    const profileIcon = document.querySelector(`.user-profile-icon.id${user.id}`);
     profileIcon.innerHTML = `&#${icon}`
     if (isCurrent) renderIcons();
   })
@@ -38,7 +38,7 @@ const ProfileIcon = ({ user, updateUser, isCurrent = true}) => {
   }
   return(
     <div className='user-profile-icon-div' onClick={isCurrent ? toggleIconOptions : () => {}}>
-      <div className={`user-profile-icon ${user.username}`}></div>
+      <div className={`user-profile-icon id${user.id}`}></div>
       <div className='profile-icon-options hidden' onClick={handleIconClick}></div>
     </div>
   )

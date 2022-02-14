@@ -106,7 +106,7 @@ export const getFriends = () => dispatch => (
 )
 
 export const updateUser = data => dispatch => {
-  SessionApiUtil.editUser(data)
+  return SessionApiUtil.editUser(data)
     .then(user => (
       dispatch(receiveCurrentUser(user.data)))
     , err=> (
@@ -115,7 +115,16 @@ export const updateUser = data => dispatch => {
 };
 
 export const requestFriend = friendData => dispatch => {
-  SessionApiUtil.requestFriend(friendData)
+  return SessionApiUtil.requestFriend(friendData)
+    .then(user => (
+      dispatch(receiveCurrentUser(user.data))
+    ), err=> (
+      dispatch(receiveErrors(err.response.data))
+    ))
+};
+
+export const removeFriend = friendData => dispatch => {
+  return SessionApiUtil.removeFriend(friendData)
     .then(user => (
       dispatch(receiveCurrentUser(user.data))
     ), err=> (

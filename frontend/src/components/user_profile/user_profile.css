@@ -9,11 +9,6 @@
     background-color: aliceblue;
     font-family: Montserrat, Arial, Helvetica, sans-serif;
     color:rgb(40, 50, 92);
-    /* background-image:  url('http://localhost:3000/static/media/ocean.b2bebab11c0bc273f3fc.jpg'); */
-    /* background-image:  url('https://i.ytimg.com/vi/TQOO9h_U44Q/maxresdefault.jpg'); */
-    /* background-repeat: no-repeat;
-    background-size: cover; */
-
 }
 
 .user-profile-total-container {
@@ -47,15 +42,16 @@
    
 
 }
+
 .profile-user-info {
     display: flex;
     flex-direction: column;
     align-items: center; 
     justify-content: center;
     font-size: larger;
-    width: 20vw;
+    width: 25vw;
     height: 30%;
-    
+    font-weight: bolder;
     padding: 15px;
     margin-bottom: 10%;
     background: rgba(247, 242, 242, 0.59);
@@ -63,15 +59,23 @@
     box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29);
     /* margin-bottom: 15px;
     margin-bottom: 15px; */
+
+}
+.profile-user-info a {
+    padding: 10px;
+    font-weight: normal;
+    margin-top: 5px;
+    color: rgb(40, 57, 155);
+    border-radius: 5px;
+}
+.profile-user-info a:hover {
+    font-weight: bolder;
+    box-shadow: 2px 2px 5px 2px rgba(0,0,0,0.29);
 }
 
-#user-profile-icon {
-    border: 1px solid black;
-    padding: 3px;
-    border-radius: 100%;
-    font-size: 5em;
-    background-color: rgb(125, 182, 233);
-    margin-bottom: 10px;
+
+.profile-user-info:hover {
+        cursor: default;
 }
 
 .profile-battle-box {
@@ -80,7 +84,7 @@
     align-items: center;
     justify-content: center;
     width: 45vw;
-    height: 40vh;
+    height: 50vh;
     background: rgba(247, 242, 242, 0.59);;
     border-radius: 10px;
     box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29);
@@ -90,65 +94,178 @@
     display: flex;
     flex-direction: column;
 }
-.profile-user-stats {
+
+
+
+.prof-stats-div {
+    font-size: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 20vh;
+    /* justify-content: center; */
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29);
+    background: rgba(247, 242, 242, 0.59);
+    overflow: hidden;
+    color: rgb(40, 57, 155);
+}
+
+.stats-left-col {
+    border-right: 1px solid rgb(40, 50, 92);
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+    align-content: space-evenly;
+    margin-right: 15px;
+    padding-right: 10px;
+    padding-left: 15px;
+}
+
+.stats-header {
+    text-align: right;
+    font-size: 50px;
+} 
+.profile-points {
+    text-align: right;
+    font-size: 25px;
+    color:rgb(75, 91, 158)
+} 
+.profile-points-bold {
+    font-weight: bolder;
+}
+
+.stats-right-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom:rgb(20, 35, 46)
+
+}
+
+.prof-winslosses-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow: scroll;
+}
+
+.prof-stats-icons{
+    width: 30px;
+
+}
+.prof-stats-competitor {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: flex-start; */
+    padding: 10px;
+}
+
+.render-competitors {
+    display: flex; 
+    flex-direction: row;
+    font-weight: normal;
+}
+/* DECKS */
+
+.profile-user-decks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
     width: 100%;
-    height: 60%;
+    height: 45vh;
+
     background: rgba(247, 242, 242, 0.59);;
     border-radius: 10px;
     box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29);
-  
+    contain: content; 
+    font-size: 20px;
+    overflow: scroll;
+}
+.profile-user-decks-header  {
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(40, 57, 155);
+    color: white;
+    font-size: 20px;
+    /* font-weight: bold; */
+}
+
+.carousel-deck-item{
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    width: 10vw;
+    height: 7vh;
+    padding: 15px;
+    margin: 10px;
+    margin-right: 25px;
+    border-radius: 10px;
+    background-color: rgb(40, 57, 155);
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+    box-shadow:3px 4px 0px 0px #abcddf, 7px 6px 0px 0px #e1e6f5, 6px 6px 0px 0px rgb(40, 57, 155), 8px 8px 0px 0px #7eb2c2, 10px 10px 0px 0px #294d64, 24px 26px 15px 5px rgba(0,0,0,0);
+
+}
+.profile-user-decks a{
+    display: flex; 
+    justify-content: center;
+}
+.profile-exp-bar {
+    margin-top: -7%;
 }
 
 /* DECK */
 
-.profile-deck-scroller {
-    display: flex;
-    height: 45%; 
-    width: 45vw;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    /* margin: 5px; */
-    border-radius: 10px;
-    box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29);
-    background: rgba(247, 242, 242, 0.59);;
-    overflow: hidden;
 
+.profile-all-decks {
+    display: flex;
+    flex-direction: column;
+    
 }
 
-.profile-create-deck-button {
+/* .profile-deck-scroller  {
+    color: rgb(40, 57, 155);
+} */
+
+/* .profile-create-deck-button {
     display: flex;
     margin-left: auto;
     margin-right: auto;
     background-color: whitesmoke;
     border: white;
     border-bottom: 1px solid rgb(20, 35, 46);
+} */
+.make-deck-button {
+    padding: 20px;
+    padding-left: 30px;
+    margin-left: auto;
+    margin-right: auto;
 }
-
 .profile-create-deck-button:hover{
     font-weight: bolder;
     box-shadow: 5px 5px 15px 2px rgba(34, 44, 133, 0.19);
 
 }
 .profile-no-decks {
-   
+
     font-weight: 800;
 }
 
 .profile-deck-li {
     border-radius: 10px;
-    box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29)
-
+    box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29);
+    background: red;
 }
 
-.profile-deck-li :link, .profile-deck-li :visited{
-    text-decoration: none;
-    color: inherit;
-}
+
 
 /* FRIENDS */
 
@@ -156,11 +273,46 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-end;
-    font-size: 30px;
-    height: 50px;
+    align-items:  flex-end;
+    font-size: 25px;
+    /* height: 50px; */
     border-bottom: 1px solid black;
     margin: 25px;
+    
+
+}
+
+.profile-new-friend-request img{
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;  
+    padding: 5px;
+}
+.profile-new-friend-request-show {
+    margin: 5px;
+    margin-top: -5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: whitesmoke;
+    animation: glow 1s infinite alternate;
+}
+
+.profile-new-friend-request-show:hover {
+    cursor: pointer;
+}
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px -10px #aed2f4;
+  }
+  to {
+    box-shadow: 0 0 10px 10px #8fe6fc;
+  }
+}
+
+.profile-new-friend-request img:hover{
+    /* background-color:rgb(40, 57, 155); */
+    box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29);
 
 }
 
@@ -171,32 +323,50 @@
     justify-content: space-between;
     align-content: space-between;
     margin: 5px;
+    overflow: scroll;
 }
 .profile-friends-list li {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    margin: 20px;
+    padding: 5px;
     padding-right: 30px;
-    border-bottom: 1px solid rgb(21, 28, 44)
+    border-bottom: 1px solid rgb(21, 28, 44);
+   
 }
-.profile-friends-list li:hover{
-    background-color: rgb(184, 198, 211);
+
+.friend-delete-button {
+    padding: 5px;
+    border-radius: 3px;
+}
+.friend-delete-button:hover{
+    background-color: rgb(136, 22, 22);
+    color: white
 }
 
 .friends-list-thumbnail{
     width: 30px;
     height: 30px;
 }
-.profile-no-friends {
+.profile-no-friends *{
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    justify-items: center;
+    align-content: center;
     line-height: 50px;
     
 }
 
+.find-frineds-button {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Loading Spinner */
+/* generated by https://loading.io/ */
 .loading-spinner {
     position: fixed;
     left: 50%;
@@ -251,3 +421,18 @@
 }
 .ldio-6bedd410xds div { box-sizing: content-box; }
 /* generated by https://loading.io/ */
+
+.aws-btn {
+    --button-primary-color: #28399b !important;
+    --button-primary-color-dark: #18266d !important;
+    --button-primary-color-light: whitesmoke !important;
+    --button-primary-color-hover: #2b40b9 !important;
+    --button-primary-border: none !important;
+    --button-default-border-radius: 5px !important;
+    --button-raise-level: 5px !important;
+    --button-hover-pressure: 3 !important;
+}
+
+
+
+

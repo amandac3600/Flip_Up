@@ -22,9 +22,6 @@ export default class CompeteMode extends React.Component {
   }
 
   componentDidMount() {
-    // delete after testing
-    this.props.getPendingGames();
-    // keep
     this.props.getDecks();
     this.props.getGame(this.props.match.params.gameId)
       .then((res) => {
@@ -74,7 +71,7 @@ export default class CompeteMode extends React.Component {
     }, () => {
       if (this.state.playerTime) {
         this.props.updateGame(this.state).then(res => {
-          this.setState({game: res.game}, () => console.log(this.state.game));
+          this.setState({game: res.game});
         });
       }
     })

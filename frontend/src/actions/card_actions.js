@@ -50,13 +50,9 @@ export const getCards = (deckId) => dispatch => (
 export const updateCard = (card) => dispatch => {
     return CardApiUtil.updateCard(card)
     .then((res) => {
-        console.log(res.data)
         return dispatch(editCard(res.data))
     })
 }
-    
-
-
 
 export const createCard = (card) => dispatch => (
     CardApiUtil.createCard(card)

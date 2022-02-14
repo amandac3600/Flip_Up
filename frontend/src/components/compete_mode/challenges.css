@@ -1,49 +1,60 @@
 .challenges-div {
-  /* margin: 20px auto; */
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  height: 100%
+  
 }
 .challenges-title {
   font-size: 27px;
   padding: 10px;
 
 }
+/* .challenges-main {
+  display: flex; 
+  flex-direction: row;
+  align-content: space-evenly;
+} */
 
 .challenges-requests-div {
   display: flex;
+  flex-direction: row;
+  align-items: space-between;
 }
 
 .challenges-pending-list {
-  border: 1px solid gray;
-  width: 18vw;
-  height: 30vh;
+  box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29);
+  width: 20vw;
+  height: 35vh;
   overflow-y: auto;
   overflow-x: hidden;
-  border-bottom-left-radius: 5px;
+  /* border-bottom-left-radius: 5px; */
+  border-radius: 5px;
+  margin-right: 35px;
   /* text-decoration: none; */
 }
-/* .challenges-pending-list a:link, a:visited {
-  text-decoration: none;
-  color: inherit;
-} */
 
 .challenges-complete-list {
-  border: 1px solid gray;
-  width: 19vw;
-  height: 30vh;
+  box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29);
+  width: 20vw;
+  height: 35vh;
   margin-bottom: 5px;
   overflow-y: auto;
   overflow-x: hidden;
-  border-bottom-right-radius: 5px;
+  border-radius: 5px;
 }
 
 .challenges-pending-title {
+  display: flex;
   font-size: 20px;
-  text-align: center;
+  justify-content: center;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
   background-color: rgb(40, 57, 155);
   color: white;
-  border-top-left-radius: 5px;
+  width: 20vw;
+
 }
 
 .challenges-complete-title {
@@ -52,22 +63,21 @@
   background-color: rgb(40, 57, 155);
   color: white;
   border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  width: 20vw;
 }
-
-/* .challenges-complete-list a:link, a:visited {
-  text-decoration: none;
-  color: inherit;
-} */
 
 .challenges-request-item-div {
   display: flex;
   align-items: center;
+  justify-content: center;
+  /* background-color: aliceblue; */
 }
 
 .challenges-request-item {
   width: 80%;
   margin: 10px;
-  border: 1px solid rgb(40, 57, 155);
+  box-shadow: 1px 4px 6px 1px rgba(0,0,0,0.1);
   border-radius: 5px;
   text-align: center;
   color: black;
@@ -79,11 +89,12 @@
 }
 .challenges-link {
   text-decoration: none;
+  color: rgb(40, 57, 155);
 }
  
 .challenges-request-item {
   background-color: whitesmoke;
-  color: black;
+  color: rgb(24, 20, 20);
 }
 
 .challenges-request-item:hover, .challenges-request-item:hover .challenges-request-item-title, .challenges-request-item:hover .challenges-request-item-info{
@@ -96,4 +107,5 @@
   cursor: pointer;
   padding: 5px;
   z-index: 5;
+  color: rgb(184, 180, 180);
 }
