@@ -14,7 +14,6 @@ const gameReducer = (state = {}, action) => {
       nextState['complete'] = action.games;
       return nextState;
     case DELETE_GAME:
-      console.log(nextState)
       delete nextState[action.gameId]
       return nextState;
     default:

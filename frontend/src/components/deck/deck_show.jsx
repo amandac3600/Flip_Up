@@ -59,8 +59,7 @@ class DeckShow extends React.Component {
     if (!this.props.deckInfo.user) return null;
     if (!this.props.users[this.props.deckInfo.user]) return null;
     if (this.props.deckInfo.user !== this.props.currentUser.id) {
-      // console.log(this.props.users[this.props.deckInfo.deck.user].username)
-      // console.log(this.props.users)
+
       return <div className='deck-show-user-container'>
         <img className='deck-show-user-pic' src="https://icons-for-free.com/iconfiles/png/512/home+page+profile+user+icon-1320184041392976124.png" alt="user profile pic" />
         <div className='deck-show-user-name'>
@@ -72,9 +71,7 @@ class DeckShow extends React.Component {
 
   render() {
     if (!this.props.deckInfo || !this.props.deckInfo) return null;
-    // console.log(this.props.fetchUser(this.props.deckInfo.deck.user).then(user => console.log(user.user.username)))  
-    // console.log(this.props.deckInfo.deck.user !== this.props.currentUser.id)
-    // console.log(this.handleShowUser())
+
     return (
       <div className='deck-show-full-page'>
           <NavContainer />
