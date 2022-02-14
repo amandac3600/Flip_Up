@@ -102,7 +102,7 @@ router.post('/',
     if (!isValid) {
       return res.status(400).json(errors);
     }
-    const deck = await Deck.findOne({ name: req.body.name, public: true })
+    const deck = await Deck.findOne({ lowerName: req.body.name.toLowerCase(), public: true })
 
     if (deck) return res.status(400).json({ invalidname: 'Deck name already exists'});
 
@@ -113,8 +113,10 @@ router.post('/',
     const newDeck = new Deck({
       user: req.user.id,
       name: req.body.name,
+      lowerName: req.body.name.toLowerCase(),
       category: category,
-      public: req.body.public
+      public: req.body.public,
+      cards: []
     });
 
     newDeck.save().then(deck => res.json(deck));
@@ -133,11 +135,13 @@ router.patch('/:id',
         return res.status(401).json({ unauthorized: 'You do not own this deck' });
       };
       if (req.body.name) {
-        const checkDeckName = await Deck.findOne({name: req.body.name, public: true });
+        const checkDeckName = await Deck.findOne({ lowerName: req.body.name.toLowerCase(), public: true });
         if (checkDeckName && checkDeckName.id !== deck.id) return res.status(404).json({ invalidname: 'Deck name already exists' });
         deck.name = req.body.name;
+        deck.lowerName = req.body.name.toLowerCase();
+
       }
-      
+
       if (req.body.category) {
         const cats = req.body.category.split(',').map(cat => cat.trim())
         deck.category = cats;
@@ -147,7 +151,12 @@ router.patch('/:id',
       const { errors, isValid } = validateDeckInput(deck);
       if (!isValid) return res.status(400).json(errors);
 
-      deck.save().then(deck => res.json(deck))
+      deck.save().then(async deck => {
+        let cards = await Card.find({ deck: deck.id })
+        cards = cards.map(card => card.id)
+
+        return res.json(Object.assign({ cards: cards }, deck._doc));
+      })
     } else {
       return res.status(404).json({ nodecksfound: 'No decks found with that id' });
     }

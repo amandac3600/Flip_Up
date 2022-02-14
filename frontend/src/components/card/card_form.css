@@ -20,7 +20,9 @@
   margin-top: 20px;
   color: rgb(40, 57, 155);
 }
-
+.card-form-form-div {
+  width: 200px;
+}
 ::placeholder {
   color: rgb(40, 57, 155);
   font-size: 18px;

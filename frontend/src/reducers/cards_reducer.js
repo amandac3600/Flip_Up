@@ -16,7 +16,6 @@ import { RECEIVE_CARD, RECEIVE_CARDS, UPDATE_CARD, CREATE_CARD, REMOVE_CARD } fr
             newState[action.card._id] = action.card;
             return newState;
         case REMOVE_CARD:
-            console.log(action)
             delete newState[action.cardId];
             return newState;          
         default:

@@ -14,6 +14,14 @@ module.exports = function validateDeckInput(data) {
     errors.back = 'Back of card is required';
   }
 
+  if (!Validator.isLength(data.front, { min: 2, max: 60 })) {
+    errors.front = 'Front must be between 2 and 60 characters';
+  }
+
+  if (!Validator.isLength(data.back, { min: 2, max: 60 })) {
+    errors.back = 'Back must be between 2 and 60 characters';
+  }
+
   return {
     errors,
     isValid: Object.keys(errors).length === 0

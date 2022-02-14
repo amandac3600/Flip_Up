@@ -23,9 +23,12 @@ class Study extends React.Component {
   getDeckCategories(deckId) {
     if (!this.props.decks[deckId].category) return
     return this.props.decks[deckId].category.map((category, idx)=>{
-      return <div key={idx} >
+      if (category !== '') {
+        return <div key={idx} >
                 <div>{category}</div>
             </div>
+      }
+      
     })
   }
 
@@ -36,9 +39,11 @@ class Study extends React.Component {
   getDeckCategories2(deckId) {
     if (!this.props.decks[deckId]) return
     return this.props.decks[deckId].category.map((category, idx)=>{
+      if (category !== '') {
       return <div key={idx} >
                 <div>{category}</div>
             </div>
+      }
     })
   }
   
@@ -83,9 +88,7 @@ class Study extends React.Component {
 
   render() {
     if(!this.props.decks[this.props.match.params.id]) return null
-    // if (!this.props.decks[this.props.match.params.id].deck) return null
-    console.log(this.props.decks[this.props.match.params.id].name)
-    console.log(this.props)
+   
     return (
       <div className='study-page-total-div' >
           <div className='splash-nav'>

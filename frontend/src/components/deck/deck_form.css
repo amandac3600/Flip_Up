@@ -16,6 +16,22 @@
     color: rgb(40, 57, 155);
 }
 
+
+#deck-form-other {
+    width: 75px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgb(40, 57, 155);
+    outline: none;
+    color: rgb(40, 57, 155);
+    margin-left: 20px;
+    font-size: 1rem;
+}
+
+#deck-form-other::placeholder {
+    color: rgba(26, 39, 116, 0.596);
+}
+
 #deck-form-name::placeholder {
     color: rgba(40, 57, 155, 0.596);
 }
@@ -391,6 +407,7 @@ transform: scale(1.05);
 
 .deck-form-errors {
     margin-left: 50px;
+    margin-top: 20px;
     padding-top: 20px;
     color: #28399b;
 }
