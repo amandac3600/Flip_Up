@@ -62,7 +62,7 @@ class CardForm extends React.Component {
       <div className='create-form'>
         <div className='create-form-title'>{this.getCardHeader()}</div>
         <form onSubmit={this.cardSubmit.bind(this)}>
-          <div>
+          <div className='card-form-form-div'>
             <input id='card-form-front' type="text"
               value={this.state.front}
               onChange={this.update('front')}
