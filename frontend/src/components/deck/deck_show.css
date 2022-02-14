@@ -62,7 +62,7 @@
   font-weight: 500;
 }
 
-.deck-show-delete-deck {
+.deck-show-delete-deck, .deck-show-edit-deck {
   background-color: rgb(255, 255, 255);
   border: 1px solid rgb(40, 57, 155);
   width: 100px;
@@ -70,6 +70,10 @@
   border-radius: 5px;
   color: rgb(40, 57, 155);
   font-weight: 500;
+}
+
+.deck-show-edit-deck a {
+  color: rgb(40, 57, 155);
 }
 
 .deck-show-user-container {

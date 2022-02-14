@@ -45,6 +45,8 @@ class DeckShow extends React.Component {
         <div>
         <div onClick={this.handleDeleteDeck} className='deck-show-delete-deck'>Delete Deck</div>
         <br/>
+          <div className='deck-show-edit-deck'><Link to={`/decks/${this.props.match.params.id}/edit`}>Edit Deck</Link></div>
+        <br/>
         <div className='deck-show-add' onClick={()=>this.setState({ addCard: true })} >Add Cards</div>
         {this.getCardForm()}
         </div>

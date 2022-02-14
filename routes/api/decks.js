@@ -114,7 +114,8 @@ router.post('/',
       user: req.user.id,
       name: req.body.name,
       category: category,
-      public: req.body.public
+      public: req.body.public,
+      cards: []
     });
 
     newDeck.save().then(deck => res.json(deck));
@@ -147,7 +148,12 @@ router.patch('/:id',
       const { errors, isValid } = validateDeckInput(deck);
       if (!isValid) return res.status(400).json(errors);
 
-      deck.save().then(deck => res.json(deck))
+      deck.save().then(async deck => {
+        let cards = await Card.find({ deck: deck.id })
+        cards = cards.map(card => card.id)
+
+        return res.json(Object.assign({ cards: cards }, deck._doc));
+      })
     } else {
       return res.status(404).json({ nodecksfound: 'No decks found with that id' });
     }
