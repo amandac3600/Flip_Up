@@ -25,7 +25,6 @@ class FriendsSearch extends React.Component {
         e.preventDefault()
         this.props.searchFriends(this.state.inputValue)
             .then((action) => {
-                console.log('action.users', action.users)
                 let friendList = action.users
                 this.setState({list: friendList})
                 friendList.length === 0 ? 
