@@ -46,7 +46,7 @@ class UpdateUserForm extends React.Component {
         this.props.history.push('/profile');
       }
     })
-    ;
+
   }
 
   renderErrors() {
