@@ -179,11 +179,11 @@ router.patch('/', passport.authenticate('jwt', { session: false }), async (req, 
 
   if (req.body.username) {
     const takenUsername = await User.findOne({ lowerUsername: req.body.username.toLowerCase() });
-    if (takenUsername.username && takenUsername.id !== req.user.id) return res.status(404).json({ nouser: 'Username already taken.' })
+    if (takenUsername && takenUsername.id !== req.user.id) return res.status(404).json({ nouser: 'Username already taken.' })
   }
   if (req.body.email) {
     const takenEmail = await User.findOne({ email: req.body.email.toLowerCase() });
-    if (takenEmail.email && takenEmail.id !== req.user.id) return res.status(404).json({ nouser: 'Email already taken.' })
+    if (takenEmail && takenEmail.id !== req.user.id) return res.status(404).json({ nouser: 'Email already taken.' })
   }
 
   User.findOne({ _id: req.user.id })
@@ -199,7 +199,7 @@ router.patch('/', passport.authenticate('jwt', { session: false }), async (req, 
       if (req.body.winId) user.wins.push(req.body.winId);
       if (req.body.lossId) user.losses.push(req.body.lossId);
       if (req.body.icon) user.icon = req.body.icon;
-
+      
       const { errors, isValid } = validateRegisterInput(user, 'patch');
       if (!isValid) return res.status(400).json(errors);
 

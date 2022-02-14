@@ -10,8 +10,7 @@ class UpdateUserForm extends React.Component {
       errors: {},
     };
 
-    this.usernameSubmit = this.usernameSubmit.bind(this);
-    // this.clearedErrors = false;
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -38,10 +37,14 @@ class UpdateUserForm extends React.Component {
     return e => this.setState({ [field]: e.currentTarget.value });
   }
 
-  usernameSubmit(e) {
+  handleSubmit(e) {
     e.preventDefault();
-
-    this.props.updateUser(this.state);
+    this.props.updateUser(this.state).then((res) => {
+      this.props.history.push('/profile');
+    }, (err) => {
+      this.setState({ errors: Object.values(err.response.data) })
+    })
+    ;
   }
 
   renderErrors() {
@@ -60,7 +63,7 @@ class UpdateUserForm extends React.Component {
     return (
       <div className="update-user-form-container">
         <NavContainer />
-        <form onSubmit={this.usernameSubmit} className='update-user-form'>
+        <form onSubmit={this.handleSubmit} className='update-user-form'>
           <div className="update-user-form-items">
             <div className='update-user-form-title'>Update your profile:</div>
             <br />
