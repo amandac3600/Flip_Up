@@ -207,11 +207,7 @@ class StudyCard extends React.Component {
     
   }
 
-  getTimeDifference(date) {
-    let now = new Date();
-    let lastReviewed = new Date(date);
-    return (Math.abs(now - lastReviewed)/1000)/60
-  }
+  
  
   allCardsReviewed() {
     return Object.keys(this.props.cards).every((key)=>{
@@ -223,6 +219,12 @@ class StudyCard extends React.Component {
         return true
     })
   }
+
+    getTimeDifference(date) {
+        let now = new Date();
+        let lastReviewed = new Date(date);
+        return (Math.abs(now - lastReviewed)/1000)/60
+    }
 
   checkReviewTime(cardId) {
     let date = this.props.cards[cardId].reviewed

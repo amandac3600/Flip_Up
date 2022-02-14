@@ -23,7 +23,7 @@
 }
 
 .compete-form-message {
-  color: rgb(40, 57, 155);
+  color: #28399b;
   font-weight: 600;
   margin-left: 10px;
   margin-top: 10px;
@@ -84,7 +84,7 @@ input[type='radio']:checked .compete-form-friend-item{
 }
 
 .compete-form-radio {
-  /* visibility: hidden; */
+  visibility: hidden;
 }
 
 .compete-form-button {

@@ -22,8 +22,10 @@ class DeckShow extends React.Component {
 
   getCategories() {
     return this.props.deckInfo.category.map((category, idx)=>{
-      return <Link to={`/search/${category}`} key={idx} className='deck-show-cat'>{category}</Link>
-    })
+      if (category !== '') {
+        return <Link to={`/search/${category}`} key={idx} className='deck-show-cat'>{category}</Link>
+      }
+      })
   }
 
   getCardForm() {
@@ -70,7 +72,7 @@ class DeckShow extends React.Component {
   }
 
   render() {
-    if (!this.props.deckInfo || !this.props.deckInfo) return null;
+    if (!this.props.deckInfo || !this.props.deckInfo.cards) return null;
 
     return (
       <div className='deck-show-full-page'>
