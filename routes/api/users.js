@@ -188,6 +188,10 @@ router.patch('/', passport.authenticate('jwt', { session: false }), async (req, 
 
   User.findOne({ _id: req.user.id })
     .then( async user => {
+      if ((req.body.password && !req.bodypassword2) || (!req.body.password && req.bodypassword2)) {
+        res.status(404).json({ invalidpassword: 'Passwords do not match' })
+      }
+
       if (req.body.password) user.password = req.body.password;
       if (req.body.password2) user.password2 = req.body.password2;
       if (req.body.username) {

@@ -40,11 +40,13 @@ class UpdateUserForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.updateUser(this.state).then((res) => {
-      this.props.history.push('/profile');
-    }, (err) => {
-      this.setState({ errors: Object.values(err.response.data) })
+      if (res.errors) {
+        this.setState({ errors: Object.values(res.errors) })
+      } else {
+        this.props.history.push('/profile');
+      }
     })
-    ;
+
   }
 
   renderErrors() {
