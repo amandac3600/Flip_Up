@@ -56,14 +56,11 @@
 }
 
 .compete-answer-choice-span {
-<<<<<<< HEAD
-  width: 1000px;
+  /* width: 1000px;
   line-height: 5;
-  font-family: Montserrat, Arial, Helvetica, sans-serif;
-=======
+  font-family: Montserrat, Arial, Helvetica, sans-serif; */
   line-height: 1;
   overflow-wrap: anywhere;
->>>>>>> c32887998ae713f5a6fc1c580f7bbee306cf1d41
 }
 
 .compete-answer-choices-div {

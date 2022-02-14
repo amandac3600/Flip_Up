@@ -21,11 +21,22 @@ export default class CompeteForm extends React.Component {
     .then()
   }
 
+  changeColor(id) {
+    Object.values(this.props.users.friends).map( friend => {
+      document.getElementById(`${friend.id}`).style.backgroundColor = ""
+      document.getElementById(`${friend.id}`).style.color = "black"
+    })
+    document.getElementById(`${id}`).style.backgroundColor = "#28399b"
+    document.getElementById(`${id}`).style.color = "white"
+
+  }
+
+
   renderFriends() {
     return Object.values(this.props.users.friends).map( friend => {
 
       return (
-        <div key={friend.id} className='compete-form-friend-item'>
+        <div key={friend.id} id={friend.id} className='compete-form-friend-item' onClick={()=>{this.changeColor(friend.id)}} >
           <label>
             <div className='compete-form-select'>
               <input type='radio' name='friend' className='compete-form-radio' value={friend.id} id={friend.id} onClick={this.handleClick('player2Id')} />
