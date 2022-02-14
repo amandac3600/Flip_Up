@@ -151,7 +151,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .prof-stats-icons{
@@ -186,7 +187,8 @@
     box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29);
     contain: content; 
     font-size: 20px;
-    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 .profile-user-decks-header  {
     text-align: center;
@@ -323,7 +325,8 @@
     justify-content: space-between;
     align-content: space-between;
     margin: 5px;
-    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 .profile-friends-list li {
     display: flex;

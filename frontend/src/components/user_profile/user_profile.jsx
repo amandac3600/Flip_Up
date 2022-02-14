@@ -8,7 +8,7 @@ import  FriendsSearchContainer  from './friends_search_container';
 import ProfileIcon from './profile_icon';
 import ChallengesContainer from '../compete_mode/challenges_container';
 import FriendsRequestContainer from './friend_requests_container';
-import new_friend_icon from './new_friend_icon.png'
+import new_friend_icon from './new_friend_icon.png';
 import { AwesomeButton } from "react-awesome-button";
 import { BsTrash } from 'react-icons/bs';
 import "react-awesome-button/dist/styles.css";
