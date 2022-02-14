@@ -57,7 +57,6 @@ class UserProfile extends React.Component {
     }
 
     getUserDecks() {
-        console.log('in get user decks', this.state.user.decks)
         return this.state.decks.filter(deck => {
             return (
                 this.props.users.current.decks.includes(deck._id) 
@@ -118,7 +117,6 @@ class UserProfile extends React.Component {
     
 
     renderFriends() {
-        console.log('render friend', this.props.users.friends)
 
         if (!this.props.users.friends || this.props.current.friendIds.length === 0 ) {
             return (
@@ -134,7 +132,7 @@ class UserProfile extends React.Component {
             <ul>
                 {this.props.current.friendIds.map(friendId => {
                     const friend = this.props.users.friends[friendId];
-                    console.log(friend)
+                  
                     return (
 
                         <li key={friendId}> 

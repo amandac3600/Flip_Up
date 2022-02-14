@@ -88,9 +88,7 @@ class Study extends React.Component {
 
   render() {
     if(!this.props.decks[this.props.match.params.id]) return null
-    // if (!this.props.decks[this.props.match.params.id].deck) return null
-    console.log(this.props.decks[this.props.match.params.id].name)
-    console.log(this.props)
+   
     return (
       <div className='study-page-total-div' >
           <div className='splash-nav'>

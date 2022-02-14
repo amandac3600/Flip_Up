@@ -12,7 +12,7 @@ class StudyCard extends React.Component {
     this.update = true;
     
     this.props.getDeck(this.props.match.params.id).then((deck)=>{
-        console.log(deck)
+    
         this.currentCard = 1;
         this.cardId = this.props.decks[this.props.match.params.id].cards[this.counter]
         this.cardId2 = this.props.decks[this.props.match.params.id].cards[this.counter + 1]
@@ -101,10 +101,8 @@ class StudyCard extends React.Component {
         }
     }
     if (answer === 'correct') {
-        console.log(this.props.currentUser)
         let user = Object.assign({}, this.props.currentUser);
         user.points += 2;
-        console.log(user)
         this.props.updateUser(user)
         let card
         if (cardNum === 1) { 
@@ -340,7 +338,7 @@ class StudyCard extends React.Component {
             marginTop -= 10 - modifierUp
             marginTop = marginTop.toFixed(1)
             document.getElementById(id).style.marginTop = `${marginTop}px`
-            console.log(window.innerHeight)
+          
             if (marginLeft > -window.innerWidth && marginTop > -window.innerHeight  && marginTop < window.innerHeight/2 - 250) {
                 marginLeft = parseInt(marginLeft, 10)
                 marginLeft -= 8

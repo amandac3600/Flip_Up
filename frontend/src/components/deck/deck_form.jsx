@@ -99,7 +99,6 @@ class DeckForm extends React.Component {
     if (document.getElementById('deck-form-other').value !== '') {
       newState.category += `, ${document.getElementById('deck-form-other').value}`
     }
-    console.log(newState)
     this.props.submit(newState)
     .then((res)=>{
       this.props.history.push(`/decks/${res.deck._id}`)

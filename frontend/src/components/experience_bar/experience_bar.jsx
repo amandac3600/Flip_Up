@@ -38,7 +38,6 @@ class ExperienceBar extends React.Component {
   }
 
   render() { 
-    console.log(this.props)
     if (!this.props.currentUser) return <div>Hello world!</div>
     this.exp = this.props.currentUser.points
     

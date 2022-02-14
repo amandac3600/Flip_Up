@@ -41,7 +41,7 @@ class UpdateUserForm extends React.Component {
   usernameSubmit(e) {
     e.preventDefault();
 
-    this.props.updateUser(this.state).then((red) => console.log('updateres', red));
+    this.props.updateUser(this.state);
   }
 
   renderErrors() {
