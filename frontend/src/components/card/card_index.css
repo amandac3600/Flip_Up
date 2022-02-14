@@ -55,3 +55,8 @@
   cursor: pointer;
   color: rgb(9, 16, 58);
 }
+
+.card-index-get-cards {
+  color: rgb(40, 57, 155);
+  font-weight: 500;
+}

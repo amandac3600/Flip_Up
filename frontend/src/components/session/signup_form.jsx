@@ -19,6 +19,7 @@ class SignupForm extends React.Component {
     };
 
     this.usernameSubmit = this.usernameSubmit.bind(this);
+    this.demoLogin = this.demoLogin.bind(this);
     this.clearedErrors = false;
   }
 
@@ -27,6 +28,12 @@ class SignupForm extends React.Component {
     if (prevProps.errors !== this.props.errors) {
       this.setState({ errors: this.props.errors })
     }
+  }
+
+  demoLogin(e) {
+    e.preventDefault();
+    const user = {email: 'demo@user.com', password: 'demouser'};
+    this.props.demologin(user).then(() => this.props.history.goBack());
   }
 
   update(field) {
@@ -99,7 +106,11 @@ class SignupForm extends React.Component {
               />
               <br />
               <input type="submit" value="Submit" className='signup-button'/>`
+              <div className="demo-user" >
+                <button className='signup-button-demo' onClick={this.demoLogin}>Demo User</button>
             </div>
+            </div>
+            
           </div>
           <div className='signup-errors'>
             {this.renderErrors()}

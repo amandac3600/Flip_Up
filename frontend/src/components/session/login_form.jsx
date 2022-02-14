@@ -16,6 +16,7 @@ class LoginForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.demoLogin = this.demoLogin.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
   }
 
@@ -28,6 +29,12 @@ class LoginForm extends React.Component {
 
   update(field) {
     return e => this.setState({ [field]: e.currentTarget.value });
+  }
+
+  demoLogin(e) {
+    e.preventDefault();
+    const user = {email: 'demo@user.com', password: 'demouser'};
+    this.props.demologin(user).then(() => this.props.history.goBack());
   }
 
   handleSubmit(e) {
@@ -72,6 +79,9 @@ class LoginForm extends React.Component {
                 />
                 <br />
                 <input type="submit" value="Log in" className='login-button'/>
+            </div>
+            <div className="demo-user-login" >
+              <button className='login-button-demo' onClick={this.demoLogin}>Demo User</button>
             </div>
           </div>
           </div>
