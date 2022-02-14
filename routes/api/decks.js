@@ -102,7 +102,7 @@ router.post('/',
     if (!isValid) {
       return res.status(400).json(errors);
     }
-    const deck = await Deck.findOne({ name: req.body.name, public: true })
+    const deck = await Deck.findOne({ lowerName: req.body.name.toLowerCase(), public: true })
 
     if (deck) return res.status(400).json({ invalidname: 'Deck name already exists'});
 
@@ -113,6 +113,7 @@ router.post('/',
     const newDeck = new Deck({
       user: req.user.id,
       name: req.body.name,
+      lowerName: req.body.name.toLowerCase(),
       category: category,
       public: req.body.public,
       cards: []
@@ -134,11 +135,13 @@ router.patch('/:id',
         return res.status(401).json({ unauthorized: 'You do not own this deck' });
       };
       if (req.body.name) {
-        const checkDeckName = await Deck.findOne({name: req.body.name, public: true });
+        const checkDeckName = await Deck.findOne({ lowerName: req.body.name.toLowerCase(), public: true });
         if (checkDeckName && checkDeckName.id !== deck.id) return res.status(404).json({ invalidname: 'Deck name already exists' });
         deck.name = req.body.name;
+        deck.lowerName = req.body.name.toLowerCase();
+
       }
-      
+
       if (req.body.category) {
         const cats = req.body.category.split(',').map(cat => cat.trim())
         deck.category = cats;

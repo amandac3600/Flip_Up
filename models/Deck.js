@@ -10,6 +10,10 @@ const DeckSchema = new Schema({
     type: String,
     required: true
   },
+  lowerName: {
+    type: String,
+    required: true,
+  },
   category: {
     type: [String],
     required: false
