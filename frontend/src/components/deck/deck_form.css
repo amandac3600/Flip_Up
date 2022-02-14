@@ -391,6 +391,7 @@ transform: scale(1.05);
 
 .deck-form-errors {
     margin-left: 50px;
+    margin-top: 20px;
     padding-top: 20px;
     color: #28399b;
 }

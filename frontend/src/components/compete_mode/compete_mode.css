@@ -55,8 +55,8 @@
 }
 
 .compete-answer-choice-span {
-  width: 1000px;
-  line-height: 5;
+  line-height: 1;
+  overflow-wrap: anywhere;
 }
 
 .compete-answer-choices-div {

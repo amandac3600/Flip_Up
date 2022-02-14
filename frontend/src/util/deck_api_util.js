@@ -27,7 +27,6 @@ export const createDeck = (deck) => {
 
 //update a deck
 export const updateDeck = (deck) => {
-  console.log(deck)
     return axios.patch(`/api/decks/${deck._id}`, deck);
 };
 
