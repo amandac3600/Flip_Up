@@ -58,7 +58,7 @@ class FriendsSearch extends React.Component {
 
 
     renderSearchResults() {
-            const filteredList = this.state.list.filter(friend => ![this.props.currentUser.id, ...this.props.currentUser.friendIds].includes(friend.id))
+        const filteredList = this.state.list.filter(friend => ![this.props.currentUser.id, ...this.props.currentUser.friendIds, ...this.props.currentUser.pendingRequests, ...this.props.currentUser.outgoingRequests].includes(friend.id))
             return (
                 <div><ul className ="friends-search-result">
                     {filteredList.map(friend => (
