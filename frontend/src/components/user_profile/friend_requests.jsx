@@ -12,8 +12,7 @@ export default class FriendRequests extends React.Component {
       <div>
         {friendIds.map(friendId => {
           const friend = this.props.friends[friendId];
-         
-
+          if (!friend) return '';
           let button1, button2;
           if (isIncoming) {
             button1 = <button onClick={() => this.props.requestFriend({ friendId: friendId, requestType: 'approve'})} className='friend-request-button'>Approve</button>
@@ -23,7 +22,7 @@ export default class FriendRequests extends React.Component {
           }
 
           return (
-            <div key={friendId} className='friend-request-list-item'>
+            <div key={friendId}className='friend-request-list-item'>
               <ProfileIcon user={friend} isCurrent={false} />
 
               <div className='friend-request-item-info'>
