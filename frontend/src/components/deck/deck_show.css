@@ -94,7 +94,7 @@
   font-weight: 500;
 }
 
-.deck-show-study:hover, .deck-show-add:hover {
+.deck-show-study:hover, .deck-show-add:hover, .deck-show-delete-deck:hover {
   cursor: pointer;
   background-color: rgb(210, 210, 210);
   transition: all 0.2s;

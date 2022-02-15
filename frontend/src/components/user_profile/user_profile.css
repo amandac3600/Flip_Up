@@ -49,7 +49,8 @@
     align-items: center; 
     justify-content: center;
     font-size: larger;
-    width: 25vw;
+    width: 23vw;
+    margin-right: 10px;
     height: 30%;
     font-weight: bolder;
     padding: 15px;
@@ -179,9 +180,9 @@
     flex-direction: column;
     align-items: center;
     /* justify-content: center; */
-    width: 100%;
+    width: 98%;
     height: 45vh;
-
+    margin-right: 10px;
     background: rgba(247, 242, 242, 0.59);;
     border-radius: 10px;
     box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.29);
@@ -353,19 +354,20 @@
     width: 30px;
     height: 30px;
 }
-.profile-no-friends *{
+.profile-no-friends {
     display: flex;
     flex-direction: column;
     text-align: center;
     justify-items: center;
     align-content: center;
-    line-height: 50px;
-    
+    line-height: 20px;
 }
 
 .find-frineds-button {
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    white-space: nowrap;
 }
 
 /* Loading Spinner */

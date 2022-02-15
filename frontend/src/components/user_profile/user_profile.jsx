@@ -120,8 +120,8 @@ class UserProfile extends React.Component {
 
         if (!this.props.users.friends || this.props.current.friendIds.length === 0 ) {
             return (
-                <div>
-                    <h3 className = 'profile-no-friends'>You haven't made any friends yet!</h3>
+                <div className = 'profile-no-friends'>
+                    <h3 >You haven't made any friends yet!</h3>
                     <div className= 'find-frineds-button' onClick={() => this.setState({showFriendModal: true}) }><AwesomeButton type="primary" >Find a friend now!</AwesomeButton></div>
                     <div className={ this.state.showFriendModal ? 'modal' : 'none'}><FriendsSearchContainer off={()=> this.setState({showFriendModal: false})} /></div>
                 </div>
@@ -157,7 +157,8 @@ class UserProfile extends React.Component {
     }   
 
     renderCompetitors(id) {
-        const competitor = Object.values(this.props.users.friends).find(friend => friend.id === id)
+        const competitor = Object.values(this.props.users.friends).find(friend => friend.id === id);
+        if (!competitor) return null;
         return (
             <>
                 <div className="prof-stats-competitor">

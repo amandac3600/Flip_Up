@@ -20,7 +20,7 @@ class ExperienceBar extends React.Component {
     let newWidth = (this.exp / this.cap)*100
     oldWidth = parseInt(oldWidth, 10)
     setTimeout(function moveExp(){
-      oldWidth += 0.05;
+      oldWidth += 0.2;
       document.getElementById('exp-bar').style.width = `${oldWidth}%`
       if (oldWidth < newWidth) {
         setTimeout(moveExp, 1)
