@@ -47,7 +47,10 @@ class FriendsSearch extends React.Component {
             return <button className="friend-search-no-click-button">YourFriend</button>   
         } else {
            return( <div onClick={() => {
-                this.props.requestFriend({friendId: id, requestType: 'request'})
+               this.props.requestFriend({ friendId: id, requestType: 'request' })
+               .then(() => {
+                   this.props.getFriends();
+               })
                 }}><AwesomeButton >Add Friend</AwesomeButton></div> )
         } 
         

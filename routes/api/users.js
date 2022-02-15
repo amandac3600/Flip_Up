@@ -322,9 +322,9 @@ router.patch('/friends', passport.authenticate('jwt', { session: false }), (req,
             losses: user.losses,
             icon: user.icon,
             email: user.email
-
           };
-          return res.json(payload)
+
+          return res.json(payload);
       })
     })
     .catch(err => res.status(404).json({ nouser: 'Unable to find user' }))
