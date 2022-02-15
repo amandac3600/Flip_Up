@@ -96,8 +96,8 @@ class UserProfile extends React.Component {
              
                 <div className='profile-all-decks'>
                     {decks.map(deck => (
-                        <Link to={`/decks/${deck._id}`}>
-                        <div className="carousel-deck-item" key={deck.id}   >
+                        <Link to={`/decks/${deck._id}`} key={deck._id}>
+                        <div className="carousel-deck-item"    >
                             {deck.name}
                         </div>
                         </Link>
@@ -180,8 +180,8 @@ class UserProfile extends React.Component {
             <div className='stats-right-col'>
                     <div className='prof-winslosses-row'>{this.props.users.current.wins.length} Wins: 
                         <ul className= "render-competitors">
-                            {this.props.users.current.wins.map(result => ( 
-                                <li >
+                            {this.props.users.current.wins.map((result, idx) => ( 
+                                <li key={idx}>
                                     {this.renderCompetitors(result)}
 
                                 </li>

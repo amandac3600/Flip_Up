@@ -60,16 +60,16 @@ router.get('/:id', passport.authenticate('jwt', { session: false }), async (req,
   const deck = await Deck.findOne({ _id: req.params.id })
   if (!deck) return res.status(404).json({ nodecksfound: 'No decks found with that ID' });
 
-  const deckUser = await User.findOne({ _id: deck.user })
+  // const deckUser = await User.findOne({ _id: deck.user })
 
-  if (deckUser.id === req.user.id || deck.public) {
+  // if (deckUser.id === req.user.id || deck.public) {
     let cards = await Card.find({ deck: deck.id })
     cards = cards.map(card => card.id)
   
     return res.json(Object.assign({ cards: cards }, deck._doc));
-  } else {
-    return res.status(401).json({ unauthorized: 'You do not have permission to view this deck' })
-  }
+  // } else {
+  //   return res.status(401).json({ unauthorized: 'You do not have permission to view this deck' })
+  // }
 });
 
 // returns all decks created by specified user. only public unless creator

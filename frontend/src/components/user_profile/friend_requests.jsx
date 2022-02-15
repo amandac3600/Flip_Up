@@ -3,10 +3,6 @@ import ProfileIcon from './profile_icon';
 import './friend_requests.css'
 
 export default class FriendRequests extends React.Component {
-  componentDidMount() {
-    this.props.fetchCurrentUser();
-    this.props.getFriends();
-  }
 
   renderRequest(friendIds, isIncoming) {
     if (!friendIds.length) return <div><br/>No requests pending</div>
@@ -27,7 +23,7 @@ export default class FriendRequests extends React.Component {
           }
 
           return (
-            <div key={friendId}className='friend-request-list-item'>
+            <div key={friendId} className='friend-request-list-item'>
               <ProfileIcon user={friend} isCurrent={false} />
 
               <div className='friend-request-item-info'>
