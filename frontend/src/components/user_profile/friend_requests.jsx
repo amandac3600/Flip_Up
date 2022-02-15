@@ -7,7 +7,6 @@ export default class FriendRequests extends React.Component {
   renderRequest(friendIds, isIncoming) {
     if (!friendIds.length) return <div><br/>No requests pending</div>
   
-    
     return (
       <div>
         {friendIds.map(friendId => {
