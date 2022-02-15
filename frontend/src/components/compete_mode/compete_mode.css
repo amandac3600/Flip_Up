@@ -24,6 +24,12 @@
   margin: auto;
 }
 
+.compete-mode-begin-button:hover {
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+  cursor: pointer;
+  background-color: rgb(27, 43, 134);
+}
+
 /* Compete page */
 .compete-timer-div {
   display: flex;
