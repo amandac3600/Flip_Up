@@ -73,7 +73,7 @@ class DeckShow extends React.Component {
 
   render() {
     if (!this.props.deckInfo || !this.props.deckInfo.cards) return null;
-
+    const studyButton = this.props.deckInfo.cards.length < 2 ? <div className='deck-show-study-min'>Minimum of 2 cards to study deck</div> : <div className='deck-show-study' onClick={() => this.props.ownProps.history.push(`/decks/${this.props.deckInfo._id}/study`)} >Study Deck</div>;
     return (
       <div className='deck-show-full-page'>
           <NavContainer />
@@ -82,7 +82,7 @@ class DeckShow extends React.Component {
           <div className='deck-show-cats'>{this.getCategories()}</div>
           <div className='deck-show-cards'>{this.props.deckInfo.cards.length} cards</div>
           <br/>
-          <div className='deck-show-study' onClick={()=>this.props.ownProps.history.push(`/decks/${this.props.deckInfo._id}/study`)} >Study Deck</div>
+          {studyButton}
           <div>
             <div>{this.handleShowUser()}</div>
           </div>
