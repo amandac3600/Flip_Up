@@ -25,9 +25,6 @@ export default class Challenges extends React.Component {
           }
         )
       });;
-
-    this.props.fetchCurrentUser();
-    this.props.getFriends();
   }
 
   handleDeleteGame(gameId) {
