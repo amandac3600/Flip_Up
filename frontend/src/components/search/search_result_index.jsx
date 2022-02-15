@@ -29,11 +29,11 @@ export default class SearchResultIndex extends React.Component {
     return Object.values(this.props.decks).map( deck => {
       if (!deck.cards.length) return null;
       if (!deck.category) return null;
-      let cats = deck.category.map(cat => {
-        return <div className='search-item-cat'>{cat}</div>
+      let cats = deck.category.map((cat, idx) => {
+        return <div className='search-item-cat' key={idx}>{cat}</div>
       })
       return (
-        <Link to={`/decks/${deck._id}`} className='search-index-item'>
+        <Link to={`/decks/${deck._id}`} className='search-index-item' key={deck._id}>
           <div className='search-item-name'>{deck.name}</div>
           <div className='search-item-cats'>
             <div>{cats}</div>

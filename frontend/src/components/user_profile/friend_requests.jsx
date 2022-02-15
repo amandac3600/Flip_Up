@@ -3,25 +3,16 @@ import ProfileIcon from './profile_icon';
 import './friend_requests.css'
 
 export default class FriendRequests extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
-  // can delete after if called in profile;
-  componentDidMount() {
-    this.props.fetchCurrentUser();
-    this.props.getFriends();
-  }
 
   renderRequest(friendIds, isIncoming) {
     if (!friendIds.length) return <div><br/>No requests pending</div>
-    console.log('ids', this.props.friends)
+  
     
     return (
       <div>
         {friendIds.map(friendId => {
           const friend = this.props.friends[friendId];
-          console.log('friend', friend)
+         
 
           let button1, button2;
           if (isIncoming) {
@@ -32,7 +23,7 @@ export default class FriendRequests extends React.Component {
           }
 
           return (
-            <div key={friendId}className='friend-request-list-item'>
+            <div key={friendId} className='friend-request-list-item'>
               <ProfileIcon user={friend} isCurrent={false} />
 
               <div className='friend-request-item-info'>
@@ -59,8 +50,10 @@ export default class FriendRequests extends React.Component {
 
     return(
       <div className='friend-requests-div'>
-        <div className='friend-requests-title'>Pending friend requests</div>
-
+        <div className='friend-request-header'>
+          <div className='friend-requests-title'>Pending friend requests</div> 
+          <button className = "buttonexit" onClick={() => this.props.off()}>X</button>
+          </div>
         <div className='friend-requests-lists-div'>
           <div className='friend-requests-outgoing'>
             <div>Incoming friend requests:</div>

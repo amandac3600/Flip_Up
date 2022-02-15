@@ -16,17 +16,27 @@ export default class CompeteForm extends React.Component {
   componentDidMount() {
     Promise.all([
       this.props.fetchCurrentUser(),
-      // this.props.getDecks(this.state.filters.join('+')),
       this.props.getFriends(),
     ])
     .then()
   }
 
+  changeColor(id) {
+    Object.values(this.props.users.friends).map( friend => {
+      document.getElementById(`${friend.id}`).style.backgroundColor = ""
+      document.getElementById(`${friend.id}`).style.color = "black"
+    })
+    document.getElementById(`${id}`).style.backgroundColor = "#28399b"
+    document.getElementById(`${id}`).style.color = "white"
+
+  }
+
+
   renderFriends() {
     return Object.values(this.props.users.friends).map( friend => {
 
       return (
-        <div key={friend.id} className='compete-form-friend-item'>
+        <div key={friend.id} id={friend.id} className='compete-form-friend-item' onClick={()=>{this.changeColor(friend.id)}} >
           <label>
             <div className='compete-form-select'>
               <input type='radio' name='friend' className='compete-form-radio' value={friend.id} id={friend.id} onClick={this.handleClick('player2Id')} />
@@ -61,22 +71,22 @@ export default class CompeteForm extends React.Component {
         this.props.history.push(`/compete/${res.game._id}`)
       })
       .catch(err => {
-        console.log('err', err)
         this.setState({ errors: err })
       })
   }
 
   handleCurrent() {
-    if (this.props.decks[this.props.deckId].deck.user === this.props.currentUser.id) {
+    if (this.props.decks[this.props.deckId].user === this.props.currentUser.id) {
       return 'compete-form-div-user'
     } else {
       return 'compete-form-div'
     }
   }
+  
 
   render() {
     if (!this.props.users || !this.props.users.friends || !this.props.games ) return null;
-    console.log(this.props.users.friends)
+
     return (
       <div className={this.handleCurrent()}>
         <form onSubmit={this.handleSubmit}>

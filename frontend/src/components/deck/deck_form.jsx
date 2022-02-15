@@ -16,19 +16,24 @@ class DeckForm extends React.Component {
       this.state = {
         name: '',
         public: false,
-        category: []
+        category: [],
+        errors: [],
+        other: ''
       };
      } else if (this.props.deck) {
       this.state = {
         name: this.props.deck.name,
         public: this.props.deck.public,
-        category: this.props.deck.category
+        category: this.props.deck.category,
+        errors: [],
+        other: ''
       };
     } else {
       this.state = {
         name: '',
         public: false,
-        category: []
+        category: [],
+        errors: [],
       };
     }
     
@@ -91,10 +96,13 @@ class DeckForm extends React.Component {
   deckSubmit(e) {
     e.preventDefault();
     const newState = Object.assign({}, this.state, {category: this.state.category.join(',')}, {_id: this.props.match.params.id})
+    if (document.getElementById('deck-form-other').value !== '') {
+      newState.category += `, ${document.getElementById('deck-form-other').value}`
+    }
     this.props.submit(newState)
     .then((res)=>{
       this.props.history.push(`/decks/${res.deck._id}`)
-    })
+    }, (err) => this.setState({errors: Object.values(err.response.data)}))
   }
 
   buttonFunction() {
@@ -103,9 +111,12 @@ class DeckForm extends React.Component {
 
   getDeckCategories(deckId) {
     return this.props.decks[deckId].category.map((category, idx)=>{
-      return <div key={idx} >
+      if (category !== '') {
+        return <div key={idx} >
                 <div>{category}</div>
             </div>
+      }
+      
     })
   }
   
@@ -141,9 +152,17 @@ class DeckForm extends React.Component {
     return div
   }
 
+  renderErrors() {
+    return (
+    <div className='deck-form-errors'>
+      {this.state.errors.map((error, idx) => {
+        return ( <div key={idx}> {error} </div> )
+      }) }
+    </div> )
+  }
+
   render() {
-    console.log(this.props)
-    console.log(this.state)
+    
     return (
       <div className='deck-form-container' >
         <NavBarContainer/>
@@ -197,11 +216,17 @@ class DeckForm extends React.Component {
             <div>
               <input id='deck-form-english' checked={this.state.category.includes('english')} type="checkbox" value='english' onChange={this.update('english')} />
               <label id='deck-form-english-label' htmlFor="deck-form-english">English</label>
-              
+            </div>
+            <div>
+              <input id='deck-form-other' type="text"
+              value={this.state.other}
+              onChange={this.update('other')}
+              placeholder="other"
+            />
             </div>
             </div>
             <div className='deck-form-submit-button-div' ><AwesomeButton id='deck-form-submit-button' className='deck-form-submit-button' type="primary">Save Deck</AwesomeButton></div>
-            
+            {this.renderErrors()}
           </div>
         </form>
         

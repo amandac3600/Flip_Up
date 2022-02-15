@@ -22,9 +22,6 @@ export default class CompeteMode extends React.Component {
   }
 
   componentDidMount() {
-    // delete after testing
-    this.props.getPendingGames();
-    // keep
     this.props.getDecks();
     this.props.getGame(this.props.match.params.gameId)
       .then((res) => {

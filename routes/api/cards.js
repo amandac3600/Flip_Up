@@ -7,14 +7,6 @@ const Card = require('../../models/Card');
 const Deck = require('../../models/Deck');
 const validateCardInput = require('../../validation/card')
 
-// return all cards. testing only
-// router.get('/', (req, res) => {
-//   Card.find()
-//     .sort({ date: -1 })
-//     .then(cards => res.json(cards))
-//     .catch(err => res.status(404).json({ nocardsfound: 'No cards found' }));
-// });
-
 // return all cards in a deck
 router.get('/deck/:deck_id', (req, res) => {
   Card.find({ deck: req.params.deck_id })
@@ -74,7 +66,7 @@ router.patch('/:id',
     if (user.id !== req.user.id) return res.status(401).json({ unauthorized: 'You do not own this card' })
 
     const takenCard = await Card.findOne({ deck: req.params.deck_id, front: req.body.front });
-    if (takenCard) return res.status(404).json({ duplicate: 'Card with this front already exists' });
+    if (takenCard && takenCard.id !== req.params.id) return res.status(404).json({ duplicate: 'Card with this front already exists' });
     
     if (req.body.front) card.front = req.body.front;
     if (req.body.back) card.back = req.body.back;

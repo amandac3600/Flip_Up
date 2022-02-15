@@ -51,7 +51,7 @@ export default class About extends React.Component {
           <div className='about-contrib-div'>
             <img src={laney} alt="Laney Luong" className='about-profile-pic'/>
             <p className='about-contrib-name'>Laney Luong</p>
-            <p className='about-contrib-descrip'>Hello! My name is Laney and I’m a pharmacist turned full stack software engineer based in the San Francisco Bay Area. I  am experienced technologies including Ruby on Rails, React, Redux, NodeJS, PostgresSQL, and MongoDB.  I love to create and fix things. This not only includes coding, but also my hobbies of gardening and amateur carpentry.</p>
+            <p className='about-contrib-descrip'>Hello! My name is Laney and I’m a pharmacist turned full stack software engineer based in the San Francisco Bay Area. I am experienced in technologies including Ruby on Rails, React, Redux, NodeJS, PostgresSQL, and MongoDB. I love to create and fix things. This not only includes coding, but also my hobbies of gardening and amateur carpentry.</p>
             <p className='about-contrib-descrip'>My favorite sea animals are sea turtles!</p>
             <div className='about-contrib-links'>
               <a className='about-contrib-github' href="https://github.com/laneyNL" target="_blank" rel="noopener noreferrer"><FaGithubSquare/></a>

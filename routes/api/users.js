@@ -93,20 +93,21 @@ router.post('/register', (req, res) => {
   }
 
     // Check to make sure nobody has already registered with a duplicate email
-    User.findOne({ email: req.body.email })
+    User.findOne({ email: req.body.email.toLowerCase() })
     .then(user => {
         if (user) {
-            return res.status(400).json({email: "A user has already registered with this address"})
+            return res.status(400).json({email: "A user has already registered with this email address"})
         } else {
-            User.findOne({ username: req.body.username })
+            User.findOne({ lowerUsername: req.body.username.toLowerCase() })
             .then(user => {
                 if (user) {
                     return res.status(400).json({username: "A user has already registered with this username"})
                 } else {
                     const newUser = new User({
                         username: req.body.username,
-                        email: req.body.email,
-                        password: req.body.password
+                        email: req.body.email.toLowerCase(),
+                        password: req.body.password,
+                        lowerUsername: req.body.username.toLowerCase(),
                     })
 
                     bcrypt.genSalt(10, (err, salt) => {
@@ -131,7 +132,7 @@ router.post('/register', (req, res) => {
 
     if (!isValid) return res.status(400).json(errors);
 
-    const email = req.body.email;
+    const email = req.body.email.toLowerCase();
     const password = req.body.password;
   
     User.findOne({email})
@@ -177,25 +178,32 @@ router.post('/register', (req, res) => {
 router.patch('/', passport.authenticate('jwt', { session: false }), async (req, res) => {
 
   if (req.body.username) {
-    const takenUsername = await User.findOne({ username: req.body.username });
-    if (takenUsername.username && takenUsername.id !== req.user.id) return res.status(404).json({ nouser: 'Username already taken.' })
+    const takenUsername = await User.findOne({ lowerUsername: req.body.username.toLowerCase() });
+    if (takenUsername && takenUsername.id !== req.user.id) return res.status(404).json({ nouser: 'Username already taken.' })
   }
   if (req.body.email) {
-    const takenEmail = await User.findOne({ email: req.body.email });
-    if (takenEmail.email && takenEmail.id !== req.user.id) return res.status(404).json({ nouser: 'Email already taken.' })
+    const takenEmail = await User.findOne({ email: req.body.email.toLowerCase() });
+    if (takenEmail && takenEmail.id !== req.user.id) return res.status(404).json({ nouser: 'Email already taken.' })
   }
 
   User.findOne({ _id: req.user.id })
     .then( async user => {
+      if ((req.body.password && !req.bodypassword2) || (!req.body.password && req.bodypassword2)) {
+        res.status(404).json({ invalidpassword: 'Passwords do not match' })
+      }
+
       if (req.body.password) user.password = req.body.password;
       if (req.body.password2) user.password2 = req.body.password2;
-      if (req.body.username) user.username = req.body.username;
-      if (req.body.email) user.email = req.body.email;
+      if (req.body.username) {
+        user.username = req.body.username;
+        user.lowerUsername = req.body.username.toLowerCase();
+      }
+      if (req.body.email) user.email = req.body.email.toLowerCase();
       if (req.body.points) user.points = req.body.points;
       if (req.body.winId) user.wins.push(req.body.winId);
       if (req.body.lossId) user.losses.push(req.body.lossId);
       if (req.body.icon) user.icon = req.body.icon;
-
+      
       const { errors, isValid } = validateRegisterInput(user, 'patch');
       if (!isValid) return res.status(400).json(errors);
 

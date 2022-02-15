@@ -1,21 +1,26 @@
 .carousel-div {
-    width: 500px;
-    border-color: 2px solid red;
+    /* width: 20vw; */
+    max-width: 20vw;
+    overflow: scroll; 
 }
 .carousel-deck-item{
     display: flex; 
     align-items: center;
     justify-content: center;
-    width: 80%;
-    height: 90px;
-    margin: 50px; 
+    width: 120%;
+    height: 130px;
+    margin-right: 390px; 
     padding: 20px;
     border-radius: 10px;
-    border: 1px solid rgb(45, 45, 100);
-    box-shadow:3px 4px 0px 0px #294d64, 7px 6px 0px 0px #4ca4d6, 6px 6px 0px 0px #7eb2c2, 7px 7px 0px 0px #c6daec, 10px 10px 0px 0px #eaf3f8, 5px 5px 15px 5px rgba(0,0,0,0);
-    background-color: whitesmoke
+    background-color: rgb(40, 57, 155);
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+    box-shadow:3px 4px 0px 0px #abcddf, 7px 6px 0px 0px #e1e6f5, 6px 6px 0px 0px rgb(40, 57, 155), 8px 8px 0px 0px #7eb2c2, 10px 10px 0px 0px #294d64, 24px 26px 15px 5px rgba(0,0,0,0);
+    
 }
 
-/* .carousel-deck-item :hover {
-    background-color: rgb(197, 197, 230);
-} */
+.carousel-deck-item:hover {
+    background-color: rgb(30, 30, 117);
+    box-shadow:3px 4px 0px 0px #9ab7c7, 7px 6px 0px 0px #5d6da0, 6px 6px 0px 0px rgb(75, 80, 107), 8px 8px 0px 0px #7eb2c2, 10px 10px 0px 0px #294d64, 24px 26px 15px 5px rgba(0,0,0,0);
+    font-weight: bolder;
+}

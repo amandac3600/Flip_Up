@@ -20,7 +20,9 @@
   margin-top: 20px;
   color: rgb(40, 57, 155);
 }
-
+.card-form-form-div {
+  width: 200px;
+}
 ::placeholder {
   color: rgb(40, 57, 155);
   font-size: 18px;
@@ -40,3 +42,6 @@
   background-color: rgb(220, 220, 220);
 }
 
+.card-form-errors {
+  padding-top: 10px;
+}
