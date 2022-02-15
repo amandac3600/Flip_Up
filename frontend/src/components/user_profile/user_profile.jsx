@@ -157,7 +157,8 @@ class UserProfile extends React.Component {
     }   
 
     renderCompetitors(id) {
-        const competitor = Object.values(this.props.users.friends).find(friend => friend.id === id)
+        const competitor = Object.values(this.props.users.friends).find(friend => friend.id === id);
+        if (!competitor) return null;
         return (
             <>
                 <div className="prof-stats-competitor">

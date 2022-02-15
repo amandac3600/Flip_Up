@@ -48,7 +48,7 @@ export default class CompeteMode extends React.Component {
     emojiDiv.setAttribute('class', 'fish-emoji');
     emojiDiv.setAttribute('id', 'fish-emoji');
     emojiDiv.innerHTML = `&#${randomEmoji};`;
-    emojiDiv.style.top = `${Math.random()*85}%`;
+    emojiDiv.style.top = `${Math.random()*80}%`;
     const competeDiv = document.querySelector('.compete-mode-div');
     competeDiv.insertBefore(emojiDiv, competeDiv.firstChild);
     const answerChoice = e.currentTarget.textContent;
