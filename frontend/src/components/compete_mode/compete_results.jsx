@@ -19,7 +19,7 @@ const getDecks = (decks) => {
 }
 
 const CompeteResults = ({user, friends, game, cards, decks}) => {
-  if (!decks[game.deck]) return null;
+  if (!game || !decks[game.deck]) return null;
   let player;
   let friendPlayer;
   if (game.player1Id === user.id) {
