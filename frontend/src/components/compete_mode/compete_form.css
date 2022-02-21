@@ -31,12 +31,12 @@
 
 .compete-form-friend-list {
   height: 220px;
-  overflow: scroll;
+  overflow: auto;
 }
 
-.compete-form-friend-list::-webkit-scrollbar {
+/* .compete-form-friend-list::-webkit-scrollbar {
   display: none;
-}
+} */
 
 .compete-form-friend-item {
   border: 1px solid lightgray;
