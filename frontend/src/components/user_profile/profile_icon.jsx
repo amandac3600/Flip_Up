@@ -5,10 +5,16 @@ const renderIcons = () => {
   const iconOptions = document.querySelector('.profile-icon-options');
   iconOptions.innerHTML = '';
   if (!iconOptions) return null;
+
+  const iconText = document.createElement('div');
+  iconText.setAttribute('class', 'profile-iconText');
+  iconText.innerText = 'Select an Emoji to change your icon.';
+  iconOptions.append(iconText);
+  
   const emojiCodeRanges = [128005, 128063]
 
   for (let i = emojiCodeRanges[0]; i < emojiCodeRanges[1]; i++) {
-    const icon = document.createElement('span');
+    const icon = document.createElement('div');
     icon.setAttribute('class', 'profile-icon');
     icon.setAttribute('id', `${i}`);
     icon.innerHTML = `&#${i}`;
