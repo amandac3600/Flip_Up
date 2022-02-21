@@ -46,6 +46,10 @@
   font-size: 15px;
 }
 
+.compete-form-select-label {
+  cursor: pointer;
+}
+
 .compete-form-friend-item:hover {
   box-shadow: 1px 8px 12px rgb(0 0 0 / 10%);
 }
@@ -101,5 +105,6 @@ input[type='radio']:checked .compete-form-friend-item{
 .compete-form-button:hover {
   transition: all 0.2s;
   background-color: rgb(21, 32, 94);
+  cursor: pointer;
 }
 
