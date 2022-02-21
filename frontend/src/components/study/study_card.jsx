@@ -12,7 +12,11 @@ class StudyCard extends React.Component {
     this.update = true;
     
     this.props.getDeck(this.props.match.params.id).then((deck)=>{
-    
+        console.log(this.props)
+        if (this.props.decks[this.props.match.params.id].user !== this.props.currentUser.id) {
+            this.otherUserDeck = true;
+            this.otherUserDeckCounter = 0;
+        }
         this.currentCard = 1;
         this.cardId = this.props.decks[this.props.match.params.id].cards[this.counter]
         this.cardId2 = this.props.decks[this.props.match.params.id].cards[this.counter + 1]
@@ -91,7 +95,9 @@ class StudyCard extends React.Component {
     }
 
   nextCard(answer, cardNum){
-    
+    if (this.props.decks[this.props.match.params.id].cards.length > this.otherUserDeckCounter) {
+        this.otherUserDeckCounter += 1;
+    }
     this.counter += 1;
     if (this.freeMode === true) {
         if (this.checkEndOfFreeMode()) {
@@ -273,6 +279,25 @@ class StudyCard extends React.Component {
   }
 
   resetInFreeMode() {
+      
+    if (this.props.decks[this.props.match.params.id].user !== this.props.currentUser.id) {
+        this.otherUserDeck = true;
+        this.otherUserDeckCounter = 0;
+        this.currentCard = 1;
+        this.cardId = this.props.decks[this.props.match.params.id].cards[this.counter]
+        this.cardId2 = this.props.decks[this.props.match.params.id].cards[this.counter + 1]
+        this.cardSpinId1 = this.cardId;
+        this.cardSpinId2 = this.cardId;
+        this.cardSpinId3 = this.cardId;
+        this.cardSpinId4 = this.cardId;
+        this.cardSpinId5 = this.cardId;
+        this.cardSpinId6 = this.cardId;
+        this.cardSpinId7 = this.cardId;
+        this.currentSpinner = 1;
+        this.props.getCard(this.cardId)
+        this.props.getCard(this.cardId2)
+        this.getTheRestOfTheCards();
+    }
     this.lastCard = false;
     this.timeToReview = true;
     this.allCardsDoneForNow = false;
@@ -528,6 +553,13 @@ class StudyCard extends React.Component {
         }
         if (!this.timeToReview) { this.reviewUpdate = false }
         else { this.reviewUpdate = true }
+    }
+    if (this.props.decks[this.props.match.params.id].user !== this.props.currentUser.id) {
+        if (this.props.decks[this.props.match.params.id].cards.length > this.otherUserDeckCounter) {
+        
+        } else {
+            this.allCardsDoneForNow = true;
+        }
     }
     return this.allCardsDoneForNow ? 
         <div>
