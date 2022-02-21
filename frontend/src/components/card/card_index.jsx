@@ -17,7 +17,7 @@ class CardIndex extends React.Component {
   }
 
   handleDelete() {
-    let key = Object.keys(this.props.decks)[0]
+    let key = this.props.match.params.id;
     if (!this.props.decks[key]) return null
     if (this.props.decks[key].user === this.props.currentUser.id) {
       return 'show'    
