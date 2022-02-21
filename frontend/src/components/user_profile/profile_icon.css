@@ -26,6 +26,7 @@
   z-index: 5;
   overflow: auto;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -44,8 +45,9 @@
 }
 
 .profile-icon {
-  font-size: 40px;
-  margin: 5px;
+  font-size: 32px;
+  padding: 3px 0px;
+  margin: 3px;
   box-sizing: border-box;
   border-radius: 5px;
 }
