@@ -4,7 +4,6 @@
 
 .user-profile-icon-div {
   background-color: rgb(179, 228, 250); 
-  /* border: 1px solid gray; */
   border-radius: 50%;
   padding: 5px; 
   display: flex;
@@ -18,19 +17,30 @@
 }
 
 .profile-icon-options {
-  width: 200px;
+  width: 210px;
   height: 200px;
   position: fixed;
   border: 3px solid rgb(40, 57, 155);
   border-radius: 5px;
   background-color: aliceblue;
   z-index: 5;
-  overflow: scroll;
-  padding: 10px;
+  overflow: auto;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .profile-icon-options::-webkit-scrollbar {
-  display: none;
+  width: 5px;
+}
+
+.profile-icon-options::-webkit-scrollbar-track {
+  background: #E1DED6;
+  border-radius: 10px;
+}
+
+.profile-icon-options::-webkit-scrollbar-thumb {
+  background: rgb(40, 57, 155);
+  border-radius: 10px;
 }
 
 .profile-icon {
@@ -48,4 +58,12 @@
 
 .profile-icon-options.hidden {
   display: none;
+}
+
+.profile-iconText{
+  width: 100%;
+  font-size: 10px;
+  text-align: center;
+  padding: 5px 0;
+  border-bottom: 1px solid rgb(40, 57, 155);
 }
