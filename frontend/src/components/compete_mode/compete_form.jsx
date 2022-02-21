@@ -37,9 +37,9 @@ export default class CompeteForm extends React.Component {
 
       return (
         <div key={friend.id} id={friend.id} className='compete-form-friend-item' onClick={()=>{this.changeColor(friend.id)}} >
-          <label>
+          <label className='compete-form-select-label'>
             <div className='compete-form-select'>
-              <input type='radio' name='friend' className='compete-form-radio' value={friend.id} id={friend.id} onClick={this.handleClick('player2Id')} />
+              <input type='radio' name='friend' className='compete-form-radio' value={friend.id} id={friend.id} onClick={this.handleClick('player2Id')} required/>
               <span className='compete-form-username'>Username: </span>
               <span>{friend.username}</span>
             </div>
@@ -83,7 +83,6 @@ export default class CompeteForm extends React.Component {
     }
   }
   
-
   render() {
     if (!this.props.users || !this.props.users.friends || !this.props.games ) return null;
 

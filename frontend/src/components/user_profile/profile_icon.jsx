@@ -24,15 +24,26 @@ const toggleIconOptions = () => {
 const ProfileIcon = ({ user, updateUser, isCurrent = true}) => {
   const [icon, setIcon] = useState(user.icon);
 
-  useEffect(() => {
+  const listener = (e) => {
+    const box = document.querySelector('.profile-icon-options');
+    if (!box.contains(e.target)) {
+      box.classList.add('hidden');
+    }
+  }
 
+  useEffect(() => {
+    document.addEventListener('mouseup', listener);
     const profileIcon = document.querySelector(`.user-profile-icon.id${user.id}`);
     profileIcon.innerHTML = `&#${icon}`
     if (isCurrent) renderIcons();
+
+    return (() => {
+      document.removeEventListener('mouseup', listener);
+    })
   })
 
   const handleIconClick = (e) => {
-    if (e.target.id === 'profile-icon-options') return;
+    if (!e.target.id) return;
     setIcon(e.target.id)
     updateUser({ icon: e.target.id})
   }
