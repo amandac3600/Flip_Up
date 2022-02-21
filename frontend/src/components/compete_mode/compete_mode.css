@@ -218,3 +218,17 @@
   justify-content: center;
   font-family: Montserrat, Arial, Helvetica, sans-serif;
 }
+
+.deck-form-page-deck-list-item.compete-results {
+  margin: auto;
+  
+}
+
+.compete-results-deck-name {
+  font-size: 30px;
+  padding: 10px;
+}
+
+.compete-results-more-decks-name {
+  padding-top: 7px;
+}
