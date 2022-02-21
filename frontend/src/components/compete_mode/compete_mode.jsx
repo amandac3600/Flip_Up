@@ -85,7 +85,7 @@ export default class CompeteMode extends React.Component {
     return (
       <div >
         <div className='compete-mode-begin'>
-          <div className='compete-mode-directions'>The winner will be determined by who gets the most question correct. <br /><br />If there is a tie, whoever finishes in the least amount of time will win.</div>
+          <div className='compete-mode-directions'>The winner will be determined by who gets the most questions correct. <br /><br />If there is a tie, whoever finishes in the least amount of time will win.</div>
 
           <button className='compete-mode-begin-button' onClick={this.handleBeginGame}>Begin Game</button>
         </div>
