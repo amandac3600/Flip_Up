@@ -34,6 +34,20 @@
   overflow: auto;
 }
 
+.compete-form-friend-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.compete-form-friend-list::-webkit-scrollbar-track {
+  background: #E1DED6;
+  border-radius: 10px;
+}
+
+.compete-form-friend-list::-webkit-scrollbar-thumb {
+  background: rgb(40, 57, 155);
+  border-radius: 10px;
+}
+
 /* .compete-form-friend-list::-webkit-scrollbar {
   display: none;
 } */
