@@ -88,7 +88,7 @@ input[type='radio']:checked .compete-form-friend-item{
 }
 
 .compete-form-radio {
-  visibility: hidden;
+  /* visibility: hidden; */
 }
 
 .compete-form-button {
