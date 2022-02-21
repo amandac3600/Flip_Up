@@ -66,6 +66,12 @@
   /* width: 1000px;
   line-height: 5;
   font-family: Montserrat, Arial, Helvetica, sans-serif; */
+  width: 600px;
+  height: 134px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin: 20px; */
   line-height: 1;
   overflow-wrap: anywhere;
 }
@@ -86,7 +92,7 @@
   font-family: Montserrat, Arial, Helvetica, sans-serif;
   width: 600px;
   height: 17vh;
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 500;
   margin: 20px;
   display: flex;
