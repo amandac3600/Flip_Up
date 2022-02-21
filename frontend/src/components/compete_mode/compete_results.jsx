@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const getDecks = (decks) => {
   const decksSlice = Object.values(decks).filter(deck => deck.cards.length >  2).slice(0, 10)
   return decksSlice.map((deck) => {
-    return <Link to={`/decks/${deck._id}`} className='compete-results-more-decks-link' key={deck._id} >
+    return <Link to={`/decks/${deck._id}`} key={deck._id} >
         <div className='deck-form-page-deck-list-item grow3 compete-results'>
           <div className='compete-results-more-decks-name'>{deck.name}</div>
           <div>
@@ -14,7 +14,7 @@ const getDecks = (decks) => {
           </div>
           
       </div>
-      </Link >
+    </Link >
   })
 }
 
