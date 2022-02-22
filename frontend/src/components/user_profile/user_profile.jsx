@@ -160,13 +160,9 @@ class UserProfile extends React.Component {
         const competitor = Object.values(this.props.users.friends).find(friend => friend.id === id);
         if (!competitor) return null;
         return (
-            <>
-                <div className="prof-stats-competitor">
-                    {/* <span className='prof-stats-icons'> */}
-                        {/* <ProfileIcon user={competitor} isCurrent={false}/> */}
-                        {/* </span> */}
-                    {competitor.username}</div>
-            </>
+            <div className="prof-stats-competitor">
+                {competitor.username}
+            </div>
             
         )
     }
@@ -182,14 +178,14 @@ class UserProfile extends React.Component {
             
             <div className='stats-right-col'>
                     <div className='prof-winslosses-row'>{this.props.users.current.wins.length} Wins: 
-                        {/* <ul className= "render-competitors">
+                        <ul className= "render-competitors">
                             {this.props.users.current.wins.map((result, idx) => ( 
                                 <li key={idx}>
                                     {this.renderCompetitors(result)}
 
                                 </li>
                             ))}
-                        </ul> */}
+                        </ul>
                     </div>
                     <div className='prof-winslosses-row'> {this.props.users.current.losses.length} Losses: </div>
             </div>
