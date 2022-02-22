@@ -256,7 +256,7 @@ class UserProfile extends React.Component {
                                <>Friends</> 
                                <div onClick={() => this.setState({showFriendRequestModal : true})} 
                                     className = 'profile-new-friend-request'>
-                                        {this.props.current.pendingRequests.length > 0 ? <img className = 'profile-new-friend-request-show' src={new_friend_icon} alt="new friend!" /> : ""}
+                                {(this.props.current.pendingRequests.length > 0 || this.props.current.outgoingRequests.length > 0) ? <img className = 'profile-new-friend-request-show' src={new_friend_icon} alt="new friend!" /> : ""}
                                 </div> 
                                 <div className={ this.state.showFriendRequestModal ? 'friend_request_modal' : 'none'}>
                                     <FriendsRequestContainer 
