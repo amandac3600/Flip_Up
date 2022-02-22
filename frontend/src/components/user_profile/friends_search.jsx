@@ -85,12 +85,12 @@ class FriendsSearch extends React.Component {
         return (
             <div className='friends-search' >
                 <div className= "friends-search-header"> 
-                    <div>
+                    {/* <div> */}
                         <form onSubmit={this.handleSubmit}>
-                        <input type='search' value={this.state.inputValue} onChange= {this.friendFilterOnChange} placeholder="search for friends"/>
+                            <input type='search' value={this.state.inputValue} onChange={this.friendFilterOnChange} placeholder="Search for friends"/>
                         <button className='friends-search-button'><AiOutlineSearch /></button>
                         </form>
-                    </div>
+                    {/* </div> */}
                     <button className = "buttonX" onClick={() => this.props.off()}>X</button>
                 </div>
                 <div >
