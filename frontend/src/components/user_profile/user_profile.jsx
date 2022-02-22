@@ -162,7 +162,9 @@ class UserProfile extends React.Component {
         return (
             <>
                 <div className="prof-stats-competitor">
-                    <span className='prof-stats-icons'><ProfileIcon user={competitor} isCurrent={false}/></span>
+                    {/* <span className='prof-stats-icons'> */}
+                        {/* <ProfileIcon user={competitor} isCurrent={false}/> */}
+                        {/* </span> */}
                     {competitor.username}</div>
             </>
             
