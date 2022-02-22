@@ -85,7 +85,8 @@ class UserProfile extends React.Component {
             return (
                 <div>
                     <h3 className = 'profile-no-decks'>You haven't made any decks yet!</h3>
-                    <div className= 'make-deck-button' onClick={this.handleClick}><AwesomeButton type="primary" >Create your first deck now!</AwesomeButton></div> 
+                    <div className= 'make-deck-button' onClick={this.handleClick}><AwesomeButton type="primary" ><span className='profile-create-deck'>
+                        Create your first deck now!</span></AwesomeButton></div>
                 </div>
             )
         }
