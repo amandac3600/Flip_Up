@@ -182,14 +182,14 @@ class UserProfile extends React.Component {
             
             <div className='stats-right-col'>
                     <div className='prof-winslosses-row'>{this.props.users.current.wins.length} Wins: 
-                        <ul className= "render-competitors">
+                        {/* <ul className= "render-competitors">
                             {this.props.users.current.wins.map((result, idx) => ( 
                                 <li key={idx}>
                                     {this.renderCompetitors(result)}
 
                                 </li>
                             ))}
-                        </ul>
+                        </ul> */}
                     </div>
                     <div className='prof-winslosses-row'> {this.props.users.current.losses.length} Losses: </div>
             </div>
