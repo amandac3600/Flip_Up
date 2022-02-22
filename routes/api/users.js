@@ -278,11 +278,18 @@ router.patch('/friends', passport.authenticate('jwt', { session: false }), (req,
       const friendId = req.body.friendId;
       const friend = await User.findOne({ _id: friendId });
       const requestType = req.body.requestType;
+      removeFromArray(friendId, user, 'pendingRequests');
+      removeFromArray(user.id, friend, 'pendingRequests');
+      removeFromArray(friendId, user, 'outgoingRequests');
+      removeFromArray(user.id, friend, 'outgoingRequests');
+
       switch (requestType) {
         case 'approve':
           if (!user.friendIds.includes(friendId))  {user.friendIds.push(friendId)};
           if (!friend.friendIds.includes(user.id))  {friend.friendIds.push(user.id);}
           removeFromArray(friendId, user, 'pendingRequests');
+          removeFromArray(friendId, user, 'outgoingRequests');
+          removeFromArray(user.id, friend, 'pendingRequests');
           removeFromArray(user.id, friend, 'outgoingRequests');
           break;
         case 'remove':
@@ -298,10 +305,10 @@ router.patch('/friends', passport.authenticate('jwt', { session: false }), (req,
           removeFromArray(user.id, friend, 'pendingRequests');
           break;
         case 'request':
-          if (!user.outgoingRequests.includes(friendId)) {
+          if (!user.outgoingRequests.includes(friendId) && !user.friendIds.includes(friendId)) {
             user.outgoingRequests.push(friendId);
           }
-          if (!friend.pendingRequests.includes(user.id)) {
+          if (!friend.pendingRequests.includes(user.id) && !friend.friendIds.includes(user.id)) {
             friend.pendingRequests.push(user.id);
           break;
         }

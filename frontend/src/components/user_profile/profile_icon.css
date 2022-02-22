@@ -9,11 +9,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
 }
 
-.user-profile-icon-div:hover {
+.profile-user-info .user-profile-icon-div:hover {
   box-shadow: 1px 8px 12px rgb(0 0 0 / 10%);
+  cursor: pointer;
 }
 
 .profile-icon-options {

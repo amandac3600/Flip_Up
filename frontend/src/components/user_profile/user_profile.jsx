@@ -34,7 +34,6 @@ class UserProfile extends React.Component {
 
     componentDidMount() {
         this.props.fetchCurrentUser();
-        this.props.getFriends();
         this.props.getDecks() 
             .then(action => {
                 this.setState({
@@ -86,7 +85,8 @@ class UserProfile extends React.Component {
             return (
                 <div>
                     <h3 className = 'profile-no-decks'>You haven't made any decks yet!</h3>
-                    <div className= 'make-deck-button' onClick={this.handleClick}><AwesomeButton type="primary" >Create your first deck now!</AwesomeButton></div> 
+                    <div className= 'make-deck-button' onClick={this.handleClick}><AwesomeButton type="primary" ><span className='profile-create-deck'>
+                        Create your first deck now!</span></AwesomeButton></div>
                 </div>
             )
         }
@@ -160,11 +160,9 @@ class UserProfile extends React.Component {
         const competitor = Object.values(this.props.users.friends).find(friend => friend.id === id);
         if (!competitor) return null;
         return (
-            <>
-                <div className="prof-stats-competitor">
-                    <span className='prof-stats-icons'><ProfileIcon user={competitor} isCurrent={false}/></span>
-                    {competitor.username}</div>
-            </>
+            <div className="prof-stats-competitor">
+                {competitor.username}
+            </div>
             
         )
     }
@@ -175,21 +173,28 @@ class UserProfile extends React.Component {
         <div className="prof-stats-div">
             <div className='stats-left-col'>
                 <div className = "stats-header">Stats:</div>   
-                <div className = "profile-points"> You've earned <br/> <span className="profile-points-bold">{this.props.users.current.points} </span>Points!</div>
+                
             </div>
             
             <div className='stats-right-col'>
-                    <div className='prof-winslosses-row'>{this.props.users.current.wins.length} Wins: 
-                        <ul className= "render-competitors">
+                    <div className="profile-points"> You've earned <span className="profile-points-bold">{this.props.users.current.points} </span> Points!
+                    </div>
+
+                    <div className='profile-stats-win-losses-div'>
+                        <div className='prof-winslosses-row'>{this.props.users.current.wins.length} Wins
+                            {/* <ul className= "render-competitors">
                             {this.props.users.current.wins.map((result, idx) => ( 
                                 <li key={idx}>
                                     {this.renderCompetitors(result)}
 
                                 </li>
                             ))}
-                        </ul>
+                            </ul> */}
+                        </div>
+
+                        <div className='prof-winslosses-row'> {this.props.users.current.losses.length} Losses </div>
                     </div>
-                    <div className='prof-winslosses-row'> {this.props.users.current.losses.length} Losses: </div>
+                    
             </div>
         </div>
         )
@@ -254,7 +259,7 @@ class UserProfile extends React.Component {
                                <>Friends</> 
                                <div onClick={() => this.setState({showFriendRequestModal : true})} 
                                     className = 'profile-new-friend-request'>
-                                        {this.props.current.pendingRequests.length > 0 ? <img className = 'profile-new-friend-request-show' src={new_friend_icon} alt="new friend!" /> : ""}
+                                {(this.props.current.pendingRequests.length > 0 || this.props.current.outgoingRequests.length > 0) ? <img className = 'profile-new-friend-request-show' src={new_friend_icon} alt="new friend!" /> : ""}
                                 </div> 
                                 <div className={ this.state.showFriendRequestModal ? 'friend_request_modal' : 'none'}>
                                     <FriendsRequestContainer 

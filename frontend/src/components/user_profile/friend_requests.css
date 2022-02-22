@@ -10,7 +10,8 @@
   border-radius: 10px;
   box-shadow: 5px 10px 15px 2px rgba(0,0,0,0.59);
   width: 60%;
-  overflow: scroll; 
+  overflow-x: hidden; 
+  overflow-y: auto; 
   min-height: 400px;
   padding: 10px; 
   max-height: 85vh;

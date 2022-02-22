@@ -42,7 +42,6 @@ const ProfileIcon = ({ user, updateUser, isCurrent = true}) => {
     const profileIcon = document.querySelector(`.user-profile-icon.id${user.id}`);
     profileIcon.innerHTML = `&#${icon}`
     if (isCurrent) renderIcons();
-
     return (() => {
       document.removeEventListener('mouseup', listener);
     })
@@ -53,6 +52,7 @@ const ProfileIcon = ({ user, updateUser, isCurrent = true}) => {
     setIcon(e.target.id)
     updateUser({ icon: e.target.id})
   }
+
   return(
     <div className='user-profile-icon-div' onClick={isCurrent ? toggleIconOptions : () => {}}>
       <div className={`user-profile-icon id${user.id}`}></div>
