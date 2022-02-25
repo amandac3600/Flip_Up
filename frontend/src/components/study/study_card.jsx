@@ -137,7 +137,10 @@ class StudyCard extends React.Component {
             
         }
         this.freeMode ? card.count = card.count : card.count += 1;
-        this.props.updateCard(card);
+        if (!this.otherUserDeck) {
+            this.props.updateCard(card);
+        }
+        
     } else if (answer === 'incorrect') {
         let card
         if (cardNum === 1) { 
@@ -166,7 +169,9 @@ class StudyCard extends React.Component {
             
         }
         card.count = 0;
-        this.props.updateCard(card);
+        if (!this.otherUserDeck) {
+            this.props.updateCard(card);
+        }
     } 
     
     if (this.counter === this.props.decks[this.props.match.params.id].cards.length - 1) { this.counter = -1 }
@@ -197,6 +202,8 @@ class StudyCard extends React.Component {
         this.props.getCard(this.cardId)
         this.props.getCard(this.cardId2)
     }
+
+
 
   }
 
@@ -307,9 +314,14 @@ class StudyCard extends React.Component {
     this.cardId = this.props.decks[this.props.match.params.id].cards[this.counter]
     this.cardId2 = this.props.decks[this.props.match.params.id].cards[this.counter + 1]
     let card = Object.assign({}, this.props.cards[this.cardId]);
-    this.props.updateCard(card);
+
+    if (!this.otherUserDeck) {
+            this.props.updateCard(card);
+        }
     card = Object.assign({}, this.props.cards[this.cardId2]);
-    this.props.updateCard(card);
+    if (!this.otherUserDeck) {
+        this.props.updateCard(card);
+    }
   }
 
     checkEndOfFreeMode() {
@@ -335,15 +347,24 @@ class StudyCard extends React.Component {
             if (marginTop > -320) {
                 marginTop = parseInt(marginTop, 10)
                 marginTop -= 1
-                document.getElementById(`study-card-sparkles-container${num}`).style.marginTop = `${marginTop}px`
+                if (document.getElementById(`study-card-sparkles-container${num}`)) {
+                     document.getElementById(`study-card-sparkles-container${num}`).style.marginTop = `${marginTop}px`
+                }
+               
             } 
             if (marginLeft < 300) {
                 marginLeft = parseInt(marginLeft, 10)
                 marginLeft += 1
-                document.getElementById(`study-card-sparkles-container${num}`).style.marginLeft = `${marginLeft}px`
+                if (document.getElementById(`study-card-sparkles-container${num}`)) {
+                    document.getElementById(`study-card-sparkles-container${num}`).style.marginLeft = `${marginLeft}px`
+                }
+                
                 setTimeout(moveSparkles, 3) 
             } else {
-                document.getElementById(`study-card-sparkles-container${num}`).style.display = 'none'
+                if (document.getElementById(`study-card-sparkles-container${num}`)) {
+                    document.getElementById(`study-card-sparkles-container${num}`).style.display = 'none'
+                }
+                
             }
         }, 3)
     }
@@ -362,16 +383,25 @@ class StudyCard extends React.Component {
             modifierUp += 0.4;
             marginTop -= 10 - modifierUp
             marginTop = marginTop.toFixed(1)
-            document.getElementById(id).style.marginTop = `${marginTop}px`
+            if (document.getElementById(id)) {
+                document.getElementById(id).style.marginTop = `${marginTop}px`
+            }
+            
           
             if (marginLeft > -window.innerWidth && marginTop > -window.innerHeight  && marginTop < window.innerHeight/2 - 250) {
                 marginLeft = parseInt(marginLeft, 10)
                 marginLeft -= 8
                 marginLeft = marginLeft.toFixed(1)
-                document.getElementById(id).style.marginLeft = `${marginLeft}px`
+                if (document.getElementById(id)) {
+                    document.getElementById(id).style.marginLeft = `${marginLeft}px`
+                }
+                
                 setTimeout(moveCard, 10)
             } else {
-                document.getElementById(id).style.display = 'none';
+                if (document.getElementById(id)) {
+                    document.getElementById(id).style.display = 'none';
+                }
+                
             }
         }, 10)
     }
@@ -389,16 +419,25 @@ class StudyCard extends React.Component {
                 modifierUp += 0.4;
                 marginTop -= 10 - modifierUp
                 marginTop = marginTop.toFixed(1)
-                document.getElementById(id).style.marginTop = `${marginTop}px`
+                if (document.getElementById(id)) {
+                    document.getElementById(id).style.marginTop = `${marginTop}px`
+                }
+                
             } 
             if (marginLeft < window.innerWidth && marginTop < window.innerHeight  && marginTop < window.innerHeight/2 - 250) {
                 marginLeft = parseInt(marginLeft, 10)
                 marginLeft += 8
                 marginLeft = marginLeft.toFixed(1)
-                document.getElementById(id).style.marginLeft = `${marginLeft}px`
+                if (document.getElementById(id)) {
+                    document.getElementById(id).style.marginLeft = `${marginLeft}px`
+                }
+                
                 setTimeout(moveCard, 10)
             } else {
-                document.getElementById(id).style.display = 'none';
+                if (document.getElementById(id)) {
+                    document.getElementById(id).style.display = 'none';
+                }
+                
             }
         }, 10)
     }
@@ -556,11 +595,14 @@ class StudyCard extends React.Component {
     }
     if (this.props.decks[this.props.match.params.id].user !== this.props.currentUser.id) {
         if (this.props.decks[this.props.match.params.id].cards.length > this.otherUserDeckCounter) {
-        
+            
         } else {
+            console.log('its me!')
             this.allCardsDoneForNow = true;
         }
     }
+    console.log("all done " + this.allCardsDoneForNow)
+    console.log("need review " + this.timeToReview)
     return this.allCardsDoneForNow ? 
         <div>
             <div id='study-card-front-no' >
